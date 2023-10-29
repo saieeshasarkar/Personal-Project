@@ -6,9 +6,9 @@
 <?php
 <h1>This is a Heading</h1>
 <p>This is a paragraph.</p>
+
 <?php
-echo "My first PHP script!";
-?> 
+echo "My first PHP script!";?> 
 
 </body>
 </html>
