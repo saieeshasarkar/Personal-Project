@@ -31,18 +31,18 @@
 
 require 'dbconfig.php';
 
- $fetchdata = $database->getReference('New')->getValue();
+//  $fetchdata = $database->getReference('New')->getValue();
     
     
     
-    foreach($fetchdata as $key => $value)
-    {
-        //if the email exist
-    // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
-    //     //if the phone number exist
-    // if($_POST['number'] == ($value['phone'])){$result ='<div class="alert alert-danger">Phone number are alraedy Sign-Up ..</div>';}
+//     foreach($fetchdata as $key => $value)
+//     {
+//         //if the email exist
+//     // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
+//     //     //if the phone number exist
+//     // if($_POST['number'] == ($value['phone'])){$result ='<div class="alert alert-danger">Phone number are alraedy Sign-Up ..</div>';}
         
-    }
+//     }
 //     $_SESSION['result']=$result;
 //     //if there is an error
 //     if(isset($result)){echo $result;}
@@ -56,14 +56,14 @@ require 'dbconfig.php';
 // 	'username'	=>	$_POST['username'],
 	
 // ];
-$AppData = [
-    'user'=>'test',
-    'password'=>'test2',
-    'phone'=>'test3',
-    'address'=>'test4',
-	'status'	=>	'test5',
+// $AppData = [
+//     'user'=>'test',
+//     'password'=>'test2',
+//     'phone'=>'test3',
+//     'address'=>'test4',
+// 	'status'	=>	'test5',
 	
-];
-$ref='New/';
-$postdata = $database->getReference($ref)->push($AppData);
+// ];
+// $ref='New/';
+// $postdata = $database->getReference($ref)->push($AppData);
 ?>
