@@ -1,0 +1,10 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyBf3m74nlIkWPD1D9PMycQQIKxze0A-1hg",
+  authDomain: "dengue-fever-database-6da72.firebaseapp.com",
+  databaseURL: "https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "dengue-fever-database-6da72",
+  storageBucket: "dengue-fever-database-6da72.appspot.com",
+  messagingSenderId: "484563913792",
+  appId: "1:484563913792:web:617b18689b4238c825e3a5",
+  measurementId: "G-LXXV81FSTD"
+};
