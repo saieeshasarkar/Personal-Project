@@ -14,7 +14,7 @@
     $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
     $firebase=(new Factory)
         ->withServiceAccount($serviceAccount)
-        ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app')
+        ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/')
         ->Create();
     
     $database = $firebase->getDatabase();
