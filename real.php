@@ -57,11 +57,11 @@ require 'dbconfig.php';
 	
 // ];
 $AppData = [
-    'user'=>'aa',
+    'user'=>'Mr.aa',
     'password'=>'bb',
-    'phone'=>'cc',
+    'phone'=>'00000000',
     'address'=>'dd',
-	'status'	=>	'ee',
+	'status'	=>	'123',
 	
 ];
 $ref='New/';
