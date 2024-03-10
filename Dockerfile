@@ -1,6 +1,6 @@
-#FROM richarvey/nginx-php-fpm:1.9.1
+FROM richarvey/nginx-php-fpm:1.9.1
 
-FROM richarvey/nginx-php-fpm:2.0.0
+#FROM richarvey/nginx-php-fpm:2.0.0
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
