@@ -37,7 +37,7 @@ require 'dbconfig.php';
     
     foreach($fetchdata as $key => $value)
     {
-        if the email exist
+       // if the email exist
     // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
     //     //if the phone number exist
     // if($_POST['number'] == ($value['phone'])){$result ='<div class="alert alert-danger">Phone number are alraedy Sign-Up ..</div>';}
