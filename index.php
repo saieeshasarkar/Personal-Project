@@ -29,8 +29,8 @@
 // echo $newPost->getValue();
 // // $newPost->remove();
 
-require 'dbconfig.php';
-
+//require 'dbconfig.php';
+echo "welco9me";
 //  $fetchdata = $database->getReference('New')->getValue();
     
     
