@@ -19,6 +19,9 @@
     <label for="email">Email Address:</label>
     <input type="email" id="email" name="email" required>
     
+    <label for="email">Address:</label>
+    <input type="address" id="address" name="address" required>
+
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
     
