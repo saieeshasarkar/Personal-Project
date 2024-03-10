@@ -10,12 +10,17 @@
 // ->withProjectId('my-project')
 // ->withDatabaseUri('https://authentication-php-default-rtdb.asia-southeast1.firebasedatabase.app/');
 
-
-    $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
+ $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/test.json');
     $firebase=(new Factory)
         ->withServiceAccount($serviceAccount)
-        ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/')
+        ->withDatabaseUri('https://authentication-php-default-rtdb.asia-southeast1.firebasedatabase.app/')
         ->Create();
+
+    // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
+    // $firebase=(new Factory)
+    //     ->withServiceAccount($serviceAccount)
+    //     ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/')
+    //     ->Create();
     
     $database = $firebase->getDatabase();
 
