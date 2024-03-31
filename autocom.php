@@ -37,7 +37,7 @@ $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne
             var selectedValue = $(this).val();
             // When an option is selected from autocomplete, perform search
             $.ajax({
-                url: 'search.php',
+                url: 'autocom.php',
                 type: 'POST',
                 dataType: 'html',
                 data: { uucne: selectedValue },
