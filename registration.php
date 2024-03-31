@@ -94,7 +94,7 @@ $data = json_decode($jsonString, true);
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address:</label>
-                <input type="text" class="form-control" id="address" name="address" required>
+                <!-- <input type="text" class="form-control" id="address" name="address" required> -->
                 <input id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
     <datalist id="searchOptions">
         <?php foreach ($data['features'] as $feature): ?>
