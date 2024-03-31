@@ -49,20 +49,6 @@ $data = json_decode($jsonString, true);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- JavaScript for validation -->
     <script>
-        $(function() {
-        $('#search').on('blur', function() {
-            var selectedValue = $(this).val();
-            if ($(this).val()) {
-                var options = $('#searchOptions').find('option').map(function() {
-                    return this.value;
-                }).get();
-                if (options.indexOf(selectedValue) === -1) {
-                    alert('Please select a value from the list.');
-                    $(this).val('');
-                }
-            }
-        });
-    });
         function validateForm() {
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
@@ -108,7 +94,7 @@ $data = json_decode($jsonString, true);
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address:</label>
-                <!-- <input type="text" class="form-control" id="address" name="address" required> -->
+                <input type="text" class="form-control" id="address" name="address" required>
                 <input id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
     <datalist id="searchOptions">
         <?php foreach ($data['features'] as $feature): ?>
@@ -127,5 +113,23 @@ $data = json_decode($jsonString, true);
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+        $('#search').on('blur', function() {
+            var selectedValue = $(this).val();
+            if ($(this).val()) {
+                var options = $('#searchOptions').find('option').map(function() {
+                    return this.value;
+                }).get();
+                if (options.indexOf(selectedValue) === -1) {
+                    alert('Please select a value from the list.');
+                    $(this).val('');
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
