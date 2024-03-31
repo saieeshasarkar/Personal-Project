@@ -14,7 +14,7 @@ $password = $_POST['password'];
     
     foreach($fetchdata as $key => $value)
     {
-        if ($email  == ($value['email']) && $password== ($value['password'])) {
+        if ($email  == ($value['phone']) && $password== ($value['password'])) {
     echo "Login successful!";
 } else {
     echo "Invalid email or password!";
