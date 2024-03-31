@@ -6,35 +6,35 @@ $jsonString = file_get_contents('data/village.geojson');
 // Decode JSON string into PHP array
 $data = json_decode($jsonString, true);
 
-// Function to search for a feature by property
-function searchByProperty($data, $propertyName, $propertyValue) {
-    $result = array();
-    foreach ($data['features'] as $feature) {
-        if (isset($feature['properties'][$propertyName]) && $feature['properties'][$propertyName] == $propertyValue) {
-            // $result[] = $feature;
-            $result[] = array(
-                'urcne' => $feature['properties']['urcne'],
-                'uscne' => $feature['properties']['uscne']
-            );
-        }
-    }
-    return $result;
-}
+// // Function to search for a feature by property
+// function searchByProperty($data, $propertyName, $propertyValue) {
+//     $result = array();
+//     foreach ($data['features'] as $feature) {
+//         if (isset($feature['properties'][$propertyName]) && $feature['properties'][$propertyName] == $propertyValue) {
+//             // $result[] = $feature;
+//             $result[] = array(
+//                 'urcne' => $feature['properties']['urcne'],
+//                 'uscne' => $feature['properties']['uscne']
+//             );
+//         }
+//     }
+//     return $result;
+// }
 
-// Example usage
-$searchPropertyName = 'uucne';
-$searchPropertyValue = 'B. Nongping';
-$results = searchByProperty($data, $searchPropertyName, $searchPropertyValue);
+// // Example usage
+// $searchPropertyName = 'uucne';
+// $searchPropertyValue = 'B. Nongping';
+// $results = searchByProperty($data, $searchPropertyName, $searchPropertyValue);
 
-if (!empty($results)) {
-    echo "Search results for '$searchPropertyName' = '$searchPropertyValue':<br>";
-    foreach ($results as $result) {
-        echo "urcne: {$result['urcne']}, uscne: {$result['uscne']}<br>";
-        // echo "Feature ID: {$result['id']}, Coordinates: [{$result['geometry']['coordinates'][0]}, {$result['geometry']['coordinates'][1]}]<br>";
-    }
-} else {
-    echo "No results found for '$searchPropertyValue'.";
-}
+// if (!empty($results)) {
+//     echo "Search results for '$searchPropertyName' = '$searchPropertyValue':<br>";
+//     foreach ($results as $result) {
+//         echo "urcne: {$result['urcne']}, uscne: {$result['uscne']}<br>";
+//         // echo "Feature ID: {$result['id']}, Coordinates: [{$result['geometry']['coordinates'][0]}, {$result['geometry']['coordinates'][1]}]<br>";
+//     }
+// } else {
+//     echo "No results found for '$searchPropertyValue'.";
+// }
 
 ?>
 
@@ -94,7 +94,13 @@ if (!empty($results)) {
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address:</label>
-                <input type="text" class="form-control" id="address" name="address" required>
+                <!-- <input type="text" class="form-control" id="address" name="address" required> -->
+                <input id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
+    <datalist id="searchOptions">
+        <?php foreach ($data['features'] as $feature): ?>
+            <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
+        <?php endforeach; ?>
+    </datalist>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
