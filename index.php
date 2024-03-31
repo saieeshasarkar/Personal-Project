@@ -27,7 +27,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         {
          $itemFound=true;
          break;
-} 
+}
+    } 
 if ($itemFound) {
     
     $_SESSION["username"] = $valid_username;
