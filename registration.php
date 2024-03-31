@@ -1,3 +1,37 @@
+<?php
+
+// Read JSON file
+$jsonString = file_get_contents('data/village.geojson');
+
+// Decode JSON string into PHP array
+$data = json_decode($jsonString, true);
+
+// Function to search for a person by name
+function searchByName($data, $name) {
+    $result = array();
+    foreach ($data as $person) {
+        if ($person['properties/uucne'] == $name) {
+            $result[] = $person;
+        }
+    }
+    return $result;
+}
+
+// Example usage
+$searchTerm = 'B. Nongping';
+$results = searchByName($data, $searchTerm);
+
+if (!empty($results)) {
+    echo "Search results for '$searchTerm':<br>";
+    foreach ($results as $result) {
+        echo "ID: {$result['id']}, Lat: {$result['geometry/coordinates/0']}, Lng: {$result['geometry/coordinates/1']}<br>";
+    }
+} else {
+    echo "No results found for '$searchTerm'.";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
