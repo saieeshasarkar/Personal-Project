@@ -32,21 +32,21 @@ $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(function() {
-        $('#search').on('input', function() {
-            var selectedValue = $(this).val();
-            // When an option is selected from autocomplete, perform search
-            $.ajax({
-                url: 'search.php',
-                type: 'POST',
-                dataType: 'html',
-                data: { uucne: selectedValue },
-                success: function(response) {
-                    $('#searchResults').html(response);
-                }
-            });
-        });
-    });
+    // $(function() {
+    //     $('#search').on('input', function() {
+    //         var selectedValue = $(this).val();
+    //         // When an option is selected from autocomplete, perform search
+    //         $.ajax({
+    //             url: 'search.php',
+    //             type: 'POST',
+    //             dataType: 'html',
+    //             data: { uucne: selectedValue },
+    //             success: function(response) {
+    //                 $('#searchResults').html(response);
+    //             }
+    //         });
+    //     });
+    // });
 </script>
 
 <div id="searchResults"></div>
