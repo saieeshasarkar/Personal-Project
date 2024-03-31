@@ -46,6 +46,7 @@ require 'dbconfig.php';
       echo $value['address'] . "<br>";
       echo $value['phone'] . "<br>";
       echo $value['stastus'] . "<br>";
+	    echo $value['password'] . "<br>";
 //     'password'=>'bb',
 //     'phone'=>'00000000',
 //     'address'=>'dd',
