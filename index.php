@@ -29,7 +29,7 @@ $valid_password = $_POST['password'];
         if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
         {
          $itemFound=true;
-    $_SESSION["username"] = $valid_username;
+    $_SESSION["username"] = $value['phone'];
     header("location: profile.php");
     exit;
          break;
