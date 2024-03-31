@@ -49,6 +49,20 @@ $data = json_decode($jsonString, true);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- JavaScript for validation -->
     <script>
+        $(function() {
+        $('#search').on('blur', function() {
+            var selectedValue = $(this).val();
+            if ($(this).val()) {
+                var options = $('#searchOptions').find('option').map(function() {
+                    return this.value;
+                }).get();
+                if (options.indexOf(selectedValue) === -1) {
+                    alert('Please select a value from the list.');
+                    $(this).val('');
+                }
+            }
+        });
+    });
         function validateForm() {
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
