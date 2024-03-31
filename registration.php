@@ -40,8 +40,8 @@
         <h2 class="mt-5">Registration Form</h2>
         <form action="register.php" method="post" onsubmit="return validateForm()">
             <div class="mb-3">
-                <label for="fullname" class="form-label">Full Name:</label>
-                <input type="text" class="form-control" id="fullname" name="fullname" required>
+                <label for="firstname" class="form-label">Full Name:</label>
+                <input type="text" class="form-control" id="fullname" name="firstname" required>
             </div>
             <div class="mb-3">
                 <label for="lastname" class="form-label">Last Name:</label>
