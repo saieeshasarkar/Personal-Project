@@ -25,7 +25,7 @@ $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne
     <input id="search" list="searchOptions">
     <datalist id="searchOptions">
         <?php foreach ($data['features'] as $feature): ?>
-            <option value="<?= htmlspecialchars($feature['properties']['urcne'] . ' ' . $feature['properties']['uscne'] . ' ' . $feature['properties']['uucne']) ?>">
+            <option value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
         <?php endforeach; ?>
     </datalist>
 </div>
