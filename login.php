@@ -1,29 +1,38 @@
 <?php
-// Database connection
-$host = 'localhost';
-$dbname = 'your_database_name';
-$username = 'your_username';
-$password = 'your_password';
+// Check if user exists
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
-
+require 'dbconfig.php';
 // Retrieving form data
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Check if user exists
-$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute([$email]);
-$user = $stmt->fetch();
 
-if ($user && password_verify($password, $user['password'])) {
+
+ $fetchdata = $database->getReference('New')->getValue();
+    
+    
+    
+    foreach($fetchdata as $key => $value)
+    {
+        if ($email  == ($value['email']) && $password== ($value['password'])) {
     echo "Login successful!";
 } else {
     echo "Invalid email or password!";
 }
+       // if the email exist
+   // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
+    //     //if the phone number exist
+    // if($_POST['number'] == ($value['phone'])){$result ='<div class="alert alert-danger">Phone number are alraedy Sign-Up ..</div>';}
+
+      // echo $value['user'] . "<br>";
+      // echo $value['address'] . "<br>";
+      // echo $value['phone'] . "<br>";
+      // echo $value['stastus'] . "<br>";
+//     'password'=>'bb',
+//     'phone'=>'00000000',
+//     'address'=>'dd',
+      
+    }
+
+
 ?>
