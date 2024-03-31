@@ -1,69 +1,45 @@
 <?php
+session_start();
 
-// require '/vendor/autoload.php';
+// Check if user is already logged in, if yes, redirect to profile page
+if(isset($_SESSION["username"])) {
+    header("location: profile.php");
+    exit;
+}
 
-// use Kreait\Firebase\Factory;
-// use Kreait\Firebase\ServiceAccount;
+// Check if form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Dummy credentials
+    $valid_username = "user";
+    $valid_password = "password";
 
-// use Kreait\Firebase\Factory;
-// use Kreait\Firebase\ServiceAccount;
-// use Kreait\Firebase\Auth;
-
-// $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/kerrili-firebase-adminsdk-h2y2z-d8a2a21d61.json');
-
-// $firebase = (new Factory)
-//     ->withServiceAccount($serviceAccount)
-//     ->create();
-
-// $database = $firebase->getDatabase();
-
-// $newPost = $database
-//     ->getReference('blog/posts')
-//     ->push([
-//         'title' => 'Post title',
-//         'body' => 'This should probably be longer.'
-//     ]);
-
-// $newPost->getChild('title')->set('Changed post title');
-// $newPost->getValue(); // Fetches the data from the realtime database
-// echo $newPost->getValue();
-// // $newPost->remove();
-
-//require 'dbconfig.php';
-echo "welco9me";
-//  $fetchdata = $database->getReference('New')->getValue();
-    
-    
-    
-//     foreach($fetchdata as $key => $value)
-//     {
-//         //if the email exist
-//     // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
-//     //     //if the phone number exist
-//     // if($_POST['number'] == ($value['phone'])){$result ='<div class="alert alert-danger">Phone number are alraedy Sign-Up ..</div>';}
-        
-//     }
-//     $_SESSION['result']=$result;
-//     //if there is an error
-//     if(isset($result)){echo $result;}
-//     //if user doesn't exist at the database
-//     //then add him info in the database
-//     if(empty($_SESSION['result'])){$AppData = [
-//     'email'=>$_POST['email'],
-//     'password'=>$_POST['password'],
-//     'phone'=>$_POST['number'],
-//     'pp'=>'all done',
-// 	'username'	=>	$_POST['username'],
-	
-// ];
-// $AppData = [
-//     'user'=>'test',
-//     'password'=>'test2',
-//     'phone'=>'test3',
-//     'address'=>'test4',
-// 	'status'	=>	'test5',
-	
-// ];
-// $ref='New/';
-// $postdata = $database->getReference($ref)->push($AppData);
+    // Check if the provided credentials are valid
+    if($_POST["username"] == $valid_username && $_POST["password"] == $valid_password) {
+        // Store username in session and redirect to profile page
+        $_SESSION["username"] = $valid_username;
+        header("location: profile.php");
+        exit;
+    } else {
+        $error = "Invalid username or password";
+    }
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <?php if(isset($error)) { echo "<div>$error</div>"; } ?>
+    <form method="post" action="">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
