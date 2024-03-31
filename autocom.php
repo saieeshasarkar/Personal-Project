@@ -1,3 +1,17 @@
+<?php
+
+// Read GeoJSON file
+$jsonString = file_get_contents('data/village.geojson');
+
+// Decode JSON string into PHP array
+$data = json_decode($jsonString, true);
+
+// Get all unique values for 'uucne', 'urcne', and 'uscne' properties
+$uucneValues = array_unique(array_column($data['features'], 'properties')['uucne']);
+$urcneValues = array_unique(array_column($data['features'], 'properties')['urcne']);
+$uscneValues = array_unique(array_column($data['features'], 'properties')['uscne']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
