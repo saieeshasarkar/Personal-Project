@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Dummy credentials
     // $valid_username = "user";
     // $valid_password = "password";
-    $valid_username = $_POST['email'];
+    $valid_username = $_POST['username'];
 $valid_password = $_POST['password'];
 
     $fetchdata = $database->getReference('New')->getValue();
