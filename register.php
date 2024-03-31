@@ -16,7 +16,7 @@ require 'dbconfig.php';
  $fetchdata = $database->getReference('New')->getValue();
 
 // Retrieve form data
-$full_name = $_POST['full_name'];
+$first_name = $_POST['firstname'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $address = $_POST['address'];
@@ -24,7 +24,7 @@ $password = $_POST['password'];
 
 
 $AppData = [
-    'user'=>$full_name,
+    'user'=>$first_name,
     'password'=>$password,
     'phone'=>$email,
     'address'=>$address,
