@@ -1,17 +1,3 @@
-<?php
-
-// Read GeoJSON file
-$jsonString = file_get_contents('data/village.geojson');
-
-// Decode JSON string into PHP array
-$data = json_decode($jsonString, true);
-
-// Get all unique values for 'uucne', 'urcne', and 'uscne' properties
-$uucneValues = array_unique(array_column($data['features'], 'properties')['uucne']);
-$urcneValues = array_unique(array_column($data['features'], 'properties')['urcne']);
-$uscneValues = array_unique(array_column($data['features'], 'properties')['uscne']);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +10,8 @@ $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne
     <label for="search">Search: </label>
     <input id="search" list="searchOptions">
     <datalist id="searchOptions">
-        <?php foreach (array_merge($uucneValues, $urcneValues, $uscneValues) as $value): ?>
-            <option value="<?= htmlspecialchars($value) ?>">
+        <?php foreach ($data['features'] as $feature): ?>
+            <option value="<?= htmlspecialchars($feature['properties']['urcne'] . ' ' . $feature['properties']['uscne'] . ' ' . $feature['properties']['uucne']) ?>">
         <?php endforeach; ?>
     </datalist>
 </div>
@@ -37,7 +23,7 @@ $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne
             var selectedValue = $(this).val();
             // When an option is selected from autocomplete, perform search
             $.ajax({
-                url: 'autocom.php',
+                url: 'search.php',
                 type: 'POST',
                 dataType: 'html',
                 data: { uucne: selectedValue },
