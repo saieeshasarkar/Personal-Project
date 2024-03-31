@@ -7,6 +7,7 @@ $jsonString = file_get_contents('data/village.geojson');
 $data = json_decode($jsonString, true);
 
 // Get all unique values for 'uucne', 'urcne', and 'uscne' properties
+$uucneValues = array_unique(array_column($data['features'], 'properties')['uuid']);
 $uucneValues = array_unique(array_column($data['features'], 'properties')['uucne']);
 $urcneValues = array_unique(array_column($data['features'], 'properties')['urcne']);
 $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne']);
@@ -25,7 +26,7 @@ $uscneValues = array_unique(array_column($data['features'], 'properties')['uscne
     <input id="search" list="searchOptions">
     <datalist id="searchOptions">
         <?php foreach ($data['features'] as $feature): ?>
-            <option value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
+            <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
         <?php endforeach; ?>
     </datalist>
 </div>
