@@ -1,36 +1,43 @@
 <?php
 
-// Read JSON file
+// Read GeoJSON file
 $jsonString = file_get_contents('data/village.geojson');
 
 // Decode JSON string into PHP array
 $data = json_decode($jsonString, true);
 
-// Function to search for a person by name
-function searchByName($data, $name) {
+// Function to search for a feature by property
+function searchByProperty($data, $propertyName, $propertyValue) {
     $result = array();
-    foreach ($data as $person) {
-        if ($person['properties/uucne'] == $name) {
-            $result[] = $person;
+    foreach ($data['features'] as $feature) {
+        if (isset($feature['properties'][$propertyName]) && $feature['properties'][$propertyName] == $propertyValue) {
+            // $result[] = $feature;
+            $result[] = array(
+                'urcne' => $feature['properties']['urcne'],
+                'uscne' => $feature['properties']['uscne']
+            );
         }
     }
     return $result;
 }
 
 // Example usage
-$searchTerm = 'B. Nongping';
-$results = searchByName($data, $searchTerm);
+$searchPropertyName = 'uucne';
+$searchPropertyValue = 'B. Nongping';
+$results = searchByProperty($data, $searchPropertyName, $searchPropertyValue);
 
 if (!empty($results)) {
-    echo "Search results for '$searchTerm':<br>";
+    echo "Search results for '$searchPropertyName' = '$searchPropertyValue':<br>";
     foreach ($results as $result) {
-        echo "ID: {$result['id']}, Lat: {$result['geometry/coordinates/0']}, Lng: {$result['geometry/coordinates/1']}<br>";
+        echo "urcne: {$result['urcne']}, uscne: {$result['uscne']}<br>";
+        // echo "Feature ID: {$result['id']}, Coordinates: [{$result['geometry']['coordinates'][0]}, {$result['geometry']['coordinates'][1]}]<br>";
     }
 } else {
-    echo "No results found for '$searchTerm'.";
+    echo "No results found for '$searchPropertyValue'.";
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
