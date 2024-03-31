@@ -2,7 +2,6 @@
 
 require 'dbconfig.php';
 session_start();
-$itemFound = false;
 
 
 // Check if user is already logged in, if yes, redirect to profile page
@@ -13,6 +12,8 @@ if(isset($_SESSION["username"])) {
 
 // Check if form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+$itemFound = false;
     // Dummy credentials
     // $valid_username = "user";
     // $valid_password = "password";
@@ -29,7 +30,7 @@ $valid_password = $_POST['password'];
         {
          $itemFound=true;
          break;
-}
+        }
     } 
 if ($itemFound) {
     
