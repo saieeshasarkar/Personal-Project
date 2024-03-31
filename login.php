@@ -5,7 +5,7 @@ require 'dbconfig.php';
 // Retrieving form data
 $email = $_POST['email'];
 $password = $_POST['password'];
-
+$itemFound = false;
 
 
  $fetchdata = $database->getReference('New')->getValue();
@@ -16,10 +16,9 @@ $password = $_POST['password'];
     {
         if ($email  == ($value['phone']) && $password == ($value['password']))
         {
-    echo "Login successful!";
-} else {
-    echo "Invalid email or password!";
-}
+         $itemFound=true;
+         break;
+} 
        // if the email exist
    // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
     //     //if the phone number exist
@@ -34,6 +33,12 @@ $password = $_POST['password'];
 //     'address'=>'dd',
       
     }
-
+if ($itemFound) {
+    
+    echo "Login successful!";
+} else {
+    
+    echo "Invalid email or password!";
+}
 
 ?>
