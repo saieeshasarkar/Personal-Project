@@ -29,14 +29,18 @@ $valid_password = $_POST['password'];
         if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
         {
          $itemFound=true;
+    $_SESSION["username"] = $valid_username;
+    header("location: profile.php");
+    exit;
          break;
         }
     } 
 if ($itemFound) {
-    
-    $_SESSION["username"] = $valid_username;
-    header("location: profile.php");
-    exit;
+    // echo "test";
+    // $_SESSION["username"] = $valid_username;
+    // header("location: profile.php");
+    // exit;
+
 } else {
     
     $error = "Invalid username or password";
