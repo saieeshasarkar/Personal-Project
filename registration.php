@@ -42,6 +42,28 @@ $data = json_decode($jsonString, true);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        datalist {
+  position: absolute;
+  max-height: 20em;
+  border: 0 none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+datalist option {
+  font-size: 0.8em;
+  padding: 0.3em 1em;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+datalist option:hover, datalist option:focus {
+  color: #fff;
+  background-color: #036;
+  outline: 0 none;
+}
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
