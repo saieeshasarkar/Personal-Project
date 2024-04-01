@@ -64,6 +64,13 @@ datalist option:hover, datalist option:focus {
   background-color: grey;
   outline: 0 none;
 }
+datalist optgroup {
+border: 0 none;
+   padding: 0.3em 1em;
+    background-color: black;
+  color: white;
+    pointer-events: none; /* Disable selection */
+  }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,10 +125,29 @@ datalist option:hover, datalist option:focus {
             <div class="mb-3">
                 <label for="address" class="form-label">Address:</label>
                 <!-- <input type="text" class="form-control" id="address" name="address" required> -->
+            <?php 
+            $groupedData = array();
+                foreach ($data['features']['properties'] as $properties){
+                 $groupId = $properties['urcne']; 
+           // $groupId = $item['id'];
+                if (!isset($groupedData[$groupId])) {
+                $groupedData[$groupId] = array();
+                }
+                $groupedData[$groupId][] = $properties;
+             }
+         ?>
+             <!-- <datalist id="searchOptions">
+        <?php foreach ($data['features'] as $feature):?>
+            <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
+        <?php endforeach; ?>
+    </datalist> -->
+
                 <input id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
     <datalist id="searchOptions">
-        <?php foreach ($data['features'] as $feature): ?>
-            <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
+        <?php foreach ($groupedData as $groupId => $group):?>
+           <optgroup label="<?= $groupId ?>"></optgroup>
+           <?php foreach ($group as $item):?>
+            <option id="<?= htmlspecialchars($item['uuid'])?>" value="<?= htmlspecialchars($item['urcne'] . '-' . $item['uscne'] . '-' . $item['uucne']) ?>">
         <?php endforeach; ?>
     </datalist>
             </div>
