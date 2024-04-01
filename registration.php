@@ -140,7 +140,7 @@ border: 0 none;
                 <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
     <datalist id="searchOptions">
         <?php foreach ($groupedData as $groupId => $group):?>
-           <optgroup label="<?= $groupId ?>"></optgroup>
+           <optgroup label="<?= $groupId ?>" disabled></optgroup>
            <?php foreach ($group as $item):?>
             <option id="<?= htmlspecialchars($item['properties']['uuid'])?>" value="<?= htmlspecialchars($item['properties']['uscne'] . '-' . $item['properties']['uucne']) ?>">
         <?php endforeach; endforeach; ?>
