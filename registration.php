@@ -128,8 +128,8 @@ datalist optgroup {
                 <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
                 <datalist id="searchOptions">
     <?php foreach ($data['features'] as $feature):?>
-        <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= $feature['properties']['uucne']) ?>">
-            <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne'] ?>
+        <option id="<?= htmlspecialchars($feature['properties']['uuid']) ?>" value="<?= htmlspecialchars($feature['properties']['uscne']) ?>">
+            <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne']) ?>
         </option>
     <?php endforeach; ?>
 </datalist>
