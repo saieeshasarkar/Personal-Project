@@ -127,13 +127,13 @@ border: 0 none;
                 <!-- <input type="text" class="form-control" id="address" name="address" required> -->
             <?php 
             $groupedData = array();
-                foreach ($data['features']['properties'] as $properties){
-                 $groupId = $properties['urcne']; 
+                foreach ($data['features']as $features){
+                 $groupId = $features['properties']['urcne']; 
            // $groupId = $item['id'];
                 if (!isset($groupedData[$groupId])) {
                 $groupedData[$groupId] = array();
                 }
-                $groupedData[$groupId][] = $properties;
+                $groupedData[$groupId][] = $features;
              }
          ?>
              <!-- <datalist id="searchOptions">
