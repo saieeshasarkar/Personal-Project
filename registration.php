@@ -134,14 +134,9 @@ border: 0 none;
                 $groupedData[$groupId] = array();
                 }
                 $groupedData[$groupId][] = $features;
-                echo $features;
+                echo $groupId;
              }
          ?>
-             <!-- <datalist id="searchOptions"> -->
-        <!-- <?php foreach ($data['features'] as $feature):?> -->
-            <!-- <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>"> -->
-        <!-- <?php endforeach; ?> -->
-    <!-- </datalist> -->
 
                 <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
     <datalist id="searchOptions">

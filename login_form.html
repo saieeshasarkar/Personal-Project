@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,3 +41,8 @@
     </div>
 </body>
 </html>
+<datalist id="searchOptions">
+    <?php foreach ($data['features'] as $feature):?>
+        <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
+    <?php endforeach; ?>
+</datalist>
