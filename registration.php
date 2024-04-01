@@ -142,7 +142,7 @@ border: 0 none;
         <?php foreach ($groupedData as $groupId => $group):?>
            <optgroup label="<?= $groupId ?>" disabled></optgroup>
            <?php foreach ($group as $item):?>
-            <option id="<?= htmlspecialchars($item['properties']['uuid'])?>" value="<?= htmlspecialchars($item['properties']['uscne'] . '-' . $item['properties']['uucne']) ?>">
+            <option value="<?= htmlspecialchars($item['properties']['uuid'])?>"><?= htmlspecialchars($item['properties']['uscne'] . '-' . $item['properties']['uucne']) ?>"></option>
         <?php endforeach; endforeach; ?>
     </datalist>
             </div>
