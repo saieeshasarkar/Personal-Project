@@ -134,20 +134,21 @@ border: 0 none;
                 $groupedData[$groupId] = array();
                 }
                 $groupedData[$groupId][] = $features;
+                echo $features;
              }
          ?>
-             <!-- <datalist id="searchOptions">
-        <?php //foreach ($data['features'] as $feature):?>
-            <option id="<?= //htmlspecialchars($feature['properties']['uuid'])?>" value="<?= //htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>">
-        <?php //endforeach; ?>
-    </datalist> -->
+             <!-- <datalist id="searchOptions"> -->
+        <!-- <?php foreach ($data['features'] as $feature):?> -->
+            <!-- <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= htmlspecialchars($feature['properties']['urcne'] . '-' . $feature['properties']['uscne'] . '-' . $feature['properties']['uucne']) ?>"> -->
+        <!-- <?php endforeach; ?> -->
+    <!-- </datalist> -->
 
                 <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
     <datalist id="searchOptions">
         <?php foreach ($groupedData as $groupId => $group):?>
            <optgroup label="<?= $groupId ?>"></optgroup>
            <?php foreach ($group as $item):?>
-            <option id="<?= htmlspecialchars($item['uuid'])?>" value="<?= htmlspecialchars($item['urcne'] . '-' . $item['uscne'] . '-' . $item['uucne']) ?>">
+            <option id="<?= htmlspecialchars($item['uuid'])?>" value="<?= htmlspecialchars($item['uscne'] . '-' . $item['uucne']) ?>">
         <?php endforeach; endforeach; ?>
     </datalist>
             </div>
