@@ -148,7 +148,7 @@ border: 0 none;
            <optgroup label="<?= $groupId ?>"></optgroup>
            <?php foreach ($group as $item):?>
             <option id="<?= htmlspecialchars($item['uuid'])?>" value="<?= htmlspecialchars($item['urcne'] . '-' . $item['uscne'] . '-' . $item['uucne']) ?>">
-        <?php endforeach; ?>
+        <?php endforeach; endforeach; ?>
     </datalist>
             </div>
             <div class="mb-3">
