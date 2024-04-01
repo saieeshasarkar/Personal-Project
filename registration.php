@@ -133,7 +133,7 @@ border: 0 none;
                 if (!isset($groupedData[$groupId])) {
                 $groupedData[$groupId] = array();
                 }
-                $groupedData[$groupId][] = $features['properties'];
+                $groupedData[$groupId][] = $features;
              }
          ?>
 
@@ -142,8 +142,7 @@ border: 0 none;
         <?php foreach ($groupedData as $groupId => $group):?>
            <optgroup label="<?= $groupId ?>"></optgroup>
            <?php foreach ($group as $item):?>
-            $echo item;
-            <option id="<?= htmlspecialchars($item['uuid'])?>" value="<?= htmlspecialchars($item['uscne'] . '-' . $item['uucne']) ?>">
+            <option id="<?= htmlspecialchars($item['properties']['uuid'])?>" value="<?= htmlspecialchars($item['properties']['uscne'] . '-' . $item['properties']['uucne']) ?>">
         <?php endforeach; endforeach; ?>
     </datalist>
             </div>
