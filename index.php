@@ -30,12 +30,12 @@ $valid_password = $_POST['password'];
         {
          $itemFound=true;
          
-         break;
          echo "test1";
     $_SESSION["username"] = $value['phone'];
     header("location: profile.php");
     echo "test2";
     exit;
+    break;
         }
     } 
 if ($itemFound) {
