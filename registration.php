@@ -123,12 +123,11 @@ datalist optgroup {
             </div>
             <div class="mb-3">
 
-            <label for="address" class="form-label">
-            Address:
+            <label for="address" class="form-label"> Address:
             <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
 </label>
 <datalist id=searchOptions>
-<select name="searchOptions">
+<select class="form-control name="searchOptions">
 <?php foreach ($data['features'] as $feature):?>
         <option id="<?= htmlspecialchars($feature['properties']['uuid']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
             <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne']) ?>
