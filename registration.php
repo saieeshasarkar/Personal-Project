@@ -133,7 +133,7 @@ border: 0 none;
                 if (!isset($groupedData[$groupId])) {
                 $groupedData[$groupId] = array();
                 }
-                $groupedData[$groupId][] = $features;
+                $groupedData[$groupId][] = $features['properties'];
              }
          ?>
 
