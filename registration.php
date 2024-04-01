@@ -122,17 +122,22 @@ datalist optgroup {
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Address:</label>
-                <!-- <input type="text" class="form-control" id="address" name="address" required> -->
 
-                <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
-                <datalist id="searchOptions">
-    <?php foreach ($data['features'] as $feature):?>
+            <label for="address" class="form-label">
+            Address:
+            <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
+</label>
+<datalist id=searchOptions>
+<select name="searchOptions">
+<?php foreach ($data['features'] as $feature):?>
         <option id="<?= htmlspecialchars($feature['properties']['uuid']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
             <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne']) ?>
         </option>
     <?php endforeach; ?>
+  </select>
 </datalist>
+
+                
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
