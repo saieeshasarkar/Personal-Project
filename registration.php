@@ -123,11 +123,9 @@ datalist optgroup {
             </div>
             <div class="mb-3">
 
-            <label for="address" class="form-label"> Address:
+            <label for="address" class="form-label"> Address:</label>
             <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
-</label>
 <datalist id=searchOptions>
-<select class="form-control name="searchOptions">
 <?php foreach ($data['features'] as $feature):?>
         <option id="<?= htmlspecialchars($feature['properties']['uuid']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
             <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne']) ?>
@@ -150,7 +148,7 @@ datalist optgroup {
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script>
 <script>
     $(function() {
         $('#search').on('blur', function() {
