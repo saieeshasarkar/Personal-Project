@@ -54,13 +54,14 @@ $data = json_decode($jsonString, true);
 datalist option {
   font-size: 0.8em;
   padding: 0.3em 1em;
-  background-color: #ccc;
+  background-color: black;
+  color: white;
   cursor: pointer;
 }
 
 datalist option:hover, datalist option:focus {
-  color: #fff;
-  background-color: #036;
+  color: white;
+  background-color: grey;
   outline: 0 none;
 }
     </style>
