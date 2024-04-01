@@ -124,26 +124,15 @@ datalist optgroup {
             <div class="mb-3">
                 <label for="address" class="form-label">Address:</label>
                 <!-- <input type="text" class="form-control" id="address" name="address" required> -->
-            <?php 
-            $groupedData = array();
-                foreach ($data['features']as $features){
-                 $groupId = $features['properties']['urcne']; 
-           // $groupId = $item['id'];
-                if (!isset($groupedData[$groupId])) {
-                $groupedData[$groupId] = array();
-                }
-                $groupedData[$groupId][] = $features;
-             }
-         ?>
 
                 <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
-    <datalist id="searchOptions">
-        <?php foreach ($groupedData as $groupId => $group):?>
-           <optgroup label="<?= $groupId ?>" disabled></optgroup>
-           <?php foreach ($group as $item):?>
-            <option id="<?= htmlspecialchars($item['properties']['uuid'])?> value="<?= htmlspecialchars($item['properties']['uucne'])?>"><?= htmlspecialchars($item['properties']['uscne'] . '-' . $item['properties']['uucne']) ?></option>
-        <?php endforeach; endforeach; ?>
-    </datalist>
+                <datalist id="searchOptions">
+    <?php foreach ($data['features'] as $feature):?>
+        <option id="<?= htmlspecialchars($feature['properties']['uuid'])?>" value="<?= $feature['properties']['uucne']) ?>">
+            <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne'] ?>
+        </option>
+    <?php endforeach; ?>
+</datalist>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
