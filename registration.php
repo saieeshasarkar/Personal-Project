@@ -65,8 +65,7 @@ datalist option:hover, datalist option:focus {
   outline: 0 none;
 }
 datalist optgroup {
-border: 0 none;
-   padding: 0.3em 1em;
+
     background-color: #515A5A;
   color: white;
     pointer-events: none; /* Disable selection */
