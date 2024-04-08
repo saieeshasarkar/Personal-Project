@@ -123,7 +123,7 @@ var isMobile = false; //initiate as false
 	pointToLayer: function (feature, latlng) {
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
-			  className: 'pro-icon',
+			  className: 'number-icon',
 			  html: '<div>' + feature.properties.pcode + '</div>'
 			})
 		  });
@@ -191,7 +191,7 @@ var isMobile = false; //initiate as false
 		info.addTo(m);
 		m.on('zoomend', function(){
 								//10
-			if (m.getZoom() >= 7) {
+			if (m.getZoom() >= 8) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			  m.addLayer(district_point);
