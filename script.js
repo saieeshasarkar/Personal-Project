@@ -103,7 +103,7 @@ var isMobile = false; //initiate as false
 			  className: 'number-icon',
 			  html: '<div>' + feature.properties.dcode + '</div>'
 			})
-		  }).addTo(m);
+		  });
 	  var circleMarker = L.circle(latlng, {
 		radius: 0,
 		fillColor: 'red',
@@ -112,7 +112,8 @@ var isMobile = false; //initiate as false
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
-	  return(circleMarker);
+	  var layerGroup = L.layerGroup([marker, circleMarker]);
+	  return(layerGroup);
 	},
 	onEachFeature:popUp
 	,style:styleV
@@ -125,7 +126,7 @@ var isMobile = false; //initiate as false
 			  className: 'pro-icon',
 			  html: '<div>' + feature.properties.pcode + '</div>'
 			})
-		  }).addTo(m);
+		  });
 	  var circleMarker = L.circle(latlng, {
 		radius: 0,
 		fillColor: 'red',
@@ -134,7 +135,8 @@ var isMobile = false; //initiate as false
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
-	  return(circleMarker);
+	  var layerGroup = L.layerGroup([marker, circleMarker]);
+	  return(layerGroup);
 	},
 	onEachFeature:popUp
 	,style:styleV
