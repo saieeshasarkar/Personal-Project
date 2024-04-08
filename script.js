@@ -122,7 +122,7 @@ var isMobile = false; //initiate as false
 	pointToLayer: function (feature, latlng) {
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
-			  className: 'number-icon',
+			  className: 'pro-icon',
 			  html: '<div>' + feature.properties.pcode + '</div>'
 			})
 		  }).addTo(m);
