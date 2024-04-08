@@ -195,7 +195,7 @@ var isMobile = false; //initiate as false
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			  m.addLayer(district_point);
-			  district_lay.bringToFront();
+			  district_point.bringToFront();
 			  m.removeLayer(province_point);
 			 // m.removeLayer(village_lay);
 			 // if (m.getZoom() >= 9) {
