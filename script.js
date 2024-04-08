@@ -98,11 +98,17 @@ var isMobile = false; //initiate as false
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
+		var marker = L.marker(latlng, {
+			icon: L.divIcon({
+			  className: 'number-icon',
+			  html: '<div>' + feature.properties.dcode + '</div>'
+			})
+		  }).addTo(map);
 	  var circleMarker = L.circle(latlng, {
 		radius: 0,
 		fillColor: 'red',
 		color: "red",
-		weight: 2
+		weight: 4
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
