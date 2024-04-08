@@ -160,8 +160,8 @@ var isMobile = false; //initiate as false
 			
 		info.addTo(m);
 		m.on('zoomend', function(){
-
-			if (m.getZoom() >= 10) {
+								//10
+			if (m.getZoom() >= 7) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			 // m.removeLayer(village_lay);
