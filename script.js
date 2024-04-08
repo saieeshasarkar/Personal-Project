@@ -116,7 +116,7 @@ var isMobile = false; //initiate as false
 	},
 	onEachFeature:popUp
 	,style:styleV
-  }).addTo(m);
+  });
 
   var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
 	pointToLayer: function (feature, latlng) {
