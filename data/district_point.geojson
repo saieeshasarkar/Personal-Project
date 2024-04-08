@@ -4,32 +4,6 @@
         {
             "type": "Feature",
             "properties": {
-                "dcode": 1
-            },
-            "geometry": {
-                "coordinates": [
-                    103.60656412937374,
-                    19.530426261392705
-                ],
-                "type": "Point"
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "dcode": 1001
-            },
-            "geometry": {
-                "coordinates": [
-                    18.42023705183383,
-                    102.42947832482501
-                ],
-                "type": "Point"
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "dcode": 1002
             },
             "geometry": {
