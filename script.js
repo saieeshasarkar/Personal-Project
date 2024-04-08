@@ -109,7 +109,7 @@ var isMobile = false; //initiate as false
 	  return(circleMarker);
 	},
 	onEachFeature:popUp
-	,style:styleV
+	,style:styleD
   }).addTo(m);
 		/////data.opendevelopmentmekong.net not available
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm2_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp, style:styleD});
