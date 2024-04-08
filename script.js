@@ -103,7 +103,7 @@ var isMobile = false; //initiate as false
 			  className: 'number-icon',
 			  html: '<div>' + feature.properties.dcode + '</div>'
 			})
-		  }).addTo(map);
+		  }).addTo(m);
 	  var circleMarker = L.circle(latlng, {
 		radius: 0,
 		fillColor: 'red',
