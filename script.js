@@ -108,7 +108,7 @@ var isMobile = false; //initiate as false
 		radius: 0,
 		fillColor: 'red',
 		color: "red",
-		weight: 4
+		weight: 6
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
@@ -131,7 +131,7 @@ var isMobile = false; //initiate as false
 		radius: 0,
 		fillColor: 'red',
 		color: "red",
-		weight: 4
+		weight: 6
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
@@ -223,7 +223,9 @@ var isMobile = false; //initiate as false
 			}
 
   });
-		
+//   window.addEventListener('resize', function() {
+//     circleMarker.setRadius(getMarkerRadius());
+// });		
 		function onclick(e){
 			var bounds = e.target.getBounds();
 			m.fitBounds(bounds);
