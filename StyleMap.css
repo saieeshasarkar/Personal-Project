@@ -1,26 +1,26 @@
 
 /* CSS for smaller screens (e.g., mobile devices) */
 @media only screen and (max-width: 600px) {
-  .number-icon {
+/*   .number-icon { */
     /* background-color: #007bff;
     border-radius: 50%; */
-    color: white;
+/*     color: white; */
     /* width: 24px;
     height: 24px;
     display: flex;
     justify-content: center;
     align-items: center; */
-    font-weight: bold;
-    top: -12px;
+/*     font-weight: bold; */
+/*     top: -12px; */
 /*       font-size: 44px; /* adjust as needed */ */
     
-  }
-  .pro-icon {
+/*   } */
+/*   .pro-icon { */
   
-    color: red;
-    font-weight: bold;
-    top: -12px;
-  }
+/*     color: red; */
+/*     font-weight: bold; */
+/*     top: -12px; */
+/*   } */
 }
 body {
     padding: 0;
