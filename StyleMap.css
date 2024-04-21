@@ -22,8 +22,16 @@
     top: -12px;
   }
 }
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100vw;
+}
 /* Edit height to display full map: 500px */
-#map { width: 98%; height: 95vh; margin: 0 auto; }
+/* #map { width: 98%; height: 95vh; margin: 0 auto; } */
 .number-icon {
   /* background-color: #007bff;
   border-radius: 50%; */
