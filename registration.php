@@ -163,11 +163,14 @@ datalist optgroup {
                 var options = $('#searchOptions').find('option').map(function() {
                     return this.value;
                 }).get();
+                var test = $('#searchOptions').find('option').map(function() {
+                    return this.id;
+                }).get();
                 if (options.indexOf(selectedValue) === -1) {
                     alert('Please select a value from the list.');
                     $(this).val('');
                 }
-                document.getElementById('selected_option_id').value = $(this).id;
+                document.getElementById('selected_option_id').value = test;
             }
         });
     });
