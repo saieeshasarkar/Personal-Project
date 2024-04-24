@@ -128,11 +128,12 @@ datalist optgroup {
 
 <datalist id=searchOptions>
 <?php foreach ($data['features'] as $feature):?>
-        <option id="<?= htmlspecialchars($feature['properties']['uuid']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
+        <option id="<?= htmlspecialchars($feature['properties']['urid']. '-' . $feature['properties']['usid'] . '-' . $feature['properties']['101012']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
             <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne'] . ' - ' . $feature['properties']['uucne']) ?>
         </option>
     <?php endforeach; ?>
 </datalist>
+<input type="hidden" name="selected_option_id" id="selected_option_id">
 
                 
             </div>
@@ -150,6 +151,11 @@ datalist optgroup {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script>
 <script>
+    document.getElementById('search').addEventListener('change', function() {
+    var selectedOption = this.value;
+    var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
+    document.getElementById('selected_option_id').value = selectedOptionId;
+});
     $(function() {
         $('#search').on('blur', function() {
             var selectedValue = $(this).val();
