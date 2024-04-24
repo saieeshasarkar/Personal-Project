@@ -167,7 +167,7 @@ datalist optgroup {
                     alert('Please select a value from the list.');
                     $(this).val('');
                 }
-                document.getElementById('selected_option_id').value = options.id;
+                document.getElementById('selected_option_id').value = $(this).id;
             }
         });
     });
