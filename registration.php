@@ -161,16 +161,21 @@ datalist optgroup {
             var selectedValue = $(this).val();
             if ($(this).val()) {
                 var options = $('#searchOptions').find('option').map(function() {
-                    return this.value;
+                    return { value: this.value, id: this.id }; // Return both value and id
                 }).get();
-                var test = $('#searchOptions').find('option').map(function() {
-                    return this.id;
-                }).get();
-                if (options.indexOf(selectedValue) === -1) {
-                    alert('Please select a value from the list.');
-                    $(this).val('');
-                }
-                document.getElementById('selected_option_id').value = test;
+                  // Find the option object matching the selected value
+        var selectedOption = options.find(function(option) {
+            return option.value === selectedValue;
+        });
+        if (!selectedOption) {
+            alert('Please select a value from the list.');
+            $(this).val('');
+        }
+                // if (options.indexOf(selectedValue) === -1) {
+                //     alert('Please select a value from the list.');
+                //     $(this).val('');
+                // }
+                document.getElementById('selected_option_id').value = selectedOption.id;
             }
         });
     });
