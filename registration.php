@@ -167,11 +167,18 @@ datalist optgroup {
         var selectedOption = options.find(function(option) {
             return option.value === selectedValue;
         });
+        var selectedIndex = options.findIndex(function(option) {
+            return option.value === selectedValue;
+        });
+        if (selectedIndex === -1) {
+            alert('Please select a value from the list.');
+            $(this).val('');
+        }
         // if (!selectedOption) {
         //     alert('Please select a value from the list.');
         //     $(this).val('');
         // }
-                if (options.value.indexOf(selectedValue) === -1) {
+                if (options.indexOf(selectedValue) === -1) {
                     alert('Please select a value from the list.');
                     $(this).val('');
                 }else {
