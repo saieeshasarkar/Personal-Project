@@ -20,7 +20,7 @@ require 'dbconfig.php';
 $first_name = $_POST['firstname'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
-$address = $_POST['address'];
+$address = $_POST['selected_option_id'];
 $password = $_POST['password'];
 
 

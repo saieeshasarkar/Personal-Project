@@ -151,11 +151,11 @@ datalist optgroup {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script>
 <script>
-    document.getElementById('search').addEventListener('change', function() {
-    var selectedOption = this.value;
-    var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
-    document.getElementById('selected_option_id').value = selectedOptionId;
-});
+//     document.getElementById('search').addEventListener('change', function() {
+//     var selectedOption = this.value;
+//     var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
+//     document.getElementById('selected_option_id').value = selectedOptionId;
+// });
     $(function() {
         $('#search').on('blur', function() {
             var selectedValue = $(this).val();
@@ -167,6 +167,7 @@ datalist optgroup {
                     alert('Please select a value from the list.');
                     $(this).val('');
                 }
+                document.getElementById('selected_option_id').value = options.id';
             }
         });
     });
