@@ -174,8 +174,11 @@ datalist optgroup {
                 if (options.indexOf(selectedValue) === -1) {
                     alert('Please select a value from the list.');
                     $(this).val('');
-                }
-                document.getElementById('selected_option_id').value = selectedOption.id;
+                }else {
+            // Access the selected option's id
+            
+            document.getElementById('selected_option_id').value = selectedOption.id;
+        }
             }
         });
     });
