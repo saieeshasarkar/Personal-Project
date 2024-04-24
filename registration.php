@@ -128,7 +128,7 @@ datalist optgroup {
 
 <datalist id=searchOptions>
 <?php foreach ($data['features'] as $feature):?>
-        <option id="<?= htmlspecialchars($feature['properties']['urid']. '-' . $feature['properties']['usid'] . '-' . $feature['properties']['101012']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
+        <option id="<?= htmlspecialchars($feature['properties']['urid']. '-' . $feature['properties']['usid'] . '-' . $feature['properties']['uuid']) ?>" value="<?= htmlspecialchars($feature['properties']['uucne']) ?>">
             <?= htmlspecialchars($feature['properties']['urcne'] . ' - ' . $feature['properties']['uscne'] . ' - ' . $feature['properties']['uucne']) ?>
         </option>
     <?php endforeach; ?>
