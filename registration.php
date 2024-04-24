@@ -171,7 +171,7 @@ datalist optgroup {
         //     alert('Please select a value from the list.');
         //     $(this).val('');
         // }
-                if (options.indexOf(selectedValue) === -1) {
+                if (options.value.indexOf(selectedValue) === -1) {
                     alert('Please select a value from the list.');
                     $(this).val('');
                 }else {
