@@ -161,19 +161,19 @@ datalist optgroup {
             var selectedValue = $(this).val();
             if ($(this).val()) {
                 var options = $('#searchOptions').find('option').map(function() {
-                    return { value: this.value, id: this.id }; // Return both value and id
+                    return this.value;//{ value: this.value, id: this.id }; // Return both value and id
                 }).get();
                   // Find the option object matching the selected value
-        var selectedOption = options.find(function(option) {
-            return option.value === selectedValue;
-        });
-        var selectedIndex = options.findIndex(function(option) {
-            return option.value === selectedValue;
-        });
-        if (selectedIndex === -1) {
-            alert('Please select a value from the list.');
-            $(this).val('');
-        }
+        // var selectedOption = options.find(function(option) {
+        //     return option.value === selectedValue;
+        // });
+        // var selectedIndex = options.findIndex(function(option) {
+        //     return option.value === selectedValue;
+        // });
+        // if (selectedIndex === -1) {
+        //     alert('Please select a value from the list.');
+        //     $(this).val('');
+        // }
         // if (!selectedOption) {
         //     alert('Please select a value from the list.');
         //     $(this).val('');
@@ -184,7 +184,7 @@ datalist optgroup {
                 }else {
             // Access the selected option's id
             
-            document.getElementById('selected_option_id').value = selectedOption.id;
+          document.getElementById('selected_option_id').value = "test";//selectedOption.id;
         }
             }
         });
