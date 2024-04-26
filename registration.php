@@ -124,7 +124,7 @@ datalist optgroup {
             <div class="mb-3">
 
             <label for="address" class="form-label"> Address:</label>
-            <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
+            <input onblur="checkSelection();" autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
 
 <datalist id=searchOptions>
 <?php foreach ($data['features'] as $feature):?>
@@ -156,6 +156,14 @@ datalist optgroup {
 //     var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
 //     document.getElementById('selected_option_id').value = selectedOptionId;
 // });
+let selectla=false;
+function checkSelection() {
+ 	if (isEmptyString(document.getElementById('selected_option_id'))){
+    alert("Please select an option!");
+    document.getElementById("browser").value= "";
+    
+    }
+
 document.getElementById("search")
   .addEventListener("input", function(event){
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
@@ -164,11 +172,11 @@ document.getElementById("search")
             if (options[i].value === event.target.value) {
           document.getElementById('selected_option_id').value = options[i].id;//selectedOption.id;
             break;
-        }
-        }
+                }
+            }
     }else{
-        alert('Please select a value from the list.');
-        event.target.value = "";
+        document.getElementById('selected_option_id').value ="";
+        //selectla=false;
     //                 $(this).val('');
 
     }   
