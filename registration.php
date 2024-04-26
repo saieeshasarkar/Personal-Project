@@ -160,9 +160,15 @@ datalist optgroup {
         document.getElementById("search")
   .addEventListener("input", function(event){
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
+            var options = $('datalist')[0].options;
+         for (var i = 0; i < options.length; i++) {
+            if (options[i].value === event.target.value) {
+          document.getElementById('selected_option_id').value = options[i].id;//selectedOption.id;
+            break;
+            }    
+        }
           //document.getElementById("output").textContent =  event.target.value;
         //   alert(event.target.value);
-          document.getElementById('selected_option_id').value = event.target.value)\;//selectedOption.id;
     }else{
         alert('Please select a value from the list.');
         event.target.value = "";
