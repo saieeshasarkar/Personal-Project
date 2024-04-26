@@ -157,6 +157,7 @@ datalist optgroup {
 //     document.getElementById('selected_option_id').value = selectedOptionId;
 // });
 let selectla=false;
+var options = $('datalist')[0].options;
 function checkSelection() {
  	if (!document.getElementById('selected_option_id').value){
     alert("Please select an option!");
@@ -168,7 +169,7 @@ function checkSelection() {
 document.getElementById("search")
   .addEventListener("input", function(event){
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
-            var options = $('datalist')[0].options;
+           
          for (var i = 0; i < options.length; i++) {
             if (options[i].value === event.target.value) {
           document.getElementById('selected_option_id').value = options[i].id;//selectedOption.id;
