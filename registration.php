@@ -133,7 +133,7 @@ datalist optgroup {
         </option>
     <?php endforeach; ?>
 </datalist>
-<!-- <input type="hidden" name="selected_option_id" id="selected_option_id"> -->
+<input type="hidden" name="selected_option_id" id="selected_option_id">
 
                 
             </div>
@@ -161,7 +161,8 @@ datalist optgroup {
   .addEventListener("input", function(event){
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
           //document.getElementById("output").textContent =  event.target.value;
-          alert(event.target.value);
+        //   alert(event.target.value);
+          document.getElementById('selected_option_id').value = event.target.value)\;//selectedOption.id;
     }else{
         alert('Please select a value from the list.');
         event.target.value = "";
