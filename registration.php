@@ -158,7 +158,7 @@ datalist optgroup {
 // });
 let selectla=false;
 function checkSelection() {
- 	if (isEmptyString(document.getElementById('selected_option_id'))){
+ 	if (!document.getElementById('selected_option_id').value){
     alert("Please select an option!");
     document.getElementById("browser").value= "";
     
