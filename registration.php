@@ -162,7 +162,11 @@ datalist optgroup {
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
           //document.getElementById("output").textContent =  event.target.value;
           alert(event.target.value);
-          event.target.value = "";
+    }else{
+        alert('Please select a value from the list.');
+        event.target.value = "";
+    //                 $(this).val('');
+
     }
 })
 
