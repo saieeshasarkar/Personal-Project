@@ -133,7 +133,7 @@ datalist optgroup {
         </option>
     <?php endforeach; ?>
 </datalist>
-<input type="hidden" name="selected_option_id" id="selected_option_id">
+<!-- <input type="hidden" name="selected_option_id" id="selected_option_id"> -->
 
                 
             </div>
