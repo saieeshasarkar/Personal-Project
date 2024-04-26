@@ -156,8 +156,7 @@ datalist optgroup {
 //     var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
 //     document.getElementById('selected_option_id').value = selectedOptionId;
 // });
-    $(function() {
-        document.getElementById("search")
+document.getElementById("search")
   .addEventListener("input", function(event){
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
             var options = $('datalist')[0].options;
@@ -175,7 +174,9 @@ datalist optgroup {
     //                 $(this).val('');
 
     }
-})
+}) 
+// $(function() {
+        
 
     //     $('#search').on('blur', function() {
     //         var selectedValue = $(this).val();
