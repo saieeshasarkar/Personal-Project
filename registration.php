@@ -163,7 +163,8 @@ function checkSelection() {
     document.getElementById("browser").value= "";
     
     }
-
+}
+//////////////////////
 document.getElementById("search")
   .addEventListener("input", function(event){
         if(event.inputType == "insertReplacementText" || event.inputType == null) {
@@ -184,6 +185,7 @@ document.getElementById("search")
         //   alert(event.target.value);
     
 }) 
+//////////////////
 // $(function() {
         
 
