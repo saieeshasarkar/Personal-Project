@@ -164,14 +164,14 @@ document.getElementById("search")
             if (options[i].value === event.target.value) {
           document.getElementById('selected_option_id').value = options[i].id;//selectedOption.id;
             break;
-        }else{
+        }
+        }
+    }else{
         alert('Please select a value from the list.');
         event.target.value = "";
     //                 $(this).val('');
 
     }   
-        }
-    }
           //document.getElementById("output").textContent =  event.target.value;
         //   alert(event.target.value);
     
