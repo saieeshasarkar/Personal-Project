@@ -160,7 +160,7 @@ let selectla=false;
 function checkSelection() {
  	if (!document.getElementById('selected_option_id').value){
     alert("Please select an option!");
-    document.getElementById("browser").value= "";
+    document.getElementById("search").value= "";
     
     }
 }
