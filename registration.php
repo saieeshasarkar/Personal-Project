@@ -162,7 +162,7 @@ function checkSelection() {
  	if (!document.getElementById('selected_option_id').value){
     alert("Please select an option!");
     document.getElementById("search").value= "";
-    
+    document.getElementById('selected_option_id').value =""
     }
 }
 //////////////////////
