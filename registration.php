@@ -158,7 +158,7 @@ datalist optgroup {
 // });
 document.getElementById("search")
   .addEventListener("blur", function(event){
-    if(event.relatedTarget===null){
+    if(event.relatedTarget===null || event.relatedTarget.parentElement!==event.currentTarget.datalist){
         document.getElementById('searchOptions').style.display = "none";
     document.getElementById('searchOptions').shown = false;
     document.getElementById("search").value= "";
