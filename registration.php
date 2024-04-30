@@ -124,7 +124,7 @@ datalist optgroup {
             <div class="mb-3">
 
             <label for="address" class="form-label"> Address:</label>
-            <input onblur="checkSelection();" autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
+            <input autocomplete="off" id="search" list="searchOptions" type="text" class="form-control" id="address" name="address" required>
 
 <datalist id=searchOptions>
 <?php foreach ($data['features'] as $feature):?>
@@ -156,36 +156,51 @@ datalist optgroup {
 //     var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
 //     document.getElementById('selected_option_id').value = selectedOptionId;
 // });
-let selectla=false;
-var options = $('datalist')[0].options;
-function checkSelection() {
- 	if (!document.getElementById('selected_option_id').value){
-    alert("Please select an option!");
-    document.getElementById("search").value= "";
-    document.getElementById('selected_option_id').value =""
-    }
-}
-//////////////////////
 document.getElementById("search")
-  .addEventListener("input", function(event){
-        if(event.inputType == "insertReplacementText" || event.inputType == null) {
-           
-         for (var i = 0; i < options.length; i++) {
-            if (options[i].value === event.target.value) {
-          document.getElementById('selected_option_id').value = options[i].id;//selectedOption.id;
-            break;
-                }
-            }
+  .addEventListener("blur", function(event){
+    if(event.relatedTarget===null){
+        document.getElementById('searchOptions').style.display = "none";
+    document.getElementById('searchOptions').shown = false;
+    document.getElementById("search").value= "";
+    document.getElementById('selected_option_id').value ="";
+    alert("Please select an option!");
     }else{
-        document.getElementById('selected_option_id').value ="";
-        //selectla=false;
-    //                 $(this).val('');
+    document.getElementById('selected_option_id').value=event.relatedTarget.id;
 
-    }   
-          //document.getElementById("output").textContent =  event.target.value;
-        //   alert(event.target.value);
+    }
     
 }) 
+
+// let selectla=false;
+// var options = $('datalist')[0].options;
+// function checkSelection() {
+//  	if (!document.getElementById('selected_option_id').value){
+//     alert("Please select an option!");
+//     document.getElementById("search").value= "";
+//     document.getElementById('selected_option_id').value =""
+//     }
+// }
+// //////////////////////
+// document.getElementById("search")
+//   .addEventListener("input", function(event){
+//         if(event.inputType == "insertReplacementText" || event.inputType == null) {
+           
+//          for (var i = 0; i < options.length; i++) {
+//             if (options[i].value === event.target.value) {
+//           document.getElementById('selected_option_id').value = options[i].id;//selectedOption.id;
+//             break;
+//                 }
+//             }
+//     }else{
+//         document.getElementById('selected_option_id').value ="";
+//         //selectla=false;
+//     //                 $(this).val('');
+
+//     }   
+//           //document.getElementById("output").textContent =  event.target.value;
+//         //   alert(event.target.value);
+    
+// }) 
 //////////////////
 // $(function() {
         
