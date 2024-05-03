@@ -1,3 +1,18 @@
+<?php
+require 'dbconfig.php';
+$fetchdata = $database->getReference('New')->getValue();
+    
+ $code = [];
+ $groupedData = [];
+    foreach($fetchdata as $key => $value)
+    {
+    
+      $code[] = $value['address'];
+      
+    }
+
+$jsonData = json_encode($code);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,4 +58,38 @@
 	
          
 </body>
+<script>
+// Use the PHP variable in JavaScript
+let data = JSON.parse('<?php echo $jsonData; ?>');
+let result = {};
+
+data.forEach(item => {
+    let [key1, key2, value] = item.split("-");
+    if (!result[key1]) {
+        result[key1] = {};
+    }
+    if (!result[key1][key2]) {
+        result[key1][key2] = [];
+    }
+    result[key1][key2].push(value);
+});
+
+function countMembers(data, key, subKey) {
+    if (data.hasOwnProperty(key)) {
+        if (subKey && data[key].hasOwnProperty(subKey)) {
+            return data[key][subKey].length;
+        } else {
+            let count = 0;
+            for (let subKey in data[key]) {
+                count += data[key][subKey].length;
+            }
+            return count;
+        }
+    }
+    return 0;
+}
+
+console.log(result);
+console.log(countMembers(data, '1', '101'));  // Outputs: 2
+</script>
 </html>
