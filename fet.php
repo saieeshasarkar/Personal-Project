@@ -44,7 +44,8 @@ require 'dbconfig.php';
 ///////////////////////////////////
       // echo $value['user'] . "<br>";
       echo $value['address'] . "<br>";
-      $code[] = [$value['address']];
+      // $code[] = ['code' => $value['address']];
+      $code[] = $value['address'];
       // echo $value['phone'] . "<br>";
       // echo $value['status'] . "<br>";
 	   //  echo $value['password'] . "<br>";
