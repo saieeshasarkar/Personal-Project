@@ -62,7 +62,7 @@ if (!isset($groupedData[$codeA])) {
 }
 
 // Push item to array for this CodeA
-$groupedData[$codeA][] = $item;
+$groupedData[$codeA][] =  $value;
 
       
     }
