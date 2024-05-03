@@ -67,9 +67,11 @@ data.forEach(item => {
     let [key1, key2, value] = item.split("-");
     if (!result[key1]) {
         result[key1] = {};
+		console.log("key", [key1].length);
     }
     if (!result[key1][key2]) {
         result[key1][key2] = [];
+		console.log("subkey", [key1][key2].length);
     }
     result[key1][key2].push(value);
 });
