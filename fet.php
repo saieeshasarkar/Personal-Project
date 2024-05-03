@@ -44,7 +44,7 @@ require 'dbconfig.php';
 ///////////////////////////////////
       // echo $value['user'] . "<br>";
       echo $value['address'] . "<br>";
-      $code[] = ['code' => $value['address']];
+      $code[] = [$value['address']];
       // echo $value['phone'] . "<br>";
       // echo $value['status'] . "<br>";
 	   //  echo $value['password'] . "<br>";
@@ -105,15 +105,29 @@ let data = JSON.parse('<?php echo $jsonData; ?>');
 //     // more data...
 // ];
 
-let groupedData = data.reduce((acc, item) => {
-    let codeA = item.code.split('-')[0]; // Extract CodeA
-    if (!acc[codeA]) {
-        acc[codeA] = []; // Initialize array if not already done
-    }
-    acc[codeA].push(item); // Push item to array for this CodeA
-    return acc;
-}, {});
+// let groupedData = data.reduce((acc, item) => {
+//     let codeA = item.code.split('-')[0]; // Extract CodeA
+//     if (!acc[codeA]) {
+//         acc[codeA] = []; // Initialize array if not already done
+//     }
+//     acc[codeA].push(item.code.split('-')[1]); // Push item to array for this CodeA
+//     return acc;
+// }, {});
 
-console.log(groupedData);
+// console.log(groupedData);
+let result = {};
+
+data.forEach(item => {
+    let [key1, key2, value] = item.split("-");
+    if (!result[key1]) {
+        result[key1] = {};
+    }
+    if (!result[key1][key2]) {
+        result[key1][key2] = [];
+    }
+    result[key1][key2].push(value);
+});
+
+console.log(result);
 
 </script>
