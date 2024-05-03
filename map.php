@@ -62,19 +62,31 @@ $jsonData = json_encode($code);
 // Use the PHP variable in JavaScript
 let data = JSON.parse('<?php echo $jsonData; ?>');
 let result = {};
+let counts = {};
 
 data.forEach(item => {
     let [key1, key2, value] = item.split("-");
     if (!result[key1]) {
         result[key1] = {};
-		console.log("key", [key1].length);
+		counts[key1] = 0;
+		// console.log("key", [key1].length);
     }
     if (!result[key1][key2]) {
         result[key1][key2] = [];
-		console.log("subkey", [key1][key2].length);
+		// console.log("subkey", [key1][key2].length);
     }
     result[key1][key2].push(value);
+	counts[key1]++;
 });
+
+console.log("Counts:", counts);
+
+for (let key1 in result) {
+    for (let key2 in result[key1]) {
+        console.log(`Count of members in key ${key1} and subkey ${key2}:`, result[key1][key2].length);
+    }
+}
+
 
 function countMembers(data, key, subKey) {
     if (data.hasOwnProperty(key)) {
