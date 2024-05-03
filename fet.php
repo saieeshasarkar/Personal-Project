@@ -114,7 +114,37 @@ let data = JSON.parse('<?php echo $jsonData; ?>');
 //     acc[codeA].push(item.code.split('-')[1]); // Push item to array for this CodeA
 //     return acc;
 // }, {});
-
+// 1-101-101005
+// 1-101-101005
+// 1-101-101006
+// 6-601-601026
+// 14-1405-1405064
+// 14-1405-1405000
+// 14-1406-140501
+// let data = {
+//   "1": {
+//     "101": [
+//       "101005",
+//       "101005",
+//       "101006"
+//     ]
+//   },
+//   "6": {
+//     "601": [
+//       "601026"
+//     ]
+//   },
+//   "14": {
+//     "1405": [
+//       "1405064",
+//       "1405000"
+//     ],
+//     "1406": [
+//       "140501"
+//     ]
+//   }
+// }
+// ;
 // console.log(groupedData);
 let result = {};
 
@@ -129,6 +159,35 @@ data.forEach(item => {
     result[key1][key2].push(value);
 });
 
+
 console.log(result);
 
+// function countMembers(data, key, subKey) {
+//     if (subKey === '0' && data.hasOwnProperty(key)) {
+//         let count = 0;
+//         for (let subKey in data[key]) {
+//             count += data[key][subKey].length;
+//         }
+//         return count;
+//     } else if (data.hasOwnProperty(key) && data[key].hasOwnProperty(subKey)) {
+//         return data[key][subKey].length;
+//     }
+//     return 0;
+// }
+function countMembers(data, key, subKey) {
+    if (data.hasOwnProperty(key)) {
+        if (subKey && data[key].hasOwnProperty(subKey)) {
+            return data[key][subKey].length;
+        } else {
+            let count = 0;
+            for (let subKey in data[key]) {
+                count += data[key][subKey].length;
+            }
+            return count;
+        }
+    }
+    return 0;
+}
+console.log(result);
+console.log(countMembers(data, '1', '101'));  // Outputs: 2
 </script>
