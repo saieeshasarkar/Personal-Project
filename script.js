@@ -179,7 +179,8 @@ var isMobile = false; //initiate as false
 		};
 
 		// Creates an info box on the map
-		var info = L.control({position: 'topright'});
+		var info = L.control({position: 'bottomright'});
+		// var info = L.control({position: 'topright'});
 		info.onAdd = function (map) {
 			this._div = L.DomUtil.create('div', 'info nomobile');
 			this.update();
