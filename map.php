@@ -63,28 +63,49 @@ $jsonData = json_encode($code);
 let data = JSON.parse('<?php echo $jsonData; ?>');
 let result = {};
 let counts = {};
-
+	
 data.forEach(item => {
     let [key1, key2, value] = item.split("-");
     if (!result[key1]) {
         result[key1] = {};
-		// counts[key1] = 0; //version1
 		counts[key1] = { total: 0 };
-		// console.log("key", [key1].length);
     }
     if (!result[key1][key2]) {
         result[key1][key2] = [];
-		counts[key1][key2] = 0;
-		// console.log("subkey", [key1][key2].length);
+		counts[key1][key2] = { total: 0, unique: {} };
+    }
+    if (!counts[key1][key2].unique[value]) {
+        counts[key1][key2].unique[value] = 0;
     }
     result[key1][key2].push(value);
-	// counts[key1]++; //version1
-	counts[key1][key2]++;
+	counts[key1][key2].unique[value]++;
+    counts[key1][key2].total++;
     counts[key1].total++;
 });
 
 console.log("Counts:", counts);
+////////////////////////////////////
+// data.forEach(item => {
+//     let [key1, key2, value] = item.split("-");
+//     if (!result[key1]) {
+//         result[key1] = {};
+// 		// counts[key1] = 0; //version1
+// 		counts[key1] = { total: 0 };
+// 		// console.log("key", [key1].length);
+//     }
+//     if (!result[key1][key2]) {
+//         result[key1][key2] = [];
+// 		counts[key1][key2] = 0;
+// 		// console.log("subkey", [key1][key2].length);
+//     }
+//     result[key1][key2].push(value);
+// 	// counts[key1]++; //version1
+// 	counts[key1][key2]++;
+//     counts[key1].total++;
+// });
 
+// console.log("Counts:", counts);
+//////////////////////////////////////////
 // for (let key1 in result) {
 //     for (let key2 in result[key1]) {
 //         console.log('Count of members in key ${key1} and subkey ${key2}:', result[key1][key2].length);
