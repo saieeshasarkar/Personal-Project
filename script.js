@@ -107,7 +107,7 @@ var isMobile = false; //initiate as false
 		}
 		var total = 0;
 		try {
- 		 total = counts[key1ForKey2][feature.properties.dcode]["total"] 
+ 		 total = counts[key1ForKey2][feature.properties.dcode]["total"]; 
 		} catch (error) {
 		}
 		 // counts[key1ForKey2][feature.properties.dcode] === 'undefined' ? 0 : counts[key1ForKey2][feature.properties.dcode]["total"]
@@ -135,12 +135,12 @@ var isMobile = false; //initiate as false
 
   var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
 	pointToLayer: function (feature, latlng) {
-		var total = counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
-		// try {
- 		//  total = counts[feature.properties.pcode]["total"] 
-		// } catch (error) {
-		// }
-		console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+		var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
+		try {
+ 		 total = counts[feature.properties.pcode]["total"]; 
+		} catch (error) {
+		}
+		// console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
