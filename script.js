@@ -140,7 +140,7 @@ var isMobile = false; //initiate as false
  	// 	 total = counts[feature.properties.pcode]["total"] 
 		// } catch (error) {
 		// }
-		console("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"])
+		console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"])
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
