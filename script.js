@@ -182,7 +182,8 @@ var isMobile = false; //initiate as false
 		var info = L.control({position: 'bottomright'});
 		// var info = L.control({position: 'topright'});
 		info.onAdd = function (map) {
-			this._div = L.DomUtil.create('div', 'info nomobile');
+			// this._div = L.DomUtil.create('div', 'info nomobile');
+			this._div = L.DomUtil.create('div', 'info');
 			this.update();
 			return this._div;
 		};
