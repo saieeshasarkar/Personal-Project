@@ -105,10 +105,11 @@ var isMobile = false; //initiate as false
        		 	break;
     		}
 		}
+		//counts[key1ForKey2][feature.properties.dcode]["total"]
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ counts[key1ForKey2][feature.properties.dcode]["total"] + '</div>'
+			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ counts[key1ForKey2][feature.properties.dcode]["total"] = counts[key1ForKey2][feature.properties.dcode]["total"] || 0 + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
@@ -132,7 +133,7 @@ var isMobile = false; //initiate as false
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'p' + feature.properties.pcode + '\' >'+ counts[feature.properties.pcode]["total"] + '</div>'
+			  html: '<div id=\'p' + feature.properties.pcode + '\' >'+ counts[feature.properties.pcode]["total"] = counts[feature.properties.pcode]["total"] || 0 + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
