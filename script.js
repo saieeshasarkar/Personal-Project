@@ -115,7 +115,7 @@ var isMobile = false; //initiate as false
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ total + '</div>'
+			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ feature.properties.dcode + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
