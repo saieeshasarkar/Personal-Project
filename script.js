@@ -105,16 +105,16 @@ var isMobile = false; //initiate as false
        		 	break;
     		}
 		}
-		var total = 0;
-		try {
- 		 total = counts[key1ForKey2][feature.properties.dcode]["total"] 
-		} catch (error) {
-		}
+		// var total = 0;
+		// try {
+ 	// 	 total = counts[key1ForKey2][feature.properties.dcode]["total"] 
+		// } catch (error) {
+		// }
 		//counts[key1ForKey2][feature.properties.dcode]["total"]
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ total + '</div>'
+			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ counts[key1ForKey2][feature.properties.dcode] === 'undefined' ? 0 : counts[key1ForKey2][feature.properties.dcode]["total"] + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
@@ -134,15 +134,15 @@ var isMobile = false; //initiate as false
 
   var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
 	pointToLayer: function (feature, latlng) {
-		var total = 0;
-		try {
- 		 total = counts[key1ForKey2][feature.properties.dcode]["total"] 
-		} catch (error) {
-		}
+		// var total = 0;
+		// try {
+ 	// 	 total = counts[feature.properties.pcode]["total"] 
+		// } catch (error) {
+		// }
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
+			  html: '<div id=\'p' + feature.properties.pcode + '\' >'+ counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"] + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
