@@ -98,10 +98,17 @@ var isMobile = false; //initiate as false
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
+		let key1ForKey2 = [];
+		for (let key1 of Object.keys(counts)) {
+   			 if (counts[key1][feature.properties.dcode]) {
+        		key1ForKey2 = key1;
+       		 	break;
+    		}
+		}
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ feature.properties.dcode + '</div>'
+			  html: '<div id=\'d' + feature.properties.dcode + '\' >'+ counts[key1ForKey2][feature.properties.dcode]["total"] + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
@@ -121,10 +128,11 @@ var isMobile = false; //initiate as false
 
   var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
 	pointToLayer: function (feature, latlng) {
+		
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
-			  html: '<div id=\'p' + feature.properties.pcode + '\' >'+ feature.properties.pcode + '</div>'
+			  html: '<div id=\'p' + feature.properties.pcode + '\' >'+ counts[feature.properties.pcode]["total"] + '</div>'
 			})
 		  });
 	  var circleMarker = L.circle(latlng, {
