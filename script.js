@@ -135,12 +135,12 @@ var isMobile = false; //initiate as false
 
   var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
 	pointToLayer: function (feature, latlng) {
-		// var total = 0;
+		var total = counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
 		// try {
- 	// 	 total = counts[feature.properties.pcode]["total"] 
+ 		//  total = counts[feature.properties.pcode]["total"] 
 		// } catch (error) {
 		// }
-		console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"])
+		console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
 		var marker = L.marker(latlng, {
 			icon: L.divIcon({
 			  className: 'number-icon',
