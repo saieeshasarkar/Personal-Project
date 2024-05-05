@@ -583,8 +583,8 @@ var isMobile = false; //initiate as false
 
 			return div;
 		};
-		legend.addTo(m);
-
+		//legend.addTo(m);
+/////////////////////////
 		//var shading_sel  = document.getElementById("shading_select");
 		var legend_table = document.getElementById("legend_table");
 		//shading_sel.onchange = change_legend;
