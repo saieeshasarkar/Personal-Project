@@ -103,30 +103,30 @@ var isMobile = false; //initiate as false
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
 		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
-		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:function(feature) {
-			//var colorIndex = feature.properties.pcode;
-			return {
-				weight: 1.2,
-				opacity: 0.9,
-				color: 'black',
-				fillOpacity: 0.3,
-				color: colors[feature.properties.PCode]
-			};
-		}});
+		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:function(feature,layer) {
+		// 	//var colorIndex = feature.properties.pcode;
+		// 	return {
+		// 		weight: 1.2,
+		// 		opacity: 0.9,
+		// 		color: 'black',
+		// 		fillOpacity: 0.3,
+		// 		color: colors[feature.properties.PCode]
+		// 	};
+		// }});
 		
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style: function(feature) {
-			// Use the feature's properties to determine the color
-			//var colorIndex = feature.properties.pcode;
-			return {
-				weight: 3.5,
-				opacity: 0.9,
-				color: 'black',
-				fillOpacity: 0.45,
-				color: colors[feature.properties.PCode]
-			};
-		}}).addTo(m);
-		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
-		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
+		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style: function(feature) {
+		// 	// Use the feature's properties to determine the color
+		// 	//var colorIndex = feature.properties.pcode;
+		// 	return {
+		// 		weight: 3.5,
+		// 		opacity: 0.9,
+		// 		color: 'black',
+		// 		fillOpacity: 0.45,
+		// 		color: colors[feature.properties.PCode]
+		// 	};
+		// }}).addTo(m);
+		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
+		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
@@ -301,9 +301,9 @@ var isMobile = false; //initiate as false
 		// This resets the highlight after hover moves away
 		function resetHighlight(e) {
 			var layer = e.target;
-			layer.setStyle(layer.options.previousStyle);
-			//province_lay.setStyle(styleP);
-			//district_lay.setStyle(styleD);
+			// layer.setStyle(layer.options.previousStyle);
+			province_lay.setStyle(styleP);
+			district_lay.setStyle(styleD);
 			village_lay.setStyle(styleV);
 			info.update();
 		};
@@ -551,7 +551,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.3,
-				fillColor: getRandomColor()
+				fillColor: colors[feature.properties.PCode]
+				// fillColor: getRandomColor()
 				//fillColor: 'blue' getColor(val)
 			};
 		};
@@ -585,7 +586,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.45,
-				fillColor: getRandomColor()
+				fillColor: colors[feature.properties.PCode]
+				//fillColor: getRandomColor()
 				//fillColor: 'green' getColor(val)
 			};
 		};
