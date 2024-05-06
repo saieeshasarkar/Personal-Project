@@ -106,6 +106,10 @@ var isMobile = false; //initiate as false
 		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:function(feature) {
 			var colorIndex = feature.properties.pcode;
 			return {
+				weight: 1.2,
+				opacity: 0.9,
+				color: 'black',
+				fillOpacity: 0.3,
 				color: colors[colorIndex % colors.length]
 			};
 		}});
@@ -114,6 +118,10 @@ var isMobile = false; //initiate as false
 			// Use the feature's properties to determine the color
 			var colorIndex = feature.properties.pcode;
 			return {
+				weight: 3.5,
+				opacity: 0.9,
+				color: 'black',
+				fillOpacity: 0.45,
 				color: colors[colorIndex % colors.length]
 			};
 		}}).addTo(m);
