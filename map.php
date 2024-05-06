@@ -53,11 +53,7 @@ $jsonData = json_encode($code);
 </head>
 	
 <body>
-    <div id="map"></div>
-	<script type="text/javascript" src="script.js"></script>
-	
-         
-</body>
+    
 <script>
 // Use the PHP variable in JavaScript
 let data = JSON.parse('<?php echo $jsonData; ?>');
@@ -132,4 +128,9 @@ function countMembers(data, key, subKey) {
 console.log(result);
 console.log(countMembers(data, '1', '101'));  // Outputs: 2
 </script>
+    <div id="map"></div>
+	<script type="text/javascript" src="script.js"></script>
+	
+         
+</body>
 </html>
