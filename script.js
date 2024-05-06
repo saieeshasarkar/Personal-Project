@@ -534,8 +534,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.3,
-				fillColor: 'blue'
-				//fillColor: getColor(val)
+				fillColor: getRandomColor()
+				//fillColor: 'blue' getColor(val)
 			};
 		};
 		function styleV(feature) {
@@ -568,8 +568,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.45,
-				fillColor: 'green'
-				//fillColor: getColor(val)
+				fillColor: getRandomColor()
+				//fillColor: 'green' getColor(val)
 			};
 		};
 	
