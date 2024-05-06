@@ -99,16 +99,26 @@ var isMobile = false; //initiate as false
 			}
 			return color;
 		}
+		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
+              "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
+              "#BA55D3", "#9370DB", "#3CB371", "#808080"];
 		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
-		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:function(feature) {
-		// 	return {color: getRandomColor()};
-		// }});
+		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:function(feature) {
+			var colorIndex = feature.properties.pcode;
+			return {
+				color: colors[colorIndex % colors.length]
+			};
+		}});
 		
-		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:function(feature) {
-		// 	return {color: getRandomColor()};
-		// }}).addTo(m);
-		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
+		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style: function(feature) {
+			// Use the feature's properties to determine the color
+			var colorIndex = feature.properties.pcode;
+			return {
+				color: colors[colorIndex % colors.length]
+			};
+		}}).addTo(m);
+		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
+		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
