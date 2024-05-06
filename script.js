@@ -238,8 +238,10 @@ var isMobile = false; //initiate as false
 			// content += '<tr><td class="ditem">Poverty gap (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Ga"].toFixed(1))) : '6.0') + '</div>'+ '</td></tr>';
 			// content += '<tr><td class="ditem">Poverty severity (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Se"].toFixed(1))) : '--') + '</div>'+ '</td></tr>';
 			content += '<tr><td class="ditem">Province Cases      <td class="dval">'  +(props ? '' + (checkNull(counts[props["PCode"]]["total"])) : '--') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">District Cases      <td class="dval">'  +(props ? '' + counts[checkNull(props["PCode"])][checkNull(props["DCode"])].total : '--')+ '</div>'+ '</td></tr>';
+			content += '<tr><td class="ditem">District Cases      <td class="dval">'  +(props ? '' + (counts[props["PCode"]][checkNull2(props["DCode"])] ? counts[props["PCode"]][props["DCode"]].total : '--') : '--')+ '</div>'+ '</td></tr>';
 			content += '</tbody></table>';
+			
+			// props["DCode"] ? counts[props["PCode"]][props["DCode"]].total : 'B--'
 			// (checkNull(counts[props["PCode"]][props["DCode"]]["total"]))
 			this._div.innerHTML = content;
 			};
