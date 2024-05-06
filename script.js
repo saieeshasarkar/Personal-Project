@@ -288,7 +288,7 @@ var isMobile = false; //initiate as false
 		};
 
 		function highlightFeature(e) {
-			//var layer = e.target;
+			var layer = e.target;
 			//layer.options.previousStyle = layer.options.style;
 			layer.setStyle({
 				weight: 3,
