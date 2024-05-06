@@ -104,25 +104,25 @@ var isMobile = false; //initiate as false
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
 		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
 		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:function(feature) {
-			var colorIndex = feature.properties.pcode;
+			//var colorIndex = feature.properties.pcode;
 			return {
 				weight: 1.2,
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.3,
-				color: colors[colorIndex % colors.length]
+				color: colors[feature.properties.pcode]
 			};
 		}});
 		
 		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style: function(feature) {
 			// Use the feature's properties to determine the color
-			var colorIndex = feature.properties.pcode;
+			//var colorIndex = feature.properties.pcode;
 			return {
 				weight: 3.5,
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.45,
-				color: colors[colorIndex % colors.length]
+				color: colors[feature.properties.pcode]
 			};
 		}}).addTo(m);
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
