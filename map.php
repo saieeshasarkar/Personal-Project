@@ -62,8 +62,8 @@ $jsonData = json_encode($code);
 // Use the PHP variable in JavaScript
 let data = JSON.parse('<?php echo $jsonData; ?>');
 let result = {};
-let counts = {};
-	
+// let counts = {};
+let counts = {total:0};
 data.forEach(item => {
     let [key1, key2, value] = item.split("-");
     if (!result[key1]) {
@@ -81,6 +81,7 @@ data.forEach(item => {
 	counts[key1][key2].unique[value]++;
     counts[key1][key2].total++;
     counts[key1].total++;
+    counts.total++;
 });
 
 console.log("Counts:", counts);
