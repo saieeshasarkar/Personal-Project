@@ -110,7 +110,7 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.3,
-				color: colors[feature.properties.pcode]
+				color: colors[feature.properties.PCode]
 			};
 		}});
 		
@@ -122,7 +122,7 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.45,
-				color: colors[feature.properties.pcode]
+				color: colors[feature.properties.PCode]
 			};
 		}}).addTo(m);
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
