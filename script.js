@@ -220,7 +220,7 @@ var isMobile = false; //initiate as false
 			return this._div;
 		};
 
-		info.update = function (props) {
+		info.update = function (props , co) {
 			
 			content =  '<table class="props"><tbody>';
 				
@@ -240,7 +240,7 @@ var isMobile = false; //initiate as false
 			//content += '<tr><td class="ditem">Province Cases      <td class="dval">'  +(props ? '' + (checkNull(counts[props["PCode"]]["total"])) : '--') + '</div>'+ '</td></tr>';
 			//content += '<tr><td class="ditem">District Cases      <td class="dval">'  +(props ? '' + (counts[props["PCode"]][checkNull2(props["DCode"])] ? counts[props["PCode"]][props["DCode"]].total : '--') : '--')+ '</div>'+ '</td></tr>';
 			
-			content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (counts[checkNull2(props["PCode"])] ? '--' : counts[props["PCode"]].total) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + (props ? counts.total: '--')  + '</div>'+ '</td></tr>');
+			content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (co[checkNull2(props["PCode"])] ? '--' : co[props["PCode"]].total) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + (co ? co.total: '--')  + '</div>'+ '</td></tr>');
 			
 			content += '</tbody></table>';
 			// checkNull2(counts.total)
@@ -302,7 +302,7 @@ var isMobile = false; //initiate as false
 				color: '#636363',
 				fillOpacity: 0.4
 			});
-			info.update(layer.feature.properties);
+			info.update(layer.feature.properties, counts);
 		};
 
 		// This resets the highlight after hover moves away
