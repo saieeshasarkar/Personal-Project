@@ -272,6 +272,7 @@ var isMobile = false; //initiate as false
 		function highlightFeature(e) {
 			resetHighlight(e);
 			var layer = e.target;
+			layer.options.previousStyle = layer.options.style;
 			layer.setStyle({
 				weight: 3,
 				color: '#636363',
@@ -282,8 +283,10 @@ var isMobile = false; //initiate as false
 
 		// This resets the highlight after hover moves away
 		function resetHighlight(e) {
-			province_lay.setStyle(styleP);
-			district_lay.setStyle(styleD);
+			var layer = e.target;
+			layer.setStyle(layer.options.previousStyle);
+			//province_lay.setStyle(styleP);
+			//district_lay.setStyle(styleD);
 			village_lay.setStyle(styleV);
 			info.update();
 		};
