@@ -288,7 +288,6 @@ var isMobile = false; //initiate as false
 		};
 
 		function highlightFeature(e) {
-			resetHighlight(e);
 			var layer = e.target;
 			layer.options.previousStyle = layer.options.style;
 			layer.setStyle({
