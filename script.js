@@ -224,6 +224,7 @@ var isMobile = false; //initiate as false
 
 		info.update = function (props) {
 			
+			var pcode;
 			content =  '<table class="props"><tbody>';
 				
 			content +=  (props ? '<div class="areaName">' + props.Province + checkNull2(props.District)+ '</div>' : '<div class="areaName">Lao PDR</div><div class="areaName faded"><small><i>Hover over areas to view data</i><br></small></div>');//'<th>'+ checkNull2(props.District)+'</th></tr>';
@@ -242,8 +243,8 @@ var isMobile = false; //initiate as false
 			//content += '<tr><td class="ditem">Province Cases      <td class="dval">'  +(props ? '' + (checkNull(counts[props["PCode"]]["total"])) : '--') + '</div>'+ '</td></tr>';
 			//content += '<tr><td class="ditem">District Cases      <td class="dval">'  +(props ? '' + (counts[props["PCode"]][checkNull2(props["DCode"])] ? counts[props["PCode"]][props["DCode"]].total : '--') : '--')+ '</div>'+ '</td></tr>';
 			
-			content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (checkNull2(counts[props["PCode"]]) ? counts[props["PCode"]].total : '--' ) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + counts.total + '</div>'+ '</td></tr>');
-			content +=  (props ? '<tr><td class="ditem">District Cases</td>         <td class="dval">' + (checkNull2(props.DCode) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
+			content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (checkNull2(counts[props["PCode"]]) ? pcode=counts[props["PCode"]].total : '--' ) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + counts.total + '</div>'+ '</td></tr>');
+			content +=  (props ? '<tr><td class="ditem">District Cases</td>         <td class="dval">' + (checkNull2(pcode) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
 			
 			content += '</tbody></table>';
 			// checkNull2(counts.total)
