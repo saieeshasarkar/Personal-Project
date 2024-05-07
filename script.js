@@ -305,7 +305,7 @@ var isMobile = false; //initiate as false
 				color: '#636363',
 				fillOpacity: 0.4
 			});
-			info.update(layer.feature.properties, counts);
+			info.update(layer.feature.properties);
 		};
 
 		// This resets the highlight after hover moves away
