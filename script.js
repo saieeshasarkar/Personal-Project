@@ -244,8 +244,8 @@ var isMobile = false; //initiate as false
 			
 			content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (checkNull2(counts[props["PCode"]]) ? counts[props["PCode"]].total : '--' ) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + counts.total + '</div>'+ '</td></tr>');
 			content +=  (props ? '<tr><td class="ditem">District Cases</td>         <td class="dval">' + ((props.PCode in counts) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
-			
-			content += '</tbody></table>';
+			// (checkNull2(props.DCode) in counts[props.PCode])
+			content += '</tbody></table>'; 
 			// checkNull2(counts.total)
 			// props["DCode"] ? counts[props["PCode"]][props["DCode"]].total : 'B--'
 			// (checkNull(counts[props["PCode"]][props["DCode"]]["total"]))
