@@ -1,6 +1,6 @@
 <?php
 
-require 'dbconfig.php';
+//require 'dbconfig.php';
 session_start();
 
 
@@ -20,16 +20,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemFound = false;
     $fetchdata = $database->getReference('New')->getValue();
 
-    foreach ($fetchdata as $key => $value) {
-        if ($valid_username == $value['phone'] && $valid_password == $value['password']) {
+    //foreach ($fetchdata as $key => $value) {
+        if ($valid_username == 1 && $valid_password == 1) {
             $itemFound = true;
-            $_SESSION["username"] = $value['phone'];
+            $_SESSION["username"] = 1;
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             break;
             // header("location: profile.php");
             // exit; // Terminate the script after redirection
         }
-    }
+    //}
     
     if (!$itemFound) {
         $error = "Invalid username or password";
