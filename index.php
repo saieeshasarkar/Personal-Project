@@ -1,6 +1,6 @@
 <?php
 
-//require 'dbconfig.php';
+// require 'dbconfig.php';
 session_start();
 
 
@@ -18,18 +18,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_password = $_POST['password'];
     
     $itemFound = false;
-    $fetchdata = $database->getReference('New')->getValue();
+    // $fetchdata = $database->getReference('New')->getValue();
 
-    //foreach ($fetchdata as $key => $value) {
-        if ($valid_username == 1 && $valid_password == 1) {
+    // foreach ($fetchdata as $key => $value) {
+        if ($valid_username == '123' && $valid_password == '123') {
             $itemFound = true;
-            $_SESSION["username"] = 1;
+            $_SESSION["username"] = '123';
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
-            break;
+           // break;
             // header("location: profile.php");
             // exit; // Terminate the script after redirection
         }
-    //}
+    // }
     
     if (!$itemFound) {
         $error = "Invalid username or password";
