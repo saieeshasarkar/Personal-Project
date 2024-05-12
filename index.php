@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             header("location: profile.php");
-            exit; // Terminate the script after redirection
+            // exit; // Terminate the script after redirection
         }
     }
     
