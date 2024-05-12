@@ -5,10 +5,10 @@ session_start();
 
 // if(!isset($_SESSION["username"])) {
  echo $_SESSION["username"];
-if(empty($_SESSION['username'])) {
-    header("location: index.php");
-    exit;
-}
+// if(empty($_SESSION['username'])) {
+//     header("location: index.php");
+//     exit;
+// }
 
 // Check if form is submitted for updating address
 if($_SERVER["REQUEST_METHOD"] == "POST") {
