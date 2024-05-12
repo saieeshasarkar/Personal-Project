@@ -11,7 +11,7 @@ if(isset($_SESSION["username"])) {
 }
 
 // Check if form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+//if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $valid_username = $_POST['username']; // Assuming you're getting these values from a form
     $valid_password = $_POST['password'];
@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             header("location: profile.php");
-            // exit; // Terminate the script after redirection
+            exit; // Terminate the script after redirection
         }
     }
     
@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 //     // } else {
 //     //     $error = "Invalid username or password";
 //     // }
- }
+ //}
 ?>
 
 <!DOCTYPE html>
