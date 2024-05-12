@@ -11,7 +11,7 @@ if(isset($_SESSION["username"])) {
 }
 
 // Check if form is submitted
-//if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $valid_username = $_POST['username']; // Assuming you're getting these values from a form
     $valid_password = $_POST['password'];
@@ -24,14 +24,20 @@ if(isset($_SESSION["username"])) {
             $itemFound = true;
             $_SESSION["username"] = $value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
-            header("location: profile.php");
-            exit; // Terminate the script after redirection
+            break;
+            // header("location: profile.php");
+            // exit; // Terminate the script after redirection
         }
     }
     
     if (!$itemFound) {
         $error = "Invalid username or password";
         // Display the error message to the user (e.g., in your HTML form)
+    }
+    else {
+        $error = "OK";
+        header("location: profile.php");
+        exit;
     }
 
 // $itemFound = false;
@@ -79,7 +85,7 @@ if(isset($_SESSION["username"])) {
 //     // } else {
 //     //     $error = "Invalid username or password";
 //     // }
- //}
+ }
 ?>
 
 <!DOCTYPE html>
