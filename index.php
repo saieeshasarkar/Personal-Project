@@ -17,6 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_password = $_POST['password'];
     
     $itemFound = false;
+    $fetchdata = $database->getReference('New')->getValue();
     
     foreach ($fetchdata as $key => $value) {
         if ($valid_username == $value['phone'] && $valid_password == $value['password']) {
@@ -32,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Invalid username or password";
         // Display the error message to the user (e.g., in your HTML form)
     }
-    
+
 // $itemFound = false;
 //     // Dummy credentials
 //     // $valid_username = "user";
