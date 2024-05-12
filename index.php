@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         // Display the error message to the user (e.g., in your HTML form)
     }
     else {
-        $error = "OK";
+        echo $_SESSION["username"];
         header("location: profile.php");
         exit;
     }
