@@ -6,8 +6,9 @@ session_start();
 
 // Check if user is already logged in, if yes, redirect to profile page
 if(isset($_SESSION["username"])) {
-    header("location: profile.php");
-    exit;
+    echo $_SESSION["username"];
+    // header("location: profile.php");
+    // exit;
 }
 
 // Check if form is submitted
