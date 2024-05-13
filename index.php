@@ -4,14 +4,15 @@
 require 'dbconfig.php';
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 // Check if user is already logged in, if yes, redirect to profile page
 if(isset($_SESSION["username"])) {
     // echo $_SESSION["username"];
     header("location: test.php");
+    
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
      exit;
 }
 
@@ -42,6 +43,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         // echo $_SESSION["username"];
         header("location: test.php");
+        
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
         exit;
     }
 
