@@ -14,7 +14,7 @@
     $firebase=(new Factory)
         ->withServiceAccount($serviceAccount)
         ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/')
-        ->createDatabase();
+        ->Create();
   // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/test.json');
   //   $firebase=(new Factory)
   //       ->withServiceAccount($serviceAccount)
