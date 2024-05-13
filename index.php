@@ -35,11 +35,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Invalid username or password";
         // Display the error message to the user (e.g., in your HTML form)
     }
-    else {
-        echo $_SESSION["username"];
-        header("location: profile.php");
-        exit;
-    }
+    // else {
+    //     echo $_SESSION["username"];
+    //     header("location: profile.php");
+    //     exit;
+    // }
 
 // $itemFound = false;
 //     // Dummy credentials
