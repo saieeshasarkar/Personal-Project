@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // $fetchdata = $database->getReference('New')->getValue();
 
     foreach ($fetchdata as $key => $value) {
-        if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
+        if ($valid_username  == ($value['phone']) && $valid_password == ($value['password'])){
             $itemFound = true;
             $_SESSION["username"] = $value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
