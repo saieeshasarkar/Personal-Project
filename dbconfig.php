@@ -2,7 +2,7 @@
     require 'vendor/autoload.php';
 
     use Kreait\Firebase\Factory;
-    use Kreait\Firebase\ServiceAccount;
+    // use Kreait\Firebase\ServiceAccount;
     // use Kreait\Firebase\Auth;
     
 // $firebase = (new Factory)
