@@ -8,7 +8,7 @@ require 'dbconfig.php';
 if(isset($_SESSION["username"])) {
     echo $_SESSION["username"];
     header("location: profile.php");
-    // exit;
+     exit;
 }
 
 // Check if form is submitted
