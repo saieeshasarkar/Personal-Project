@@ -23,13 +23,13 @@
   
   //       ->Create();
   
-//   $firebase=(new Factory)
-//       ->withServiceAccount(__DIR__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json')
-//       ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/');
-//       //->Create();
+  $firebase=(new Factory)
+      ->withServiceAccount(__DIR__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json')
+      ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/');
+      //->Create();
 
-//       $auth = $firebase->createAuth();
-//         $database = $firebase->createDatabase();
+      $auth = $firebase->createAuth();
+        $database = $firebase->createDatabase();
 
     // $database = $firebase->getDatabase();
 
