@@ -27,8 +27,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
            break;
-            header("location: profile.php");
-            exit; // Terminate the script after redirection
         }
     }
     
@@ -36,11 +34,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Invalid username or password";
         // Display the error message to the user (e.g., in your HTML form)
     }
-    // else {
-    //     echo $_SESSION["username"];
-    //     header("location: profile.php");
-    //     exit;
-    // }
+    else {
+        // echo $_SESSION["username"];
+        header("location: profile.php");
+        exit;
+    }
 
 // $itemFound = false;
 //     // Dummy credentials
