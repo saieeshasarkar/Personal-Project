@@ -2,12 +2,12 @@
 
 // 
 session_start();
-// require 'dbconfig.php';
+require 'dbconfig.php';
 
 // Check if user is already logged in, if yes, redirect to profile page
 if(isset($_SESSION["username"])) {
     echo $_SESSION["username"];
-    // header("location: profile.php");
+    header("location: profile.php");
     // exit;
 }
 
@@ -20,16 +20,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemFound = false;
     // $fetchdata = $database->getReference('New')->getValue();
 
-    // foreach ($fetchdata as $key => $value) {
-        if ($valid_username == '123' && $valid_password == '123') {
+    foreach ($fetchdata as $key => $value) {
+        if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
             $itemFound = true;
-            $_SESSION["username"] = '123';
+            $_SESSION["username"] = $value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
-           // break;
-            // header("location: profile.php");
-            // exit; // Terminate the script after redirection
+           break;
+            header("location: profile.php");
+            exit; // Terminate the script after redirection
         }
-    // }
+    }
     
     if (!$itemFound) {
         $error = "Invalid username or password";
