@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // foreach ($fetchdata as $key => $value) {
         // if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
-        if ($valid_username  == '123' && $valid_password == '123'))
+        if ($valid_username  == '123' && $valid_password == '123')
         {
             $itemFound = true;
             $_SESSION["username"] = '123';//$value['phone'];
