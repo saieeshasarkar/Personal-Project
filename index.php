@@ -6,7 +6,7 @@ require 'dbconfig.php';
 
 // Check if user is already logged in, if yes, redirect to profile page
 if(isset($_SESSION["username"])) {
-    echo $_SESSION["username"];
+    // echo $_SESSION["username"];
     header("location: profile.php");
      exit;
 }
