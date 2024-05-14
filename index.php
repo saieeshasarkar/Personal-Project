@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_password = $_POST['password'];
     
     $itemFound = false;
-    //  $fetchdata = $database->getReference('New')->getValue();
+    $fetchdata = $database->getReference('New')->getValue();
 
     foreach ($fetchdata as $key => $value) {
         if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
