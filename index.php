@@ -135,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
 
 <body>
-<script src="app.js"></script>
+<!-- <script src="app.js"></script> -->
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
@@ -169,6 +169,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <script>
+firebase.initializeApp(firebaseConfig);
   // Reference to your Firebase Realtime Database
   var database = firebase.database();
 
