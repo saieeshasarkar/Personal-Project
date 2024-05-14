@@ -1,18 +1,18 @@
 <?php
 
 // 
-// require 'dbconfig.php';
+require 'dbconfig.php';
+
+ob_start();
 session_start();
-
-
 // Check if user is already logged in, if yes, redirect to profile page
 if(isset($_SESSION["username"])) {
     // echo $_SESSION["username"];
-    header("location: test.php");
+    header("location: profile.php");
     
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
      exit;
 }
 
@@ -25,30 +25,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemFound = false;
     //  $fetchdata = $database->getReference('New')->getValue();
 
-    // foreach ($fetchdata as $key => $value) {
-        // if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
-        if ($valid_username  == '123' && $valid_password == '123')
+    foreach ($fetchdata as $key => $value) {
+        if ($valid_username  == ($value['phone']) && $valid_password == ($value['password']))
+        // if ($valid_username  == '123' && $valid_password == '123')
         {
             $itemFound = true;
             $_SESSION["username"] = '123';//$value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
-        //    break;
+            header("location: profile.php");
+            exit;
+             break;
         }
-    // }
+    }
     
     if (!$itemFound) {
         $error = "Invalid username or password";
         // Display the error message to the user (e.g., in your HTML form)
     }
-    else {
-        // echo $_SESSION["username"];
-        header("location: test.php");
-        
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-        exit;
-    }
+    // else {
+    //     // echo $_SESSION["username"];
+    //     header("location: test.php");
+    //     exit;
+    // }
 
 // $itemFound = false;
 //     // Dummy credentials
@@ -96,6 +94,7 @@ error_reporting(E_ALL);
 //     //     $error = "Invalid username or password";
 //     // }
  }
+ ob_end_flush();
 ?>
 
 <!DOCTYPE html>
