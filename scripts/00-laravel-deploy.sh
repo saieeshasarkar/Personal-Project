@@ -8,7 +8,7 @@ composer install --no-dev --working-dir=/var/www/html
 composer update
 #composer install
 conf/nginx/nginx-site.conf
-
+conf/nginx/nginx-site.conf
 # #!/usr/bin/env bash
 # echo "Running composer"
 # cp /etc/secrets/.env .env
