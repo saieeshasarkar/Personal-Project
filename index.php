@@ -173,7 +173,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   var database = firebase.database();
 
   // Reference to the specific location in your database
-  var dataRef = database.ref('New');
+  var dataRef = database.ref('New/');
 
   // Listen for changes in the data and update the webpage
   dataRef.on('value', function(snapshot) {

@@ -35,4 +35,11 @@ $AppData = [
 $ref='New/';
 $postdata = $database->getReference($ref)->push($AppData);
 
+
+            $_SESSION["username"] = '$email';//$value['phone'];
+            $_SESSION["logged_in"] = true; // Set a flag for logged-in users
+            header("location: profile.php");
+            exit;
+
+
 ?>
