@@ -42,5 +42,5 @@ $postdata = $database->getReference($ref)->push($AppData);
             header("location: profile.php");
             exit;
 
-            ob_end_flush();
+ob_end_flush();
 ?>
