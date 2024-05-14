@@ -95,6 +95,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 //     //     $error = "Invalid username or password";
 //     // }
  }
+
+//  $firebaseConfig = [
+//     apiKey: "AIzaSyBf3m74nlIkWPD1D9PMycQQIKxze0A-1hg",
+//     authDomain: "dengue-fever-database-6da72.firebaseapp.com",
+//     databaseURL: "https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app",
+//     projectId: "dengue-fever-database-6da72",
+//     storageBucket: "dengue-fever-database-6da72.appspot.com",
+//     messagingSenderId: "484563913792",
+//     appId: "1:484563913792:web:617b18689b4238c825e3a5",
+//     measurementId: "G-LXXV81FSTD"
+// ];
+  $firebaseConfig = [
+    'apiKey' => "AIzaSyBf3m74nlIkWPD1D9PMycQQIKxze0A-1hg",
+    'authDomain' => "dengue-fever-database-6da72.firebaseapp.com",
+    'databaseURL' => "https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app",
+    'projectId' =>"dengue-fever-database-6da72",
+    'storageBucket' => "dengue-fever-database-6da72.appspot.com",
+    'messagingSenderId' => "484563913792",
+    'appId' => "1:484563913792:web:617b18689b4238c825e3a5"
+];
  ob_end_flush();
 ?>
 
@@ -104,8 +124,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+
+<!-- Include the Firebase Realtime Database SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+
+<script>
+        var firebaseConfig = <?php echo json_encode($firebaseConfig); ?>;
+    </script>
+    </head>
+
 <body>
+<script src="app.js"></script>
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
@@ -134,5 +164,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+    <div id="real-time-data">
+  <!-- Real-time data will be displayed here -->
+</div>
+
+<script>
+  // Reference to your Firebase Realtime Database
+  var database = firebase.database();
+
+  // Reference to the specific location in your database
+  var dataRef = database.ref('New');
+
+  // Listen for changes in the data and update the webpage
+  dataRef.on('value', function(snapshot) {
+    var data = snapshot.val();
+    // Update the HTML element with the fetched data
+    document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
+  });
+</script>
 </body>
 </html>
