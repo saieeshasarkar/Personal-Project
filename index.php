@@ -1,9 +1,10 @@
 <?php
 
 // 
-require 'dbconfig.php';
 
 ob_start();
+require 'dbconfig.php';
+
 session_start();
 // Check if user is already logged in, if yes, redirect to profile page
 if(isset($_SESSION["username"])) {
