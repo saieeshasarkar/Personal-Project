@@ -113,7 +113,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     'projectId' =>"dengue-fever-database-6da72",
     'storageBucket' => "dengue-fever-database-6da72.appspot.com",
     'messagingSenderId' => "484563913792",
-    'appId' => "1:484563913792:web:617b18689b4238c825e3a5"
+    'appId' => "1:484563913792:web:617b18689b4238c825e3a5",
+    'measurementId' => "G-LXXV81FSTD"
 ];
  ob_end_flush();
 ?>
@@ -185,7 +186,7 @@ firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
   // Reference to the specific location in your database
-  var dataRef = database.ref('New/');
+  var dataRef = database.ref('New');
 
   // Listen for changes in the data and update the webpage
   dataRef.on('value', function(snapshot) {
