@@ -124,10 +124,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+
+    <!-- <sript src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script> -->
 
 <!-- Include the Firebase Realtime Database SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script> -->
+
+
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+<sript src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
 
 <script>
         var firebaseConfig = <?php echo json_encode($firebaseConfig); ?>;
