@@ -12,6 +12,7 @@
 // if ($conn->connect_error) {
 //     die("Connection failed: " . $conn->connect_error);
 // }
+ob_start();
 require 'dbconfig.php';
 
  $fetchdata = $database->getReference('New')->getValue();
@@ -41,5 +42,5 @@ $postdata = $database->getReference($ref)->push($AppData);
             header("location: profile.php");
             exit;
 
-
+            ob_end_flush();
 ?>
