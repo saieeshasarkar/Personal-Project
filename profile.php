@@ -1,21 +1,36 @@
 <?php
+
+ob_start();
+require 'dbconfig.php';
+
 session_start();
 
 // Check if user is not logged in, redirect to login page
 
 // if(!isset($_SESSION["username"])) {
 //  echo $_SESSION["username"];
+$userprofile;
 if(empty($_SESSION['username'])) {
     header("location: index.php");
     exit;
+}else {
+    $userprofile = $database->getReference('New')->getChild($_SESSION['id'])->getValue();
+
 }
 
 // Check if form is submitted for updating address
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+
     // Update address logic can go here
-    $updated_address = $_POST["address"];
-    // Dummy logic to update address in session
-    $_SESSION["address"] = $updated_address;
+    // $updated_address = $_POST["address"];
+    // // Dummy logic to update address in session
+    // $_SESSION["address"] = $updated_address;
+    $childKey = $_SESSION['id']; // replace with your child key
+// $newAddress = 'your_new_address'; // replace with your new address
+// $fetchdata = $database->getReference('New')->getValue();
+$database->getReference('New')->getChild($childKey)->update([
+    'status' => $_POST["status"]
+]);
 }
 ?>
 
@@ -46,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post" action="">
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" class="form-control" value="<?php echo isset($_SESSION["address"]) ? $_SESSION["address"] : ""; ?>" required>
+                <input type="text" id="status" name="status" class="form-control" value="<?php echo isset($userprofile["status"]) ? $userprofile["status"] : ""; ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Update Address</button>
         </form>
