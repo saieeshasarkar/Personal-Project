@@ -31,6 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 $database->getReference('New')->getChild($childKey)->update([
     'status' => $_POST["status"]
 ]);
+$userprofile = $database->getReference('New')->getChild($_SESSION['id'])->getValue();
 }
 ?>
 
