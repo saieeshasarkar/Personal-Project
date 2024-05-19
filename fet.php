@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 // require '/vendor/autoload.php';
 
@@ -43,6 +43,7 @@ require 'dbconfig.php';
     // if($_POST['number'] == ($value['phone'])){$result ='<div class="alert alert-danger">Phone number are alraedy Sign-Up ..</div>';}
 ///////////////////////////////////
       // echo $value['user'] . "<br>";
+      echo $key . "<br>";
       echo $value['address'] . "<br>";
       // $code[] = ['code' => $value['address']];
       $code[] = $value['address'];
