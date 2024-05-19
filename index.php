@@ -31,6 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         // if ($valid_username  == '123' && $valid_password == '123')
         {
             $itemFound = true;
+            $_SESSION["id"]= $key;
             $_SESSION["username"] = '123';//$value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             header("location: profile.php");
