@@ -10,7 +10,7 @@ session_start();
 // if(!isset($_SESSION["username"])) {
 //  echo $_SESSION["username"];
 $userprofile;
-if(empty($_SESSION['username'])) {
+if(empty($_SESSION['id'])) {
     header("location: index.php");
     exit;
 }else {
@@ -55,12 +55,12 @@ $database->getReference('New')->getChild($childKey)->update([
         </div>
     </nav>
     <div class="container mt-4">
-        <h2>Welcome, <?php echo $_SESSION["username"]; ?></h2>
+        <h2>Welcome, <?php echo $userprofile["user"]; ?></h2>
         <h3>Profile</h3>
-        <p>Address: <?php echo isset($_SESSION["address"]) ? $_SESSION["address"] : "N/A"; ?></p>
+        <p>Address: <?php echo isset($userprofile["address"]) ? $userprofile["address"] : "N/A"; ?></p>
         <form method="post" action="">
             <div class="form-group">
-                <label for="address">Address:</label>
+                <label for="address">Status:</label>
                 <input type="text" id="status" name="status" class="form-control" value="<?php echo isset($userprofile["status"]) ? $userprofile["status"] : ""; ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Update Address</button>

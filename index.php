@@ -7,7 +7,7 @@ require 'dbconfig.php';
 
 session_start();
 // Check if user is already logged in, if yes, redirect to profile page
-if(isset($_SESSION["username"])) {
+if(isset($_SESSION["id"])) {
     // echo $_SESSION["username"];
     header("location: profile.php");
     
@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             $itemFound = true;
             $_SESSION["id"]= $key;
-            $_SESSION["username"] = '123';//$value['phone'];
+            // $_SESSION["username"] = '123';//$value['phone'];
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             header("location: profile.php");
             exit;

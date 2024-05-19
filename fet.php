@@ -37,6 +37,7 @@ echo $userprofile['status'] . "<br>";
     echo 'test';
  $code = [];
  $groupedData = [];
+ 
     foreach($fetchdata as $key => $value)
     {
        // if the email exist
