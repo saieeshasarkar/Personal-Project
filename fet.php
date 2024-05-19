@@ -32,7 +32,7 @@
 require 'dbconfig.php';
 
  $fetchdata = $database->getReference('New')->getValue();
- $userprofile = $database->getReference('New')->getChild('-NwiyQIfY61sA0Bv6R85'))->getValue();
+ $userprofile = $database->getReference('New')->getChild('-NwiyQIfY61sA0Bv6R85')->getValue();
 echo $userprofile['status'] . "<br>";
     echo 'test';
  $code = [];
