@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -76,7 +76,9 @@
 
         <div id="map-page" class="page">
             <h4>Map</h4>
-            <div id="map"></div>
+            <div id="map">
+             <?php include 'map.php';?>
+             </div>
         </div>
 
         <div id="user" class="page">
@@ -118,7 +120,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <!-- Google Maps JavaScript -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<!--     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> -->
     
     <script>
         // Navigation functionality
