@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,7 +74,9 @@
 
         <div id="map-page" class="page">
             <h2>Map</h2>
-            <div id="map"></div>
+            <div id="map">
+            <?php include 'map.php';?>
+            </div>
         </div>
 
         <div id="user" class="page">
@@ -116,7 +118,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Google Maps JavaScript -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<!--     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> -->
     
     <script>
         // Navigation functionality
