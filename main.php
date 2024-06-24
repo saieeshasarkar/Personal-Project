@@ -100,27 +100,6 @@ $jsonData = json_encode($code);
         }
     </style>
 </head>
-<body>
-    <main>
-        <div id="home" class="page active">
-            <form class="login-form">
-                <h4 class="center-align">Login</h4>
-                <div class="input-field">
-                    <input id="username" type="text" class="validate" required>
-                    <label for="username">Username</label>
-                </div>
-                <div class="input-field">
-                    <input id="password" type="password" class="validate" required>
-                    <label for="password">Password</label>
-                </div>
-                <button class="btn waves-effect waves-light w100" type="submit" name="action">Login
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
-        </div>
-
-        <div id="map-page" class="page">
-            <h4>Map</h4>
 <script>
 // Use the PHP variable in JavaScript
 let data = JSON.parse('<?php echo $jsonData; ?>');
@@ -167,6 +146,28 @@ function countMembers(data, key, subKey) {
 console.log(result);
 console.log(countMembers(data, '1', '101'));  // Outputs: 2
 </script>
+<body>
+    <main>
+        <div id="home" class="page active">
+            <form class="login-form">
+                <h4 class="center-align">Login</h4>
+                <div class="input-field">
+                    <input id="username" type="text" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="password" class="validate" required>
+                    <label for="password">Password</label>
+                </div>
+                <button class="btn waves-effect waves-light w100" type="submit" name="action">Login
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+
+        <div id="map-page" class="page">
+            <h4>Map</h4>
+
             <div id="map">
              </div>
 	<script type="text/javascript" src="script.js"></script>
