@@ -48,6 +48,7 @@ var isMobile = false; //initiate as false
 		});
 
 		OpenCartoMap.addTo(m);
+		// window.dispatchEvent(new Event('resize'));  
 		const mapDiv = document.getElementById("map");
 		const resizeObserver = new ResizeObserver(() => {
 			m.invalidateSize();
