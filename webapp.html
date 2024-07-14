@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dengue Occurrence in Laos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body { display: flex; min-height: 100vh; flex-direction: column; }
+        main { flex: 1 0 auto; }
+        #map { height: calc(100vh - 56px); }
+        .search-wrapper { padding: 10px; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; z-index: 1000; }
+        .bottom-nav .nav-wrapper { padding: 0 10px; }
+        .bottom-nav i { display: block; font-size: 24px; }
+        .bottom-nav .btn-flat { height: 56px; line-height: 1; padding: 6px 0; }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div id="loginPage" class="section" style="display: none;">
+                <!-- Login page content will be dynamically added here -->
+            </div>
+            
+            <div id="mapPage" class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="search-wrapper">
+                            <input id="searchInput" type="text" placeholder="Search for a province">
+                            <i class="material-icons" id="searchButton">search</i>
+                        </div>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="blue bottom-nav">
+        <div class="nav-wrapper">
+            <ul class="center">
+                <li><a class="btn-flat white-text" href="#" id="mapLink">
+                    <i class="material-icons">map</i>
+                    Map
+                </a></li>
+                <li><a class="btn-flat white-text modal-trigger" href="#loginModal">
+                    <i class="material-icons">person</i>
+                    Login
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4>
+            <form id="loginForm">
+                <div class="input-field">
+                    <input id="username" type="text" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="password" class="validate" required>
+                    <label for="password">Password</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Login
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize Materialize components
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalElems = document.querySelectorAll('.modal');
+            var modalInstances = M.Modal.init(modalElems);
+        });
+
+        // Initialize map
+        var map = L.map('map').setView([18.5203, 103.7542], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Sample data for dengue occurrences (replace with real data)
+        var dengueData = [
+            { lat: 17.9667, lon: 102.6000, cases: 10 }, // Vientiane Capital
+            { lat: 19.8845, lon: 102.1416, cases: 5 },  // Luang Prabang
+            { lat: 15.1202, lon: 105.8019, cases: 3 }   // Champasak
+        ];
+
+        // Add markers for dengue occurrences
+        dengueData.forEach(function(point) {
+            L.circleMarker([point.lat, point.lon], {
+                radius: 5,
+                fillColor: "#ff0000",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map).bindPopup(`Cases: ${point.cases}`);
+        });
+
+        // Search functionality (simplified)
+        document.getElementById('searchButton').addEventListener('click', function() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm === 'vientiane capital') {
+                map.setView([17.9667, 102.6000], 10);
+            }
+            // Add more provinces as needed
+        });
+
+        // Login form submission (simplified)
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            // Add your login logic here
+            console.log('Login attempted:', username, password);
+            M.toast({html: 'Login functionality not implemented in this demo'});
+        });
+    </script>
+</body>
+</html>
