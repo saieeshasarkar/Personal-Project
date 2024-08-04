@@ -18,6 +18,28 @@ $jsonData = json_encode($code);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+	
+	<script type="text/javascript" src="scripts/leaflet.ajax.js"></script>
+	
+	<script src="scripts/spin.js"></script>
+	<script src="scripts/leaflet.spin.js"></script>
+	
+	
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/introjs.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/intro.min.js"></script>
+	
+	<link rel="stylesheet" href="style/leaflet.groupedlayercontrol.css" />
+	<script type="text/javascript" src="scripts/leaflet.groupedlayercontrol.js"></script>
+	
+	<script type="text/javascript" src="scripts/leaflet-geojson-selector.js"></script>
+		
+	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
+	<script src="scripts/leaflet.zoomhome.min.js"></script>
+	
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
