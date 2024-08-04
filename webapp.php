@@ -318,7 +318,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                     });
 
                     // Initialize village autocomplete
-                    var villageElems = document.querySelectorAll('#address);
+                    var villageElems = document.querySelectorAll('#address');
                     var villageInstances = M.Autocomplete.init(villageElems, {
                         data: villageAutocompleteData,
                         limit: 10,
