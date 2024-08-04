@@ -296,7 +296,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
         fetch(url, { mode: 'cors' }) // Use mode 'cors' for cross-origin requests
             .then(response => response.json()) // Convert the response to JSON
             .then(geoJson => {
-                alert('Total results found: ' + data.result.total);
+                // alert('Total results found: ' + data.result.total);
 		     let autocompleteData = {};
                     let villageAutocompleteData = {};
 
