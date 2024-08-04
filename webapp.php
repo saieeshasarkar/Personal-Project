@@ -284,7 +284,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
         //             });
         //         }
         //     });
-
+let autocompleteData = {};
 		 document.addEventListener('DOMContentLoaded', function() {
             const dataUrl = 'https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson';
 	const geoJson = {
@@ -301,7 +301,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
             .then(response => response.json()) // Convert the response to JSON
             .then(geoJson => {
                 // alert('Total results found: ' + data.result.total);
-		     let autocompleteData = {};
+		     // let autocompleteData = {};
                     let villageAutocompleteData = {};
 
                     // geoJson.features.forEach(feature => {
