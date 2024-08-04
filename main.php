@@ -94,6 +94,7 @@ $jsonData = json_encode($code);
 /*             height: 400px;
             width: 100%; */
 	 height: calc(100vh - 216px);
+		width: 100%;
         }
         .login-form {
             max-width: 400px;
