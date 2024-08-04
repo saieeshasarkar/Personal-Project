@@ -308,7 +308,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                             if (properties[prop] && properties[prop].trim() !== '') {
                                 //autocompleteData[properties[prop]] = null;
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
-                prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = null;
+                prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = properties.uuid;
                            }
                         });
                     });
