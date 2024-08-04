@@ -332,7 +332,7 @@ $jsonData = json_encode($code);
             document.querySelector(`.bottom-nav a[data-page="${pageId}"]`).classList.add('active');
 
             if (pageId === 'mapPage') {
-                map.invalidateSize();
+               // map.invalidateSize();
             }
         }
     </script>
