@@ -325,6 +325,12 @@ let autocompleteData = {};
                         minLength: 1,
                         onAutocomplete: function(text) {
                             console.log("Selected location:", text);
+				var layer = autocompleteData[text];
+				if (layer) {
+					map.fitBounds(layer.getBounds());
+					highlightFeature({ target: layer });
+					layer.openPopup();
+				}
                         }
                     });
 
