@@ -32,6 +32,7 @@ $jsonData = json_encode($code);
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/introjs.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/intro.min.js"></script>
 	
+	
 	<link rel="stylesheet" href="style/leaflet.groupedlayercontrol.css" />
 	<script type="text/javascript" src="scripts/leaflet.groupedlayercontrol.js"></script>
 	
@@ -41,7 +42,9 @@ $jsonData = json_encode($code);
 	<script src="scripts/leaflet.zoomhome.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
 	
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 	<link rel="stylesheet" href="StyleMap.css" />
 	 
     <title>Dengue Occurrence in Laos</title>
