@@ -156,21 +156,22 @@ datalist optgroup {
 //     var selectedOptionId = document.querySelector('option[value="' + selectedOption + '"]').id;
 //     document.getElementById('selected_option_id').value = selectedOptionId;
 // });
-document.getElementById("search")
-  .addEventListener("blur", function(event){
-    if(event.relatedTarget===null || event.relatedTarget.parentElement!==event.currentTarget.datalist){
-        document.getElementById('searchOptions').style.display = "none";
-    document.getElementById('searchOptions').shown = false;
-    document.getElementById("search").value= "";
-    document.getElementById('selected_option_id').value ="";
-    alert("Please select an option!");
-    }else{
-    document.getElementById('selected_option_id').value=event.relatedTarget.id;
+// //////////
+// document.getElementById("search")
+//   .addEventListener("blur", function(event){
+//     if(event.relatedTarget===null || event.relatedTarget.parentElement!==event.currentTarget.datalist){
+//         document.getElementById('searchOptions').style.display = "none";
+//     document.getElementById('searchOptions').shown = false;
+//     document.getElementById("search").value= "";
+//     document.getElementById('selected_option_id').value ="";
+//     alert("Please select an option!");
+//     }else{
+//     document.getElementById('selected_option_id').value=event.relatedTarget.id;
 
-    }
+//     }
     
-}) 
-
+// }) 
+// //////////
 // let selectla=false;
 // var options = $('datalist')[0].options;
 // function checkSelection() {
