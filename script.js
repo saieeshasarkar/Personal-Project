@@ -239,7 +239,7 @@ var isMobile = false; //initiate as false
 			// add autocompleteData if true
 			// district_p": "ວຽງຈັນ", "district_1":
 			// province_p
-			if (feature.properties.District) {
+			if (f.properties.District) {
 				var name = layer.feature.properties.District;
 				 autocompleteData[name + ' District'] = layer;
             	//districtData[name] = layer;
