@@ -241,7 +241,7 @@ var isMobile = false; //initiate as false
 			// province_p
 			if (feature.properties.District) {
 				var name = layer.feature.properties.District;
-				 autocompleteData[name . ' District'] = layer;
+				 autocompleteData[`${name} District`] = layer;
             	//districtData[name] = layer;
 
 				
