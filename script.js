@@ -145,7 +145,7 @@ var isMobile = false; //initiate as false
 		// 		}
 		// 	}
 		// });
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
+		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX,style:styleP}).addTo(m);
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
@@ -239,15 +239,18 @@ var isMobile = false; //initiate as false
 			// add autocompleteData if true
 			// district_p": "ວຽງຈັນ", "district_1":
 			// province_p
-			if (feature.properties.district_1) {
-				var name = layer.feature.properties.district_1;
-				// autocompleteData[name] = layer;
+			if (feature.properties.District) {
+				var name = layer.feature.properties.District;
+				 autocompleteData[name . ' District'] = layer;
             	//districtData[name] = layer;
 
 				
                 // out.push("Name: " + feature.properties.name); // Adjust based on your property name
                 // layer.bindPopup(out.join("<br />"));
-            }
+            }esle{
+		var name = layer.feature.properties.Province;
+				 autocompleteData[name] = layer;		
+	    }
 		};
 		 // Initialize autocomplete
 		//  initializeAutocomplete();
