@@ -156,6 +156,12 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" id="autocomplete-input" class="autocomplete">
+                    <label for="autocomplete-input">Search for a district</label>
+                </div>
+            </div>
                 <div id="map"></div>
                 <script type="text/javascript" src="script.js"></script>
             </div>
