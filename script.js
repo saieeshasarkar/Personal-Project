@@ -227,7 +227,7 @@ var isMobile = false; //initiate as false
 			});
 		};
 
-		var autocompleteData = {};
+		// var autocompleteData = {};
 		function popUpX(f,layer){
 		
 			var out = [];
@@ -241,7 +241,7 @@ var isMobile = false; //initiate as false
 			// province_p
 			if (feature.properties.district_1) {
 				var name = layer.feature.properties.district_1;
-				autocompleteData[name] = layer;
+				// autocompleteData[name] = layer;
             	//districtData[name] = layer;
 
 				
