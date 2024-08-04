@@ -205,17 +205,63 @@ var isMobile = false; //initiate as false
 		//var province_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm1_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp,style:styleP}).addTo(m);
 		
 		
-		
-		function popUp(f,layer){
+		// function popUp(f,layer){
+		function popUp(con=false){
+			return function(f, layer) {
+                // popUp(feature, layer, something);
+            
 			var out = [];
 			layer.on({
 				mouseover: highlightFeature,
 				mouseout: resetHighlight,
 				click: onclick
 			});	
-			
-			
 		};
+			// add autocompleteData if true
+			// if (feature.properties) {
+			// 	var name = layer.feature.properties.name;
+			// 	autocompleteData[name] = null;
+            // 	districtData[name] = layer;
+
+			// 	// $('input.autocomplete').autocomplete({
+            //     //     data: autocompleteData,
+            //     //     onAutocomplete: function(selectedDistrict) {
+            //     //         var layer = districtData[selectedDistrict];
+            //     //         if (layer) {
+            //     //             map.fitBounds(layer.getBounds());
+            //     //             highlightFeature({ target: layer });
+            //     //             layer.openPopup();
+            //     //         }
+            //     //     }
+            //     // });
+            //     // out.push("Name: " + feature.properties.name); // Adjust based on your property name
+            //     // layer.bindPopup(out.join("<br />"));
+            // }
+		};
+		 // Initialize autocomplete
+		//  initializeAutocomplete();
+		//  function initializeAutocomplete() {
+        //     var autocompleteData = {};
+        //     district_lay.on('data:loaded', function() {
+        //         district_lay.eachLayer(function(layer) {
+        //             var name = layer.feature.properties.name; // Adjust based on your property name
+        //             autocompleteData[name] = null;
+        //             districtData[name] = layer;
+        //         });
+
+        //         $('input.autocomplete').autocomplete({
+        //             data: autocompleteData,
+        //             onAutocomplete: function(selectedDistrict) {
+        //                 var layer = districtData[selectedDistrict];
+        //                 if (layer) {
+        //                     map.fitBounds(layer.getBounds());
+        //                     highlightFeature({ target: layer });
+        //                     layer.openPopup();
+        //                 }
+        //             }
+        //         });
+        //     });
+        // }
 
 		// Creates an info box on the map
 		var info = L.control({position: 'bottomright'});
