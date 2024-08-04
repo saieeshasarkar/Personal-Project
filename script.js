@@ -247,7 +247,7 @@ var isMobile = false; //initiate as false
 				
                 // out.push("Name: " + feature.properties.name); // Adjust based on your property name
                 // layer.bindPopup(out.join("<br />"));
-            }esle{
+            }else{
 		var name = layer.feature.properties.Province;
 				 autocompleteData[name] = layer;		
 	    }
