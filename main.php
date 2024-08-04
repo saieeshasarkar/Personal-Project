@@ -90,8 +90,9 @@ $jsonData = json_encode($code);
             display: block;
         }
         #map {
-            height: 400px;
-            width: 100%;
+/*             height: 400px;
+            width: 100%; */
+	 height: calc(100vh - 216px);
         }
         .login-form {
             max-width: 400px;
