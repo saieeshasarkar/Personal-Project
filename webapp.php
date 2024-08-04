@@ -1,3 +1,18 @@
+<?php
+require 'dbconfig.php';
+$fetchdata = $database->getReference('New')->getValue();
+    
+ $code = [];
+ $groupedData = [];
+    foreach($fetchdata as $key => $value)
+    {
+    
+      $code[] = $value['address'];
+      
+    }
+
+$jsonData = json_encode($code);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +83,7 @@
                     </div>
                 </div>
                 <div id="map"></div>
+                <script type="text/javascript" src="script.js"></script>
             </div>
             <div id="userPage" class="page">
                 <h4>User Details</h4>
@@ -185,36 +201,36 @@
         });
 
         // Initialize map
-        var map = L.map('map').setView([18.5203, 103.7542], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        // var map = L.map('map').setView([18.5203, 103.7542], 6);
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        // Sample data for dengue occurrences (replace with real data)
-        var dengueData = [
-            { lat: 17.9667, lon: 102.6000, cases: 10 }, // Vientiane Capital
-            { lat: 19.8845, lon: 102.1416, cases: 5 },  // Luang Prabang
-            { lat: 15.1202, lon: 105.8019, cases: 3 }   // Champasak
-        ];
+        // // Sample data for dengue occurrences (replace with real data)
+        // var dengueData = [
+        //     { lat: 17.9667, lon: 102.6000, cases: 10 }, // Vientiane Capital
+        //     { lat: 19.8845, lon: 102.1416, cases: 5 },  // Luang Prabang
+        //     { lat: 15.1202, lon: 105.8019, cases: 3 }   // Champasak
+        // ];
 
-        // Add markers for dengue occurrences
-        dengueData.forEach(function(point) {
-            L.circleMarker([point.lat, point.lon], {
-                radius: 5,
-                fillColor: "#ff0000",
-                color: "#000",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.8
-            }).addTo(map).bindPopup(`Cases: ${point.cases}`);
-        });
+        // // Add markers for dengue occurrences
+        // dengueData.forEach(function(point) {
+        //     L.circleMarker([point.lat, point.lon], {
+        //         radius: 5,
+        //         fillColor: "#ff0000",
+        //         color: "#000",
+        //         weight: 1,
+        //         opacity: 1,
+        //         fillOpacity: 0.8
+        //     }).addTo(map).bindPopup(`Cases: ${point.cases}`);
+        // });
 
-        // Search functionality (simplified)
-        document.getElementById('searchButton').addEventListener('click', function() {
-            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            if (searchTerm === 'vientiane capital') {
-                map.setView([17.9667, 102.6000], 10);
-            }
-            // Add more provinces as needed
-        });
+        // // Search functionality (simplified)
+        // document.getElementById('searchButton').addEventListener('click', function() {
+        //     var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        //     if (searchTerm === 'vientiane capital') {
+        //         map.setView([17.9667, 102.6000], 10);
+        //     }
+        //     // Add more provinces as needed
+        // });
 
         // Login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
