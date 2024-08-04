@@ -155,11 +155,15 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
             <div id="mapPage" class="page">
                 <div class="row">
                     <div class="col s12">
-                        <div class="search-wrapper">
+<!--                         <div class="search-wrapper">
                             <input id="autocomplete-input" type="text" placeholder="Search for a district or province">
-<!-- 			<label for="autocomplete-input">Search for a district or province</label> -->
+<label for="autocomplete-input">Search for a district or province</label>
                             <i class="material-icons" id="searchButton">search</i>
-                        </div>
+                        </div> -->
+			        <div class="input-field col s12">
+                <input type="text" id="autocomplete-input" class="autocomplete">
+                <label for="autocomplete-input">Search for a district or province</label>
+            </div>
                     </div>
                 </div>
                 <div id="map"></div>
