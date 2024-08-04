@@ -39,7 +39,11 @@ $jsonData = json_encode($code);
 		
 	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
 	<script src="scripts/leaflet.zoomhome.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
 	
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+	<link rel="stylesheet" href="StyleMap.css" />
+	 
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
