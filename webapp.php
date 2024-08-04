@@ -343,6 +343,15 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
   //                   console.log("No village selected");
   //               }
   //           });
+		var modalElems = document.querySelectorAll('.modal');
+            var modalInstances = M.Modal.init(modalElems, {
+                onCloseEnd: function() {
+                    // Clear form fields when any modal is closed
+                    document.querySelectorAll('.modal form').forEach(function(form) {
+                        form.reset();
+                    });
+                }
+            });
         });
 
         // Initialize map
