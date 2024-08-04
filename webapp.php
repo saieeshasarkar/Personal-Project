@@ -270,16 +270,16 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Initialize Materialize components
-        document.addEventListener('DOMContentLoaded', function() {
-            var modalElems = document.querySelectorAll('.modal');
-            var modalInstances = M.Modal.init(modalElems, {
-                onCloseEnd: function() {
-                    // Clear form fields when any modal is closed
-                    document.querySelectorAll('.modal form').forEach(function(form) {
-                        form.reset();
-                    });
-                }
-            });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var modalElems = document.querySelectorAll('.modal');
+        //     var modalInstances = M.Modal.init(modalElems, {
+        //         onCloseEnd: function() {
+        //             // Clear form fields when any modal is closed
+        //             document.querySelectorAll('.modal form').forEach(function(form) {
+        //                 form.reset();
+        //             });
+        //         }
+        //     });
 
 		 document.addEventListener('DOMContentLoaded', function() {
             const dataUrl = 'https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson';
@@ -301,7 +301,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                             if (properties[prop] && properties[prop].trim() !== '') {
                                 //autocompleteData[properties[prop]] = null;
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
-                              	prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = null;
+                prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = null;
                            }
                         });
                     });
