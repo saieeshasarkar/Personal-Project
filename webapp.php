@@ -283,20 +283,27 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
 
 		 document.addEventListener('DOMContentLoaded', function() {
             const dataUrl = 'https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson';
+	const geoJson = {
+            resource_id: '94ac01e5-f4ca-414c-b5f7-1a34634ab5f3', 
+		limit: 8500, // get 5 results// the resource id
+        };
 
-            fetch(dataUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(geoJson => {
-                    let autocompleteData = {};
+        // Construct the URL with query parameters
+        const url = new URL('https://data.opendevelopmentcambodia.net/api/3/action/datastore_search');
+        url.search = new URLSearchParams(geoJson).toString();
+
+        // Make the JSONP request using fetch
+        fetch(url, { mode: 'cors' }) // Use mode 'cors' for cross-origin requests
+            .then(response => response.json()) // Convert the response to JSON
+            .then(geoJson => {
+                alert('Total results found: ' + data.result.total);
+		     let autocompleteData = {};
                     let villageAutocompleteData = {};
 
-                    geoJson.features.forEach(feature => {
-                        const properties = feature.properties;
+                    // geoJson.features.forEach(feature => {
+                    //     const properties = feature.properties;
+		    geoJson.result.records.forEach(records => {
+                        const properties = records;
                         ['urcne', 'uscne', 'uucne'].forEach(prop => {
                             if (properties[prop] && properties[prop].trim() !== '') {
                                 //autocompleteData[properties[prop]] = null;
@@ -329,11 +336,62 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                             console.log("Selected village IDs:", selectedVillageIds);
                         }
                     });
-                })
-                .catch(error => {
-                    console.error('Error fetching the JSON data:', error);
-                    // You might want to display an error message to the user here
-                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+			 
+			 
+            // fetch(dataUrl)
+            //     .then(response => {
+            //         if (!response.ok) {
+            //             throw new Error('Network response was not ok');
+            //         }
+            //         return response.json();
+            //     })
+            //     .then(geoJson => {
+            //         let autocompleteData = {};
+            //         let villageAutocompleteData = {};
+
+            //         geoJson.features.forEach(feature => {
+            //             const properties = feature.properties;
+            //             ['urcne', 'uscne', 'uucne'].forEach(prop => {
+            //                 if (properties[prop] && properties[prop].trim() !== '') {
+            //                     //autocompleteData[properties[prop]] = null;
+            //                     //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
+            //     prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = null;
+            //                }
+            //             });
+            //         });
+
+            //         // Initialize main autocomplete
+            //         var elems = document.querySelectorAll('#autocomplete-input');
+            //         var instances = M.Autocomplete.init(elems, {
+            //             data: autocompleteData,
+            //             limit: 10,
+            //             minLength: 1,
+            //             onAutocomplete: function(text) {
+            //                 console.log("Selected location:", text);
+            //             }
+            //         });
+
+            //         // Initialize village autocomplete
+            //         var villageElems = document.querySelectorAll('#address');
+            //         var villageInstances = M.Autocomplete.init(villageElems, {
+            //             data: villageAutocompleteData,
+            //             limit: 10,
+            //             minLength: 1,
+            //             onAutocomplete: function(text) {
+            //                  console.log("Selected village:", text);
+            //                 selectedVillageIds = villageAutocompleteData[text];
+            //                 console.log("Selected village IDs:", selectedVillageIds);
+            //             }
+            //         });
+            //     })
+            //     .catch(error => {
+            //         console.error('Error fetching the JSON data:', error);
+            //         // You might want to display an error message to the user here
+            //     });
 		
 		// document.getElementById('submit-btn').addEventListener('click', function() {
   //               if (selectedVillageIds) {
