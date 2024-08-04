@@ -151,7 +151,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                 <div class="row">
                     <div class="col s12">
                         <div class="search-wrapper">
-                            <input id="searchInput" type="text" placeholder="Search for a province">
+                            <input id="searchInput" type="hide" placeholder="Search for a province">
                             <i class="material-icons" id="searchButton">search</i>
                         </div>
                     </div>
