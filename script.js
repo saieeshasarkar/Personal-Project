@@ -133,6 +133,7 @@ var isMobile = false; //initiate as false
 		// 	};
 		// }}).addTo(m);
 		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
+		
 		$('input.autocomplete').autocomplete({
 			data: autocompleteData,
 			onAutocomplete: function(selectedDistrict) {
