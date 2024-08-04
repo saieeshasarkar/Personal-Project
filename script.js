@@ -237,7 +237,7 @@ var isMobile = false; //initiate as false
             //     // out.push("Name: " + feature.properties.name); // Adjust based on your property name
             //     // layer.bindPopup(out.join("<br />"));
             // }
-		};
+		}
 		 // Initialize autocomplete
 		//  initializeAutocomplete();
 		//  function initializeAutocomplete() {
