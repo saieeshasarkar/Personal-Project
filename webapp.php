@@ -301,8 +301,8 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                             if (properties[prop] && properties[prop].trim() !== '') {
                                 //autocompleteData[properties[prop]] = null;
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
-                            	prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null : autocompleteData[properties[prop]] = null;
-                            }
+                              	prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = null;
+                           }
                         });
                     });
 
@@ -324,7 +324,9 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                         limit: 10,
                         minLength: 1,
                         onAutocomplete: function(text) {
-                            console.log("Selected village:", text);
+                             console.log("Selected village:", text);
+                            selectedVillageIds = villageAutocompleteData[text];
+                            console.log("Selected village IDs:", selectedVillageIds);
                         }
                     });
                 })
@@ -332,6 +334,15 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                     console.error('Error fetching the JSON data:', error);
                     // You might want to display an error message to the user here
                 });
+		
+		// document.getElementById('submit-btn').addEventListener('click', function() {
+  //               if (selectedVillageIds) {
+  //                   console.log("Submitting village IDs:", selectedVillageIds);
+  //                   // Here you can add code to send this data to your server or process it further
+  //               } else {
+  //                   console.log("No village selected");
+  //               }
+  //           });
         });
 
         // Initialize map
