@@ -32,7 +32,6 @@ $jsonData = json_encode($code);
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/introjs.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/intro.min.js"></script>
 	
-	
 	<link rel="stylesheet" href="style/leaflet.groupedlayercontrol.css" />
 	<script type="text/javascript" src="scripts/leaflet.groupedlayercontrol.js"></script>
 	
@@ -40,17 +39,17 @@ $jsonData = json_encode($code);
 		
 	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
 	<script src="scripts/leaflet.zoomhome.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
 	
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+	
 	<link rel="stylesheet" href="StyleMap.css" />
 	 
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> -->
     <style>
         body { display: flex; min-height: 100vh; flex-direction: column; }
         main { flex: 1 0 auto; padding-bottom: 56px; }
