@@ -92,6 +92,11 @@ $jsonData = json_encode($code);
             margin-right: 10px;
             color: #26a69a;
         }
+	     .autocomplete-content {
+            position: absolute;
+            width: 100%;
+            z-index: 1000;
+        }
     </style>
 </head>
 <script>
@@ -151,17 +156,12 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                 <div class="row">
                     <div class="col s12">
                         <div class="search-wrapper">
-                            <input id="searchInput" type="hide" placeholder="Search for a province">
+                            <input id="autocomplete-input" type="text" placeholder="Search for a district or province">
+			<label for="autocomplete-input">Search for a district or province</label>
                             <i class="material-icons" id="searchButton">search</i>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" id="autocomplete-input" class="autocomplete">
-                    <label for="autocomplete-input">Search for a district</label>
-                </div>
-            </div>
                 <div id="map"></div>
                 <script type="text/javascript" src="script.js"></script>
             </div>
@@ -246,8 +246,10 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field">
-                    <input id="address" type="text" class="validate" required>
+                    <input id="address" type="text" class="autocomplete validate" required>
                     <label for="address">Address</label>
+<!-- 		<input type="text" id="village-autocomplete-input" class="autocomplete">
+                <label for="village-autocomplete-input">Search for village</label> -->
                 </div>
                 <div class="input-field">
                     <input id="regPassword" type="password" class="validate" required>
@@ -278,6 +280,58 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                     });
                 }
             });
+
+		 document.addEventListener('DOMContentLoaded', function() {
+            const dataUrl = 'https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson';
+
+            fetch(dataUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(geoJson => {
+                    let autocompleteData = {};
+                    let villageAutocompleteData = {};
+
+                    geoJson.features.forEach(feature => {
+                        const properties = feature.properties;
+                        ['urcne', 'uscne', 'uucne'].forEach(prop => {
+                            if (properties[prop] && properties[prop].trim() !== '') {
+                                //autocompleteData[properties[prop]] = null;
+                                //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
+                            	prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null : autocompleteData[properties[prop]] = null;
+                            }
+                        });
+                    });
+
+                    // Initialize main autocomplete
+                    var elems = document.querySelectorAll('#autocomplete-input');
+                    var instances = M.Autocomplete.init(elems, {
+                        data: autocompleteData,
+                        limit: 10,
+                        minLength: 1,
+                        onAutocomplete: function(text) {
+                            console.log("Selected location:", text);
+                        }
+                    });
+
+                    // Initialize village autocomplete
+                    var villageElems = document.querySelectorAll('#address);
+                    var villageInstances = M.Autocomplete.init(villageElems, {
+                        data: villageAutocompleteData,
+                        limit: 10,
+                        minLength: 1,
+                        onAutocomplete: function(text) {
+                            console.log("Selected village:", text);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching the JSON data:', error);
+                    // You might want to display an error message to the user here
+                });
         });
 
         // Initialize map
