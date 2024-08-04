@@ -204,6 +204,8 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                 </a>
             </div>
             <div class="col s4 tab">
+		    <a class="btn-flat white-text modal-trigger" href="#loginModal">
+                </a>
                 <a href="#" data-page="user">
                     <i class="material-icons">person</i>
                     User
@@ -211,7 +213,25 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
             </div>
         </div>
     </footer>
-
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4>
+            <form id="loginForm">
+                <div class="input-field">
+                    <input id="username" type="text" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="password" class="validate" required>
+                    <label for="password">Password</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Login
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
