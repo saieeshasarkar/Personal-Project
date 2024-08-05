@@ -317,7 +317,7 @@ let autocompleteDatax = {};
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
                                 
 				 
-                 prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = { id: `${properties.urid}-${properties.usid}-${properties.uuid}`, image: null } : autocompleteDatax[properties[prop]] = null;
+                 prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
               
                 // prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
                            }
