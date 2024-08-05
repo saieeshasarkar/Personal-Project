@@ -287,6 +287,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
         //         }
         //     });
 let autocompleteData = {};
+let autocompleteDatax = {};
 		 document.addEventListener('DOMContentLoaded', function() {
             const dataUrl = 'https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson';
 	const geoJson = {
@@ -314,7 +315,7 @@ let autocompleteData = {};
                             if (properties[prop] && properties[prop].trim() !== '') {
                                 //autocompleteData[properties[prop]] = null;
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
-                prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteData[properties[prop]] = null;
+                prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
                            }
                         });
                     });
