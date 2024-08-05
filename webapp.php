@@ -315,7 +315,11 @@ let autocompleteDatax = {};
                             if (properties[prop] && properties[prop].trim() !== '') {
                                 //autocompleteData[properties[prop]] = null;
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
-                prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
+                                
+				 
+                 prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = { val: `${properties.urid}-${properties.usid}-${properties.uuid}`, url: null } : autocompleteDatax[properties[prop]] = null;
+              
+                // prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
                            }
                         });
                     });
@@ -350,7 +354,7 @@ let autocompleteDatax = {};
                         minLength: 1,
                         onAutocomplete: function(text) {
                              console.log("Selected village:", text);
-                            selectedVillageIds = villageAutocompleteData[text];
+                            selectedVillageIds = villageAutocompleteData[text].val;
                             console.log("Selected village IDs:", selectedVillageIds);
                         }
                     });
