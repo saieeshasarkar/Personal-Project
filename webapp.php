@@ -354,7 +354,7 @@ let autocompleteDatax = {};
                         minLength: 1,
                         onAutocomplete: function(text) {
                              console.log("Selected village:", text);
-                            selectedVillageIds = villageAutocompleteData[text].id;
+                            selectedVillageIds = villageAutocompleteData[text];
                             console.log("Selected village IDs:", selectedVillageIds);
                         }
                     });
