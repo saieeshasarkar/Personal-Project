@@ -14,9 +14,9 @@ $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'ht
 // ///////////////////
 $host= $_SERVER['HTTP_HOST'];
 $currentUrl = $scheme . '://' . $host;
-echo $currentUrl;
-    // $serviceAccount = ServiceAccount::fromJsonFile(__Dir__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
-    $serviceAccount = ServiceAccount::fromJsonFile('/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
+// echo $currentUrl;
+    $serviceAccount = ServiceAccount::fromJsonFile(__Dir__.'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
+    // $serviceAccount = ServiceAccount::fromJsonFile('/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
     $firebase=(new Factory)
         ->withServiceAccount($serviceAccount)
         ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/')
