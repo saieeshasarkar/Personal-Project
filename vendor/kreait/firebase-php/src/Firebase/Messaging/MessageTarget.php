@@ -8,50 +8,57 @@ use Kreait\Firebase\Exception\InvalidArgumentException;
 
 final class MessageTarget
 {
-    const CONDITION = 'condition';
-    const TOKEN = 'token';
-    const TOPIC = 'topic';
+    public const CONDITION = 'condition';
+    public const TOKEN = 'token';
+    public const TOPIC = 'topic';
 
-    const TYPES = [
-        self::CONDITION, self::TOKEN, self::TOPIC,
+    /** @internal */
+    public const UNKNOWN = 'unknown';
+
+    public const TYPES = [
+        self::CONDITION, self::TOKEN, self::TOPIC, self::UNKNOWN,
     ];
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
+    private string $value;
 
-    /**
-     * @var string
-     */
-    private $value;
-
-    private function __construct()
+    private function __construct(string $type, string $value)
     {
+        $this->type = $type;
+        $this->value = $value;
     }
 
+    /**
+     * Create a new message target with the given type and value.
+     *
+     * @throws InvalidArgumentException
+     */
     public static function with(string $type, string $value): self
     {
-        $targetType = strtolower($type);
-
-        $new = new self();
-        $new->type = $targetType;
+        $targetType = \mb_strtolower($type);
 
         switch ($targetType) {
             case self::CONDITION:
-                $new->value = (string) Condition::fromValue($value);
+                $targetValue = (string) Condition::fromValue($value);
+
                 break;
             case self::TOKEN:
-                $new->value = (string) RegistrationToken::fromValue($value);
+                $targetValue = (string) RegistrationToken::fromValue($value);
+
                 break;
             case self::TOPIC:
-                $new->value = (string) Topic::fromValue($value);
+                $targetValue = (string) Topic::fromValue($value);
+
+                break;
+            case self::UNKNOWN:
+                $targetValue = $value;
+
                 break;
             default:
-                throw new InvalidArgumentException('Invalid target type "'.$type.'", valid type: "'.implode(', ', self::TYPES));
+                throw new InvalidArgumentException("Invalid target type '{$type}', valid types: ".\implode(', ', self::TYPES));
         }
 
-        return $new;
+        return new self($targetType, $targetValue);
     }
 
     public function type(): string

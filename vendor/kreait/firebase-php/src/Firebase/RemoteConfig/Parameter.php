@@ -8,26 +8,21 @@ use Kreait\Firebase\Exception\InvalidArgumentException;
 
 class Parameter implements \JsonSerializable
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
+    private string $description = '';
+    private DefaultValue $defaultValue;
+    /** @var ConditionalValue[] */
+    private array $conditionalValues = [];
+
+    private function __construct(string $name, DefaultValue $defaultValue)
+    {
+        $this->name = $name;
+        $this->defaultValue = $defaultValue;
+    }
 
     /**
-     * @var string
+     * @param DefaultValue|string|mixed $defaultValue
      */
-    private $description = '';
-
-    /**
-     * @var DefaultValue
-     */
-    private $defaultValue;
-
-    /**
-     * @var ConditionalValue[]
-     */
-    private $conditionalValues = [];
-
     public static function named(string $name, $defaultValue = null): self
     {
         if ($defaultValue === null) {
@@ -38,19 +33,17 @@ class Parameter implements \JsonSerializable
             throw new InvalidArgumentException('The default value for a remote config parameter must be a string or NULL to use the in-app default.');
         }
 
-        $parameter = new self();
-        $parameter->name = $name;
-        $parameter->defaultValue = $defaultValue;
-
-        return $parameter;
+        return new self($name, $defaultValue);
     }
 
-    /**
-     * @return string
-     */
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function description(): string
+    {
+        return $this->description;
     }
 
     public function withDescription(string $description): self
@@ -61,6 +54,9 @@ class Parameter implements \JsonSerializable
         return $parameter;
     }
 
+    /**
+     * @param DefaultValue|string $defaultValue
+     */
     public function withDefaultValue($defaultValue): self
     {
         $defaultValue = $defaultValue instanceof DefaultValue ? $defaultValue : DefaultValue::with($defaultValue);
@@ -92,34 +88,17 @@ class Parameter implements \JsonSerializable
         return $this->conditionalValues;
     }
 
-    public static function fromArray(array $data): self
-    {
-        reset($data);
-        $parameterData = current($data);
-
-        $parameter = new self();
-        $parameter->name = key($data);
-        $parameter->defaultValue = DefaultValue::fromArray($parameterData['defaultValue'] ?? []);
-
-        foreach ((array) ($parameterData['conditionalValues'] ?? []) as $key => $conditionalValueData) {
-            $parameter = $parameter->withConditionalValue(new ConditionalValue($key, $conditionalValueData['value']));
-        }
-
-        if (\is_string($parameterData['description'] ?? null)) {
-            $parameter->description = $parameterData['description'];
-        }
-
-        return $parameter;
-    }
-
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         $conditionalValues = [];
         foreach ($this->conditionalValues() as $conditionalValue) {
             $conditionalValues[$conditionalValue->conditionName()] = $conditionalValue->jsonSerialize();
         }
 
-        return array_filter([
+        return \array_filter([
             'defaultValue' => $this->defaultValue,
             'conditionalValues' => $conditionalValues,
             'description' => $this->description,

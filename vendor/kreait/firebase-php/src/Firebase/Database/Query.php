@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kreait\Firebase\Database;
 
 use Kreait\Firebase\Database\Query\Filter;
 use Kreait\Firebase\Database\Query\Sorter;
-use Kreait\Firebase\Exception\ApiException;
-use Kreait\Firebase\Exception\QueryException;
+use Kreait\Firebase\Exception\Database\DatabaseNotFound;
+use Kreait\Firebase\Exception\Database\UnsupportedQuery;
+use Kreait\Firebase\Exception\DatabaseException;
 use Psr\Http\Message\UriInterface;
 
 /**
@@ -23,32 +26,14 @@ use Psr\Http\Message\UriInterface;
  */
 class Query
 {
-    /**
-     * @var Reference
-     */
-    private $reference;
+    private Reference $reference;
+    private ApiClient $apiClient;
+    /** @var Filter[] */
+    private array $filters;
+    private ?Sorter $sorter = null;
 
     /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
-    /**
-     * @var Filter[]
-     */
-    private $filters;
-
-    /**
-     * @var Sorter
-     */
-    private $sorter;
-
-    /**
-     * Creates a new Query for the given Reference which is
-     * executed by the given API client.
-     *
-     * @param Reference $reference
-     * @param ApiClient $apiClient
+     * @internal
      */
     public function __construct(Reference $reference, ApiClient $apiClient)
     {
@@ -61,8 +46,6 @@ class Query
      * Returns a Reference to the Query's location.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#ref
-     *
-     * @return Reference
      */
     public function getReference(): Reference
     {
@@ -72,19 +55,19 @@ class Query
     /**
      * Returns a data snapshot of the current location.
      *
-     * @throws QueryException if an error occurred
-     *
-     * @return Snapshot
+     * @throws UnsupportedQuery if an error occurred
      */
     public function getSnapshot(): Snapshot
     {
         try {
             $value = $this->apiClient->get($this->getUri());
-        } catch (ApiException $e) {
-            throw QueryException::fromApiException($e, $this);
+        } catch (DatabaseNotFound $e) {
+            throw $e;
+        } catch (DatabaseException $e) {
+            throw new UnsupportedQuery($this, $e->getMessage(), $e->getCode(), $e->getPrevious());
         }
 
-        if ($this->sorter) {
+        if ($this->sorter !== null) {
             $value = $this->sorter->modifyValue($value);
         }
 
@@ -98,7 +81,7 @@ class Query
     /**
      * Convenience method for {@see getSnapshot()}->getValue().
      *
-     * @throws QueryException if an error occurred
+     * @throws UnsupportedQuery if an error occurred
      *
      * @return mixed
      */
@@ -115,9 +98,7 @@ class Query
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#endAt
      *
-     * @param int|float|string|bool $value
-     *
-     * @return Query
+     * @param scalar $value
      */
     public function endAt($value): self
     {
@@ -125,13 +106,23 @@ class Query
     }
 
     /**
+     * Creates a Query with the specified ending point (exclusive).
+     *
+     * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#endbefore
+     *
+     * @param scalar $value
+     */
+    public function endBefore($value): self
+    {
+        return $this->withAddedFilter(new Filter\EndBefore($value));
+    }
+
+    /**
      * Creates a Query which includes children which match the specified value.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#equalTo
      *
-     * @param int|float|string|bool $value
-     *
-     * @return Query
+     * @param scalar $value
      */
     public function equalTo($value): self
     {
@@ -139,15 +130,11 @@ class Query
     }
 
     /**
-     * Creates a Query with the specified starting point.
-     *
-     * The starting point is inclusive, so children with exactly the specified value will be included in the query.
+     * Creates a Query with the specified starting point (inclusive).
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#startAt
      *
-     * @param int|float|string|bool $value
-     *
-     * @return Query
+     * @param scalar $value
      */
     public function startAt($value): self
     {
@@ -155,13 +142,21 @@ class Query
     }
 
     /**
+     * Creates a Query with the specified starting point (exclusive).
+     *
+     * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#startafter
+     *
+     * @param scalar $value
+     */
+    public function startAfter($value): self
+    {
+        return $this->withAddedFilter(new Filter\StartAfter($value));
+    }
+
+    /**
      * Generates a new Query limited to the first specific number of children.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#limitToFirst
-     *
-     * @param int $limit
-     *
-     * @return Query
      */
     public function limitToFirst(int $limit): self
     {
@@ -172,10 +167,6 @@ class Query
      * Generates a new Query object limited to the last specific number of children.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#limitToLast
-     *
-     * @param int $limit
-     *
-     * @return Query
      */
     public function limitToLast(int $limit): self
     {
@@ -190,11 +181,7 @@ class Query
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#orderByChild
      *
-     * @param string $childKey
-     *
-     * @throws QueryException if the query is already ordered
-     *
-     * @return Query
+     * @throws UnsupportedQuery if the query is already ordered
      */
     public function orderByChild(string $childKey): self
     {
@@ -211,9 +198,7 @@ class Query
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#orderByKey
      *
-     * @throws QueryException if the query is already ordered
-     *
-     * @return Query
+     * @throws UnsupportedQuery if the query is already ordered
      */
     public function orderByKey(): self
     {
@@ -231,9 +216,7 @@ class Query
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#orderByValue
      *
-     * @throws QueryException if the query is already ordered
-     *
-     * @return Query
+     * @throws UnsupportedQuery if the query is already ordered
      */
     public function orderByValue(): self
     {
@@ -249,8 +232,6 @@ class Query
      * truncated to true.
      *
      * @see https://firebase.google.com/docs/reference/rest/database/#section-param-shallow
-     *
-     * @return Query
      */
     public function shallow(): self
     {
@@ -266,14 +247,12 @@ class Query
      *
      * Append '.json' to the URL when typed into a browser to download JSON formatted data.
      * If the location is secured (not publicly readable) you will get a permission-denied error.
-     *
-     * @return UriInterface
      */
     public function getUri(): UriInterface
     {
         $uri = $this->reference->getUri();
 
-        if ($this->sorter) {
+        if ($this->sorter !== null) {
             $uri = $this->sorter->modifyUri($uri);
         }
 
@@ -288,10 +267,8 @@ class Query
      * Returns the absolute URL for this location.
      *
      * @see getUri()
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->getUri();
     }
@@ -306,8 +283,8 @@ class Query
 
     private function withSorter(Sorter $sorter): self
     {
-        if ($this->sorter) {
-            throw new QueryException($this, 'This query is already ordered.');
+        if ($this->sorter !== null) {
+            throw new UnsupportedQuery($this, 'This query is already ordered.');
         }
 
         $query = clone $this;

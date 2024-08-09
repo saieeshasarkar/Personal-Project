@@ -1,248 +1,227 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kreait\Firebase\Auth;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use Kreait\Firebase\Exception\Auth\CredentialsMismatch;
 use Kreait\Firebase\Exception\Auth\EmailNotFound;
-use Kreait\Firebase\Exception\Auth\InvalidCustomToken;
+use Kreait\Firebase\Exception\Auth\ExpiredOobCode;
+use Kreait\Firebase\Exception\Auth\InvalidOobCode;
+use Kreait\Firebase\Exception\Auth\OperationNotAllowed;
+use Kreait\Firebase\Exception\Auth\UserDisabled;
+use Kreait\Firebase\Exception\AuthApiExceptionConverter;
 use Kreait\Firebase\Exception\AuthException;
 use Kreait\Firebase\Request;
-use Lcobucci\JWT\Token;
+use Kreait\Firebase\Util\JSON;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
+/**
+ * @internal
+ */
 class ApiClient
 {
-    /**
-     * @var ClientInterface
-     */
-    private $client;
+    private ClientInterface $client;
+    private ?string $tenantId;
 
-    public function __construct(ClientInterface $client)
+    private AuthApiExceptionConverter $errorHandler;
+
+    public function __construct(ClientInterface $client, ?string $tenantId = null)
     {
         $this->client = $client;
+        $this->tenantId = $tenantId;
+        $this->errorHandler = new AuthApiExceptionConverter();
     }
 
     /**
-     * Takes a custom token and exchanges it with an ID token.
-     *
-     * @param Token $token
-     *
-     * @see https://firebase.google.com/docs/reference/rest/auth/#section-verify-custom-token
-     *
-     * @throws InvalidCustomToken
-     * @throws CredentialsMismatch
-     *
-     * @return ResponseInterface
+     * @throws AuthException
      */
-    public function exchangeCustomTokenForIdAndRefreshToken(Token $token): ResponseInterface
-    {
-        return $this->request('verifyCustomToken', [
-            'token' => (string) $token,
-            'returnSecureToken' => true,
-        ]);
-    }
-
     public function createUser(Request\CreateUser $request): ResponseInterface
     {
-        return $this->request('signupNewUser', $request);
-    }
-
-    public function updateUser(Request\UpdateUser $request): ResponseInterface
-    {
-        return $this->request('setAccountInfo', $request);
+        return $this->requestApi('signupNewUser', $request->jsonSerialize());
     }
 
     /**
-     * @deprecated 4.2.0
-     * @see ApiClient::createUser()
-     *
-     * @codeCoverageIgnore
+     * @throws AuthException
      */
-    public function signupNewUser(string $email = null, string $password = null): ResponseInterface
+    public function updateUser(Request\UpdateUser $request): ResponseInterface
     {
-        return $this->createUser(
-            Request\CreateUser::new()
-                ->withUnverifiedEmail($email)
-                ->withClearTextPassword($password)
-        );
+        return $this->requestApi('setAccountInfo', $request->jsonSerialize());
+    }
+
+    /**
+     * @param array<string, mixed> $claims
+     *
+     * @throws AuthException
+     */
+    public function setCustomUserClaims(string $uid, array $claims): ResponseInterface
+    {
+        return $this->requestApi('https://identitytoolkit.googleapis.com/v1/accounts:update', [
+            'localId' => $uid,
+            'customAttributes' => JSON::encode($claims, JSON_FORCE_OBJECT),
+        ]);
     }
 
     /**
      * Returns a user for the given email address.
      *
-     * @param string $email
-     *
      * @throws EmailNotFound
-     *
-     * @return ResponseInterface
+     * @throws AuthException
      */
     public function getUserByEmail(string $email): ResponseInterface
     {
-        return $this->request('getAccountInfo', [
+        return $this->requestApi('getAccountInfo', [
             'email' => [$email],
         ]);
     }
 
     /**
-     * Returns a user for the given phone number.
-     *
-     * @param string $phoneNumber
-     *
-     * @return ResponseInterface
+     * @throws AuthException
      */
     public function getUserByPhoneNumber(string $phoneNumber): ResponseInterface
     {
-        return $this->request('getAccountInfo', [
+        return $this->requestApi('getAccountInfo', [
             'phoneNumber' => [$phoneNumber],
         ]);
     }
 
-    public function downloadAccount(int $batchSize = null, string $nextPageToken = null): ResponseInterface
+    /**
+     * @throws AuthException
+     */
+    public function downloadAccount(?int $batchSize = null, ?string $nextPageToken = null): ResponseInterface
     {
-        $batchSize = $batchSize ?? 1000;
+        $batchSize ??= 1000;
 
-        return $this->request('downloadAccount', array_filter([
+        return $this->requestApi('downloadAccount', \array_filter([
             'maxResults' => $batchSize,
             'nextPageToken' => $nextPageToken,
         ]));
     }
 
     /**
-     * @deprecated 4.2.0
-     * @see ApiClient::updateUser()
-     *
-     * @codeCoverageIgnore
+     * @throws AuthException
      */
-    public function enableUser($uid): ResponseInterface
-    {
-        return $this->updateUser(
-            Request\UpdateUser::new()
-                ->withUid($uid)
-                ->markAsEnabled()
-        );
-    }
-
-    /**
-     * @deprecated 4.2.0
-     * @see ApiClient::updateUser()
-     *
-     * @codeCoverageIgnore
-     */
-    public function disableUser($uid): ResponseInterface
-    {
-        return $this->updateUser(
-            Request\UpdateUser::new()
-                ->withUid($uid)
-                ->markAsDisabled()
-        );
-    }
-
     public function deleteUser(string $uid): ResponseInterface
     {
-        return $this->request('deleteAccount', [
+        return $this->requestApi('deleteAccount', [
             'localId' => $uid,
         ]);
     }
 
     /**
-     * @deprecated 4.2.0
-     * @see ApiClient::updateUser()
+     * @param string[] $uids
      *
-     * @codeCoverageIgnore
+     * @throws AuthException
      */
-    public function changeUserPassword(string $uid, string $newPassword): ResponseInterface
+    public function deleteUsers(string $projectId, array $uids, bool $forceDeleteEnabledUsers, ?string $tenantId = null): ResponseInterface
     {
-        return $this->updateUser(
-            Request\UpdateUser::new()
-                ->withUid($uid)
-                ->withClearTextPassword($newPassword)
+        $data = [
+            'localIds' => $uids,
+            'force' => $forceDeleteEnabledUsers,
+        ];
+
+        if ($tenantId) {
+            $data['tenantId'] = $tenantId;
+        }
+
+        return $this->requestApi(
+            "https://identitytoolkit.googleapis.com/v1/projects/{$projectId}/accounts:batchDelete",
+            $data
         );
     }
 
     /**
-     * @deprecated 4.2.0
-     * @see ApiClient::updateUser()
+     * @param string|array<string> $uids
      *
-     * @codeCoverageIgnore
+     * @throws AuthException
      */
-    public function changeUserEmail(string $uid, string $newEmail): ResponseInterface
+    public function getAccountInfo($uids): ResponseInterface
     {
-        return $this->updateUser(
-            Request\UpdateUser::new()
-                ->withUid($uid)
-                ->withEmail($newEmail)
-        );
-    }
+        if (!\is_array($uids)) {
+            $uids = [$uids];
+        }
 
-    public function getAccountInfo(string $uid): ResponseInterface
-    {
-        return $this->request('getAccountInfo', [
-            'localId' => [$uid],
-        ]);
-    }
-
-    public function verifyPassword(string $email, string $password): ResponseInterface
-    {
-        return $this->request('verifyPassword', [
-            'email' => $email,
-            'password' => $password,
+        return $this->requestApi('getAccountInfo', [
+            'localId' => $uids,
         ]);
     }
 
     /**
-     * @param string $idToken
-     * @param string $continueUrl
-     *
-     * @return ResponseInterface
+     * @throws ExpiredOobCode
+     * @throws InvalidOobCode
+     * @throws OperationNotAllowed
+     * @throws AuthException
      */
-    public function sendEmailVerification(string $idToken, string $continueUrl = null): ResponseInterface
+    public function verifyPasswordResetCode(string $oobCode): ResponseInterface
     {
-        return $this->request('getOobConfirmationCode', array_filter([
-            'requestType' => 'VERIFY_EMAIL',
-            'idToken' => $idToken,
-            'continueUrl' => $continueUrl,
-        ]));
+        return $this->requestApi('resetPassword', [
+            'oobCode' => $oobCode,
+        ]);
     }
 
-    public function sendPasswordResetEmail(string $email, string $continueUrl = null): ResponseInterface
+    /**
+     * @throws ExpiredOobCode
+     * @throws InvalidOobCode
+     * @throws OperationNotAllowed
+     * @throws UserDisabled
+     * @throws AuthException
+     */
+    public function confirmPasswordReset(string $oobCode, string $newPassword): ResponseInterface
     {
-        return $this->request('getOobConfirmationCode', array_filter([
-            'email' => $email,
-            'requestType' => 'PASSWORD_RESET',
-            'continueUrl' => $continueUrl,
-        ]));
+        return $this->requestApi('resetPassword', [
+            'oobCode' => $oobCode,
+            'newPassword' => $newPassword,
+        ]);
     }
 
+    /**
+     * @throws AuthException
+     */
     public function revokeRefreshTokens(string $uid): ResponseInterface
     {
-        return $this->request('setAccountInfo', [
+        return $this->requestApi('setAccountInfo', [
             'localId' => $uid,
-            'validSince' => time(),
+            'validSince' => \time(),
         ]);
     }
 
+    /**
+     * @param array<int, \Stringable|string> $providers
+     *
+     * @throws AuthException
+     */
     public function unlinkProvider(string $uid, array $providers): ResponseInterface
     {
-        return $this->request('setAccountInfo', [
+        $providers = \array_map('strval', $providers);
+
+        return $this->requestApi('setAccountInfo', [
             'localId' => $uid,
             'deleteProvider' => $providers,
         ]);
     }
 
-    private function request(string $uri, $data): ResponseInterface
+    /**
+     * @param array<mixed> $data
+     *
+     * @throws AuthException
+     */
+    private function requestApi(string $uri, array $data): ResponseInterface
     {
-        if ($data instanceof \JsonSerializable && empty($data->jsonSerialize())) {
-            $data = (object) []; // Will be '{}' instead of '[]' when JSON encoded
+        $options = [];
+
+        if ($this->tenantId !== null) {
+            $data['tenantId'] = $this->tenantId;
+        }
+
+        if (!empty($data)) {
+            $options['json'] = $data;
         }
 
         try {
-            return $this->client->request('POST', $uri, ['json' => $data]);
-        } catch (RequestException $e) {
-            throw AuthException::fromRequestException($e);
-        } catch (\Throwable $e) {
-            throw new AuthException($e->getMessage(), $e->getCode(), $e);
+            return $this->client->request('POST', $uri, $options);
+        } catch (Throwable $e) {
+            throw $this->errorHandler->convertException($e);
         }
     }
 }

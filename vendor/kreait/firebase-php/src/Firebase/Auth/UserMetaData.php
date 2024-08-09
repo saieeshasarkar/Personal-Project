@@ -9,16 +9,19 @@ use Kreait\Firebase\Util\DT;
 
 class UserMetaData implements \JsonSerializable
 {
-    /**
-     * @var DateTimeImmutable
-     */
-    public $createdAt;
+    public ?DateTimeImmutable $createdAt = null;
+    public ?DateTimeImmutable $lastLoginAt = null;
+    public ?DateTimeImmutable $passwordUpdatedAt = null;
 
     /**
-     * @var DateTimeImmutable|null
+     * The time at which the user was last active (ID token refreshed), or null
+     * if the user was never active.
      */
-    public $lastLoginAt;
+    public ?DateTimeImmutable $lastRefreshAt = null;
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function fromResponseData(array $data): self
     {
         $metadata = new self();
@@ -28,20 +31,26 @@ class UserMetaData implements \JsonSerializable
             $metadata->lastLoginAt = DT::toUTCDateTimeImmutable($data['lastLoginAt']);
         }
 
+        if ($data['passwordUpdatedAt'] ?? null) {
+            $metadata->passwordUpdatedAt = DT::toUTCDateTimeImmutable($data['passwordUpdatedAt']);
+        }
+
+        if ($data['lastRefreshAt'] ?? null) {
+            $metadata->lastRefreshAt = DT::toUTCDateTimeImmutable($data['lastRefreshAt']);
+        }
+
         return $metadata;
     }
 
-    public function toArray(): array
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
-        return get_object_vars($this);
-    }
+        $data = \get_object_vars($this);
 
-    public function jsonSerialize()
-    {
-        $data = $this->toArray();
-
-        $data['createdAt'] = $data['createdAt']->format(DATE_ATOM);
-        $data['lastLoginAt'] = $data['lastLoginAt'] ? $data['lastLoginAt']->format(DATE_ATOM) : $data['lastLoginAt'];
+        $data['createdAt'] = $this->createdAt !== null ? $this->createdAt->format(DATE_ATOM) : null;
+        $data['lastLoginAt'] = $this->lastLoginAt !== null ? $this->lastLoginAt->format(DATE_ATOM) : null;
 
         return $data;
     }
