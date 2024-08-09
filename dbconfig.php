@@ -9,11 +9,14 @@
 // ->withServiceAccount('authentication-php-firebase-adminsdk-vj6un-aa68f86e1c.json')
 // ->withProjectId('my-project')
 // ->withDatabaseUri('https://authentication-php-default-rtdb.asia-southeast1.firebasedatabase.app/');
+$scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+
 // ///////////////////
 $host= $_SERVER['HTTP_HOST'];
-echo $host;
+$currentUrl = $scheme . '://' . $host 
+echo $currentUrl;
     // $serviceAccount = ServiceAccount::fromJsonFile(https://epidengue.rf.gd/'/dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
-    $serviceAccount = ServiceAccount::fromJsonFile('$host ./dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
+    $serviceAccount = ServiceAccount::fromJsonFile('$currentUrl ./dengue-fever-database-6da72-firebase-adminsdk-96c66-8cdfbb7728.json');
     $firebase=(new Factory)
         ->withServiceAccount($serviceAccount)
         ->withDatabaseUri('https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app/')
