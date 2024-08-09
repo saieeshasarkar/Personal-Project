@@ -1,0 +1,23 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to FTP server
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ftpupload.net
+        username: if0_37071088
+        password: Qwertyinfi24
+        local-dir: ./  # Directory to upload
+        server-dir: /epidengue.rf.gd/htdocs/ # Directory on the server
