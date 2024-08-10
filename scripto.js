@@ -56,7 +56,71 @@ var isMobile = false; //initiate as false
 		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
 
 	
-		
+		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
+            pointToLayer: function (feature, latlng) {
+                let key1ForKey2 = [];
+                for (let key1 of Object.keys(counts)) {
+                        if (counts[key1][feature.properties.dcode]) {
+                        key1ForKey2 = key1;
+                            break;
+                    }
+                }
+                var total = 0;
+                try {
+                  total = counts[key1ForKey2][feature.properties.dcode]["total"]; 
+                } catch (error) {
+                }
+                 // counts[key1ForKey2][feature.properties.dcode] === 'undefined' ? 0 : counts[key1ForKey2][feature.properties.dcode]["total"]
+                // counts[key1ForKey2][feature.properties.dcode]["total"]
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                      className: 'number-icon',
+                      html: '<div id=\'d' + feature.properties.dcode + '\' >'+ total + '</div>'
+                    })
+                  });
+              var circleMarker = L.circle(latlng, {
+                radius: 0,
+                fillColor: 'red',
+                color: "red",
+                weight: 6
+                //opacity: 0.5,
+                //fillOpacity: 0.5
+              });
+              var layerGroup = L.layerGroup([marker, circleMarker]);
+              return(layerGroup);
+            }
+          })
+    //     },
+    //     onEachFeature:popUp
+    //     ,style:styleV
+    //   });
+//////////////////////////////////////
+          var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
+            pointToLayer: function (feature, latlng) {
+                var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
+                try {
+                  total = counts[feature.properties.pcode]["total"]; 
+                } catch (error) {
+                }
+                // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                      className: 'number-icon',
+                      html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
+                    })
+                  });
+              var circleMarker = L.circle(latlng, {
+                radius: 0,
+                fillColor: 'red',
+                color: "red",
+                weight: 6
+                //opacity: 0.5,
+                //fillOpacity: 0.5
+              });
+              var layerGroup = L.layerGroup([marker, circleMarker]);
+              return(layerGroup);
+            }
+          }).addTo(m);
 
 		function popUp(f,layer){
 			var out = [];
@@ -104,12 +168,15 @@ var isMobile = false; //initiate as false
 
 			if (m.getZoom() >= 7) {
 			  m.addLayer(district_lay);
+              m.addLayer(district_point);
 			  district_lay.bringToFront();
+              district_point.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
 				m.removeLayer(district_lay);
+                m.removeLayer(district_point);
 				
 			}
 
