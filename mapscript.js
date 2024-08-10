@@ -307,13 +307,11 @@ var isMobile = false; //initiate as false
 			// m.invalidateSize();
             if (m.getZoom() >= 9) {
                 // m.removeLayer(province_point);
-                province_lay.setVisible(false);
-                province_point.setVisible(false);
-                // m.addLayer(district_lay);
-                // district_lay.bringToFront();
                 
-                // m.addLayer(district_point);
-                district_point.setVisible(true);
+                m.addLayer(district_lay);
+                district_lay.bringToFront();
+                
+                m.addLayer(district_point);
                 district_point.bringToFront();
                // m.removeLayer(village_lay);
                // if (m.getZoom() >= 9) {
@@ -333,10 +331,9 @@ var isMobile = false; //initiate as false
                   
                   
               } else {
-                district_point.setVisible(false);
-                district_lay.setVisible(false);
-                //   m.removeLayer(district_lay);
-                //   m.removeLayer(district_point);
+                
+                  m.removeLayer(district_lay);
+                  m.removeLayer(district_point);
                 //   province_point.bringToFront();
                 //   m.addLayer(province_point);
                   //m.removeLayer(village_lay);
@@ -352,7 +349,7 @@ var isMobile = false; //initiate as false
 		};
 
 		function highlightFeature(e) {
-			resetHighlight(e);
+			// resetHighlight(e);
 			var layer = e.target;
 			layer.setStyle({
 				weight: 3,
