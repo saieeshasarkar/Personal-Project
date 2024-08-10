@@ -337,12 +337,12 @@ var isMobile = false; //initiate as false
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
                 if (m.hasLayer(province_lay)) {
-  
+					province_lay.bringToFront();
+					province_point.bringToFront();
                     console.log("The layer exists in the map");
                 } else {
                                       
                 m.addLayer(province_lay);
-                province_lay.bringToFront();
                 m.addLayer(province_point);
                 province_point.bringToFront();
                     console.log("The layer does not exist in the map");
