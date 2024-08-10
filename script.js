@@ -322,8 +322,8 @@ var isMobile = false; //initiate as false
 			
 		info.addTo(m);
 		m.on('zoomend', function(){
-								//10
-			if (m.getZoom() >= 9) {
+								//10//9
+			if (m.getZoom() >= 10) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			  m.addLayer(district_point);
@@ -347,7 +347,7 @@ var isMobile = false; //initiate as false
 			// 	village_lay.bringToFront();
 			// 	//set style for province as 
 				
-				
+
 			} else {
 				// province_lay.setInteractive(true);
 				//m.addLayer(province_lay);
@@ -357,6 +357,7 @@ var isMobile = false; //initiate as false
 				
 				// m.removeLayer(village_lay);
 			}
+			m.invalidateSize();
 
   });
 //   window.addEventListener('resize', function() {
@@ -365,8 +366,7 @@ var isMobile = false; //initiate as false
 		function onclick(e){
 			var bounds = e.target.getBounds();
 			m.fitBounds(bounds);
-				
-			m.invalidateSize();
+			
 		};
 
 		function highlightFeature(e) {
@@ -378,7 +378,6 @@ var isMobile = false; //initiate as false
 				fillOpacity: 0.4
 			});
 			info.update(layer.feature.properties);
-			m.invalidateSize();
 		};
 
 		// This resets the highlight after hover moves away
@@ -389,7 +388,6 @@ var isMobile = false; //initiate as false
 			district_lay.setStyle(styleD);
 			village_lay.setStyle(styleV);
 			info.update();
-			m.invalidateSize();
 		};
 
 		function checkNull(val) {
