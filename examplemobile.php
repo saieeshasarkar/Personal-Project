@@ -70,6 +70,30 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
+	<script type="text/javascript" src="scripts/leaflet.ajax.js"></script>
+	
+	<script src="scripts/spin.js"></script>
+	<script src="scripts/leaflet.spin.js"></script>
+	
+	
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/introjs.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/intro.min.js"></script>
+	
+	<link rel="stylesheet" href="style/leaflet.groupedlayercontrol.css" />
+	<script type="text/javascript" src="scripts/leaflet.groupedlayercontrol.js"></script>
+	
+	<script type="text/javascript" src="scripts/leaflet-geojson-selector.js"></script>
+		
+	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
+	<script src="scripts/leaflet.zoomhome.min.js"></script>
+	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+	
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
