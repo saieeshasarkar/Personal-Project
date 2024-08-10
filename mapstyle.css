@@ -1,6 +1,27 @@
 
 /* Edit height to display full map: 500px */
 #map { width: 98%; height: 95vh; margin: 0 auto; }
+
+.number-icon {
+    /* background-color: #007bff;
+    border-radius: 50%; */
+    color: white;
+    /* width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    font-weight: bold;
+    top: -12px;
+    
+  }
+  .pro-icon {
+  
+    color: red;
+    font-weight: bold;
+    top: -12px;
+  }
+  
 .caption{ 
   width: 98%; margin: 0 auto;
   font: 14px/16px Arial, Helvetica, sans-serif; 
