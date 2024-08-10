@@ -97,8 +97,8 @@ var isMobile = false; //initiate as false
               });
               var layerGroup = L.layerGroup([marker, circleMarker]);
               return(layerGroup);
-            }, 
-			onEachFeature:popUp
+            }
+			// ,onEachFeature:popUp
 			,style:styleV
           });
     //     },
@@ -420,7 +420,7 @@ var isMobile = false; //initiate as false
 
 		// //default value and var for legend			
 		// var shading = "poverty";
-		 var variable = "Poverty_He";	
+		 var variable = "PCode";	
 
 		// //function to get colors based on coloring on cmap	
 		// function getColor(d) {
@@ -439,9 +439,9 @@ var isMobile = false; //initiate as false
 				weight: 1.2,
 				opacity: 0.9,
 				color: 'black',
-				fillOpacity: 0.65,
+				fillOpacity: 0.3,
 				// fillColor: getColor(val)
-				fillColor: colors[feature.properties.PCode]
+				fillColor: colors[val]
 			};
 		};
 		function style(feature) {
@@ -452,7 +452,7 @@ var isMobile = false; //initiate as false
 				color: 'black',
 				fillOpacity: 0.65,
 				// fillColor: getColor(val)
-				fillColor: colors[feature.properties.PCode]
+				fillColor: colors[val]
 			};
 		};
 		function styleP(feature) {
@@ -463,7 +463,7 @@ var isMobile = false; //initiate as false
 				color: 'black',
 				fillOpacity: 0.65,
 				// fillColor: getColor(val)
-				fillColor: colors[feature.properties.PCode]
+				fillColor: colors[val]
 			};
 		};
 		function styleV(feature) {
