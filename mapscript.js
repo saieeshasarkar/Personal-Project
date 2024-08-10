@@ -307,6 +307,10 @@ var isMobile = false; //initiate as false
 			// m.invalidateSize();
             if (m.getZoom() >= 9) {
                 // m.removeLayer(province_point);
+                // m.removeLayer(province_lay);
+                // m.removeLayer(province_point);
+                province_lay.hide();
+                province_point.hide();
                 
                 m.addLayer(district_lay);
                 district_lay.bringToFront();
@@ -331,7 +335,8 @@ var isMobile = false; //initiate as false
                   
                   
               } else {
-                
+                province_lay.show();
+                province_point.show();
                   m.removeLayer(district_lay);
                   m.removeLayer(district_point);
                 //   province_point.bringToFront();
