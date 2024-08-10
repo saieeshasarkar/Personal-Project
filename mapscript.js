@@ -337,7 +337,9 @@ var isMobile = false; //initiate as false
                 if (m.hasLayer(province_lay)) {
                     
                 m.addLayer(province_lay);
+                province_lay.bringToFront();
                 m.addLayer(province_point);
+                province_point.bringToFront();
                     console.log("The layer exists in the map");
                 } else {
                     console.log("The layer does not exist in the map");
@@ -378,6 +380,8 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
+            province_point.setStyle(styleV);
+			district_point.setStyle(styleV);
             // province_point.bringToFront();
             // district_lay.bringToFront();
 			// district_point.bringToFront();
