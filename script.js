@@ -145,7 +145,7 @@ var isMobile = false; //initiate as false
 		// 		}
 		// 	}
 		// });
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX,style:styleP}).addTo(m);
+		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
@@ -367,11 +367,11 @@ var isMobile = false; //initiate as false
 		function highlightFeature(e) {
 			var layer = e.target;
 			//layer.options.previousStyle = layer.options.style;
-			// layer.setStyle({
-			// 	weight: 3,
-			// 	color: '#636363',
-			// 	fillOpacity: 0.4
-			// });
+			layer.setStyle({
+				weight: 3,
+				color: '#636363',
+				fillOpacity: 0.4
+			});
 			info.update(layer.feature.properties);
 		};
 
