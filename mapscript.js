@@ -572,9 +572,8 @@ function styleD(feature) {
         opacity: 0.9,
         color: 'black',
         fillOpacity: 0.3,
-        fillColor: colors[feature.properties.PCode]
-        // fillColor: getRandomColor()
-        //fillColor: 'blue' getColor(val)
+        fillColor: 'blue'
+        //fillColor: getColor(val)
     };
 };
 function styleV(feature) {
@@ -607,9 +606,8 @@ function styleP(feature) {
         opacity: 0.9,
         color: 'black',
         fillOpacity: 0.45,
-        fillColor: colors[feature.properties.PCode]
-        //fillColor: getRandomColor()
-        //fillColor: 'green' getColor(val)
+        fillColor: 'green'
+        //fillColor: getColor(val)
     };
 };
 	
