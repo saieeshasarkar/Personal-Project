@@ -343,7 +343,7 @@ let autocompleteDatax = {};
 			    //     });
 			    //     info.update(layer.feature.properties);
 				// }
-                //         }
+                        }
                     });
 
                     // Initialize village autocomplete
