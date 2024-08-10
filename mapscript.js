@@ -38,18 +38,33 @@ var isMobile = false; //initiate as false
 		var OpenCartoMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}'+ (L.Browser.retina ? '@2x.png' : '.png'),{
 				attribution:'Basemap data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | Basemap style &copy; <a href="https://carto.com/attributions">CARTO</a>',
 				subdomains: 'abcd',
-				maxZoom: 20,
-				minZoom: 0
-				//,
-				// fadeAnimation: false,
-				// zoomAnimation: false,
-				// markerZoomAnimation: false,
-				// updateWhenZooming: false,
-				// updateInterval: true
+				maxZoom: 19,
+				minZoom: 0,
+				fadeAnimation: false,
+				zoomAnimation: false,
+				markerZoomAnimation: false,
+				updateWhenZooming: false,
+				updateInterval: true
 		});
 
 		OpenCartoMap.addTo(m);
-
+		function onLocationFound(e) {
+			const radius = e.accuracy / 2;
+	
+			const locationMarker = L.marker(e.latlng).addTo(map)
+				.bindPopup(`You are within ${radius} meters from this point`).openPopup();
+	
+			const locationCircle = L.circle(e.latlng, radius).addTo(map);
+		}
+	
+		function onLocationError(e) {
+			alert(e.message);
+		}
+	
+		map.on('locationfound', onLocationFound);
+		map.on('locationerror', onLocationError);
+	
+		// map.locate({setView: true, maxZoom: 16});
 		// window.dispatchEvent(new Event('resize'));  
 		// const mapDiv = document.getElementById("map");
 		// const resizeObserver = new ResizeObserver(() => {
