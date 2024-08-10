@@ -313,6 +313,7 @@ var isMobile = false; //initiate as false
                 // m.removeLayer(province_point);
                 m.addLayer(district_lay);
                 district_lay.bringToFront();
+                
                 m.addLayer(district_point);
                 district_point.bringToFront();
                // m.removeLayer(village_lay);
