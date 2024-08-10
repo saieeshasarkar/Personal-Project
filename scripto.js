@@ -100,7 +100,7 @@ var isMobile = false; //initiate as false
             }
 			// ,onEachFeature:popUp
 			// ,style:styleV
-          }).addTo(m);
+          });
     //     },
     //     onEachFeature:popUp
     //     ,style:styleV
@@ -133,7 +133,7 @@ var isMobile = false; //initiate as false
             },
 			    // onEachFeature:popUp
 			    // ,style:styleV
-          });//.addTo(m);
+          }).addTo(m);
 
 		function popUp(f,layer){
 			var out = [];
