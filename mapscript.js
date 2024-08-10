@@ -334,6 +334,8 @@ var isMobile = false; //initiate as false
                   
                   
               } else {
+				m.removeLayer(district_lay);
+				m.removeLayer(district_point);
                 if (m.hasLayer(province_lay)) {
   
                     console.log("The layer exists in the map");
@@ -347,8 +349,7 @@ var isMobile = false; //initiate as false
                 }
                 // province_lay.show();
                 // province_point.show();
-                  m.removeLayer(district_lay);
-                  m.removeLayer(district_point);
+                 
                 //   province_point.bringToFront();
                 //   m.addLayer(province_point);
                   //m.removeLayer(village_lay);
@@ -381,8 +382,8 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-            province_point.setStyle(styleV);
-			district_point.setStyle(styleV);
+            // province_point.setStyle(styleV);
+			// district_point.setStyle(styleV);
             // province_point.bringToFront();
             // district_lay.bringToFront();
 			// district_point.bringToFront();
