@@ -93,14 +93,14 @@ var isMobile = false; //initiate as false
 		//   });
 
 		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
-        function getRandomColor() {
-			var letters = '0123456789ABCDEF';
-			var color = '#';
-			for (var i = 0; i < 6; i++) {
-				color += letters[Math.floor(Math.random() * 16)];
-			}
-			return color;
-		}
+        // function getRandomColor() {
+		// 	var letters = '0123456789ABCDEF';
+		// 	var color = '#';
+		// 	for (var i = 0; i < 6; i++) {
+		// 		color += letters[Math.floor(Math.random() * 16)];
+		// 	}
+		// 	return color;
+		// }
 		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
