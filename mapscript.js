@@ -356,6 +356,9 @@ var isMobile = false; //initiate as false
 				color: '#636363',
 				fillOpacity: 0.4
 			});
+            province_point.bringToFront();
+            district_lay.bringToFront();
+			district_point.bringToFront();
 			info.update(layer.feature.properties);
 		};
 
@@ -363,9 +366,7 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-            province_point.bringToFront();
-            district_lay.bringToFront();
-			district_point.bringToFront();
+            
 			// village_lay.setStyle(styleV);
 			info.update();
 		};
