@@ -342,7 +342,7 @@ let autocompleteDatax = {};
 				    // weight: 3,
 				    // color: '#636363',
 				    // fillOpacity: 0.4
-			        });
+			        // });
 			        info.update(layer.feature.properties);
 				}
                         }
