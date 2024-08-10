@@ -335,13 +335,14 @@ var isMobile = false; //initiate as false
                   
               } else {
                 if (m.hasLayer(province_lay)) {
-                    
+  
+                    console.log("The layer exists in the map");
+                } else {
+                                      
                 m.addLayer(province_lay);
                 province_lay.bringToFront();
                 m.addLayer(province_point);
                 province_point.bringToFront();
-                    console.log("The layer exists in the map");
-                } else {
                     console.log("The layer does not exist in the map");
                 }
                 // province_lay.show();
