@@ -69,7 +69,9 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
 	<title>Mobile tutorial - Leaflet</title>
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+	
 	<script type="text/javascript" src="scripts/leaflet.ajax.js"></script>
 	
 	<script src="scripts/spin.js"></script>
