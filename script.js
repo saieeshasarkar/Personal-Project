@@ -808,5 +808,5 @@ var isMobile = false; //initiate as false
 			repaint_map(variable);
 		};
 	if (isMobile) {
-		// document.getElementsByClassName("nomobile")[0].style.display = "none";
+		document.getElementsByClassName("nomobile")[0].style.display = "none";
 	};
