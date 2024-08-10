@@ -99,7 +99,7 @@ var isMobile = false; //initiate as false
               return(layerGroup);
             }
 			// ,onEachFeature:popUp
-			,style:styleV
+			// ,style:styleV
           });
     //     },
     //     onEachFeature:popUp
