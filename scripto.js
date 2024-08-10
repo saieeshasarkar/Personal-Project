@@ -52,6 +52,10 @@ var isMobile = false; //initiate as false
 		};
 		ctitle.addTo(m);
 
+		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
+			"#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
+			"#BA55D3", "#9370DB", "#3CB371", "#808080"];
+	  
 		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp, style:styleP}).addTo(m);
 
@@ -205,7 +209,7 @@ var isMobile = false; //initiate as false
 		// This resets the highlight after hover moves away
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
-			district_lay.setStyle(style);
+			district_lay.setStyle(styleD);
 			province_point.setStyle(styleV);
 			info.update();
 		};
@@ -245,181 +249,181 @@ var isMobile = false; //initiate as false
 
 
 
-		var cmap_poverty = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#990000'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#d7301f'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#ef6548'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#fc8d59'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#fdbb84'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#fdd49e'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#fee8c8'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#fff7ec'}];
+		// var cmap_poverty = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#990000'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#d7301f'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#ef6548'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#fc8d59'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#fdbb84'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#fdd49e'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#fee8c8'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#fff7ec'}];
 
-		var cmap_density = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#7a0177'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#ae017e'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#dd3497'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#f768a1'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#fa9fb5'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#fcc5c0'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#fde0dd'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#fff7f3'}];
+		// var cmap_density = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#7a0177'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#ae017e'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#dd3497'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#f768a1'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#fa9fb5'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#fcc5c0'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#fde0dd'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#fff7f3'}];
 						
-		var cmap_sanitation = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#005a32'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#238443'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#41ab5d'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#78c679'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#addd8e'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#d9f0a3'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#f7fcb9'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#ffffe5'}];
+		// var cmap_sanitation = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#005a32'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#238443'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#41ab5d'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#78c679'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#addd8e'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#d9f0a3'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#f7fcb9'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#ffffe5'}];
 						
-		var cmap_water = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#0c2c84'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#225ea8'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#1d91c0'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#41b6c4'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#7fcdbb'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#c7e9b4'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#edf8b1'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#ffffd9'}];
+		// var cmap_water = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#0c2c84'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#225ea8'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#1d91c0'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#41b6c4'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#7fcdbb'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#c7e9b4'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#edf8b1'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#ffffd9'}];
 
-		var cmap_electricity = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#8c2d04'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#cc4c02'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#ec7014'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#fe9929'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#fec44f'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#fee391'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#fff7bc'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#ffffe5'}];
+		// var cmap_electricity = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#8c2d04'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#cc4c02'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#ec7014'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#fe9929'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#fec44f'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#fee391'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#fff7bc'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#ffffe5'}];
 						  
-		var cmap_tphone = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#6e016b'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#88419d'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#8c6bb1'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#8c96c6'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#9ebcda'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#bfd3e6'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#e0ecf4'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#f7fcfd'}];
+		// var cmap_tphone = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#6e016b'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#88419d'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#8c6bb1'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#8c96c6'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#9ebcda'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#bfd3e6'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#e0ecf4'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#f7fcfd'}];
 						  
-		var cmap_urban = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#005824'},
-						{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#238b45'},
-						{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#41ae76'},
-						{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#66c2a4'},
-						{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#99d8c9'},
-						{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#ccece6'},
-						{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#e5f5f9'},
-						{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#f7fcfd'}];
-		function get_var(legX) {
+		// var cmap_urban = [{"label" : ">&nbsp;87.0", "lower" : 87.0, "fill" : '#005824'},
+		// 				{"label" : "75.0&nbsp;-&nbsp;87.0", "lower" : 75.0, "fill" : '#238b45'},
+		// 				{"label" : "62.0&nbsp;-&nbsp;75.0", "lower" : 62.0, "fill" : '#41ae76'},
+		// 				{"label" : "50.0&nbsp;-&nbsp;62.0", "lower" : 50.0, "fill" : '#66c2a4'},
+		// 				{"label" : "37.0&nbsp;-&nbsp;50.0", "lower" : 37.0, "fill" : '#99d8c9'},
+		// 				{"label" : "25.0&nbsp;-&nbsp;37.0", "lower" : 25.0, "fill" : '#ccece6'},
+		// 				{"label" : "12.0&nbsp;-&nbsp;25.0", "lower" : 12.0, "fill" : '#e5f5f9'},
+		// 				{"label" : "<&nbsp;12.0", "lower" : 0.0,  "fill" : '#f7fcfd'}];
+		// function get_var(legX) {
 
-		  if (legX == "poverty")    return "Poverty_He";
-		  if (legX == "density")  return "Density";
-		  if (legX == "sanitation")     return "Improved_S";
-		  if (legX == "water") return "Improved_W";
-		  if (legX == "electricity") return "Using_Elec";
-		  if (legX == "tphone") return "Own_a_Phon";
-		  if (legX == "urban") return "Urban_popu";};
+		//   if (legX == "poverty")    return "Poverty_He";
+		//   if (legX == "density")  return "Density";
+		//   if (legX == "sanitation")     return "Improved_S";
+		//   if (legX == "water") return "Improved_W";
+		//   if (legX == "electricity") return "Using_Elec";
+		//   if (legX == "tphone") return "Own_a_Phon";
+		//   if (legX == "urban") return "Urban_popu";};
 		// assign map coloring based on var
-		function repaint_map(fill_variable) {
+		// function repaint_map(fill_variable) {
 
-			province_lay.eachLayer(
-			  function (layer) {  
+		// 	province_lay.eachLayer(
+		// 	  function (layer) {  
 			  
-				switch(shading) {
-				  case "water": 
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "density":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "sanitation":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "tphone":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "electricity":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "urban":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  default:
-					val = parseFloat(layer.feature.properties["Poverty_He"]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				}
-			  }
-			);
-			district_lay.eachLayer(
-			  function (layer) {  
+		// 		switch(shading) {
+		// 		  case "water": 
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "density":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "sanitation":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "tphone":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "electricity":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "urban":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  default:
+		// 			val = parseFloat(layer.feature.properties["Poverty_He"]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		}
+		// 	  }
+		// 	);
+		// 	district_lay.eachLayer(
+		// 	  function (layer) {  
 			  
-				switch(shading) {
+		// 		switch(shading) {
 				  
-				  case "water": 
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "density":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "sanitation":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "tphone":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "electricity":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "urban":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  default:
-					val = parseFloat(layer.feature.properties["Poverty_He"]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				}
-			  }
-			);
-			};	
+		// 		  case "water": 
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "density":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "sanitation":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "tphone":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "electricity":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  case "urban":
+		// 			val = parseFloat(layer.feature.properties[fill_variable]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		  default:
+		// 			val = parseFloat(layer.feature.properties["Poverty_He"]);
+		// 			layer.setStyle({fillColor: getColor(val)});
+		// 			break;
+		// 		}
+		// 	  }
+		// 	);
+		// 	};	
 			
-		//these enable manual class methods
-		function fileFilter(x)   { return x.file   == this; };
-		function methodFilter(x) { return x.method == this; };
-		function seedFilter(x)   { return x.seed   == this; };		
+		// //these enable manual class methods
+		// function fileFilter(x)   { return x.file   == this; };
+		// function methodFilter(x) { return x.method == this; };
+		// function seedFilter(x)   { return x.seed   == this; };		
 
 			
-		//coloring var	
-		var cmap = {"poverty" : cmap_poverty,
-					"density" : cmap_density,
-					"sanitation" : cmap_sanitation,
-					"electricity" : cmap_electricity,
-					"urban" : cmap_urban,
-					"tphone" : cmap_tphone,
-					"water" : cmap_water};
+		// //coloring var	
+		// var cmap = {"poverty" : cmap_poverty,
+		// 			"density" : cmap_density,
+		// 			"sanitation" : cmap_sanitation,
+		// 			"electricity" : cmap_electricity,
+		// 			"urban" : cmap_urban,
+		// 			"tphone" : cmap_tphone,
+		// 			"water" : cmap_water};
 
-		//default value and var for legend			
-		var shading = "poverty";
-		var variable = "Poverty_He";	
+		// //default value and var for legend			
+		// var shading = "poverty";
+		// var variable = "Poverty_He";	
 
-		//function to get colors based on coloring on cmap	
-		function getColor(d) {
-			for (var vi in cmap[shading]) {
-				if (d >= cmap[shading][vi].lower) {
-				return cmap[shading][vi].fill;
-				}
-			}
-			return '#BBB';
-		};
+		// //function to get colors based on coloring on cmap	
+		// function getColor(d) {
+		// 	for (var vi in cmap[shading]) {
+		// 		if (d >= cmap[shading][vi].lower) {
+		// 		return cmap[shading][vi].fill;
+		// 		}
+		// 	}
+		// 	return '#BBB';
+		// };
 
 		//function for layer style based on coloring on cmap
 		function styleD(feature) {
@@ -429,7 +433,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.65,
-				fillColor: getColor(val)
+				// fillColor: getColor(val)
+				fillColor: colors[feature.properties.PCode]
 			};
 		};
 		function style(feature) {
@@ -439,7 +444,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.65,
-				fillColor: getColor(val)
+				// fillColor: getColor(val)
+				fillColor: colors[feature.properties.PCode]
 			};
 		};
 		function styleP(feature) {
@@ -449,7 +455,8 @@ var isMobile = false; //initiate as false
 				opacity: 0.9,
 				color: 'black',
 				fillOpacity: 0.65,
-				fillColor: getColor(val)
+				// fillColor: getColor(val)
+				fillColor: colors[feature.properties.PCode]
 			};
 		};
 		function styleV(feature) {
@@ -466,137 +473,137 @@ var isMobile = false; //initiate as false
 		};
 
 		//legend design
-		var legend = L.control({position: 'bottomright'});
+		// var legend = L.control({position: 'bottomright'});
 
-		legend.onAdd = function () {
-			leg_select = '<select class="legend" id="shading_select">' + 
-							'<option value="density">Density</option>' + 
-							'<option value="poverty" selected=true>Poverty Rate (%)</option>' + 
-							'<option value="sanitation">Improved Sanitation (%)</option>' + 
-							'<option value="water">Improved Water Source (%)</option>' + 
-							'<option value="electricity">Electricity Access (%)</option>' + 
-							'<option value="tphone">Own a Phone (%)</option>' + 
-							'<option value="urban">Urban Population (%)</option>' + 
-						  '</select>';
+		// legend.onAdd = function () {
+		// 	leg_select = '<select class="legend" id="shading_select">' + 
+		// 					'<option value="density">Density</option>' + 
+		// 					'<option value="poverty" selected=true>Poverty Rate (%)</option>' + 
+		// 					'<option value="sanitation">Improved Sanitation (%)</option>' + 
+		// 					'<option value="water">Improved Water Source (%)</option>' + 
+		// 					'<option value="electricity">Electricity Access (%)</option>' + 
+		// 					'<option value="tphone">Own a Phone (%)</option>' + 
+		// 					'<option value="urban">Urban Population (%)</option>' + 
+		// 				  '</select>';
 			
-			var labels = [];
+		// 	var labels = [];
 
-			cmap[shading].forEach( function(v) {
-					labels.push('<tr>' + 
-						'<td class="cblock" style="background:' + v.fill + '"></td>' +
-						'<td class="ltext">' + v.label + '</td></tr>');
-				});
+		// 	cmap[shading].forEach( function(v) {
+		// 			labels.push('<tr>' + 
+		// 				'<td class="cblock" style="background:' + v.fill + '"></td>' +
+		// 				'<td class="ltext">' + v.label + '</td></tr>');
+		// 		});
 				
-			//draw legend based on selected var
-			var div = L.DomUtil.create('div', 'info legend');
-			div.innerHTML = leg_select  + '<table class= "legend_t" id="legend_table">' + labels.join('') + '</table>';
+		// 	//draw legend based on selected var
+		// 	var div = L.DomUtil.create('div', 'info legend');
+		// 	div.innerHTML = leg_select  + '<table class= "legend_t" id="legend_table">' + labels.join('') + '</table>';
 
-			return div;
-		};
-		legend.addTo(m);
+		// 	return div;
+		// };
+		// legend.addTo(m);
 
-		var shading_sel  = document.getElementById("shading_select");
-		var legend_table = document.getElementById("legend_table");
-		shading_sel.onchange = change_legend;
+		// var shading_sel  = document.getElementById("shading_select");
+		// var legend_table = document.getElementById("legend_table");
+		// shading_sel.onchange = change_legend;
 
-		function change_legend() {
-			//get shading and variable from legend selector
-			shading = shading_sel.value;
-			variable = get_var(shading);
-			repaint_map(variable);
+		// function change_legend() {
+		// 	//get shading and variable from legend selector
+		// 	shading = shading_sel.value;
+		// 	variable = get_var(shading);
+		// 	repaint_map(variable);
 
-			//retrieve the range for legends case by case, by equal count
-			if (shading == "sanitation") {
-				mini = 3, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	//retrieve the range for legends case by case, by equal count
+		// 	if (shading == "sanitation") {
+		// 		mini = 3, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_sanitation[7-s]["lower"] = mini + s * step_size;
-					cmap_sanitation[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_sanitation[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_sanitation[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_sanitation[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_sanitation[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "water") {
-				mini = 37, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "water") {
+		// 		mini = 37, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_water[7-s]["lower"] = mini + s * step_size;
-					cmap_water[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_water[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_water[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_water[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_water[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "tphone") {
-				mini = 54, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "tphone") {
+		// 		mini = 54, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_tphone[7-s]["lower"] = mini + s * step_size;
-					cmap_tphone[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_tphone[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_tphone[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_tphone[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_tphone[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "urban") {
-				mini = 4, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "urban") {
+		// 		mini = 4, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_urban[7-s]["lower"] = mini + s * step_size;
-					cmap_urban[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_urban[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_urban[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_urban[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_urban[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "electricity") {
-				mini = 24, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "electricity") {
+		// 		mini = 24, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_electricity[7-s]["lower"] = mini + s * step_size;
-					cmap_electricity[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-			  cmap_electricity[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_electricity[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_electricity[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 	  cmap_electricity[7]["lower"] = mini;
+		// 	}
 			
-			var labels = [];
-			if (shading in cmap) {
-				cmap[shading].forEach( function(v) {
-					labels.push('<tr>' + 
-						'<td class="cblock" style="background:' + v.fill + '"></td>' +
-						'<td class="ltext">' + v.label + '</td></tr>');
-				  });
-			}
-			legend_table.innerHTML = labels.join('');
-			repaint_map(variable);
-		};
+		// 	var labels = [];
+		// 	if (shading in cmap) {
+		// 		cmap[shading].forEach( function(v) {
+		// 			labels.push('<tr>' + 
+		// 				'<td class="cblock" style="background:' + v.fill + '"></td>' +
+		// 				'<td class="ltext">' + v.label + '</td></tr>');
+		// 		  });
+		// 	}
+		// 	legend_table.innerHTML = labels.join('');
+		// 	repaint_map(variable);
+		// };
 	if (isMobile) {
 		document.getElementsByClassName("nomobile")[0].style.display = "none";
 	};
