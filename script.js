@@ -346,7 +346,8 @@ var isMobile = false; //initiate as false
 			// 	m.addLayer(village_lay);
 			// 	village_lay.bringToFront();
 			// 	//set style for province as 
-				
+
+			m.invalidateSize();
 
 			} else {
 				// province_lay.setInteractive(true);
@@ -355,9 +356,9 @@ var isMobile = false; //initiate as false
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
 				
+			m.invalidateSize();
 				// m.removeLayer(village_lay);
 			}
-			m.invalidateSize();
 
   });
 //   window.addEventListener('resize', function() {
