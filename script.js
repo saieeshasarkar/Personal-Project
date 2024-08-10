@@ -49,12 +49,12 @@ var isMobile = false; //initiate as false
 
 		OpenCartoMap.addTo(m);
 		// window.dispatchEvent(new Event('resize'));  
-		const mapDiv = document.getElementById("map");
-		const resizeObserver = new ResizeObserver(() => {
-			m.invalidateSize();
-		  });
+		// const mapDiv = document.getElementById("map");
+		// const resizeObserver = new ResizeObserver(() => {
+		// 	m.invalidateSize();
+		//   });
 		  
-		  resizeObserver.observe(mapDiv);
+		//   resizeObserver.observe(mapDiv);
 
 		//map title
 		var ctitle = L.control({position: 'topleft'});
