@@ -338,15 +338,14 @@ let autocompleteDatax = {};
 				if (layer) {
 					m.fitBounds(layer.getBounds());
 					// highlightFeature({ target: layer });
-                    province_lay.setStyle(styleP);
-			    district_lay.setStyle(styleD);
-                province_point.setStyle(styleV);
-			    district_point.setStyle(styleV);
-					layer.setStyle({
-				    weight: 3,
-				    color: '#636363',
-				    fillOpacity: 0.4
-			        });
+                    // province_lay.setStyle(styleP);
+			        // district_lay.setStyle(styleD);
+
+					// layer.setStyle({
+				    // weight: 3,
+				    // color: '#636363',
+				    // fillOpacity: 0.4
+			        // });
 			        info.update(layer.feature.properties);
 				}
                         }
