@@ -452,7 +452,18 @@ var isMobile = false; //initiate as false
 				fillColor: getColor(val)
 			};
 		};
-	
+		function styleV(feature) {
+			val = parseFloat(feature.properties[variable]);
+			return {
+				radius: 1,
+				weight: 1,
+				opacity: 0.9,
+				color: 'red',
+				fillOpacity: 0.65,
+				fillColor: 'red'
+				//fillColor: getColor(val)
+			};
+		};
 
 		//legend design
 		var legend = L.control({position: 'bottomright'});
