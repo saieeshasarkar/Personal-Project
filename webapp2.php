@@ -335,6 +335,7 @@ let autocompleteDatax = {};
                         onAutocomplete: function(text) {
                             console.log("Selected location:", text);
 				var layer = autocompleteData[text];
+                highlightFeature(this);
 				if (layer) {
 					m.fitBounds(layer.getBounds());
 					// highlightFeature({ target: layer });
