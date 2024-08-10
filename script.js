@@ -357,7 +357,7 @@ var isMobile = false; //initiate as false
 				// m.removeLayer(village_lay);
 			}
 			
-			m.invalidateSize();
+			// m.invalidateSize();
 
   });
 //   window.addEventListener('resize', function() {
