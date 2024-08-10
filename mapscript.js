@@ -43,7 +43,7 @@ var isMobile = false; //initiate as false
 				fadeAnimation: false,
 				zoomAnimation: false,
 				markerZoomAnimation: false,
-				updateWhenZooming: true,
+				updateWhenZooming: false,
 				updateInterval: true
 		});
 
@@ -333,7 +333,7 @@ var isMobile = false; //initiate as false
                 
                   m.removeLayer(district_lay);
                   m.removeLayer(district_point);
-                  province_point.bringToFront();
+                //   province_point.bringToFront();
                 //   m.addLayer(province_point);
                   //m.removeLayer(village_lay);
               }
@@ -362,8 +362,8 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-            province_point.setStyle(styleV);
-			district_point.setStyle(styleV);
+            province_point.bringToFront();
+			district_point.bringToFront();
 			// village_lay.setStyle(styleV);
 			info.update();
 		};
