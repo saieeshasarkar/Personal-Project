@@ -142,6 +142,7 @@ var isMobile = false; //initiate as false
                   return(layerGroup);
                 },
                 onEachFeature:popUp
+                ,style:styleV
               });
         //     },
         //     onEachFeature:popUp
@@ -174,6 +175,7 @@ var isMobile = false; //initiate as false
                   return(layerGroup);
                 },
                 onEachFeature:popUp
+                ,style:styleV
               }).addTo(m);
                       //     },
         //     onEachFeature:popUp
@@ -363,6 +365,8 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
+            province_point.setStyle(styleV);
+			district_point.setStyle(styleV);
 			// village_lay.setStyle(styleV);
 			info.update();
 		};
