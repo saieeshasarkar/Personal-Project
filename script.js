@@ -239,18 +239,18 @@ var isMobile = false; //initiate as false
 			// add autocompleteData if true
 			// district_p": "ວຽງຈັນ", "district_1":
 			// province_p
-			if (f.properties.District) {
-				var name = layer.feature.properties.District;
-				 autocompleteData[name + ' District'] = layer;
-            	//districtData[name] = layer;
+		// 	if (f.properties.District) {
+		// 		var name = layer.feature.properties.District;
+		// 		 autocompleteData[name + ' District'] = layer;
+        //     	//districtData[name] = layer;
 
 				
-                // out.push("Name: " + feature.properties.name); // Adjust based on your property name
-                // layer.bindPopup(out.join("<br />"));
-            }else{
-		var name = layer.feature.properties.Province;
-				 autocompleteData[name] = layer;		
-	    }
+        //         // out.push("Name: " + feature.properties.name); // Adjust based on your property name
+        //         // layer.bindPopup(out.join("<br />"));
+        //     }else{
+		// var name = layer.feature.properties.Province;
+		// 		 autocompleteData[name] = layer;		
+	    // }
 		};
 		 // Initialize autocomplete
 		//  initializeAutocomplete();
