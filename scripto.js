@@ -133,7 +133,7 @@ var isMobile = false; //initiate as false
             },
 			    onEachFeature:popUp
 			    ,style:styleV
-          }).addTo(m);
+          });//.addTo(m);
 
 		function popUp(f,layer){
 			var out = [];
@@ -180,17 +180,19 @@ var isMobile = false; //initiate as false
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 7) {
+				m.removeLayer(province_point);
 			  m.addLayer(district_lay);
-            //   m.addLayer(district_point);
+              m.addLayer(district_point);
 			  district_lay.bringToFront();
-            //  district_point.bringToFront();
+             district_point.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
 				m.removeLayer(district_lay);
-                //  m.removeLayer(district_point);
-				// province_point_point.bringToFront();
+                 m.removeLayer(district_point);
+				 m.addLayer(province_point);
+				province_point.bringToFront();
                 // m.removeLayer(district_point);
 			}
 
