@@ -348,6 +348,7 @@ var isMobile = false; //initiate as false
 				
 				
 			} else {
+				m.addLayer(province_lay);
 				m.addLayer(province_point);
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
