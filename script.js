@@ -367,11 +367,11 @@ var isMobile = false; //initiate as false
 		function highlightFeature(e) {
 			var layer = e.target;
 			//layer.options.previousStyle = layer.options.style;
-			layer.setStyle({
-				weight: 3,
-				color: '#636363',
-				fillOpacity: 0.4
-			});
+			// layer.setStyle({
+			// 	weight: 3,
+			// 	color: '#636363',
+			// 	fillOpacity: 0.4
+			// });
 			info.update(layer.feature.properties);
 		};
 
