@@ -364,6 +364,7 @@ var isMobile = false; //initiate as false
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
             province_point.bringToFront();
+            district_lay.bringToFront();
 			district_point.bringToFront();
 			// village_lay.setStyle(styleV);
 			info.update();
