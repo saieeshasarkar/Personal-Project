@@ -22,15 +22,15 @@
 /*     top: -12px; */
 /*   } */
 }
-body {
+/* body {
     padding: 0;
     margin: 0;
-}
+} */
 /* html, body, #map {
     height: 100%;
     width: 100vw;
 } */
-
+#map { height: calc(100vh - 216px); width:100%; }
 /* Edit height to display full map: 500px */
 /* #map { width: 98%; height: 95vh; margin: 0 auto; } */
 .number-icon {
