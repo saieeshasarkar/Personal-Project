@@ -53,9 +53,9 @@ var isMobile = false; //initiate as false
 		ctitle.addTo(m);
 
 		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
-			"#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
-			"#BA55D3", "#9370DB", "#3CB371", "#808080"];
-	  
+              "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
+              "#BA55D3", "#9370DB", "#3CB371", "#808080"];
+        
 		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp, style:styleP}).addTo(m);
 
@@ -413,7 +413,7 @@ var isMobile = false; //initiate as false
 
 		// //default value and var for legend			
 		// var shading = "poverty";
-		// var variable = "Poverty_He";	
+		 var variable = "Poverty_He";	
 
 		// //function to get colors based on coloring on cmap	
 		// function getColor(d) {
