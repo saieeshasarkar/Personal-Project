@@ -349,7 +349,7 @@ var isMobile = false; //initiate as false
 		};
 
 		function highlightFeature(e) {
-			// resetHighlight(e);
+			 resetHighlight(e);
 			var layer = e.target;
 			layer.setStyle({
 				weight: 3,
