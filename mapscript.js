@@ -141,10 +141,11 @@ var isMobile = false; //initiate as false
                   var layerGroup = L.layerGroup([marker, circleMarker]);
                   return(layerGroup);
                 }
-                ,style:styleV
               });
-            //   ,
-            //     onEachFeature:popUp
+        //     },
+        //     onEachFeature:popUp
+        //     ,style:styleV
+        //   });
 //////////////////////////////////////
               var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
                 pointToLayer: function (feature, latlng) {
@@ -171,8 +172,11 @@ var isMobile = false; //initiate as false
                   var layerGroup = L.layerGroup([marker, circleMarker]);
                   return(layerGroup);
                 }
-                ,style:styleV
               }).addTo(m);
+                      //     },
+        //     onEachFeature:popUp
+        //     ,style:styleV
+        //   });
 //, onEachFeature:popUp
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
