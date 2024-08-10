@@ -325,6 +325,7 @@ var isMobile = false; //initiate as false
                   
               } else {
                   m.removeLayer(district_lay);
+                  m.removeLayer(district_point);
                   //m.removeLayer(village_lay);
               }
 
