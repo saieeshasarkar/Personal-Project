@@ -154,16 +154,16 @@ var isMobile = false; //initiate as false
 			content +=  (props ? '<div class="areaName">' + props.Province + checkNull2(props.District)+ '</div>' : '<div class="areaName">Lao PDR</div><div class="areaName faded"><small><i>Hover over areas to view data</i><br></small></div>');//'<th>'+ checkNull2(props.District)+'</th></tr>';
 									//checkNull2(props.province_p) +"<br>"+  checkNull2(props.district_p) +  checkNull2(props.district_1) + 
 			content += '<tr><td class="ditem">Area [sq km]</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Area"].toFixed(0))) : '236,800') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Population</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Population"].toFixed(0))) : '6,492,228') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Density [per sq km]</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Density"].toFixed(1))) : '27') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Urban population (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Urban_popu"].toFixed(1))) : '32.9') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Improved sanitation (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_S"].toFixed(1))) : '71.1') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Improved water source (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_W"].toFixed(1))) : '83.9') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Electricity access (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Using_Elec"].toFixed(1))) : '85.6') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Own a phone (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Own_a_Phon"].toFixed(1))) : '91.3') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Poverty headcount (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_He"].toFixed(1))) : '24.8') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Poverty gap (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Ga"].toFixed(1))) : '6.0') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Poverty severity (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Se"].toFixed(1))) : '--') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Population</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Population"].toFixed(0))) : '6,492,228') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Density [per sq km]</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Density"].toFixed(1))) : '27') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Urban population (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Urban_popu"].toFixed(1))) : '32.9') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Improved sanitation (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_S"].toFixed(1))) : '71.1') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Improved water source (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_W"].toFixed(1))) : '83.9') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Electricity access (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Using_Elec"].toFixed(1))) : '85.6') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Own a phone (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Own_a_Phon"].toFixed(1))) : '91.3') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Poverty headcount (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_He"].toFixed(1))) : '24.8') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Poverty gap (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Ga"].toFixed(1))) : '6.0') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Poverty severity (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Se"].toFixed(1))) : '--') + '</div>'+ '</td></tr>';
 			content += '</tbody></table>';
 			
 			this._div.innerHTML = content;
