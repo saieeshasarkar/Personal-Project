@@ -442,72 +442,72 @@ var isMobile = false; //initiate as false
 			province_lay.eachLayer(
 			  function (layer) {  
 			  
-				switch(shading) {
-				  case "water": 
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "density":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "sanitation":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "tphone":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "electricity":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "urban":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  default:
-					val = parseFloat(layer.feature.properties["Poverty_He"]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				}
+				// switch(shading) {
+				//   case "water": 
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "density":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "sanitation":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "tphone":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "electricity":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "urban":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   default:
+				// 	val = parseFloat(layer.feature.properties["Poverty_He"]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				// }
 			  }
 			);
 			district_lay.eachLayer(
 			  function (layer) {  
 			  
-				switch(shading) {
+				// switch(shading) {
 				  
-				  case "water": 
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "density":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "sanitation":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "tphone":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "electricity":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  case "urban":
-					val = parseFloat(layer.feature.properties[fill_variable]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				  default:
-					val = parseFloat(layer.feature.properties["Poverty_He"]);
-					layer.setStyle({fillColor: getColor(val)});
-					break;
-				}
+				//   case "water": 
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "density":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "sanitation":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "tphone":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "electricity":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   case "urban":
+				// 	val = parseFloat(layer.feature.properties[fill_variable]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				//   default:
+				// 	val = parseFloat(layer.feature.properties["Poverty_He"]);
+				// 	layer.setStyle({fillColor: getColor(val)});
+				// 	break;
+				// }
 			  }
 			);
 			village_lay.eachLayer(
