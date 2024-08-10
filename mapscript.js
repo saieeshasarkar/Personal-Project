@@ -39,23 +39,24 @@ var isMobile = false; //initiate as false
 				attribution:'Basemap data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | Basemap style &copy; <a href="https://carto.com/attributions">CARTO</a>',
 				subdomains: 'abcd',
 				maxZoom: 20,
-				minZoom: 0,
-				fadeAnimation: false,
-				zoomAnimation: false,
-				markerZoomAnimation: false,
-				updateWhenZooming: false,
-				updateInterval: true
+				minZoom: 0
+				//,
+				// fadeAnimation: false,
+				// zoomAnimation: false,
+				// markerZoomAnimation: false,
+				// updateWhenZooming: false,
+				// updateInterval: true
 		});
 
 		OpenCartoMap.addTo(m);
-		
-		window.dispatchEvent(new Event('resize'));  
-		const mapDiv = document.getElementById("map");
-		const resizeObserver = new ResizeObserver(() => {
-			m.invalidateSize();
-		  });
+
+		// window.dispatchEvent(new Event('resize'));  
+		// const mapDiv = document.getElementById("map");
+		// const resizeObserver = new ResizeObserver(() => {
+		// 	m.invalidateSize();
+		//   });
 		  
-		  resizeObserver.observe(mapDiv);
+		//   resizeObserver.observe(mapDiv);
 		//map title
 		var ctitle = L.control({position: 'topleft'});
 		ctitle.onAdd = function () {
