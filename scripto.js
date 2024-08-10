@@ -98,8 +98,8 @@ var isMobile = false; //initiate as false
               var layerGroup = L.layerGroup([marker, circleMarker]);
               return(layerGroup);
             }
-			,onEachFeature:popUp
-			,style:styleV
+			// ,onEachFeature:popUp
+			// ,style:styleV
           });
     //     },
     //     onEachFeature:popUp
@@ -181,15 +181,16 @@ var isMobile = false; //initiate as false
 
 			if (m.getZoom() >= 7) {
 			  m.addLayer(district_lay);
-              //m.addLayer(district_point);
+              m.addLayer(district_point);
 			  district_lay.bringToFront();
-               //district_point.bringToFront();
+            	district_point.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
 				m.removeLayer(district_lay);
-                // m.removeLayer(district_point);
+                m.removeLayer(district_point);
+				province_point.bringToFront();
                 // m.removeLayer(district_point);
 			}
 
@@ -217,7 +218,7 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			province_point.setStyle(styleV);
+			// province_point.setStyle(styleV);
 			info.update();
 		};
 
