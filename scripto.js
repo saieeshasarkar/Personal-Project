@@ -182,8 +182,8 @@ var isMobile = false; //initiate as false
 			if (m.getZoom() >= 7) {
 				m.removeLayer(province_point);
 			  m.addLayer(district_lay);
-              m.addLayer(district_point);
 			  district_lay.bringToFront();
+              m.addLayer(district_point);
              district_point.bringToFront();
 			  //set style for province as 
 			  
