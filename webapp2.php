@@ -171,7 +171,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                     </div>
                 </div>
                 <div id="map"></div>
-                <script type="text/javascript" src="mapscript.js"></script>
+                <script type="text/javascript" src="scripto.js"></script>
             </div>
             <div id="userPage" class="page">
                 <h4>User Details</h4>
