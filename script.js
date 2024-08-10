@@ -366,7 +366,7 @@ var isMobile = false; //initiate as false
 			var bounds = e.target.getBounds();
 			m.fitBounds(bounds);
 				
-			
+			m.invalidateSize();
 		};
 
 		function highlightFeature(e) {
@@ -378,6 +378,7 @@ var isMobile = false; //initiate as false
 				fillOpacity: 0.4
 			});
 			info.update(layer.feature.properties);
+			m.invalidateSize();
 		};
 
 		// This resets the highlight after hover moves away
@@ -388,6 +389,7 @@ var isMobile = false; //initiate as false
 			district_lay.setStyle(styleD);
 			village_lay.setStyle(styleV);
 			info.update();
+			m.invalidateSize();
 		};
 
 		function checkNull(val) {
