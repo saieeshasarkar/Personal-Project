@@ -105,7 +105,7 @@ var isMobile = false; //initiate as false
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
         
-              var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD}).addTo(m);
+              var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD})
               var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX,style:styleP}).addTo(m);
 //////////////////////////////////////
               var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
@@ -141,7 +141,7 @@ var isMobile = false; //initiate as false
                   var layerGroup = L.layerGroup([marker, circleMarker]);
                   return(layerGroup);
                 }
-              }).addTo(m);
+              })
         //     },
         //     onEachFeature:popUp
         //     ,style:styleV
@@ -349,7 +349,7 @@ var isMobile = false; //initiate as false
 		};
 
 		function highlightFeature(e) {
-			 resetHighlight(e);
+			 //resetHighlight(e);
 			var layer = e.target;
 			layer.setStyle({
 				weight: 3,
