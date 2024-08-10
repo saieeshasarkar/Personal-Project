@@ -98,8 +98,8 @@ var isMobile = false; //initiate as false
               var layerGroup = L.layerGroup([marker, circleMarker]);
               return(layerGroup);
             }
-			// ,onEachFeature:popUp
-			// ,style:styleV
+			,onEachFeature:popUp
+			,style:styleV
           });
     //     },
     //     onEachFeature:popUp
@@ -131,8 +131,8 @@ var isMobile = false; //initiate as false
               var layerGroup = L.layerGroup([marker, circleMarker]);
               return(layerGroup);
             },
-			    onEachFeature:popUp
-			    ,style:styleV
+			    // onEachFeature:popUp
+			    // ,style:styleV
           }).addTo(m);
 
 		function popUp(f,layer){
