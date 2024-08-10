@@ -332,18 +332,18 @@ let autocompleteDatax = {};
                         minLength: 1,
                         onAutocomplete: function(text) {
                             console.log("Selected location:", text);
-				var layer = autocompleteData[text];
-				if (layer) {
-					m.fitBounds(layer.getBounds());
-					// highlightFeature({ target: layer });
-					layer.setStyle({
-				weight: 3,
-				color: '#636363',
-				fillOpacity: 0.4
-			});
-			info.update(layer.feature.properties);
-				}
-                        }
+				// var layer = autocompleteData[text];
+				// if (layer) {
+				// 	m.fitBounds(layer.getBounds());
+				// 	// highlightFeature({ target: layer });
+				// 	layer.setStyle({
+				//     weight: 3,
+				//     color: '#636363',
+				//     fillOpacity: 0.4
+			    //     });
+			    //     info.update(layer.feature.properties);
+				// }
+                //         }
                     });
 
                     // Initialize village autocomplete
