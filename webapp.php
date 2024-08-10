@@ -46,7 +46,7 @@ $jsonData = json_encode($code);
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 	
-	<link rel="stylesheet" href="StyleMap.css" />
+	<!-- <link rel="stylesheet" href="StyleMap.css" /> -->
 	 
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -332,17 +332,17 @@ let autocompleteDatax = {};
                         minLength: 1,
                         onAutocomplete: function(text) {
                             console.log("Selected location:", text);
-				// var layer = autocompleteData[text];
-				// if (layer) {
-				// 	m.fitBounds(layer.getBounds());
-				// 	// highlightFeature({ target: layer });
-				// 	layer.setStyle({
-				//     weight: 3,
-				//     color: '#636363',
-				//     fillOpacity: 0.4
-			    //     });
-			    //     info.update(layer.feature.properties);
-				// }
+				var layer = autocompleteData[text];
+				if (layer) {
+					m.fitBounds(layer.getBounds());
+					// highlightFeature({ target: layer });
+					layer.setStyle({
+				    weight: 3,
+				    color: '#636363',
+				    fillOpacity: 0.4
+			        });
+			        info.update(layer.feature.properties);
+				}
                         }
                     });
 
