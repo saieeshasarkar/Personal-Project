@@ -323,7 +323,7 @@ var isMobile = false; //initiate as false
 		info.addTo(m);
 		m.on('zoomend', function(){
 								//10//9
-			if (m.getZoom() >= 10) {
+			if (m.getZoom() >= 9) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			  m.addLayer(district_point);

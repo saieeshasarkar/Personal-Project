@@ -93,8 +93,89 @@ var isMobile = false; //initiate as false
 		//   });
 
 		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
-		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
+        function getRandomColor() {
+			var letters = '0123456789ABCDEF';
+			var color = '#';
+			for (var i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)];
+			}
+			return color;
+		}
+		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
+              "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
+              "#BA55D3", "#9370DB", "#3CB371", "#808080"];
+        
+              var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
+              var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX,style:styleP}).addTo(m);
+//////////////////////////////////////
+              var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
+                pointToLayer: function (feature, latlng) {
+                    let key1ForKey2 = [];
+                    for (let key1 of Object.keys(counts)) {
+                            if (counts[key1][feature.properties.dcode]) {
+                            key1ForKey2 = key1;
+                                break;
+                        }
+                    }
+                    var total = 0;
+                    try {
+                      total = counts[key1ForKey2][feature.properties.dcode]["total"]; 
+                    } catch (error) {
+                    }
+                     // counts[key1ForKey2][feature.properties.dcode] === 'undefined' ? 0 : counts[key1ForKey2][feature.properties.dcode]["total"]
+                    // counts[key1ForKey2][feature.properties.dcode]["total"]
+                    var marker = L.marker(latlng, {
+                        icon: L.divIcon({
+                          className: 'number-icon',
+                          html: '<div id=\'d' + feature.properties.dcode + '\' >'+ total + '</div>'
+                        })
+                      });
+                  var circleMarker = L.circle(latlng, {
+                    radius: 0,
+                    fillColor: 'red',
+                    color: "red",
+                    weight: 6
+                    //opacity: 0.5,
+                    //fillOpacity: 0.5
+                  });
+                  var layerGroup = L.layerGroup([marker, circleMarker]);
+                  return(layerGroup);
+                },
+                onEachFeature:popUp
+                ,style:styleV
+              });
+//////////////////////////////////////
+              var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
+                pointToLayer: function (feature, latlng) {
+                    var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
+                    try {
+                      total = counts[feature.properties.pcode]["total"]; 
+                    } catch (error) {
+                    }
+                    // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+                    var marker = L.marker(latlng, {
+                        icon: L.divIcon({
+                          className: 'number-icon',
+                          html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
+                        })
+                      });
+                  var circleMarker = L.circle(latlng, {
+                    radius: 0,
+                    fillColor: 'red',
+                    color: "red",
+                    weight: 6
+                    //opacity: 0.5,
+                    //fillOpacity: 0.5
+                  });
+                  var layerGroup = L.layerGroup([marker, circleMarker]);
+                  return(layerGroup);
+                },
+                onEachFeature:popUp
+                ,style:styleV
+              }).addTo(m);
+
+		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
+		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp,style:styleP}).addTo(m);
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		
 		/////data.opendevelopmentmekong.net not available
@@ -113,14 +194,44 @@ var isMobile = false; //initiate as false
 			
 			
 		};
+        function popUpX(f,layer){
+		
+			var out = [];
+			layer.on({
+				mouseover: highlightFeature,
+				mouseout: resetHighlight,
+				click: onclick
+			});	
+			if (f.properties.District) {
+				var name = layer.feature.properties.District;
+				 autocompleteData[name + ' District'] = layer;
+            	//districtData[name] = layer;
 
-		// Creates an info box on the map
-		var info = L.control({position: 'topright'});
+            }else{
+		var name = layer.feature.properties.Province;
+				 autocompleteData[name] = layer;		
+	    }
+
+		};
+
+
+        // Creates an info box on the map
+		var info = L.control({position: 'bottomright'});
+		// var info = L.control({position: 'topright'});
 		info.onAdd = function (map) {
-			this._div = L.DomUtil.create('div', 'info nomobile');
+			// this._div = L.DomUtil.create('div', 'info nomobile');
+			this._div = L.DomUtil.create('div', 'info');
 			this.update();
 			return this._div;
 		};
+        
+		// // Creates an info box on the map
+		// var info = L.control({position: 'topright'});
+		// info.onAdd = function (map) {
+		// 	this._div = L.DomUtil.create('div', 'info nomobile');
+		// 	this.update();
+		// 	return this._div;
+		// };
 
 		info.update = function (props) {
 			
@@ -132,24 +243,37 @@ var isMobile = false; //initiate as false
 			content += '<tr><td class="ditem">Population</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Population"].toFixed(0))) : '6,492,228') + '</div>'+ '</td></tr>';
 			content += '<tr><td class="ditem">Density [per sq km]</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Density"].toFixed(1))) : '27') + '</div>'+ '</td></tr>';
 			content += '<tr><td class="ditem">Urban population (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Urban_popu"].toFixed(1))) : '32.9') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Improved sanitation (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_S"].toFixed(1))) : '71.1') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Improved water source (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_W"].toFixed(1))) : '83.9') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Electricity access (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Using_Elec"].toFixed(1))) : '85.6') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Own a phone (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Own_a_Phon"].toFixed(1))) : '91.3') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Poverty headcount (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_He"].toFixed(1))) : '24.8') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Poverty gap (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Ga"].toFixed(1))) : '6.0') + '</div>'+ '</td></tr>';
-			content += '<tr><td class="ditem">Poverty severity (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Se"].toFixed(1))) : '--') + '</div>'+ '</td></tr>';
-			content += '</tbody></table>';
+			// content += '<tr><td class="ditem">Improved sanitation (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_S"].toFixed(1))) : '71.1') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Improved water source (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Improved_W"].toFixed(1))) : '83.9') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Electricity access (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Using_Elec"].toFixed(1))) : '85.6') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Own a phone (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Own_a_Phon"].toFixed(1))) : '91.3') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Poverty headcount (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_He"].toFixed(1))) : '24.8') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Poverty gap (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Ga"].toFixed(1))) : '6.0') + '</div>'+ '</td></tr>';
+			// content += '<tr><td class="ditem">Poverty severity (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Se"].toFixed(1))) : '--') + '</div>'+ '</td></tr>';
+			//content += '<tr><td class="ditem">Province Cases      <td class="dval">'  +(props ? '' + (checkNull(counts[props["PCode"]]["total"])) : '--') + '</div>'+ '</td></tr>';
+			//content += '<tr><td class="ditem">District Cases      <td class="dval">'  +(props ? '' + (counts[props["PCode"]][checkNull2(props["DCode"])] ? counts[props["PCode"]][props["DCode"]].total : '--') : '--')+ '</div>'+ '</td></tr>';
 			
+			content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (checkNull2(counts[props["PCode"]]) ? counts[props["PCode"]].total : '--' ) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + counts.total + '</div>'+ '</td></tr>');
+			content +=  (props ? '<tr><td class="ditem">District Cases</td>         <td class="dval">' + ((props.PCode in counts) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
+			// (checkNull2(props.DCode) in counts[props.PCode])
+			content += '</tbody></table>'; 
+			// checkNull2(counts.total)
+			// props["DCode"] ? counts[props["PCode"]][props["DCode"]].total : 'B--'
+			// (checkNull(counts[props["PCode"]][props["DCode"]]["total"]))
 			this._div.innerHTML = content;
 			};
 			
 		info.addTo(m);
 		m.on('zoomend', function(){
-
-			if (m.getZoom() >= 7) {
+								//10//9
+			if (m.getZoom() >= 9) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
+			  m.addLayer(district_point);
+			  district_point.bringToFront();
+			  m.removeLayer(province_point);
+			//   province_lay.setInteractive(false);
+			  //m.removeLayer(province_lay);
 			 // m.removeLayer(village_lay);
 			 // if (m.getZoom() >= 9) {
 				// m.addLayer(village_lay);
@@ -165,12 +289,18 @@ var isMobile = false; //initiate as false
 			// 	m.addLayer(village_lay);
 			// 	village_lay.bringToFront();
 			// 	//set style for province as 
-				
-				
+
+
 			} else {
+				// province_lay.setInteractive(true);
+				//m.addLayer(province_lay);
+				m.addLayer(province_point);
 				m.removeLayer(district_lay);
+				m.removeLayer(district_point);
 				// m.removeLayer(village_lay);
 			}
+			
+			// m.invalidateSize();
 
   });
 		
@@ -484,137 +614,137 @@ var isMobile = false; //initiate as false
 	
 
 		//legend design
-		var legend = L.control({position: 'bottomright'});
+		// var legend = L.control({position: 'bottomright'});
 
-		legend.onAdd = function () {
-			leg_select = '<select class="legend" id="shading_select">' + 
-							'<option value="density">Density</option>' + 
-							'<option value="poverty" selected=true>Poverty Rate (%)</option>' + 
-							'<option value="sanitation">Improved Sanitation (%)</option>' + 
-							'<option value="water">Improved Water Source (%)</option>' + 
-							'<option value="electricity">Electricity Access (%)</option>' + 
-							'<option value="tphone">Own a Phone (%)</option>' + 
-							'<option value="urban">Urban Population (%)</option>' + 
-						  '</select>';
+		// legend.onAdd = function () {
+		// 	leg_select = '<select class="legend" id="shading_select">' + 
+		// 					'<option value="density">Density</option>' + 
+		// 					'<option value="poverty" selected=true>Poverty Rate (%)</option>' + 
+		// 					'<option value="sanitation">Improved Sanitation (%)</option>' + 
+		// 					'<option value="water">Improved Water Source (%)</option>' + 
+		// 					'<option value="electricity">Electricity Access (%)</option>' + 
+		// 					'<option value="tphone">Own a Phone (%)</option>' + 
+		// 					'<option value="urban">Urban Population (%)</option>' + 
+		// 				  '</select>';
 			
-			var labels = [];
+		// 	var labels = [];
 
-			cmap[shading].forEach( function(v) {
-					labels.push('<tr>' + 
-						'<td class="cblock" style="background:' + v.fill + '"></td>' +
-						'<td class="ltext">' + v.label + '</td></tr>');
-				});
+		// 	cmap[shading].forEach( function(v) {
+		// 			labels.push('<tr>' + 
+		// 				'<td class="cblock" style="background:' + v.fill + '"></td>' +
+		// 				'<td class="ltext">' + v.label + '</td></tr>');
+		// 		});
 				
-			//draw legend based on selected var
-			var div = L.DomUtil.create('div', 'info legend');
-			div.innerHTML = leg_select  + '<table class= "legend_t" id="legend_table">' + labels.join('') + '</table>';
+		// 	//draw legend based on selected var
+		// 	var div = L.DomUtil.create('div', 'info legend');
+		// 	div.innerHTML = leg_select  + '<table class= "legend_t" id="legend_table">' + labels.join('') + '</table>';
 
-			return div;
-		};
-		legend.addTo(m);
+		// 	return div;
+		// };
+		//legend.addTo(m);
 
 		//var shading_sel  = document.getElementById("shading_select");
-		var legend_table = document.getElementById("legend_table");
+		//var legend_table = document.getElementById("legend_table");
 		//shading_sel.onchange = change_legend;
 
-		function change_legend() {
-			//get shading and variable from legend selector
-			shading = shading_sel.value;
-			variable = get_var(shading);
-			repaint_map(variable);
+		// function change_legend() {
+		// 	//get shading and variable from legend selector
+		// 	shading = shading_sel.value;
+		// 	variable = get_var(shading);
+		// 	repaint_map(variable);
 
-			//retrieve the range for legends case by case, by equal count
-			if (shading == "sanitation") {
-				mini = 3, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	//retrieve the range for legends case by case, by equal count
+		// 	if (shading == "sanitation") {
+		// 		mini = 3, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_sanitation[7-s]["lower"] = mini + s * step_size;
-					cmap_sanitation[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_sanitation[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_sanitation[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_sanitation[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_sanitation[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "water") {
-				mini = 37, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "water") {
+		// 		mini = 37, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_water[7-s]["lower"] = mini + s * step_size;
-					cmap_water[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_water[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_water[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_water[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_water[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "tphone") {
-				mini = 54, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "tphone") {
+		// 		mini = 54, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_tphone[7-s]["lower"] = mini + s * step_size;
-					cmap_tphone[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_tphone[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_tphone[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_tphone[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_tphone[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "urban") {
-				mini = 4, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "urban") {
+		// 		mini = 4, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_urban[7-s]["lower"] = mini + s * step_size;
-					cmap_urban[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-				cmap_urban[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_urban[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_urban[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 		cmap_urban[7]["lower"] = mini;
+		// 	}
 			
-			if (shading == "electricity") {
-				mini = 24, maxi = 0;
-				district_lay.eachLayer(function (layer) {
-					c = parseFloat(layer.feature.properties[variable])
-					if (mini > c) mini = c;
-					if (maxi < c) maxi = c;
-				});
+		// 	if (shading == "electricity") {
+		// 		mini = 24, maxi = 0;
+		// 		district_lay.eachLayer(function (layer) {
+		// 			c = parseFloat(layer.feature.properties[variable])
+		// 			if (mini > c) mini = c;
+		// 			if (maxi < c) maxi = c;
+		// 		});
 
-				step_size = (maxi - mini) / 8;
-				for (var s = 0; s < 8; s++) {
-					cmap_electricity[7-s]["lower"] = mini + s * step_size;
-					cmap_electricity[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
-				}
-			  cmap_electricity[7]["lower"] = mini;
-			}
+		// 		step_size = (maxi - mini) / 8;
+		// 		for (var s = 0; s < 8; s++) {
+		// 			cmap_electricity[7-s]["lower"] = mini + s * step_size;
+		// 			cmap_electricity[7-s]["label"] = (mini + s * step_size).toFixed(1) + "&nbsp;-&nbsp;" + (mini + (s+1) * step_size).toFixed(1);
+		// 		}
+		// 	  cmap_electricity[7]["lower"] = mini;
+		// 	}
 			
-			var labels = [];
-			if (shading in cmap) {
-				cmap[shading].forEach( function(v) {
-					labels.push('<tr>' + 
-						'<td class="cblock" style="background:' + v.fill + '"></td>' +
-						'<td class="ltext">' + v.label + '</td></tr>');
-				  });
-			}
-			legend_table.innerHTML = labels.join('');
-			repaint_map(variable);
-		};
+		// 	var labels = [];
+		// 	if (shading in cmap) {
+		// 		cmap[shading].forEach( function(v) {
+		// 			labels.push('<tr>' + 
+		// 				'<td class="cblock" style="background:' + v.fill + '"></td>' +
+		// 				'<td class="ltext">' + v.label + '</td></tr>');
+		// 		  });
+		// 	}
+		// 	legend_table.innerHTML = labels.join('');
+		// 	repaint_map(variable);
+		// };
 	if (isMobile) {
 		document.getElementsByClassName("nomobile")[0].style.display = "none";
 	};
