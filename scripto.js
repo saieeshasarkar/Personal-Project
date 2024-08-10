@@ -218,7 +218,7 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			// province_point.setStyle(styleV);
+			province_point.setStyle(styleV);
 			info.update();
 		};
 
