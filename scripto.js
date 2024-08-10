@@ -176,7 +176,11 @@ var isMobile = false; //initiate as false
 			  
 			} else {
 				m.removeLayer(district_lay);
+<<<<<<< HEAD
                 // m.removeLayer(district_point);
+=======
+                m.removeLayer(district_point);
+>>>>>>> 455e0be37c01d157f3a2ee96858dd5cc817570e0
 				
 			}
 
