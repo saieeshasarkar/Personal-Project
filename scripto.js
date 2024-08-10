@@ -170,13 +170,13 @@ var isMobile = false; //initiate as false
 			  m.addLayer(district_lay);
               m.addLayer(district_point);
 			  district_lay.bringToFront();
-              district_lay.bringToFront();
+            //   district_point.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
 				m.removeLayer(district_lay);
-                m.removeLayer(district_point);
+                // m.removeLayer(district_point);
 				
 			}
 
