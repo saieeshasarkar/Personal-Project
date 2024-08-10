@@ -61,8 +61,8 @@ var isMobile = false; //initiate as false
 			alert(e.message);
 		}
 	
-		map.on('locationfound', onLocationFound);
-		map.on('locationerror', onLocationError);
+		m.on('locationfound', onLocationFound);
+		m.on('locationerror', onLocationError);
 	
 		// map.locate({setView: true, maxZoom: 16});
 		// window.dispatchEvent(new Event('resize'));  
