@@ -301,9 +301,11 @@ var isMobile = false; //initiate as false
 			// }
 			
 			// m.invalidateSize();
-            if (m.getZoom() >= 7) {
+            if (m.getZoom() >= 9) {
                 m.addLayer(district_lay);
                 district_lay.bringToFront();
+                m.addLayer(district_point);
+                district_point.bringToFront();
                // m.removeLayer(village_lay);
                // if (m.getZoom() >= 9) {
                 //   m.addLayer(village_lay);
@@ -323,7 +325,7 @@ var isMobile = false; //initiate as false
                   
               } else {
                   m.removeLayer(district_lay);
-                //   m.removeLayer(village_lay);
+                  //m.removeLayer(village_lay);
               }
 
   });
