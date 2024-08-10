@@ -266,41 +266,65 @@ var isMobile = false; //initiate as false
 		info.addTo(m);
 		m.on('zoomend', function(){
 								//10//9
-			if (m.getZoom() >= 9) {
-			  m.addLayer(district_lay);
-			  district_lay.bringToFront();
-			  m.addLayer(district_point);
-			  district_point.bringToFront();
-			  m.removeLayer(province_point);
-			//   province_lay.setInteractive(false);
-			  //m.removeLayer(province_lay);
-			 // m.removeLayer(village_lay);
-			 // if (m.getZoom() >= 9) {
-				// m.addLayer(village_lay);
-				// village_lay.bringToFront();
-			//}
+			// if (m.getZoom() >= 9) {
+			//   m.addLayer(district_lay);
+			//   district_lay.bringToFront();
+			//   m.addLayer(district_point);
+			//   district_point.bringToFront();
+			//   m.removeLayer(province_point);
+			// //   province_lay.setInteractive(false);
+			//   //m.removeLayer(province_lay);
+			//  // m.removeLayer(village_lay);
+			//  // if (m.getZoom() >= 9) {
+			// 	// m.addLayer(village_lay);
+			// 	// village_lay.bringToFront();
+			// //}
 
-			  //m.removeLayer(village_lay);
-			  //set style for province as 
-			  //m.addLayer(village_lay);
-				//village_lay.bringToFront();
+			//   //m.removeLayer(village_lay);
+			//   //set style for province as 
+			//   //m.addLayer(village_lay);
+			// 	//village_lay.bringToFront();
 			  
-			// } else if (m.getZoom() >= 10) {
-			// 	m.addLayer(village_lay);
-			// 	village_lay.bringToFront();
-			// 	//set style for province as 
+			// // } else if (m.getZoom() >= 10) {
+			// // 	m.addLayer(village_lay);
+			// // 	village_lay.bringToFront();
+			// // 	//set style for province as 
 
 
-			} else {
-				// province_lay.setInteractive(true);
-				//m.addLayer(province_lay);
-				m.addLayer(province_point);
-				m.removeLayer(district_lay);
-				m.removeLayer(district_point);
-				// m.removeLayer(village_lay);
-			}
+			// } else {
+			// 	// province_lay.setInteractive(true);
+			// 	//m.addLayer(province_lay);
+			// 	m.addLayer(province_point);
+			// 	m.removeLayer(district_lay);
+			// 	m.removeLayer(district_point);
+			// 	// m.removeLayer(village_lay);
+			// }
 			
 			// m.invalidateSize();
+            if (m.getZoom() >= 7) {
+                m.addLayer(district_lay);
+                district_lay.bringToFront();
+               // m.removeLayer(village_lay);
+               // if (m.getZoom() >= 9) {
+                  m.addLayer(village_lay);
+                  village_lay.bringToFront();
+              //}
+  
+                //m.removeLayer(village_lay);
+                //set style for province as 
+                //m.addLayer(village_lay);
+                  //village_lay.bringToFront();
+                
+              // } else if (m.getZoom() >= 10) {
+              // 	m.addLayer(village_lay);
+              // 	village_lay.bringToFront();
+              // 	//set style for province as 
+                  
+                  
+              } else {
+                  m.removeLayer(district_lay);
+                  m.removeLayer(village_lay);
+              }
 
   });
 		
