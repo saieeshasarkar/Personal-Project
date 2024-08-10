@@ -43,7 +43,7 @@ var isMobile = false; //initiate as false
 				fadeAnimation: false,
 				zoomAnimation: false,
 				markerZoomAnimation: false,
-				updateWhenZooming: false,
+				updateWhenZooming: true,
 				updateInterval: true
 		});
 
@@ -141,7 +141,6 @@ var isMobile = false; //initiate as false
                   var layerGroup = L.layerGroup([marker, circleMarker]);
                   return(layerGroup);
                 }
-                ,style:styleV
               });
         //     },
         //     onEachFeature:popUp
@@ -173,7 +172,6 @@ var isMobile = false; //initiate as false
                   var layerGroup = L.layerGroup([marker, circleMarker]);
                   return(layerGroup);
                 }
-                ,style:styleV
               }).addTo(m);
                       //     },
         //     onEachFeature:popUp
