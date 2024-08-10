@@ -544,7 +544,7 @@ let autocompleteDatax = {};
             document.querySelector(`.bottom-nav a[data-page="${pageId}"]`).classList.add('active');
 
             if (pageId === 'mapPage') {
-               m.invalidateSize();
+            //    m.invalidateSize();
             }
         }
     </script>
