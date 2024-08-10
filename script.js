@@ -49,12 +49,12 @@ var isMobile = false; //initiate as false
 
 		OpenCartoMap.addTo(m);
 		// window.dispatchEvent(new Event('resize'));  
-		const mapDiv = document.getElementById("map");
-		const resizeObserver = new ResizeObserver(() => {
-			m.invalidateSize();
-		  });
+		// const mapDiv = document.getElementById("map");
+		// const resizeObserver = new ResizeObserver(() => {
+		// 	m.invalidateSize();
+		//   });
 		  
-		  resizeObserver.observe(mapDiv);
+		//   resizeObserver.observe(mapDiv);
 
 		//map title
 		var ctitle = L.control({position: 'topleft'});
@@ -145,7 +145,7 @@ var isMobile = false; //initiate as false
 		// 		}
 		// 	}
 		// });
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX,style:styleP}).addTo(m);
+		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/lo/dataset/0073f53b-4852-4463-ba8d-32bdef6f5476/resource/d6156852-a57e-4908-8db4-768d9efcad21/download/district_pov.geojson",{onEachFeature:popUp, style:styleD});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
 	pointToLayer: function (feature, latlng) {
@@ -251,6 +251,7 @@ var isMobile = false; //initiate as false
 		var name = layer.feature.properties.Province;
 				 autocompleteData[name] = layer;		
 	    }
+
 		};
 		 // Initialize autocomplete
 		//  initializeAutocomplete();
@@ -321,13 +322,15 @@ var isMobile = false; //initiate as false
 			
 		info.addTo(m);
 		m.on('zoomend', function(){
-								//10
+								//10//9
 			if (m.getZoom() >= 9) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			  m.addLayer(district_point);
 			  district_point.bringToFront();
 			  m.removeLayer(province_point);
+			//   province_lay.setInteractive(false);
+			  //m.removeLayer(province_lay);
 			 // m.removeLayer(village_lay);
 			 // if (m.getZoom() >= 9) {
 				// m.addLayer(village_lay);
@@ -343,15 +346,18 @@ var isMobile = false; //initiate as false
 			// 	m.addLayer(village_lay);
 			// 	village_lay.bringToFront();
 			// 	//set style for province as 
-				
-				
+
+
 			} else {
+				// province_lay.setInteractive(true);
+				//m.addLayer(province_lay);
 				m.addLayer(province_point);
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
-				
 				// m.removeLayer(village_lay);
 			}
+			
+			// m.invalidateSize();
 
   });
 //   window.addEventListener('resize', function() {
@@ -360,7 +366,6 @@ var isMobile = false; //initiate as false
 		function onclick(e){
 			var bounds = e.target.getBounds();
 			m.fitBounds(bounds);
-				
 			
 		};
 
