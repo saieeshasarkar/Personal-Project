@@ -67,30 +67,30 @@ var isMobile = false; //initiate as false
 //https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson
 		//var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
 		//var village_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson", {
-		var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
-			pointToLayer: function (feature, latlng) {
-			  var circleMarker = L.circle(latlng, {
-				radius: 0,
-				fillColor: 'red',
-				color: "red",
-				weight: 2
-				//opacity: 0.5,
-				//fillOpacity: 0.5
-			  });
-			  return(circleMarker);
-			},
-			onEachFeature:popUp//function (feature, layer) {
-			//  var out = [];
-			 // layer.bindPopup('Hi There');
-			//   if (feature.properties) {
-			// 	for (var key in feature.properties) {
-			// 	  out.push(key + ": " + feature.properties[key]);
-			// 	}
-			// 	layer.bindPopup(out.join("<br />"), customOptions);
-			//   }
-			//}
-			,style:styleV
-		  });
+		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
+		// 	pointToLayer: function (feature, latlng) {
+		// 	  var circleMarker = L.circle(latlng, {
+		// 		radius: 0,
+		// 		fillColor: 'red',
+		// 		color: "red",
+		// 		weight: 2
+		// 		//opacity: 0.5,
+		// 		//fillOpacity: 0.5
+		// 	  });
+		// 	  return(circleMarker);
+		// 	},
+		// 	onEachFeature:popUp//function (feature, layer) {
+		// 	//  var out = [];
+		// 	 // layer.bindPopup('Hi There');
+		// 	//   if (feature.properties) {
+		// 	// 	for (var key in feature.properties) {
+		// 	// 	  out.push(key + ": " + feature.properties[key]);
+		// 	// 	}
+		// 	// 	layer.bindPopup(out.join("<br />"), customOptions);
+		// 	//   }
+		// 	//}
+		// 	,style:styleV
+		//   });
 
 		// var village_lay = new L.GeoJSON.AJAX("data/village.geojson",{onEachFeature:popUp, style:styleV});
 		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
@@ -152,8 +152,8 @@ var isMobile = false; //initiate as false
 			  district_lay.bringToFront();
 			 // m.removeLayer(village_lay);
 			 // if (m.getZoom() >= 9) {
-				m.addLayer(village_lay);
-				village_lay.bringToFront();
+				// m.addLayer(village_lay);
+				// village_lay.bringToFront();
 			//}
 
 			  //m.removeLayer(village_lay);
@@ -169,7 +169,7 @@ var isMobile = false; //initiate as false
 				
 			} else {
 				m.removeLayer(district_lay);
-				m.removeLayer(village_lay);
+				// m.removeLayer(village_lay);
 			}
 
   });
