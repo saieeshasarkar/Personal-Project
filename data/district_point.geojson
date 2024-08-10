@@ -1,5 +1,6 @@
 {
-    "type": "FeatureCollection",
+"type": "FeatureCollection",
+"name": "district_po",
     "features": [
         {
             "type": "Feature",
