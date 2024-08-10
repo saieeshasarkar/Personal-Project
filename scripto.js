@@ -190,7 +190,7 @@ var isMobile = false; //initiate as false
 			} else {
 				m.removeLayer(district_lay);
                 m.removeLayer(district_point);
-				province_point.bringToFront();
+				// province_point.bringToFront();
                 // m.removeLayer(district_point);
 			}
 
