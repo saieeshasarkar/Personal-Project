@@ -541,76 +541,77 @@ var isMobile = false; //initiate as false
 		function methodFilter(x) { return x.method == this; };
 		function seedFilter(x)   { return x.seed   == this; };		
 
-			
 		//coloring var	
 		var cmap = {"poverty" : cmap_poverty,
-					"density" : cmap_density,
-					"sanitation" : cmap_sanitation,
-					"electricity" : cmap_electricity,
-					"urban" : cmap_urban,
-					"tphone" : cmap_tphone,
-					"water" : cmap_water};
+            "density" : cmap_density,
+            "sanitation" : cmap_sanitation,
+            "electricity" : cmap_electricity,
+            "urban" : cmap_urban,
+            "tphone" : cmap_tphone,
+            "water" : cmap_water};
 
-		//default value and var for legend			
-		var shading = "poverty";
-		var variable = "Poverty_He";	
+//default value and var for legend			
+var shading = "poverty";
+var variable = "Poverty_He";	
 
-		//function to get colors based on coloring on cmap	
-		function getColor(d) {
-			for (var vi in cmap[shading]) {
-				if (d >= cmap[shading][vi].lower) {
-				return cmap[shading][vi].fill;
-				}
-			}
-			return '#BBB';
-		};
+//function to get colors based on coloring on cmap	
+function getColor(d) {
+    for (var vi in cmap[shading]) {
+        if (d >= cmap[shading][vi].lower) {
+        return cmap[shading][vi].fill;
+        }
+    }
+    return '#BBB';
+};
 
-		//function for layer style based on coloring on cmap
-		function styleD(feature) {
-			val = parseFloat(feature.properties[variable]);
-			return {
-				weight: 1.2,
-				opacity: 0.9,
-				color: 'black',
-				fillOpacity: 0.3,
-				fillColor: 'blue'
-				//fillColor: getColor(val)
-			};
-		};
-		function styleV(feature) {
-			val = parseFloat(feature.properties[variable]);
-			return {
-				radius: 1,
-				weight: 1,
-				opacity: 0.9,
-				color: 'red',
-				fillOpacity: 0.65,
-				fillColor: 'red'
-				//fillColor: getColor(val)
-			};
-		};
-		function style(feature) {
-			val = parseFloat(feature.properties[variable]);
-			return {
-				weight: 1.2,
-				opacity: 0.9,
-				color: 'black',
-				fillOpacity: 0.35,
-				fillColor: 'gray'
-				//fillColor: getColor(val)
-			};
-		};
-		function styleP(feature) {
-			val = parseFloat(feature.properties[variable]);
-			return {
-				weight: 3.5,
-				opacity: 0.9,
-				color: 'black',
-				fillOpacity: 0.45,
-				fillColor: 'green'
-				//fillColor: getColor(val)
-			};
-		};
+//function for layer style based on coloring on cmap
+function styleD(feature) {
+    val = parseFloat(feature.properties[variable]);
+    return {
+        weight: 1.2,
+        opacity: 0.9,
+        color: 'black',
+        fillOpacity: 0.3,
+        fillColor: colors[feature.properties.PCode]
+        // fillColor: getRandomColor()
+        //fillColor: 'blue' getColor(val)
+    };
+};
+function styleV(feature) {
+    val = parseFloat(feature.properties[variable]);
+    return {
+        radius: 1,
+        weight: 1,
+        opacity: 0.9,
+        color: 'red',
+        fillOpacity: 0.65,
+        fillColor: 'red'
+        //fillColor: getColor(val)
+    };
+};
+function style(feature) {
+    val = parseFloat(feature.properties[variable]);
+    return {
+        weight: 1.2,
+        opacity: 0.9,
+        color: 'black',
+        fillOpacity: 0.35,
+        fillColor: 'gray'
+        //fillColor: getColor(val)
+    };
+};
+function styleP(feature) {
+    val = parseFloat(feature.properties[variable]);
+    return {
+        weight: 3.5,
+        opacity: 0.9,
+        color: 'black',
+        fillOpacity: 0.45,
+        fillColor: colors[feature.properties.PCode]
+        //fillColor: getRandomColor()
+        //fillColor: 'green' getColor(val)
+    };
+};
 	
 
 		//legend design
