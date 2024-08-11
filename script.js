@@ -373,12 +373,12 @@ var isMobile = false; //initiate as false
 			} else {
 				// province_lay.setInteractive(true);
 				//m.addLayer(province_lay);
-				 m.addLayer(province_point);
-				 province_point.bringToFront();
 				m.removeLayer(district_lay);
 				// m.removeLayer(district_point);
 				m.removeLayer(district_point);
 				
+				m.addLayer(province_point);
+				province_point.bringToFront();
 				// m.removeLayer(village_lay);
 			}
 			
@@ -404,8 +404,8 @@ var isMobile = false; //initiate as false
 				color: '#636363',
 				fillOpacity: 0.4
 			});
-			province_point.bringToFront();
-			district_point.bringToFront();
+			// province_point.bringToFront();
+			// district_point.bringToFront();
 			info.update(layer.feature.properties);
 		};
 
