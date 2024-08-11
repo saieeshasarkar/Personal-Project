@@ -370,6 +370,8 @@ var isMobile = false; //initiate as false
 		};
 
 		function highlightFeature(e) {
+
+			resetHighlight(e);
 			var layer = e.target;
 			//layer.options.previousStyle = layer.options.style;
 			layer.setStyle({
@@ -386,7 +388,7 @@ var isMobile = false; //initiate as false
 			// layer.setStyle(layer.options.previousStyle);
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			village_lay.setStyle(styleV);
+			// village_lay.setStyle(styleV);
 			info.update();
 		};
 
