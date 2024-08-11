@@ -134,6 +134,31 @@ var isMobile = false; //initiate as false
 			    onEachFeature:popUp
 			    ,style:styleV
           });//.addTo(m);
+///////
+var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
+	pointToLayer: function (feature, latlng) {
+	  var circleMarker = L.circle(latlng, {
+		radius: 0,
+		fillColor: 'red',
+		color: "red",
+		weight: 2
+		//opacity: 0.5,
+		//fillOpacity: 0.5
+	  });
+	  return(circleMarker);
+	},
+	onEachFeature:popUp//function (feature, layer) {
+	//  var out = [];
+	 // layer.bindPopup('Hi There');
+	//   if (feature.properties) {
+	// 	for (var key in feature.properties) {
+	// 	  out.push(key + ": " + feature.properties[key]);
+	// 	}
+	// 	layer.bindPopup(out.join("<br />"), customOptions);
+	//   }
+	//}
+	,style:styleV
+  });
 
 		function popUp(f,layer){
 			var out = [];
@@ -185,12 +210,14 @@ var isMobile = false; //initiate as false
 			  district_lay.bringToFront();
             //   m.addLayer(district_point);
             //  district_point.bringToFront();
+			m.addLayer(village_lay);
+			village_lay.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
 				m.removeLayer(district_lay);
-                 m.removeLayer(district_point);
+                 m.removeLayer(village_lay);
 				//  m.addLayer(province_point);
 				// province_point.bringToFront();
                 // m.removeLayer(district_point);
@@ -220,7 +247,7 @@ var isMobile = false; //initiate as false
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			province_point.setStyle(styleV);
+			village_lay.setStyle(styleV);
 			info.update();
 		};
 
