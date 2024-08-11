@@ -404,8 +404,8 @@ var isMobile = false; //initiate as false
 				color: '#636363',
 				fillOpacity: 0.4
 			});
-			province_point.bringToFront();
-			district_point.bringToFront();
+			// province_point.bringToFront();
+			// district_point.bringToFront();
 			info.update(layer.feature.properties);
 		};
 
