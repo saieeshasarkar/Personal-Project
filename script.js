@@ -184,8 +184,8 @@ var isMobile = false; //initiate as false
 	  });
 	  var layerGroup = L.layerGroup([marker, circleMarker]);
 	  return(layerGroup);
-	},
-	onEachFeature:popUp
+	}
+	//,onEachFeature:popUp
 	,style:styleV
   });
 
@@ -219,8 +219,8 @@ var isMobile = false; //initiate as false
 	// return L.circleMarker(latlng, styleV(feature));
 	  var layerGroup = L.layerGroup([marker, circleMarker2]);
 	   return(layerGroup);
-	},
-	onEachFeature:popUp
+	}
+	//,onEachFeature:popUp
 	,style:styleV
   }).addTo(m);
 		/////data.opendevelopmentmekong.net not available
