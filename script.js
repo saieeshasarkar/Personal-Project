@@ -49,10 +49,10 @@ var isMobile = false; //initiate as false
 
 		OpenCartoMap.addTo(m);
 
-		// window.addEventListener('resize', function() {
-		// 	m.invalidateSize();
-		// 	// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
-		// });
+		window.addEventListener('resize', function() {
+			m.invalidateSize();
+			// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
+		});
 		// window.dispatchEvent(new Event('resize'));  
 		// const mapDiv = document.getElementById("map");
 		// const resizeObserver = new ResizeObserver(() => {
@@ -348,6 +348,7 @@ var isMobile = false; //initiate as false
 			//   district_point.bringToFront();
 			//   m.removeLayer(province_point);
 			//   province_lay.setInteractive(false);
+			province_point.hide();
 			m.addLayer(district_point);
 			district_point.bringToFront();
 			  //m.removeLayer(province_lay);
@@ -372,6 +373,7 @@ var isMobile = false; //initiate as false
 				// province_lay.setInteractive(true);
 				//m.addLayer(province_lay);
 				// m.addLayer(province_point);
+				province_point.show();
 				m.removeLayer(district_lay);
 				// m.removeLayer(district_point);
 				m.removeLayer(district_point);
