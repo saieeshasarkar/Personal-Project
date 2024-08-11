@@ -409,7 +409,8 @@ var isMobile = false; //initiate as false
 			// layer.setStyle(layer.options.previousStyle);
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			// province_point.setStyle(styleV);
+			province_point.setStyle(styleV);
+			district_point.setStyle(styleV);
 			// village_lay.setStyle(styleV);
 			info.update();
 		};
