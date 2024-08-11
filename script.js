@@ -48,6 +48,11 @@ var isMobile = false; //initiate as false
 		});
 
 		OpenCartoMap.addTo(m);
+
+		window.addEventListener('resize', function() {
+			m.invalidateSize();
+			// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
+		});
 		// window.dispatchEvent(new Event('resize'));  
 		// const mapDiv = document.getElementById("map");
 		// const resizeObserver = new ResizeObserver(() => {
@@ -212,12 +217,12 @@ var isMobile = false; //initiate as false
 		radius: 0 // Radius in pixels, stays consistent
 	});
 	// return L.circleMarker(latlng, styleV(feature));
-	  var layerGroup = L.layerGroup([marker, circleMarker2]);
+	  var layerGroup = L.layerGroup([marker, circleMarker]);
 	   return(layerGroup);
 	},
 	onEachFeature:popUp
 	,style:styleV
-  });//.addTo(m);
+  }).addTo(m);
 		/////data.opendevelopmentmekong.net not available
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm2_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp, style:styleD});
 		//var province_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm1_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp,style:styleP}).addTo(m);
@@ -336,8 +341,8 @@ var isMobile = false; //initiate as false
 			//   district_point.bringToFront();
 			//   m.removeLayer(province_point);
 			//   province_lay.setInteractive(false);
-			m.addLayer(province_point);
-			province_point.bringToFront();
+			m.addLayer(district_point);
+			district_point.bringToFront();
 			  //m.removeLayer(province_lay);
 			 // m.removeLayer(village_lay);
 			 // if (m.getZoom() >= 9) {
@@ -362,7 +367,7 @@ var isMobile = false; //initiate as false
 				// m.addLayer(province_point);
 				m.removeLayer(district_lay);
 				// m.removeLayer(district_point);
-				m.removeLayer(province_point);
+				m.removeLayer(district_point);
 				// m.removeLayer(village_lay);
 			}
 			
