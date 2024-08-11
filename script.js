@@ -182,7 +182,13 @@ var isMobile = false; //initiate as false
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
-	  var layerGroup = L.layerGroup([marker, circleMarker]);
+	  var circleMarker2 = L.circleMarker(latlng, {
+		color: 'red',
+		fillColor: 'red',
+		weight: 6,
+		radius: 0 // Radius in pixels, stays consistent
+	});
+	  var layerGroup = L.layerGroup([marker, circleMarker2]);
 	  return(layerGroup);
 	}
 	//,onEachFeature:popUp
@@ -214,6 +220,7 @@ var isMobile = false; //initiate as false
 	  var circleMarker2 = L.circleMarker(latlng, {
 		color: 'red',
 		fillColor: 'red',
+		weight: 6,
 		radius: 0 // Radius in pixels, stays consistent
 	});
 	// return L.circleMarker(latlng, styleV(feature));
