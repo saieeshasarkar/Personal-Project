@@ -208,9 +208,8 @@ var isMobile = false; //initiate as false
 	  });
 	  var circleMarker2 = L.circleMarker(latlng, {
 		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 10 // Radius in pixels, stays consistent
+		fillColor: 'red',
+		radius: 0 // Radius in pixels, stays consistent
 	});
 	// return L.circleMarker(latlng, styleV(feature));
 	  var layerGroup = L.layerGroup([marker, circleMarker2]);
