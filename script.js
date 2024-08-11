@@ -648,12 +648,16 @@ var isMobile = false; //initiate as false
 		function styleV(feature) {
 			val = parseFloat(feature.properties[variable]);
 			return {
-				radius: 1,
-				weight: 1,
-				opacity: 0.9,
-				color: 'red',
-				fillOpacity: 0.65,
-				fillColor: 'red'
+				// radius: 1,
+				// weight: 1,
+				// opacity: 0.9,
+				// color: 'red',
+				// fillOpacity: 0.65,
+				// fillColor: 'red'
+				radius: 0,
+		fillColor: 'red',
+		color: "red",
+		weight: 6
 				//fillColor: getColor(val)
 			};
 		};
