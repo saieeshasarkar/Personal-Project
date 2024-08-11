@@ -342,13 +342,14 @@ var isMobile = false; //initiate as false
 		m.on('zoomend', function(){
 								//10//9
 			if (m.getZoom() >= 9) {
+
+				m.removeLayer(province_point);
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 			//   m.addLayer(district_point);
 			//   district_point.bringToFront();
-			//   m.removeLayer(province_point);
 			//   province_lay.setInteractive(false);
-			province_point.hide();
+			// province_point.hide();
 			m.addLayer(district_point);
 			district_point.bringToFront();
 			  //m.removeLayer(province_lay);
@@ -372,11 +373,12 @@ var isMobile = false; //initiate as false
 			} else {
 				// province_lay.setInteractive(true);
 				//m.addLayer(province_lay);
-				// m.addLayer(province_point);
-				province_point.show();
+				 m.addLayer(province_point);
+				 province_point.bringToFront();
 				m.removeLayer(district_lay);
 				// m.removeLayer(district_point);
 				m.removeLayer(district_point);
+				
 				// m.removeLayer(village_lay);
 			}
 			
@@ -402,6 +404,8 @@ var isMobile = false; //initiate as false
 				color: '#636363',
 				fillOpacity: 0.4
 			});
+			province_point.bringToFront();
+			district_point.bringToFront();
 			info.update(layer.feature.properties);
 		};
 
