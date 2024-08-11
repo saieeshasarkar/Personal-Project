@@ -207,7 +207,8 @@ var isMobile = false; //initiate as false
 		//fillOpacity: 0.5
 	  });
 	  var layerGroup = L.layerGroup([marker, circleMarker]);
-	  return(layerGroup);
+	//   return(layerGroup);
+	  return(circleMarker);
 	},
 	onEachFeature:popUp
 	,style:styleV
@@ -330,6 +331,8 @@ var isMobile = false; //initiate as false
 			//   district_point.bringToFront();
 			//   m.removeLayer(province_point);
 			//   province_lay.setInteractive(false);
+			m.addLayer(province_point);
+			province_point.bringToFront();
 			  //m.removeLayer(province_lay);
 			 // m.removeLayer(village_lay);
 			 // if (m.getZoom() >= 9) {
@@ -354,6 +357,7 @@ var isMobile = false; //initiate as false
 				// m.addLayer(province_point);
 				m.removeLayer(district_lay);
 				// m.removeLayer(district_point);
+				m.removeLayer(province_point);
 				// m.removeLayer(village_lay);
 			}
 			
@@ -388,6 +392,7 @@ var isMobile = false; //initiate as false
 			// layer.setStyle(layer.options.previousStyle);
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
+			province_point.setStyle(styleV);
 			// village_lay.setStyle(styleV);
 			info.update();
 		};
