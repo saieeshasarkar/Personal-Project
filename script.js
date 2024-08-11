@@ -217,7 +217,7 @@ var isMobile = false; //initiate as false
 		radius: 0 // Radius in pixels, stays consistent
 	});
 	// return L.circleMarker(latlng, styleV(feature));
-	  var layerGroup = L.layerGroup([marker, circleMarker]);
+	  var layerGroup = L.layerGroup([marker, circleMarker2]);
 	   return(layerGroup);
 	},
 	onEachFeature:popUp
@@ -402,7 +402,7 @@ var isMobile = false; //initiate as false
 			// layer.setStyle(layer.options.previousStyle);
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			province_point.setStyle(styleV);
+			// province_point.setStyle(styleV);
 			// village_lay.setStyle(styleV);
 			info.update();
 		};
