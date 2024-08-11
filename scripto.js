@@ -179,7 +179,7 @@ var isMobile = false; //initiate as false
 		info.addTo(m);
 		m.on('zoomend', function(){
 
-			if (m.getZoom() >= 7) {
+			if (m.getZoom() >= 9) {
 				// m.removeLayer(province_point);
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
