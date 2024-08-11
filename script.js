@@ -41,9 +41,9 @@ var isMobile = false; //initiate as false
 				maxZoom: 20,
 				minZoom: 0,
 				fadeAnimation: false,
-				zoomAnimation: true,
-				markerZoomAnimation: true,
-				updateWhenZooming: true,
+				zoomAnimation: false,
+				markerZoomAnimation: false,
+				updateWhenZooming: false,
 				updateInterval: true
 		});
 
