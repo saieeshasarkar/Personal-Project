@@ -211,7 +211,7 @@ var isMobile = false; //initiate as false
 	},
 	onEachFeature:popUp
 	,style:styleV
-  }).addTo(m);
+  });//.addTo(m);
 		/////data.opendevelopmentmekong.net not available
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm2_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp, style:styleD});
 		//var province_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm1_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp,style:styleP}).addTo(m);
@@ -326,9 +326,9 @@ var isMobile = false; //initiate as false
 			if (m.getZoom() >= 9) {
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
-			  m.addLayer(district_point);
-			  district_point.bringToFront();
-			  m.removeLayer(province_point);
+			//   m.addLayer(district_point);
+			//   district_point.bringToFront();
+			//   m.removeLayer(province_point);
 			//   province_lay.setInteractive(false);
 			  //m.removeLayer(province_lay);
 			 // m.removeLayer(village_lay);
@@ -351,9 +351,9 @@ var isMobile = false; //initiate as false
 			} else {
 				// province_lay.setInteractive(true);
 				//m.addLayer(province_lay);
-				m.addLayer(province_point);
+				// m.addLayer(province_point);
 				m.removeLayer(district_lay);
-				m.removeLayer(district_point);
+				// m.removeLayer(district_point);
 				// m.removeLayer(village_lay);
 			}
 			
