@@ -206,9 +206,15 @@ var isMobile = false; //initiate as false
 		//opacity: 0.5,
 		//fillOpacity: 0.5
 	  });
-	  var layerGroup = L.layerGroup([marker, circleMarker]);
-	//   return(layerGroup);
-	  return(circleMarker);
+	  var circleMarker2 = L.circleMarker(latlng, {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 10 // Radius in pixels, stays consistent
+	});
+	// return L.circleMarker(latlng, styleV(feature));
+	  var layerGroup = L.layerGroup([marker, circleMarker2]);
+	   return(layerGroup);
 	},
 	onEachFeature:popUp
 	,style:styleV
