@@ -51,6 +51,7 @@ var isMobile = false; //initiate as false
 
 		window.addEventListener('resize', function() {
 			m.invalidateSize();
+			m.setView([18.76, 105.90], 6);
 			// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
 		});
 		// window.dispatchEvent(new Event('resize'));  
