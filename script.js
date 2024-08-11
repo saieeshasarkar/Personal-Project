@@ -49,10 +49,10 @@ var isMobile = false; //initiate as false
 
 		OpenCartoMap.addTo(m);
 
-		window.addEventListener('resize', function() {
-			m.invalidateSize();
-			// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
-		});
+		// window.addEventListener('resize', function() {
+		// 	m.invalidateSize();
+		// 	// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
+		// });
 		// window.dispatchEvent(new Event('resize'));  
 		// const mapDiv = document.getElementById("map");
 		// const resizeObserver = new ResizeObserver(() => {
