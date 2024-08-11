@@ -51,7 +51,7 @@ var isMobile = false; //initiate as false
 
 		window.addEventListener('resize', function() {
 			m.invalidateSize();
-			m.setView([18.76, 105.90], 6);
+			// m.setView([18.76, 105.90], 6);
 			// m.setView(latlng, zoomLevel); // Optionally pan and zoom after resizing
 		});
 		// window.dispatchEvent(new Event('resize'));  
@@ -230,7 +230,7 @@ var isMobile = false; //initiate as false
 	}
 	//,onEachFeature:popUp
 	,style:styleV
-  }).addTo(m);
+  });//.addTo(m);
 		/////data.opendevelopmentmekong.net not available
 		//var district_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm2_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp, style:styleD});
 		//var province_lay = new L.GeoJSON.AJAX("https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Alao_admbnda_adm1_ngd_20191112&outputFormat=application%2Fjson",{onEachFeature:popUp,style:styleP}).addTo(m);
