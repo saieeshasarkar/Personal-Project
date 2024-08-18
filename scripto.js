@@ -112,8 +112,8 @@ var isMobile = false; //initiate as false
 			//   }
 		var province_lay;
 		var district_lay; 	 
-		var province_lay2;
-		var district_lay2; 	 
+		// var province_lay2;
+		// var district_lay2; 	 
 		initializeMap();
 		//////////////////////////
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
