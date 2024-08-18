@@ -77,7 +77,7 @@ var isMobile = false; //initiate as false
 			  
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay] = await Promise.all([
-				  [province_lay, district_lay,province_lay2, district_lay2] = await Promise.all([
+				  [province_lay, district_lay] = await Promise.all([
 					province_layp,
 					district_layp
 					// province_layp2,
