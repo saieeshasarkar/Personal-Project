@@ -69,7 +69,7 @@ var isMobile = false; //initiate as false
         
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
-		var province_lay = new L.GeoJSON.AJAX("data/features_p.json",{onEachFeature:popUpX, style:styleP}).addTo(m);
+		var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		
 		// //////////////////////////////////////
 		var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
@@ -103,12 +103,12 @@ var isMobile = false; //initiate as false
           }).addTo(m);
 /////////////////////////////////////////
 
-		var district_lay = new L.GeoJSON.AJAX("data/features_d.json",{onEachFeature:popUpX, style:styleD});
+		var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
 		
 		var district_layx;
 		// var province_lay;
 
-		loadGeoZip("data/features_d.zip").then(geojsonData => {
+		loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
 			 district_layx = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
 		});
 		// loadGeoZip("data/features_p.zip").then(geojsonData => {
