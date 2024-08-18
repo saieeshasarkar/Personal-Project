@@ -331,8 +331,21 @@ var isMobile = false; //initiate as false
 			
 			// m.invalidateSize();
             if (m.getZoom() >= 9) {
-                m.removeLayer(province_point);
-                m.removeLayer(province_lay);
+				if (m.hasLayer(province_point)) {
+					m.removeLayer(province_point);
+					// province_lay.bringToFront();
+					// province_point.bringToFront();
+                    console.log("The layer exists in the map");
+                } else {
+                                      
+                // m.addLayer(province_lay);
+                // m.addLayer(province_point);
+                // province_point.bringToFront();
+                    console.log("The layer does not exist in the map");
+                }
+
+                // m.removeLayer(province_point);
+                // m.removeLayer(province_lay);
                 // province_lay.hide();
                 // province_point.hide();
                 
@@ -361,13 +374,13 @@ var isMobile = false; //initiate as false
               } else {
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
-                if (m.hasLayer(province_lay)) {
+                if (m.hasLayer(province_point)) {
 					province_lay.bringToFront();
 					province_point.bringToFront();
                     console.log("The layer exists in the map");
                 } else {
                                       
-                m.addLayer(province_lay);
+               // m.addLayer(province_lay);
                 m.addLayer(province_point);
                 province_point.bringToFront();
                     console.log("The layer does not exist in the map");
