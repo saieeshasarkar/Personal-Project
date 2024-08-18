@@ -54,7 +54,7 @@ var isMobile = false; //initiate as false
 			var elemsx = document.querySelectorAll('#autocomplete-input');
 			div.innerHTML = labelsn;//holder + logo + labels;
 
-			div.newParent.appendChild(elemsx);
+			div.appendChild(elemsx);
 
 			return div;
 		};
