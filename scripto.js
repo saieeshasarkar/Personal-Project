@@ -157,31 +157,31 @@ var isMobile = false; //initiate as false
 			    ,style:styleV
           }).addTo(m);
 ///////
-var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
-	pointToLayer: function (feature, latlng) {
-	  var circleMarker = L.circle(latlng, {
-		radius: 0,
-		fillColor: 'red',
-		color: "red",
-		weight: 2
-		//opacity: 0.5,
-		//fillOpacity: 0.5
-	  });
-	  return(circleMarker);
-	},
-	onEachFeature:popUp//function (feature, layer) {
-	//  var out = [];
-	 // layer.bindPopup('Hi There');
-	//   if (feature.properties) {
-	// 	for (var key in feature.properties) {
-	// 	  out.push(key + ": " + feature.properties[key]);
-	// 	}
-	// 	layer.bindPopup(out.join("<br />"), customOptions);
-	//   }
-	//}
-	,style:styleV
-  });
-  
+// var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
+// 	pointToLayer: function (feature, latlng) {
+// 	  var circleMarker = L.circle(latlng, {
+// 		radius: 0,
+// 		fillColor: 'red',
+// 		color: "red",
+// 		weight: 2
+// 		//opacity: 0.5,
+// 		//fillOpacity: 0.5
+// 	  });
+// 	  return(circleMarker);
+// 	},
+// 	onEachFeature:popUp//function (feature, layer) {
+// 	//  var out = [];
+// 	 // layer.bindPopup('Hi There');
+// 	//   if (feature.properties) {
+// 	// 	for (var key in feature.properties) {
+// 	// 	  out.push(key + ": " + feature.properties[key]);
+// 	// 	}
+// 	// 	layer.bindPopup(out.join("<br />"), customOptions);
+// 	//   }
+// 	//}
+// 	,style:styleV
+//   });
+ ////// 
   function loadGeoZip(url) {
 	// var response;
 	return new Promise((resolve, reject) => {
@@ -387,7 +387,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 		function resetHighlight(e) {
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
-			village_lay.setStyle(styleV);
+			// village_lay.setStyle(styleV);
 			info.update();
 		};
 
