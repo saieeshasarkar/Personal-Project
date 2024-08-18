@@ -1,4 +1,4 @@
 php_value display_errors On
-Header set Access-Control-Allow-Origin "https://epidengue.rf.gd"
+Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods "GET,POST,OPTIONS"
 Header set Access-Control-Allow-Headers "Content-Type"
