@@ -75,7 +75,7 @@ var isMobile = false; //initiate as false
 			var district_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
 		});
 		loadGeoZip("data/features_p.zip").then(geojsonData => {
-			var province_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(map);
+			var province_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
 		});
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
             pointToLayer: function (feature, latlng) {
