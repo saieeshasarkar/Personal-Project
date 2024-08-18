@@ -75,7 +75,7 @@ var isMobile = false; //initiate as false
 		// var province_lay;
 
 		loadGeoZip("data/features_d.zip").then(geojsonData => {
-			 district_layx = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
+			 district_layx = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
 		});
 		// loadGeoZip("data/features_p.zip").then(geojsonData => {
 		// 	 province_lay = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
