@@ -61,8 +61,8 @@ var isMobile = false; //initiate as false
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
         
-		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUp, style:styleD});
-		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUp, style:styleP}).addTo(m);
+		var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
+		var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 
 	
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
@@ -170,6 +170,33 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 			
 			
 		};
+
+		function popUpX(f,layer){
+		
+			var out = [];
+			layer.on({
+				mouseover: highlightFeature,
+				mouseout: resetHighlight,
+				click: onclick
+			});	
+			// add autocompleteData if true
+			// district_p": "ວຽງຈັນ", "district_1":
+			// province_p
+			if (f.properties.District) {
+				var name = layer.feature.properties.District;
+				 autocompleteData[name + ' District'] = layer;
+            	//districtData[name] = layer;
+
+				
+                // out.push("Name: " + feature.properties.name); // Adjust based on your property name
+                // layer.bindPopup(out.join("<br />"));
+            }else{
+		var name = layer.feature.properties.Province;
+				 autocompleteData[name] = layer;		
+	    }
+
+		};
+
 
 		// Creates an info box on the map
 		var info = L.control({position: 'topright'});
