@@ -651,7 +651,7 @@ var isMobile = false; //initiate as false
 
 //default value and var for legend			
 var shading = "poverty";
-var variable = "Poverty_He";	
+var variable = "PCode";	
 
 //function to get colors based on coloring on cmap	
 function getColor(d) {
