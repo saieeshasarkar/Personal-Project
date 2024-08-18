@@ -96,8 +96,8 @@ var isMobile = false; //initiate as false
                 //fillOpacity: 0.5
               });
               var layerGroup = L.layerGroup([marker, circleMarker]);
-              // return(layerGroup);
-		 return(circleMarker);
+              return(layerGroup);
+		//  return(circleMarker);
             }
 			,onEachFeature:popUp
 			,style:styleV
@@ -130,8 +130,8 @@ var isMobile = false; //initiate as false
                 //fillOpacity: 0.5
               });
               var layerGroup = L.layerGroup([marker, circleMarker]);
-              // return(layerGroup);
-		return(circleMarker);
+              return(layerGroup);
+		// return(circleMarker);
             },
 			    onEachFeature:popUp
 			    ,style:styleV
