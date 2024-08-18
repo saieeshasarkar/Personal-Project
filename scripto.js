@@ -114,8 +114,8 @@ var isMobile = false; //initiate as false
 				  console.error('Error loading one or more GeoJSON layers:', error);
 				}
 			  }
-		const province_lay;
-		const district_lay; 	  
+		var province_lay;
+		var district_lay; 	  
 		initializeMap();
 		//////////////////////////
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
