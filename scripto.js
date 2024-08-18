@@ -66,8 +66,34 @@ var isMobile = false; //initiate as false
 		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
-        
-
+        /////////////
+			  async function initializeMapzip() {
+				try {
+				  // Create promises for each layer
+				loadGeoZip("data/features_p.geojson.zip").then(geojsonData => {
+					province_layp = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP});
+				});
+				loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
+					district_layp = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
+				});
+				//   const province_layp = loadGeoJSON("data/features_p.geojson", popUpX, styleP,true);
+				//   const district_layp = loadGeoJSON("data/features_q.geojson", popUpX, styleD,false);
+				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
+			  
+				  // Await all layers to be loaded
+				//   const [province_lay, district_lay] = await Promise.all([
+				  [province_lay, district_lay] = await Promise.all([
+					province_layp,
+					district_layp
+				  ]);
+			  
+				  console.log('All GeoJSON layers have been loaded and added to the map.');
+				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
+				} catch (error) {
+				  console.error('Error loading one or more GeoJSON layers:', error);
+				}
+			  }
+			  ///////////////
 			  async function initializeMap() {
 				try {
 				  // Create promises for each layer
