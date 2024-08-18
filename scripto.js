@@ -70,9 +70,9 @@ var isMobile = false; //initiate as false
 		// var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		
 		loadGeoZip("data/features_d.zip").then(geojsonData => {
-			var district_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
+			var district_lay = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
 		loadGeoZip("data/features_p.zip").then(geojsonData => {
-			var province_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(map);
+			var province_lay = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(map);
 	
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
             pointToLayer: function (feature, latlng) {
@@ -170,6 +170,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 	//}
 	,style:styleV
   });
+
   function loadGeoZip(zipUrl) {
     return fetch(zipUrl)
         .then(response => response.arrayBuffer()) //response.blob())
