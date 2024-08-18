@@ -68,8 +68,8 @@ var isMobile = false; //initiate as false
         
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
-		var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
-		var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
+		var district_lay = new L.GeoJSON.AJAX("data/features_d.json",{onEachFeature:popUpX, style:styleD});
+		var province_lay = new L.GeoJSON.AJAX("data/features_p.json",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		
 		var district_layx;
 		// var province_lay;
