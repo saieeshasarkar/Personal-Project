@@ -67,9 +67,34 @@ var isMobile = false; //initiate as false
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
         
+
+			  async function initializeMap() {
+				try {
+				  // Create promises for each layer
+				  const province_layp = loadGeoJSON("data/features_p.geojson", popUpX, styleP,true);
+				  const district_layp = loadGeoJSON("data/features_q.geojson", popUpX, styleD,false);
+				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
+			  
+				  // Await all layers to be loaded
+				//   const [province_lay, district_lay] = await Promise.all([
+				  [province_lay, district_lay] = await Promise.all([
+					province_layp,
+					district_layp
+				  ]);
+			  
+				  console.log('All GeoJSON layers have been loaded and added to the map.');
+				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
+				} catch (error) {
+				  console.error('Error loading one or more GeoJSON layers:', error);
+				}
+			  }
+		const province_lay;
+		const district_lay; 	  
+		initializeMap();
+		//////////////////////////
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
-		var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
+		// var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		
 		// //////////////////////////////////////
 		var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
@@ -103,15 +128,15 @@ var isMobile = false; //initiate as false
           }).addTo(m);
 /////////////////////////////////////////
 
-		var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
+		// var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
 		
-		var district_layx;
-		// var province_lay;
+		// var district_layx;
+		// // var province_lay;
 
-		loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
-			 district_layx = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
-		});
-		// loadGeoZip("data/features_p.zip").then(geojsonData => {
+		// loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
+		// 	 district_layx = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
+		// });
+		// // loadGeoZip("data/features_p.zip").then(geojsonData => {
 		// 	 province_lay = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
 		// });
 		// var district_lay = new L.geoJSON(loadGeoZip("data/features_d.zip"),{onEachFeature:popUpX, style:styleD});
@@ -200,6 +225,29 @@ var isMobile = false; //initiate as false
 		.catch(reject);
 	});
   }
+
+  function loadGeoJSON(url, onEachFeature, style, addToMap = true) {
+	return new Promise((resolve, reject) => {
+	  var layer = new L.GeoJSON.AJAX(url, {
+		onEachFeature: onEachFeature,
+		style: style
+	  });
+  
+	  if (addToMap) {
+		layer.addTo(m);  // Add the layer to the map if addToMap is true
+	  }
+  
+	  layer.on('data:loaded', () => {
+		resolve(layer);
+	  });
+  
+	  layer.on('error', (err) => {
+		reject(err);
+	  });
+	});
+  }
+  
+  
 ////////////////////
 //   function loadGeoZip(zipUrl) {
 // 	// var response;
