@@ -189,7 +189,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
 		.then(geoJSONString => {
 		  const geoJSONData = JSON.parse(geoJSONString);
-		  resolve(geoJSONData);
+		  resolve(geoJSONString);
 		})
 		.catch(reject);
 	});
