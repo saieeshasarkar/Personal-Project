@@ -72,7 +72,7 @@ var isMobile = false; //initiate as false
 		var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		
 		var district_layx;
-		var province_lay;
+		// var province_lay;
 
 		loadGeoZip("data/features_d.zip").then(geojsonData => {
 			 district_layx = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
@@ -236,7 +236,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
     //     .catch(error => {
     //         console.error('Error loading or extracting ZIP file:', error);
     //     });
-}
+// }
 /////////////////
 // // Example usage:
 // loadGeoZip("data/test.zip").then(geojsonData => {
