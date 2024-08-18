@@ -306,18 +306,73 @@ var isMobile = false; //initiate as false
 		  .then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
 		  .then(geoJSONString => {
 			const geoJSONData = JSON.parse(geoJSONString);
-			var geojsonFeature = {
-				"type": "Feature",
-				"properties": {
-					"name": "Coors Field",
-					"amenity": "Baseball Stadium",
-					"popupContent": "This is where the Rockies play!"
-				},
-				"geometry": {
-					"type": "Point",
-					"coordinates": [-104.99404, 39.75621]
-				}
-			};
+			
+			var featureCollection = {
+				"type": "FeatureCollection",
+				"features": [
+				  {
+					"type": "Feature",
+					"id": "8",
+					"geometry": {
+					  "type": "Polygon",
+					  "coordinates": [
+						[
+						  [100.72662623, 19.8177287],
+						  [102.42013305, 19.8177287],
+						  [102.42013305, 21.21963192],
+						  [100.72662623, 21.21963192],
+						  [100.72662623, 19.8177287]
+						]
+					  ]
+					},
+					"geometry_name": "the_geom",
+					"properties": {
+					  "Shape_Leng": 6.7013326,
+					  "Shape_Area": 1.0433108,
+					  "Province": "Oudomxai",
+					  "district_p": "ອຸດົມໄຊ",
+					  "PCode": "4"
+					},
+					"bbox": [
+					  100.72662623,
+					  19.8177287,
+					  102.42013305,
+					  21.21963192
+					]
+				  },
+				  {
+					"type": "Feature",
+					"id": "9",
+					"geometry": {
+					  "type": "Polygon",
+					  "coordinates": [
+						[
+						  [100.72662623, 18.8177287],
+						  [102.42013305, 18.8177287],
+						  [102.42013305, 20.21963192],
+						  [100.72662623, 20.21963192],
+						  [100.72662623, 18.8177287]
+						]
+					  ]
+					},
+					"geometry_name": "the_geom",
+					"properties": {
+					  "Shape_Leng": 5.7013326,
+					  "Shape_Area": 0.9433108,
+					  "Province": "Bokeo",
+					  "district_p": "ບໍ່ແກ້ວ",
+					  "PCode": "5"
+					},
+					"bbox": [
+					  100.72662623,
+					  18.8177287,
+					  102.42013305,
+					  20.21963192
+					]
+				  }
+				]
+			  };
+			  
 			var layer = L.geoJSON(geoJSONData, {
 			  onEachFeature: onEachFeature,
 			  style: style
@@ -326,7 +381,6 @@ var isMobile = false; //initiate as false
 			if (addToMap) {
 			  layer.addTo(m); // Add the layer to the map if addToMap is true
 			}
-  
 			resolve(layer); // Resolve with the Leaflet layer
 		  })
 		  .catch(reject);
