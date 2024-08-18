@@ -249,8 +249,8 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 
 			if (m.getZoom() >= 9) {
 				// m.removeLayer(province_point);
-				// province_point.hide();
-				province_point.setInteractive(false);
+				province_point.hide();
+				// province_point.setInteractive(true);
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 
@@ -268,9 +268,9 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 				
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
-
+				province_point.show();
 				// m.addLayer(province_point);
-				province_point.setInteractive(true);
+				// province_point.setInteractive(false);
 				scaleLayer(province_lay, m);
 				scaleLayer(province_point, m);
                  // m.removeLayer(village_lay);
