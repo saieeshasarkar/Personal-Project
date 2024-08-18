@@ -67,10 +67,10 @@ var isMobile = false; //initiate as false
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
         /////////////
-			  async function initializeMapzip() {
+			  async function initializeMap() {
 				try {
-				  const province_layp = loadGeoJSON("data/features_p.geojson.zip", popUpX, styleP,true);
-				  const district_layp = loadGeoJSON("data/features_d.geojson.zip", popUpX, styleD,false);
+				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,true);
+				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
 			  
 				  // Await all layers to be loaded
@@ -86,29 +86,29 @@ var isMobile = false; //initiate as false
 				}
 			  }
 			  ///////////////
-			  async function initializeMap() {
-				try {
-				  // Create promises for each layer
-				  const province_layp = loadGeoZip("data/features_p.geojson", popUpX, styleP,true);
-				  const district_layp = loadGeoZip("data/features_d.geojson", popUpX, styleD,false);
-				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
+			//   async function initializeMap() {
+			// 	try {
+			// 	  // Create promises for each layer
+			// 	  const province_layp = loadGeoZip("data/features_p.geojson", popUpX, styleP,true);
+			// 	  const district_layp = loadGeoZip("data/features_d.geojson", popUpX, styleD,false);
+			// 	//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
 			  
-				  // Await all layers to be loaded
-				//   const [province_lay, district_lay] = await Promise.all([
-				  [province_lay, district_lay] = await Promise.all([
-					province_layp,
-					district_layp
-				  ]);
+			// 	  // Await all layers to be loaded
+			// 	//   const [province_lay, district_lay] = await Promise.all([
+			// 	  [province_lay, district_lay] = await Promise.all([
+			// 		province_layp,
+			// 		district_layp
+			// 	  ]);
 			  
-				  console.log('All GeoJSON layers have been loaded and added to the map.');
-				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
-				} catch (error) {
-				  console.error('Error loading one or more GeoJSON layers:', error);
-				}
-			  }
+			// 	  console.log('All GeoJSON layers have been loaded and added to the map.');
+			// 	  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
+			// 	} catch (error) {
+			// 	  console.error('Error loading one or more GeoJSON layers:', error);
+			// 	}
+			//   }
 		var province_lay;
 		var district_lay; 	  
-		initializeMapzip();
+		initializeMap();
 		//////////////////////////
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
@@ -243,50 +243,50 @@ var isMobile = false; //initiate as false
 // 		.catch(reject);
 // 	});
 //   }
-function loadGeoZip(url, onEachFeature, style, addToMap = true) {
-	return new Promise((resolve, reject) => {
-	  fetch(url)
-		.then(response => response.blob())
-		.then(blob => JSZip.loadAsync(blob))
-		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
-		.then(geoJSONString => {
-		  const geoJSONData = JSON.parse(geoJSONString);
+// function loadGeoZip(url, onEachFeature, style, addToMap = true) {
+// 	return new Promise((resolve, reject) => {
+// 	  fetch(url)
+// 		.then(response => response.blob())
+// 		.then(blob => JSZip.loadAsync(blob))
+// 		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
+// 		.then(geoJSONString => {
+// 		  const geoJSONData = JSON.parse(geoJSONString);
   
-		  var layer = L.geoJSON(geoJSONData, {
-			onEachFeature: onEachFeature,
-			style: style
-		  });
+// 		  var layer = L.geoJSON(geoJSONData, {
+// 			onEachFeature: onEachFeature,
+// 			style: style
+// 		  });
   
-		  if (addToMap) {
-			layer.addTo(m); // Add the layer to the map if addToMap is true
-		  }
+// 		  if (addToMap) {
+// 			layer.addTo(m); // Add the layer to the map if addToMap is true
+// 		  }
   
-		  resolve(layer); // Resolve with the Leaflet layer
-		})
-		.catch(reject);
-	});
-  }
+// 		  resolve(layer); // Resolve with the Leaflet layer
+// 		})
+// 		.catch(reject);
+// 	});
+//   }
 
-  function loadGeoJSON(url, onEachFeature, style, addToMap = true) {
-	return new Promise((resolve, reject) => {
-	  var layer = new L.GeoJSON.AJAX(url, {
-		onEachFeature: onEachFeature,
-		style: style
-	  });
+//   function loadGeoJSON(url, onEachFeature, style, addToMap = true) {
+// 	return new Promise((resolve, reject) => {
+// 	  var layer = new L.GeoJSON.AJAX(url, {
+// 		onEachFeature: onEachFeature,
+// 		style: style
+// 	  });
   
-	  if (addToMap) {
-		layer.addTo(m);  // Add the layer to the map if addToMap is true
-	  }
+// 	  if (addToMap) {
+// 		layer.addTo(m);  // Add the layer to the map if addToMap is true
+// 	  }
   
-	  layer.on('data:loaded', () => {
-		resolve(layer);
-	  });
+// 	  layer.on('data:loaded', () => {
+// 		resolve(layer);
+// 	  });
   
-	  layer.on('error', (err) => {
-		reject(err);
-	  });
-	});
-  }
+// 	  layer.on('error', (err) => {
+// 		reject(err);
+// 	  });
+// 	});
+//   }
   
   function loadGeoData(url, onEachFeature, style, addToMap = true) {
 	return new Promise((resolve, reject) => {
