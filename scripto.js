@@ -68,8 +68,41 @@ var isMobile = false; //initiate as false
         
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
-		var district_lay = new L.GeoJSON.AJAX("data/features_d.json",{onEachFeature:popUpX, style:styleD});
 		var province_lay = new L.GeoJSON.AJAX("data/features_p.json",{onEachFeature:popUpX, style:styleP}).addTo(m);
+		
+		// //////////////////////////////////////
+		var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
+            pointToLayer: function (feature, latlng) {
+                var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
+                try {
+                  total = counts[feature.properties.pcode]["total"]; 
+                } catch (error) {
+                }
+                // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                      className: 'number-icon',
+                      html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
+                    })
+                  });
+              var circleMarker = L.circle(latlng, {
+                radius: 0,
+                fillColor: 'red',
+                color: "red",
+                weight: 6
+                //opacity: 0.5,
+                //fillOpacity: 0.5
+              });
+              var layerGroup = L.layerGroup([marker, circleMarker]);
+              return(layerGroup);
+		// return(circleMarker);
+            },
+			    onEachFeature:popUp
+			    ,style:styleV
+          }).addTo(m);
+/////////////////////////////////////////
+
+		var district_lay = new L.GeoJSON.AJAX("data/features_d.json",{onEachFeature:popUpX, style:styleD});
 		
 		var district_layx;
 		// var province_lay;
@@ -126,37 +159,7 @@ var isMobile = false; //initiate as false
     //     onEachFeature:popUp
     //     ,style:styleV
     //   });
-// //////////////////////////////////////
-          var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
-            pointToLayer: function (feature, latlng) {
-                var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
-                try {
-                  total = counts[feature.properties.pcode]["total"]; 
-                } catch (error) {
-                }
-                // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
-                var marker = L.marker(latlng, {
-                    icon: L.divIcon({
-                      className: 'number-icon',
-                      html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
-                    })
-                  });
-              var circleMarker = L.circle(latlng, {
-                radius: 0,
-                fillColor: 'red',
-                color: "red",
-                weight: 6
-                //opacity: 0.5,
-                //fillOpacity: 0.5
-              });
-              var layerGroup = L.layerGroup([marker, circleMarker]);
-              return(layerGroup);
-		// return(circleMarker);
-            },
-			    onEachFeature:popUp
-			    ,style:styleV
-          }).addTo(m);
-///////
+////////////////////
 // var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 // 	pointToLayer: function (feature, latlng) {
 // 	  var circleMarker = L.circle(latlng, {
