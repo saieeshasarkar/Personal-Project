@@ -248,13 +248,14 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 9) {
-				// m.removeLayer(province_point);
+				m.removeLayer(province_point);
+				
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 
               m.addLayer(district_point);
              district_point.bringToFront();
-
+			 
 			 scaleLayer(district_lay, m);
 			scaleLayer(district_point, m);
 			// m.addLayer(village_lay);
