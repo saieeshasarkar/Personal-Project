@@ -306,6 +306,18 @@ var isMobile = false; //initiate as false
 		  .then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
 		  .then(geoJSONString => {
 			const geoJSONData = JSON.parse(geoJSONString);
+			var geojsonFeature = {
+				"type": "Feature",
+				"properties": {
+					"name": "Coors Field",
+					"amenity": "Baseball Stadium",
+					"popupContent": "This is where the Rockies play!"
+				},
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-104.99404, 39.75621]
+				}
+			};
 			var layer = L.geoJSON(geoJSONData, {
 			  onEachFeature: onEachFeature,
 			  style: style
