@@ -288,6 +288,54 @@ function loadGeoZip(url, onEachFeature, style, addToMap = true) {
 	});
   }
   
+  function loadGeoData(url, onEachFeature, style, addToMap = true) {
+	return new Promise((resolve, reject) => {
+	  const fileExtension = url.split('.').pop().toLowerCase();
+  
+	  if (fileExtension === 'zip') {
+		// Handle ZIP file
+		fetch(url)
+		  .then(response => response.blob())
+		  .then(blob => JSZip.loadAsync(blob))
+		  .then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
+		  .then(geoJSONString => {
+			const geoJSONData = JSON.parse(geoJSONString);
+			var layer = L.geoJSON(geoJSONData, {
+			  onEachFeature: onEachFeature,
+			  style: style
+			});
+  
+			if (addToMap) {
+			  layer.addTo(m); // Add the layer to the map if addToMap is true
+			}
+  
+			resolve(layer); // Resolve with the Leaflet layer
+		  })
+		  .catch(reject);
+	  } else if (fileExtension === 'geojson' || fileExtension === 'json') {
+		// Handle GeoJSON file
+		var layer = new L.GeoJSON.AJAX(url, {
+		  onEachFeature: onEachFeature,
+		  style: style
+		});
+  
+		if (addToMap) {
+		  layer.addTo(m); // Add the layer to the map if addToMap is true
+		}
+  
+		layer.on('data:loaded', () => {
+		  resolve(layer); // Resolve with the Leaflet layer
+		});
+  
+		layer.on('error', (err) => {
+		  reject(err);
+		});
+	  } else {
+		reject(new Error('Unsupported file type'));
+	  }
+	});
+  }
+  
   
 ////////////////////
 //   function loadGeoZip(zipUrl) {
