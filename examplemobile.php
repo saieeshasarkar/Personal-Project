@@ -102,16 +102,22 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> -->
 
 	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
+		body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100vw;
+}
 		.leaflet-container {
 			height: 400px;
 			width: 600px;
 			max-width: 100%;
 			max-height: 100%;
 		}
+
+		
 	</style>
 
 	<style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
