@@ -71,12 +71,19 @@ var isMobile = false; //initiate as false
 		// var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
 		
+		var district_lay;
+		var province_lay;
+
 		loadGeoZip("data/features_d.zip").then(geojsonData => {
-			var district_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
+			 district_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
 		});
 		loadGeoZip("data/features_p.zip").then(geojsonData => {
-			var province_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
+			 province_lay = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
 		});
+		// var district_lay = new L.geoJSON(loadGeoZip("data/features_d.zip"),{onEachFeature:popUpX, style:styleD});
+
+		// var province_lay = new L.geoJSON(loadGeoZip("data/features_p.zip"),{onEachFeature:popUpX, style:styleP}).addTo(m);
+
 		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
             pointToLayer: function (feature, latlng) {
                 let key1ForKey2 = [];
@@ -174,19 +181,33 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 	,style:styleV
   });
   
-  function loadGeoZip(zipUrl) {
-	return fetch(zipUrl)
-    .then(response => response.blob())
-    .then(blob => {
-      JSZip.loadAsync(blob)
-        .then(zip => {
-          return zip.file(Object.keys(zip.files)[0]).async('string');
-        })
-        .then(geoJSONString => {
-          const geoJSONData = JSON.parse(geoJSONString);
-          return geoJSONData;
-        });
-    });
+  function loadZippedGeoJSON(url) {
+	return new Promise((resolve, reject) => {
+	  fetch(url)
+		.then(response => response.blob())
+		.then(blob => JSZip.loadAsync(blob))
+		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
+		.then(geoJSONString => {
+		  const geoJSONData = JSON.parse(geoJSONString);
+		  resolve(geoJSONData);
+		})
+		.catch(reject);
+	});
+  }
+////////////////////
+//   function loadGeoZip(zipUrl) {
+// 	return fetch(zipUrl)
+//     .then(response => response.blob())
+//     .then(blob => {
+//       JSZip.loadAsync(blob)
+//         .then(zip => {
+//           return zip.file(Object.keys(zip.files)[0]).async('string');
+//         })
+//         .then(geoJSONString => {
+//           const geoJSONData = JSON.parse(geoJSONString);
+//           return geoJSONData;
+//         });
+//     });
     // return fetch(zipUrl)
     //     .then(response => response.arrayBuffer()) //response.blob())
     //     .then(data => { //blob
@@ -205,8 +226,8 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
     //     .catch(error => {
     //         console.error('Error loading or extracting ZIP file:', error);
     //     });
-}
-
+//}
+/////////////////
 // // Example usage:
 // loadGeoZip("data/test.zip").then(geojsonData => {
 //     var district_lay = L.geoJSON(geojsonData).addTo(map);
