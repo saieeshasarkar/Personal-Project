@@ -69,6 +69,8 @@ var isMobile = false; //initiate as false
         /////////////
 			  async function initializeMapzip() {
 				try {
+				let province_layp;
+				let district_layp; 
 				  // Create promises for each layer
 				loadGeoZip("data/features_p.geojson.zip").then(geojsonData => {
 					province_layp = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP});
