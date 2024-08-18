@@ -172,8 +172,8 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
   });
   function loadGeoZip(zipUrl) {
     return fetch(zipUrl)
-        .then(response => response.arrayBuffer())
-        .then(data => {
+        .then(response => response.arrayBuffer()) //response.blob())
+        .then(data => { //blob
             // Load the ZIP file using JSZip
             return JSZip.loadAsync(data);
         })
