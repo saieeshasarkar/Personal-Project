@@ -98,8 +98,8 @@ var isMobile = false; //initiate as false
               var layerGroup = L.layerGroup([marker, circleMarker]);
               return(layerGroup);
             }
-			// ,onEachFeature:popUp
-			// ,style:styleV
+			,onEachFeature:popUp
+			,style:styleV
           });
     //     },
     //     onEachFeature:popUp
@@ -133,7 +133,7 @@ var isMobile = false; //initiate as false
             },
 			    onEachFeature:popUp
 			    ,style:styleV
-          });//.addTo(m);
+          }).addTo(m);
 ///////
 var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 	pointToLayer: function (feature, latlng) {
@@ -208,16 +208,17 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 				// m.removeLayer(province_point);
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
-            //   m.addLayer(district_point);
-            //  district_point.bringToFront();
-			m.addLayer(village_lay);
-			village_lay.bringToFront();
+              m.addLayer(district_point);
+             district_point.bringToFront();
+			// m.addLayer(village_lay);
+			// village_lay.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
 				m.removeLayer(district_lay);
-                 m.removeLayer(village_lay);
+				m.removeLayer(district_point);
+                 // m.removeLayer(village_lay);
 				//  m.addLayer(province_point);
 				// province_point.bringToFront();
                 // m.removeLayer(district_point);
