@@ -204,7 +204,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 //   }
 ////////////////////
   function loadGeoZip(zipUrl) {
-	var response;
+	// var response;
 	return fetch(zipUrl)
     .then(response => response.blob())
     .then(blob => {
@@ -213,15 +213,15 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
           return zip.file(Object.keys(zip.files)[0]).async('string');
         })
         .then(geoJSONString => {
-			if (window.JSON) {
-				response = JSON.parse(geoJSONString);
-			} else if (options.evil) {
-				response = eval('(' + geoJSONString + ')');
-			}
-			resolve(response);
+			// if (window.JSON) {
+			// 	response = JSON.parse(geoJSONString);
+			// } else if (options.evil) {
+			// 	response = eval('(' + geoJSONString + ')');
+			// }
+			// resolve(response);
 
-        //   const geoJSONData = JSON.parse(geoJSONString);
-        //   return geoJSONData;
+          const geoJSONData = JSON.parse(geoJSONString);
+          return geoJSONData;
         });
     });
     // return fetch(zipUrl)
