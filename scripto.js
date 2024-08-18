@@ -180,7 +180,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
     .then(blob => {
       JSZip.loadAsync(blob)
         .then(zip => {
-          return zip.file('data.geojson').async('string');
+          return zip.file(Object.keys(zip.files)[0]).async('string');
         })
         .then(geoJSONString => {
           const geoJSONData = JSON.parse(geoJSONString);
