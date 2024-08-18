@@ -69,17 +69,8 @@ var isMobile = false; //initiate as false
         /////////////
 			  async function initializeMapzip() {
 				try {
-				let province_layp;
-				let district_layp; 
-				  // Create promises for each layer
-				loadGeoZip("data/features_p.geojson.zip").then(geojsonData => {
-					province_layp = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP});
-				});
-				loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
-					district_layp = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
-				});
-				//   const province_layp = loadGeoJSON("data/features_p.geojson", popUpX, styleP,true);
-				//   const district_layp = loadGeoJSON("data/features_q.geojson", popUpX, styleD,false);
+				  const province_layp = loadGeoJSON("data/features_p.geojson.zip", popUpX, styleP,true);
+				  const district_layp = loadGeoJSON("data/features_d.geojson.zip", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
 			  
 				  // Await all layers to be loaded
@@ -88,7 +79,6 @@ var isMobile = false; //initiate as false
 					province_layp,
 					district_layp
 				  ]);
-			  
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
 				} catch (error) {
@@ -239,8 +229,21 @@ var isMobile = false; //initiate as false
 // 	,style:styleV
 //   });
  ////// 
-  function loadGeoZip(url) {
-	// var response;
+//   function loadGeoZip(url) {
+// 	// var response;
+// 	return new Promise((resolve, reject) => {
+// 	  fetch(url)
+// 		.then(response => response.blob())
+// 		.then(blob => JSZip.loadAsync(blob))
+// 		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
+// 		.then(geoJSONString => {
+// 		  const geoJSONData = JSON.parse(geoJSONString);
+// 		  resolve(geoJSONData);
+// 		})
+// 		.catch(reject);
+// 	});
+//   }
+function loadGeoZip(url, onEachFeature, style, addToMap = true) {
 	return new Promise((resolve, reject) => {
 	  fetch(url)
 		.then(response => response.blob())
@@ -248,7 +251,17 @@ var isMobile = false; //initiate as false
 		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
 		.then(geoJSONString => {
 		  const geoJSONData = JSON.parse(geoJSONString);
-		  resolve(geoJSONData);
+  
+		  var layer = L.geoJSON(geoJSONData, {
+			onEachFeature: onEachFeature,
+			style: style
+		  });
+  
+		  if (addToMap) {
+			layer.addTo(m); // Add the layer to the map if addToMap is true
+		  }
+  
+		  resolve(layer); // Resolve with the Leaflet layer
 		})
 		.catch(reject);
 	});
