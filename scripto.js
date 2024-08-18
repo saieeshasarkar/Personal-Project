@@ -191,10 +191,10 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
         });
 }
 
-// Example usage:
-loadGeoZip("data/test.zip").then(geojsonData => {
-    var district_lay = L.geoJSON(geojsonData).addTo(map);
-});
+// // Example usage:
+// loadGeoZip("data/test.zip").then(geojsonData => {
+//     var district_lay = L.geoJSON(geojsonData).addTo(map);
+// });
 
 
       // Scaling function
