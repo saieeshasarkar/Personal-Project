@@ -98,7 +98,7 @@ var isMobile = false; //initiate as false
 				try {
 				  // Create promises for each layer
 				  const province_layp = loadGeoJSON("data/features_p.geojson", popUpX, styleP,true);
-				  const district_layp = loadGeoJSON("data/features_q.geojson", popUpX, styleD,false);
+				  const district_layp = loadGeoJSON("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
 			  
 				  // Await all layers to be loaded
