@@ -120,7 +120,7 @@ html, body, #map {
 		
 	</style>
 
-	<style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
+	<!-- <style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style> -->
 </head>
 <body>
 
