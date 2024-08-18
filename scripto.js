@@ -50,8 +50,8 @@ var isMobile = false; //initiate as false
 			//holder ='<table><tr>' 
 			//logo = '<td rowspan=2><img class="logo" src="logo_laos.png"></img></td>';
 			//labels = "<td><h4>Poverty in Lao PDR</h4></td></tr><tr><td><p>Percentage of people in poverty by province/district: 2015</p></td></tr></table>";
-			labelsn = "<h4>Dangue in Lao PDR</h4><p><div class='input-field col s12'><input type='text' id='autocomplete-input' class='autocomplete'><label for='autocomplete-input'>Search for a district or province</label></div>";//<p>Percentage of people in poverty by province/district: 2015</p>";
-			var elemsx = document.querySelectorAll('#autocomplete-input');
+			labelsn = "<h4>Dangue in Lao PDR</h4><p><div class='input-field col s12'><input type='text' id='autocomplete-inputx' class='autocomplete'><label for='autocomplete-inpuxt'>Search for a district or province</label></div>";//<p>Percentage of people in poverty by province/district: 2015</p>";
+			// var elemsx = document.querySelectorAll('#autocomplete-input');
 			div.innerHTML = labelsn;//holder + logo + labels;
 
 			// elemsx.forEach(function(element) {
