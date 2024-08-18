@@ -175,36 +175,36 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
   });
   
   function loadGeoZip(zipUrl) {
-	return fetch(url)
-    .then(response => response.blob())
-    .then(blob => {
-      JSZip.loadAsync(blob)
-        .then(zip => {
-          return zip.file('data.geojson').async('string');
-        })
-        .then(geoJSONString => {
-          const geoJSONData = JSON.parse(geoJSONString);
-          return geoJSONData;
-        });
-    });
-    // return fetch(zipUrl)
-    //     .then(response => response.arrayBuffer()) //response.blob())
-    //     .then(data => { //blob
-    //         // Load the ZIP file using JSZip
-    //         return JSZip.loadAsync(data);
-    //     })
+	// return fetch(url)
+    // .then(response => response.blob())
+    // .then(blob => {
+    //   JSZip.loadAsync(blob)
     //     .then(zip => {
-    //         // Assume there's only one file inside the ZIP
-    //         // You can modify this if the ZIP contains multiple files
-    //         return zip.file(Object.keys(zip.files)[0]).async("text");
+    //       return zip.file('data.geojson').async('string');
     //     })
-    //     .then(text => {
-    //         // Parse and return the extracted GeoJSON data
-    //         return JSON.parse(text);
-    //     })
-    //     .catch(error => {
-    //         console.error('Error loading or extracting ZIP file:', error);
+    //     .then(geoJSONString => {
+    //       const geoJSONData = JSON.parse(geoJSONString);
+    //       return geoJSONData;
     //     });
+    // });
+    return fetch(zipUrl)
+        .then(response => response.arrayBuffer()) //response.blob())
+        .then(data => { //blob
+            // Load the ZIP file using JSZip
+            return JSZip.loadAsync(data);
+        })
+        .then(zip => {
+            // Assume there's only one file inside the ZIP
+            // You can modify this if the ZIP contains multiple files
+            return zip.file(Object.keys(zip.files)[0]).async("text");
+        })
+        .then(text => {
+            // Parse and return the extracted GeoJSON data
+            return JSON.parse(text);
+        })
+        .catch(error => {
+            console.error('Error loading or extracting ZIP file:', error);
+        });
 }
 
 // // Example usage:
