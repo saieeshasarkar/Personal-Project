@@ -249,7 +249,7 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 
 			if (m.getZoom() >= 9) {
 				m.removeLayer(province_point);
-				
+
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
 
@@ -267,6 +267,8 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 				
 				m.removeLayer(district_lay);
 				m.removeLayer(district_point);
+				
+				m.addLayer(province_point);
 
 				scaleLayer(province_lay, m);
 				scaleLayer(province_point, m);
