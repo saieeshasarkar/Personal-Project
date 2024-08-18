@@ -182,14 +182,22 @@ var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
   });
   
   function loadGeoZip(url) {
+	var response;
 	return new Promise((resolve, reject) => {
 	  fetch(url)
 		.then(response => response.blob())
 		.then(blob => JSZip.loadAsync(blob))
 		.then(zip => zip.file(Object.keys(zip.files)[0]).async('string'))
 		.then(geoJSONString => {
-		  const geoJSONData = JSON.parse(geoJSONString);
-		  resolve(geoJSONData);
+			if (window.JSON) {
+				response = JSON.parse(geoJSONString);
+			} else if (options.evil) {
+				response = eval('(' + geoJSONString + ')');
+			}
+			resolve(response);
+
+		//   const geoJSONData = JSON.parse(geoJSONString);
+		//   resolve(geoJSONData);
 		})
 		.catch(reject);
 	});
