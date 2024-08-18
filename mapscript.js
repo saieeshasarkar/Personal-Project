@@ -127,7 +127,7 @@ var isMobile = false; //initiate as false
 		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
-			  var province_lay = new L.GeoJSON.AJAX("data/features_p.json",{onEachFeature:popUpX,style:styleP}).addTo(m);
+			  var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX,style:styleP}).addTo(m);
 			  /////////////
 			  var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
                 pointToLayer: function (feature, latlng) {
@@ -156,7 +156,7 @@ var isMobile = false; //initiate as false
                 }
               }).addTo(m);
 			  /////////////
-              var district_lay = new L.GeoJSON.AJAX("data/features_d.json",{onEachFeature:popUpX, style:styleD})
+              var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD})
             /////////////////////////
               var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
                 pointToLayer: function (feature, latlng) {
