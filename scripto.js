@@ -39090,11 +39090,12 @@ var isMobile = false; //initiate as false
 			  onEachFeature: onEachFeature,
 			  style: style
 			});
-  
-			if (addToMap) {
-			  layer.addTo(m); // Add the layer to the map if addToMap is true
-			}
+			
 			resolve(layer); // Resolve with the Leaflet layer
+			if (addToMap) {
+				layer.addTo(m); // Add the layer to the map if addToMap is true
+			  }
+			  
 		  })
 		  .catch(reject);
 	  } else if (fileExtension === 'geojson' || fileExtension === 'json') {
