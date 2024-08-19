@@ -123,8 +123,8 @@ var isMobile = false; //initiate as false
 			// 	  console.error('Error loading one or more GeoJSON layers:', error);
 			// 	}
 			//   }
-		var province_lay;
-		var district_lay; 	 
+		var province_lay= new L.geoJson();
+		var district_lay= new L.geoJson(); 	 
 		var province_lay2;
 		var district_lay2; 	 
 		initializeMap();
@@ -39029,14 +39029,22 @@ var isMobile = false; //initiate as false
 		  .then(geoJSONString => {
 			const geoJSONData = JSON.parse(geoJSONString);
 			
-			// geoJSONData.features.forEach(function(feature) {
-   			//  district_boundary.addData(feature);
-			// });
-
-			var layer = new L.geoJSON(geoJSONData, {
-			  onEachFeature: onEachFeature,
-			  style: style
+			var layer = new L.geoJson();
+			geoJSONData.features.forEach(function(feature) {
+   			 layer.addData(feature);
 			});
+			var layer = new L.geoJSON(geoJSONData, {
+				filter: function(feature, layer) {
+					return onEachFeature;
+				},
+				style: style
+			});//.addTo(district_boundary);
+			
+
+			// var layer = new L.geoJSON(geoJSONData, {
+			//   onEachFeature: onEachFeature,
+			//   style: style
+			// });
 			
 			resolve(layer); // Resolve with the Leaflet layer
 			if (addToMap) {
