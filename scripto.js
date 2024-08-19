@@ -68,7 +68,7 @@ var isMobile = false; //initiate as false
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
 
 			  var testja= L.geoJson(features_p, {style: styleP}).addTo(m);
-			  var testjax=	L.geoJson(features_d, {style: styleD}).addTo(m);
+			  var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
         /////////////
 			  async function initializeMap() {
 				try {
