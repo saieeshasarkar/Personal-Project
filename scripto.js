@@ -39033,20 +39033,34 @@ var isMobile = false; //initiate as false
 			// geoJSONData.features.forEach(function(feature) {
    			//  layer.addData(feature);
 			// });
-			var layer = new L.geoJSON(geoJSONData, {
-				filter: function(feature, layer) {
-					return onEachFeature;
-				},
-				style: style
-				// style: function(feature) {
-				//	return style
-				// 	switch (feature.properties.party) {
-				// 		case 'Republican': return {color: "#ff0000"};
-				// 		case 'Democrat':   return {color: "#0000ff"};
-				// 	}
-				// }
-			});//.addTo(district_boundary);
+			// var layer = new L.geoJSON(geoJSONData, {
+			// 	filter: function(feature, layer) {
+			// 		return onEachFeature;
+			// 	},
+			// 	style: style
+			// 	// style: function(feature) {
+			// 	//	return style
+			// 	// 	switch (feature.properties.party) {
+			// 	// 		case 'Republican': return {color: "#ff0000"};
+			// 	// 		case 'Democrat':   return {color: "#0000ff"};
+			// 	// 	}
+			// 	// }
+			// });//.addTo(district_boundary);
 			
+			var layerx = L.geoJSON(geoJSONData, {
+				onEachFeature: onEachFeature,
+				style: style
+			}).eachLayer(function(layer) {
+				district_boundary.addData(layer.feature);
+				district_boundary.addLayer(layer);
+			});
+
+			var layer = L.geoJSON(district_boundary.geoJSON, {
+				onEachFeature: onEachFeature,
+				style: style
+			});
+
+
 
 			// var layer = new L.geoJSON(geoJSONData, {
 			//   onEachFeature: onEachFeature,
