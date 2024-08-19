@@ -97,7 +97,6 @@ var isMobile = false; //initiate as false
 				  ]);
 
 				  
-	    		var testxxx = layerxxx;
 					/////////////////////////	/////////////////////////	/////////////////////////
 				province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
             	pointToLayer: function (feature, latlng) {
