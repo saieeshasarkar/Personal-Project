@@ -66,9 +66,13 @@ var isMobile = false; //initiate as false
 		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
+
+			  var testja= L.geoJson(features_p, {style: styleP}).addTo(m);
+			  var testjax=	L.geoJson(features_d, {style: styleD}).addTo(m);
         /////////////
 			  async function initializeMap() {
 				try {
+					
 				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,false);
 				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
 				  const province_layp2 = loadGeoData("data/features_p.geojson", popUpX, styleP,false);

@@ -22,7 +22,10 @@ $jsonData = json_encode($code);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-	
+
+    <script src="features_p.geojson.zip" type="text/javascript"></script>
+    <script src="features_d.geojson.zip" type="text/javascript"></script>
+
 	<script type="text/javascript" src="scripts/leaflet.ajax.js"></script>
 	
 	<script src="scripts/spin.js"></script>
