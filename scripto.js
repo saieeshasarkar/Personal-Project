@@ -39272,9 +39272,9 @@ var isMobile = false; //initiate as false
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 9) {
-				if (m.hasLayer(province_point)) {
-					m.removeLayer(province_point);
-				}
+				// if (m.hasLayer(province_point)) {
+				// 	m.removeLayer(province_point);
+				// }
 				// if (m.hasLayer(province_point)) {
 				// 	m.removeLayer(province_point);
 				// 	// province_lay.bringToFront();
@@ -39297,17 +39297,17 @@ var isMobile = false; //initiate as false
 			  district_point.addTo(m);
              district_point.bringToFront();
 			 
-			 scaleLayer(district_lay, m);
-			scaleLayer(district_point, m);
+			//  scaleLayer(district_lay, m);
+			// scaleLayer(district_point, m);
 			// m.addLayer(village_lay);
 			// village_lay.bringToFront();
 			  //set style for province as 
 			  
 			  
 			} else {
-				if (m.hasLayer(district_point)) {
-					m.removeLayer(district_point);
-				}
+				// if (m.hasLayer(district_point)) {
+				// 	m.removeLayer(district_point);
+				// }
 			// 	if (m.hasLayer(province_point)) {
 			// 		province_lay.bringToFront();
 			// 		province_point.bringToFront();
@@ -39321,12 +39321,13 @@ var isMobile = false; //initiate as false
             //     }
 			// 	if (m.hasLayer(district_lay)) {
 				m.removeLayer(district_lay);
-				// m.removeLayer(district_point);}
+				m.removeLayer(district_point);
+			// }
 				// province_point.show();
 				//  province_point.addTo(m);
 				// province_point.setInteractive(false);
-				scaleLayer(province_lay, m);
-				scaleLayer(province_point, m);
+				// scaleLayer(province_lay, m);
+				// scaleLayer(province_point, m);
                  // m.removeLayer(village_lay);
 				//  m.addLayer(province_point);
 				// province_point.bringToFront();
