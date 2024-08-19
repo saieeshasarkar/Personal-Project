@@ -71,7 +71,7 @@ var isMobile = false; //initiate as false
 			//   var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
         /////////////
 		var district_boundary = new L.geoJson();
-		// district_boundary.addTo(m);
+		district_boundary.addTo(m);
 
 
 			  async function initializeMap() {
@@ -95,7 +95,7 @@ var isMobile = false; //initiate as false
 				  
 	    		var testxxx = layerxxx;
 				//testxxx.addTo(m);
-				m.addLayer(province_lay);
+				// m.addLayer(province_lay);
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
 				} catch (error) {
