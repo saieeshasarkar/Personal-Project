@@ -39059,6 +39059,15 @@ var isMobile = false; //initiate as false
 			// 	onEachFeature: onEachFeature,
 			// 	style: style
 			// });
+			// Assuming layer is already defined
+// var layer = new L.geoJson();
+
+// // Add GeoJSON data with onEachFeature and style options
+// layer.addData(geoJSONData, {
+//     onEachFeature: onEachFeature,
+//     style: style
+// });
+
 
 			var layer = new L.geoJson(null, {
 				onEachFeature: onEachFeature,
