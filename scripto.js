@@ -39079,16 +39079,17 @@ var isMobile = false; //initiate as false
 // });
 
 
-			var layerx = new L.geoJson(null, {
-				onEachFeature: onEachFeature,
-				style: style
-			});
+			// var layerx = new L.geoJson(null, {
+			// 	onEachFeature: onEachFeature,
+			// 	style: style
+			// });
 			
-			// Now add the data
-			layerx.addData(geoJSONData.features);
-			district_boundary.addData(geoJSONData.features);
+			// // Now add the data
+			// layerx.addData(geoJSONData.features);
+			// district_boundary.addData(geoJSONData.features);
 			// district_boundary.addTo(m);
 
+			district_boundary2.clearLayers();
 			district_boundary2.addData(geoJSONData.features);
 			// district_boundary2.addTo(m);
 			var layer =district_boundary2;
