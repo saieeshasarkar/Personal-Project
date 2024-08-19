@@ -39031,7 +39031,10 @@ var isMobile = false; //initiate as false
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = 'defaultValue') {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
-  
+	  var layer = new L.geoJson(null, {
+			onEachFeature: onEachFeature,
+			style: style
+		});
 	  if (fileExtension === 'zip') {
 		// Handle ZIP file
 		fetch(url)
@@ -39059,13 +39062,13 @@ var isMobile = false; //initiate as false
 			// 	// }
 			// });//.addTo(district_boundary);
 			
-			var layerx = L.geoJSON(geoJSONData, {
-				onEachFeature: onEachFeature,
-				style: style
-			}).eachLayer(function(layer) {
-				// district_boundary.addData(layer.feature);
-				// district_boundary.addLayer(layer);
-			});
+			// var layerx = L.geoJSON(geoJSONData, {
+			// 	onEachFeature: onEachFeature,
+			// 	style: style
+			// }).eachLayer(function(layer) {
+			// 	// district_boundary.addData(layer.feature);
+			// 	// district_boundary.addLayer(layer);
+			// });
 
 			// var layer = L.geoJSON(district_boundary.geoJSON, {
 			// 	onEachFeature: onEachFeature,
@@ -39091,10 +39094,12 @@ var isMobile = false; //initiate as false
 			// district_boundary.addData(geoJSONData.features);
 			// district_boundary.addTo(m);
 
+			layer.clearLayers();
+			layer.addData(geoJSONData.features);
 			district_boundary2.clearLayers();
 			district_boundary2.addData(geoJSONData.features);
 			// district_boundary2.addTo(m);
-			var layer = district_boundary2;
+			// var layer = district_boundary2;
 			// var layer = new L.geoJSON(geoJSONData, {
 			//   onEachFeature: onEachFeature,
 			//   style: style
