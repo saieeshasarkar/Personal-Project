@@ -71,7 +71,7 @@ var isMobile = false; //initiate as false
 			//   var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
         /////////////
 		var district_boundary = new L.geoJson();
-		district_boundary.addTo(m);
+		// district_boundary.addTo(m);
 
 
 			  async function initializeMap() {
@@ -39055,12 +39055,18 @@ var isMobile = false; //initiate as false
 				district_boundary.addLayer(layer);
 			});
 
-			var layer = L.geoJSON(district_boundary.geoJSON, {
+			// var layer = L.geoJSON(district_boundary.geoJSON, {
+			// 	onEachFeature: onEachFeature,
+			// 	style: style
+			// });
+
+			var layer = new L.geoJson(null, {
 				onEachFeature: onEachFeature,
 				style: style
 			});
-
-
+			
+			// Now add the data
+			layer.addData(geoJSONData);
 
 			// var layer = new L.geoJSON(geoJSONData, {
 			//   onEachFeature: onEachFeature,
