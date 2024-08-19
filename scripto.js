@@ -98,8 +98,58 @@ var isMobile = false; //initiate as false
 
 				  
 					/////////////////////////	/////////////////////////	/////////////////////////
-				province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
-            	pointToLayer: function (feature, latlng) {
+				
+					
+				//testxxx.addTo(m);
+				// m.addLayer(province_lay);
+				  console.log('All GeoJSON layers have been loaded and added to the map.');
+				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
+				} catch (error) {
+				  console.error('Error loading one or more GeoJSON layers:', error);
+				}
+			  }
+			  ///////////////
+			//   async function initializeMap() {
+			// 	try {
+			// 	  // Create promises for each layer
+			// 	  const province_layp = loadGeoZip("data/features_p.geojson", popUpX, styleP,true);
+			// 	  const district_layp = loadGeoZip("data/features_d.geojson", popUpX, styleD,false);
+			// 	//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
+			  
+			// 	  // Await all layers to be loaded
+			// 	//   const [province_lay, district_lay] = await Promise.all([
+			// 	  [province_lay, district_lay] = await Promise.all([
+			// 		province_layp,
+			// 		district_layp
+			// 	  ]);
+			  
+			// 	  console.log('All GeoJSON layers have been loaded and added to the map.');
+			// 	  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
+			// 	} catch (error) {
+			// 	  console.error('Error loading one or more GeoJSON layers:', error);
+			// 	}
+			//   }
+		// var province_lay= new L.geoJson(null, {
+		// 	onEachFeature: popUpX,
+		// 	style: styleP
+		// });
+		// var district_lay= new L.geoJson(null, {
+		// 	onEachFeature: popUpX,
+		// 	style: styleP
+		// });
+		var province_lay;
+		var district_lay; 	 
+		// var province_point;
+		// var district_point; 	 
+		initializeMap();
+		//////////////////////////
+		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
+		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
+		// var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
+		
+		// //////////////////////////////////////
+		var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
+            pointToLayer: function (feature, latlng) {
                 var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
                 try {
                   total = counts[feature.properties.pcode]["total"]; 
@@ -112,14 +162,14 @@ var isMobile = false; //initiate as false
                       html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
                     })
                   });
-              	var circleMarker = L.circle(latlng, {
+              var circleMarker = L.circle(latlng, {
                 radius: 0,
                 fillColor: 'red',
                 color: "red",
                 weight: 6
                 //opacity: 0.5,
                 //fillOpacity: 0.5
-              	});
+              });
 		var circleMarker2 = L.circleMarker(latlng, {
 		color: 'red',
 		fillColor: 'red',
@@ -133,8 +183,25 @@ var isMobile = false; //initiate as false
 			    onEachFeature:popUp
 			    ,style:styleV
           }).addTo(m);
-	/////////////////////////	/////////////////////////	/////////////////////////
-					district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
+/////////////////////////////////////////
+
+		// var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
+		
+		// var district_layx;
+		// // var province_lay;
+
+		// loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
+		// 	 district_layx = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
+		// });
+		// // loadGeoZip("data/features_p.zip").then(geojsonData => {
+		// 	 province_lay = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
+		// });
+		// var district_lay = new L.geoJSON(loadGeoZip("data/features_d.zip"),{onEachFeature:popUpX, style:styleD});
+
+		// var province_lay = new L.geoJSON(loadGeoZip("data/features_p.zip"),{onEachFeature:popUpX, style:styleP}).addTo(m);
+
+		////////////////////
+		var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
             pointToLayer: function (feature, latlng) {
                 let key1ForKey2 = [];
                 for (let key1 of Object.keys(counts)) {
@@ -177,155 +244,10 @@ var isMobile = false; //initiate as false
 			,onEachFeature:popUp
 			,style:styleV
           });
-					
-				//testxxx.addTo(m);
-				// m.addLayer(province_lay);
-				  console.log('All GeoJSON layers have been loaded and added to the map.');
-				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
-				} catch (error) {
-				  console.error('Error loading one or more GeoJSON layers:', error);
-				}
-			  }
-			  ///////////////
-			//   async function initializeMap() {
-			// 	try {
-			// 	  // Create promises for each layer
-			// 	  const province_layp = loadGeoZip("data/features_p.geojson", popUpX, styleP,true);
-			// 	  const district_layp = loadGeoZip("data/features_d.geojson", popUpX, styleD,false);
-			// 	//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpZ, styleR);
-			  
-			// 	  // Await all layers to be loaded
-			// 	//   const [province_lay, district_lay] = await Promise.all([
-			// 	  [province_lay, district_lay] = await Promise.all([
-			// 		province_layp,
-			// 		district_layp
-			// 	  ]);
-			  
-			// 	  console.log('All GeoJSON layers have been loaded and added to the map.');
-			// 	  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
-			// 	} catch (error) {
-			// 	  console.error('Error loading one or more GeoJSON layers:', error);
-			// 	}
-			//   }
-		// var province_lay= new L.geoJson(null, {
-		// 	onEachFeature: popUpX,
-		// 	style: styleP
-		// });
-		// var district_lay= new L.geoJson(null, {
-		// 	onEachFeature: popUpX,
-		// 	style: styleP
-		// });
-		var province_lay;
-		var district_lay; 	 
-		var province_point;
-		var district_point; 	 
-		initializeMap();
-		//////////////////////////
-		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
-		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
-		// var province_lay = new L.GeoJSON.AJAX("data/features_p.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
-		
-		// //////////////////////////////////////
-		// var province_point = new L.GeoJSON.AJAX("data/province_point.geojson", {
-  //           pointToLayer: function (feature, latlng) {
-  //               var total = 0;//counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"];
-  //               try {
-  //                 total = counts[feature.properties.pcode]["total"]; 
-  //               } catch (error) {
-  //               }
-  //               // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
-  //               var marker = L.marker(latlng, {
-  //                   icon: L.divIcon({
-  //                     className: 'number-icon',
-  //                     html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
-  //                   })
-  //                 });
-  //             var circleMarker = L.circle(latlng, {
-  //               radius: 0,
-  //               fillColor: 'red',
-  //               color: "red",
-  //               weight: 6
-  //               //opacity: 0.5,
-  //               //fillOpacity: 0.5
-  //             });
-		// var circleMarker2 = L.circleMarker(latlng, {
-		// color: 'red',
-		// fillColor: 'red',
-		// weight: 6,
-		// radius: 0 // Radius in pixels, stays consistent
-		// });
-  //             var layerGroup = L.layerGroup([marker, circleMarker2]);
-  //             return(layerGroup);
-		// // return(circleMarker);
-  //           },
-		// 	    onEachFeature:popUp
-		// 	    ,style:styleV
-  //         }).addTo(m);
-/////////////////////////////////////////
-
-		// var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
-		
-		// var district_layx;
-		// // var province_lay;
-
-		// loadGeoZip("data/features_d.geojson.zip").then(geojsonData => {
-		// 	 district_layx = new L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleD});
-		// });
-		// // loadGeoZip("data/features_p.zip").then(geojsonData => {
-		// 	 province_lay = L.geoJSON(geojsonData,{onEachFeature:popUpX, style:styleP}).addTo(m);
-		// });
-		// var district_lay = new L.geoJSON(loadGeoZip("data/features_d.zip"),{onEachFeature:popUpX, style:styleD});
-
-		// var province_lay = new L.geoJSON(loadGeoZip("data/features_p.zip"),{onEachFeature:popUpX, style:styleP}).addTo(m);
-
-		////////////////////
-		// var district_point = new L.GeoJSON.AJAX("data/district_point.geojson", {
-  //           pointToLayer: function (feature, latlng) {
-  //               let key1ForKey2 = [];
-  //               for (let key1 of Object.keys(counts)) {
-  //                       if (counts[key1][feature.properties.dcode]) {
-  //                       key1ForKey2 = key1;
-  //                           break;
-  //                   }
-  //               }
-  //               var total = 0;
-  //               try {
-  //                 total = counts[key1ForKey2][feature.properties.dcode]["total"]; 
-  //               } catch (error) {
-  //               }
-  //                // counts[key1ForKey2][feature.properties.dcode] === 'undefined' ? 0 : counts[key1ForKey2][feature.properties.dcode]["total"]
-  //               // counts[key1ForKey2][feature.properties.dcode]["total"]
-  //               var marker = L.marker(latlng, {
-  //                   icon: L.divIcon({
-  //                     className: 'number-icon',
-  //                     html: '<div id=\'d' + feature.properties.dcode + '\' >'+ total + '</div>'
-  //                   })
-  //                 });
-  //             var circleMarker = L.circle(latlng, {
-  //               radius: 0,
-  //               fillColor: 'red',
-  //               color: "red",
-  //               weight: 6
-  //               //opacity: 0.5,
-  //               //fillOpacity: 0.5
-  //             });
-  //             var circleMarker2 = L.circleMarker(latlng, {
-		// color: 'red',
-		// fillColor: 'red',
-		// weight: 6,
-		// radius: 0 // Radius in pixels, stays consistent
-		// });
-  //             var layerGroup = L.layerGroup([marker, circleMarker2]);
-  //             return(layerGroup);
-		// //  return(circleMarker);
-  //           }
-		// 	,onEachFeature:popUp
-		// 	,style:styleV
-  //         });
-    //     },
-    //     onEachFeature:popUp
-    //     ,style:styleV
-    //   });
+        },
+        onEachFeature:popUp
+        ,style:styleV
+      });
 ////////////////////
 // var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 // 	pointToLayer: function (feature, latlng) {
