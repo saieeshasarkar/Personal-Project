@@ -39029,10 +39029,10 @@ var isMobile = false; //initiate as false
 		  .then(geoJSONString => {
 			const geoJSONData = JSON.parse(geoJSONString);
 			
-			var layer = new L.geoJson();
-			geoJSONData.features.forEach(function(feature) {
-   			 layer.addData(feature);
-			});
+			// var layer = new L.geoJson();
+			// geoJSONData.features.forEach(function(feature) {
+   			//  layer.addData(feature);
+			// });
 			var layer = new L.geoJSON(geoJSONData, {
 				filter: function(feature, layer) {
 					return onEachFeature;
