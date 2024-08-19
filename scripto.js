@@ -39031,11 +39031,12 @@ var isMobile = false; //initiate as false
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = 'defaultValue') {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
-	  var layer = new L.geoJson(null, {
+	 
+	  if (fileExtension === 'zip') {
+		var layer = new L.geoJson(null, {
 			onEachFeature: onEachFeature,
 			style: style
 		});
-	  if (fileExtension === 'zip') {
 		// Handle ZIP file
 		fetch(url)
 		  .then(response => response.blob())
