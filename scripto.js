@@ -39039,6 +39039,7 @@ var isMobile = false; //initiate as false
 				},
 				style: style
 				// style: function(feature) {
+				//	return style
 				// 	switch (feature.properties.party) {
 				// 		case 'Republican': return {color: "#ff0000"};
 				// 		case 'Democrat':   return {color: "#0000ff"};
