@@ -39092,7 +39092,7 @@ var isMobile = false; //initiate as false
 			district_boundary2.clearLayers();
 			district_boundary2.addData(geoJSONData.features);
 			// district_boundary2.addTo(m);
-			var layer =district_boundary2;
+			var layer = district_boundary2;
 			// var layer = new L.geoJSON(geoJSONData, {
 			//   onEachFeature: onEachFeature,
 			//   style: style
