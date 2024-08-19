@@ -38825,7 +38825,7 @@ var isMobile = false; //initiate as false
 		  };
 
 		var layerxxx = L.geoJSON(featureCollection, {
-			  onEachFeature: popUpX,
+			  onEachFeature: popUp,
 			  style: styleP
 			});
 		//////////////////////////
@@ -39095,7 +39095,7 @@ var isMobile = false; //initiate as false
 			if (addToMap) {
 				layer.addTo(m); // Add the layer to the map if addToMap is true
 			  }
-			  
+
 		  })
 		  .catch(reject);
 	  } else if (fileExtension === 'geojson' || fileExtension === 'json') {
