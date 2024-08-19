@@ -39085,7 +39085,7 @@ var isMobile = false; //initiate as false
 			});
 			
 			// Now add the data
-			layer.addData(geoJSONData.features);
+			layerx.addData(geoJSONData.features);
 			district_boundary.addData(geoJSONData.features);
 			// district_boundary.addTo(m);
 
