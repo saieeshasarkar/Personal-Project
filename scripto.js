@@ -83,6 +83,9 @@ var isMobile = false; //initiate as false
 					province_layp2,
 					district_layp2
 				  ]);
+
+				  
+	    		var testxxx = layerxxx;
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
 				} catch (error) {
@@ -38824,7 +38827,6 @@ var isMobile = false; //initiate as false
 			  onEachFeature: popUp,
 			  style: styleP
 			})
-	    var testxxx = province_lay;
 		//////////////////////////
 		// var district_lay = new L.GeoJSON.AJAX("data/district_pov.geojson",{onEachFeature:popUpX, style:styleD});
 		// var province_lay = new L.GeoJSON.AJAX("data/province_pov.geojson",{onEachFeature:popUpX, style:styleP}).addTo(m);
