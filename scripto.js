@@ -127,14 +127,16 @@ var isMobile = false; //initiate as false
 			// 	  console.error('Error loading one or more GeoJSON layers:', error);
 			// 	}
 			//   }
-		var province_lay= new L.geoJson(null, {
-			onEachFeature: popUpX,
-			style: styleP
-		});
-		var district_lay= new L.geoJson(null, {
-			onEachFeature: popUpX,
-			style: styleP
-		});
+		// var province_lay= new L.geoJson(null, {
+		// 	onEachFeature: popUpX,
+		// 	style: styleP
+		// });
+		// var district_lay= new L.geoJson(null, {
+		// 	onEachFeature: popUpX,
+		// 	style: styleP
+		// });
+		var province_lay;
+		var district_lay; 	 
 		var province_lay2;
 		var district_lay2; 	 
 		initializeMap();
