@@ -71,7 +71,7 @@ var isMobile = false; //initiate as false
 			//   var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
         /////////////
 		var district_boundary = new L.geoJson();
-		district_boundary.addTo(m);
+		// district_boundary.addTo(m);
 
 
 			  async function initializeMap() {
