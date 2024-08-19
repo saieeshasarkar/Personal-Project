@@ -127,8 +127,14 @@ var isMobile = false; //initiate as false
 			// 	  console.error('Error loading one or more GeoJSON layers:', error);
 			// 	}
 			//   }
-		var province_lay= new L.geoJson();
-		var district_lay= new L.geoJson(); 	 
+		var province_lay= new L.geoJson(null, {
+			onEachFeature: popUpX,
+			style: styleP
+		});
+		var district_lay= new L.geoJson(null, {
+			onEachFeature: popUpX,
+			style: styleP
+		});
 		var province_lay2;
 		var district_lay2; 	 
 		initializeMap();
@@ -39020,7 +39026,7 @@ var isMobile = false; //initiate as false
 // 	});
 //   }
   
-  function loadGeoData(url, onEachFeature, style, addToMap = true) {
+  function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = 'defaultValue') {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
   
@@ -39073,7 +39079,7 @@ var isMobile = false; //initiate as false
 // });
 
 
-			var layer = new L.geoJson(null, {
+			var layerx = new L.geoJson(null, {
 				onEachFeature: onEachFeature,
 				style: style
 			});
@@ -39084,8 +39090,8 @@ var isMobile = false; //initiate as false
 			// district_boundary.addTo(m);
 
 			district_boundary2.addData(geoJSONData.features);
-			district_boundary2.addTo(m);
-
+			// district_boundary2.addTo(m);
+			var layer =district_boundary2;
 			// var layer = new L.geoJSON(geoJSONData, {
 			//   onEachFeature: onEachFeature,
 			//   style: style
