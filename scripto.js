@@ -39274,16 +39274,19 @@ var isMobile = false; //initiate as false
 			if (m.getZoom() >= 9) {
 				if (m.hasLayer(province_point)) {
 					m.removeLayer(province_point);
-					// province_lay.bringToFront();
-					// province_point.bringToFront();
-                    console.log("The layer exists in the map");
-                } else {
+				}
+				// if (m.hasLayer(province_point)) {
+				// 	m.removeLayer(province_point);
+				// 	// province_lay.bringToFront();
+				// 	// province_point.bringToFront();
+                //     console.log("The layer exists in the map");
+                // } else {
                                       
-                // m.addLayer(province_lay);
-                // m.addLayer(province_point);
-                // province_point.bringToFront();
-                    console.log("The layer does not exist in the map");
-                }
+                // // m.addLayer(province_lay);
+                // // m.addLayer(province_point);
+                // // province_point.bringToFront();
+                //     console.log("The layer does not exist in the map");
+                // }
 			//  m.removeLayer(province_point);
 				// province_point.hide();
 				// province_point.setInteractive(true);
@@ -39302,20 +39305,23 @@ var isMobile = false; //initiate as false
 			  
 			  
 			} else {
-				if (m.hasLayer(province_point)) {
-					province_lay.bringToFront();
-					province_point.bringToFront();
-                    console.log("The layer exists in the map");
-                } else {
+				if (m.hasLayer(district_point)) {
+					m.removeLayer(district_point);
+				}
+			// 	if (m.hasLayer(province_point)) {
+			// 		province_lay.bringToFront();
+			// 		province_point.bringToFront();
+            //         console.log("The layer exists in the map");
+            //     } else {
                                       
-               // m.addLayer(province_lay);
-                m.addLayer(province_point);
-                province_point.bringToFront();
-                    console.log("The layer does not exist in the map");
-                }
-				if (m.hasLayer(district_lay)) {
+            //    // m.addLayer(province_lay);
+            //     m.addLayer(province_point);
+            //     province_point.bringToFront();
+            //         console.log("The layer does not exist in the map");
+            //     }
+			// 	if (m.hasLayer(district_lay)) {
 				m.removeLayer(district_lay);
-				m.removeLayer(district_point);}
+				// m.removeLayer(district_point);}
 				// province_point.show();
 				//  province_point.addTo(m);
 				// province_point.setInteractive(false);
