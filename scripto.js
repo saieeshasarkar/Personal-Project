@@ -67,9 +67,13 @@ var isMobile = false; //initiate as false
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
               "#BA55D3", "#9370DB", "#3CB371", "#808080"];
 
-			  var testja= L.geoJson(features_p, {style: styleP}).addTo(m);
-			  var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
+			//   var testja= L.geoJson(features_p, {style: styleP}).addTo(m);
+			//   var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
         /////////////
+		var district_boundary = new L.geoJson();
+		district_boundary.addTo(map);
+
+
 			  async function initializeMap() {
 				try {
 					
@@ -39025,73 +39029,11 @@ var isMobile = false; //initiate as false
 		  .then(geoJSONString => {
 			const geoJSONData = JSON.parse(geoJSONString);
 			
-			var featureCollection = {
-				"type": "FeatureCollection",
-				"features": [
-				  {
-					"type": "Feature",
-					"id": "8",
-					"geometry": {
-					  "type": "Polygon",
-					  "coordinates": [
-						[
-						  [100.72662623, 19.8177287],
-						  [102.42013305, 19.8177287],
-						  [102.42013305, 21.21963192],
-						  [100.72662623, 21.21963192],
-						  [100.72662623, 19.8177287]
-						]
-					  ]
-					},
-					"geometry_name": "the_geom",
-					"properties": {
-					  "Shape_Leng": 6.7013326,
-					  "Shape_Area": 1.0433108,
-					  "Province": "Oudomxai",
-					  "district_p": "ອຸດົມໄຊ",
-					  "PCode": "4"
-					},
-					"bbox": [
-					  100.72662623,
-					  19.8177287,
-					  102.42013305,
-					  21.21963192
-					]
-				  },
-				  {
-					"type": "Feature",
-					"id": "9",
-					"geometry": {
-					  "type": "Polygon",
-					  "coordinates": [
-						[
-						  [100.72662623, 18.8177287],
-						  [102.42013305, 18.8177287],
-						  [102.42013305, 20.21963192],
-						  [100.72662623, 20.21963192],
-						  [100.72662623, 18.8177287]
-						]
-					  ]
-					},
-					"geometry_name": "the_geom",
-					"properties": {
-					  "Shape_Leng": 5.7013326,
-					  "Shape_Area": 0.9433108,
-					  "Province": "Bokeo",
-					  "district_p": "ບໍ່ແກ້ວ",
-					  "PCode": "5"
-					},
-					"bbox": [
-					  100.72662623,
-					  18.8177287,
-					  102.42013305,
-					  20.21963192
-					]
-				  }
-				]
-			  };
+			// geoJSONData.features.forEach(function(feature) {
+   			//  district_boundary.addData(feature);
+			// });
 
-			var layer = L.geoJSON(geoJSONData, {
+			var layer = new L.geoJSON(geoJSONData, {
 			  onEachFeature: onEachFeature,
 			  style: style
 			});
