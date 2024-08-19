@@ -244,10 +244,10 @@ var isMobile = false; //initiate as false
 			,onEachFeature:popUp
 			,style:styleV
           });
-        },
-        onEachFeature:popUp
-        ,style:styleV
-      });
+      //   },
+      //   onEachFeature:popUp
+      //   ,style:styleV
+      // });
 ////////////////////
 // var village_lay = new L.GeoJSON.AJAX("data/village.geojson", {
 // 	pointToLayer: function (feature, latlng) {
