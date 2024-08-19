@@ -86,7 +86,7 @@ var isMobile = false; //initiate as false
 
 				  
 	    		var testxxx = layerxxx;
-				province_lay.addToMap(m);
+				province_lay.addTo(m);
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
 				} catch (error) {
@@ -39095,7 +39095,7 @@ var isMobile = false; //initiate as false
 			if (addToMap) {
 				layer.addTo(m); // Add the layer to the map if addToMap is true
 			  }
-
+			  
 		  })
 		  .catch(reject);
 	  } else if (fileExtension === 'geojson' || fileExtension === 'json') {
