@@ -70,12 +70,12 @@ var isMobile = false; //initiate as false
 			//   var testja= L.geoJson(features_p, {style: styleP}).addTo(m);
 			//   var testjax=	L.geoJson(features_d.geojson, {style: styleD}).addTo(m);
         /////////////
-		var district_boundary = new L.geoJson();
-		// district_boundary.addTo(m);
-		var district_boundary2 = new L.geoJson(null, {
-			onEachFeature: popUpX,
-			style: styleP
-		});
+		// var district_boundary = new L.geoJson();
+		// // district_boundary.addTo(m);
+		// var district_boundary2 = new L.geoJson(null, {
+		// 	onEachFeature: popUpX,
+		// 	style: styleP
+		// });
 
 
 			  async function initializeMap() {
@@ -183,7 +183,7 @@ var isMobile = false; //initiate as false
             },
 			    onEachFeature:popUp
 			    ,style:styleV
-          }).addTo(m);
+          });//.addTo(m);
 /////////////////////////////////////////
 
 		// var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
