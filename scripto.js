@@ -443,8 +443,8 @@ var isMobile = false; //initiate as false
 			  district_point.addTo(m);
              district_point.bringToFront();
 			 
-			//  scaleLayer(district_lay, m);
-			// scaleLayer(district_point, m);
+			 scaleLayer(district_lay, m);
+			scaleLayer(district_point, m);
 			// m.addLayer(village_lay);
 			// village_lay.bringToFront();
 			  //set style for province as 
@@ -472,8 +472,8 @@ var isMobile = false; //initiate as false
 				// province_point.show();
 				//  province_point.addTo(m);
 				// province_point.setInteractive(false);
-				// scaleLayer(province_lay, m);
-				// scaleLayer(province_point, m);
+				scaleLayer(province_lay, m);
+				scaleLayer(province_point, m);
                  // m.removeLayer(village_lay);
 				//  m.addLayer(province_point);
 				// province_point.bringToFront();
