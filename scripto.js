@@ -102,7 +102,7 @@ var isMobile = false; //initiate as false
 					
 				//testxxx.addTo(m);
 				// m.addLayer(province_lay);
-				// province_point.addTo(m);
+				 province_point.addTo(m);
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
 				} catch (error) {
@@ -183,7 +183,7 @@ var isMobile = false; //initiate as false
             },
 			    onEachFeature:popUp
 			    ,style:styleV
-          }).addTo(m);
+          });//.addTo(m);
 /////////////////////////////////////////
 
 		// var district_lay = new L.GeoJSON.AJAX("data/features_d.geojson",{onEachFeature:popUpX, style:styleD});
