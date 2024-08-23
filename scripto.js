@@ -602,14 +602,14 @@ var isMobile = false; //initiate as false
             //         console.log("The layer does not exist in the map");
             //     }
 			// 	if (m.hasLayer(district_lay)) {
-				m.removeLayer(district_lay);
-				m.removeLayer(district_point);
-			// }
-				// province_point.show();
-				//  province_point.addTo(m);
-				// province_point.setInteractive(false);
-				scaleLayer(province_lay, m);
-				scaleLayer(province_point, m);
+			// 	m.removeLayer(district_lay);
+			// 	m.removeLayer(district_point);
+			// // }
+			// 	// province_point.show();
+			// 	//  province_point.addTo(m);
+			// 	// province_point.setInteractive(false);
+			// 	scaleLayer(province_lay, m);
+			// 	scaleLayer(province_point, m);
                  // m.removeLayer(village_lay);
 				//  m.addLayer(province_point);
 				// province_point.bringToFront();
