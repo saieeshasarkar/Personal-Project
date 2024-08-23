@@ -83,7 +83,7 @@ var isMobile = false; //initiate as false
 					
 				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,false);
 				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
-				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
+				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,true);
 				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
@@ -111,13 +111,13 @@ var isMobile = false; //initiate as false
 				//  province_point.addTo(m);
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
-				//   combinedLayerP = L.layerGroup([province_point, province_lay]);
-				//   combinedLayerP.addTo(m);
+				  combinedLayerP = L.layerGroup([province_point, province_lay]);
+				  combinedLayerP.addTo(m);
 
 				  // combinedLayerD.addLayer(district_lay);
 				  // combinedLayerD.addLayer(district_point);
-				  combinedLayerD = L.layerGroup([district_lay,district_point]);
-				  combinedLayerD.addTo(m);
+				  combinedLayerD = L.layerGroup([district_point]);
+				//   combinedLayerD.addTo(m);
 
 				} catch (error) {
 				  console.error('Error loading one or more GeoJSON layers:', error);
