@@ -405,9 +405,10 @@ var isMobile = false; //initiate as false
 				  });
 					var layerGroup = L.layerGroup([marker, circleMarker2]);
 				 return(marker);
-				},
-				onEachFeature: onEachFeature,
-				style: style
+				}
+				// ,
+				// onEachFeature: onEachFeature,
+				// style: style
 			});
 		}else{
 
