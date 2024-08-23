@@ -104,18 +104,20 @@ var isMobile = false; //initiate as false
 					// combinedLayerP.addLayer(province_lay);
 					
 					// combinedLayerP.addLayer(province_point);
-					combinedLayerP = L.layerGroup([province_point, province_lay]);
-					combinedLayerP.addTo(m);
-
-					// combinedLayerD.addLayer(district_lay);
-					// combinedLayerD.addLayer(district_point);
-					combinedLayerD = L.layerGroup([district_point, district_lay]);
+				
 					// combinedLayerD.addTo(map);
 				//testxxx.addTo(m);
 				// m.addLayer(province_lay);
 				//  province_point.addTo(m);
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
+				  combinedLayerP = L.layerGroup([province_point, province_lay]);
+				  combinedLayerP.addTo(m);
+
+				  // combinedLayerD.addLayer(district_lay);
+				  // combinedLayerD.addLayer(district_point);
+				  combinedLayerD = L.layerGroup([district_point, district_lay]);
+
 				} catch (error) {
 				  console.error('Error loading one or more GeoJSON layers:', error);
 				}
