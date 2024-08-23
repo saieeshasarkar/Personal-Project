@@ -551,8 +551,10 @@ var isMobile = false; //initiate as false
 			if (m.getZoom() >= 9) {
 				if (m.hasLayer(combinedLayerP)) {
 					m.removeLayer(combinedLayerP);
-					m.addLayer(combinedLayerD)
 				}
+				
+				m.addLayer(combinedLayerD)
+				combinedLayerD.bringToFront();
 				// if (m.hasLayer(province_point)) {
 				// 	m.removeLayer(province_point);
 				// 	// province_lay.bringToFront();
@@ -585,8 +587,9 @@ var isMobile = false; //initiate as false
 			} else {
 				if (m.hasLayer(combinedLayerD)) {
 					m.removeLayer(combinedLayerD);
-					m.addLayer(combinedLayerP)
 				}
+				m.addLayer(combinedLayerP)
+				combinedLayerD.combinedLayerP();
 				// if (m.hasLayer(district_point)) {
 				// 	m.removeLayer(district_point);
 				// }
