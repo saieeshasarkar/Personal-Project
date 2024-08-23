@@ -83,8 +83,8 @@ var isMobile = false; //initiate as false
 					
 				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,true);
 				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
-				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,true);
-				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false);
+				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,true,true);
+				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
@@ -325,6 +325,7 @@ var isMobile = false; //initiate as false
 			// district_boundary2.clearLayers();
 			// district_boundary2.addData(geoJSONData.features);
 			// district_boundary2.addTo(m);
+			if(alayer){
 			geoJSONData.features.forEach(feature => {
 				if (feature.geometry.type === "Point") {
 					const latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
@@ -368,6 +369,7 @@ var isMobile = false; //initiate as false
 				// marker.addTo(layer); // Add the marker to the existing layer
 				}
 			  });
+			}
 
 			resolve(layer); // Resolve with the Leaflet layer
 			if (addToMap) {
