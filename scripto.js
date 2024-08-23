@@ -101,9 +101,13 @@ var isMobile = false; //initiate as false
 					/////////////////////////	/////////////////////////	/////////////////////////
 				
 					
-					combinedLayer.addLayer(province_pointp);
-					combinedLayer.addLayer(province_layp);
-					combinedLayer.addTo(map);
+					combinedLayerP.addLayer(province_lay);
+					combinedLayerP.addLayer(province_point);
+					combinedLayerP.addTo(map);
+
+					combinedLayerD.addLayer(district_lay);
+					combinedLayerD.addLayer(district_point);
+					// combinedLayerD.addTo(map);
 				//testxxx.addTo(m);
 				// m.addLayer(province_lay);
 				//  province_point.addTo(m);
@@ -142,7 +146,8 @@ var isMobile = false; //initiate as false
 		// 	onEachFeature: popUpX,
 		// 	style: styleP
 		// });
-		var combinedLayer = L.layerGroup();
+		var combinedLayerP = L.layerGroup();
+		var combinedLayerD = L.layerGroup();
 		var province_lay;
 		var district_lay; 	 
 		var province_point;
