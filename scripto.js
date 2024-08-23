@@ -550,7 +550,8 @@ var isMobile = false; //initiate as false
 
 			if (m.getZoom() >= 9) {
 				if (m.hasLayer(combinedLayerP)) {
-					m.removeLayer(combinedLayerP);
+					// m.removeLayer(combinedLayerP);
+					combinedLayerP.remove();
 				}
 				
 				combinedLayerD.addTo(m);
@@ -586,7 +587,8 @@ var isMobile = false; //initiate as false
 			  
 			} else {
 				if (m.hasLayer(combinedLayerD)) {
-					m.removeLayer(combinedLayerD);
+					// m.removeLayer(combinedLayerD);
+					combinedLayerD.remove();
 				}
 				combinedLayerP.addTo(m);
 				combinedLayerP.bringToFront
