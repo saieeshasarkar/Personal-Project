@@ -81,9 +81,9 @@ var isMobile = false; //initiate as false
 			  async function initializeMap() {
 				try {
 					
-				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,true);
+				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,false);
+				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
 				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
-				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,true,true);
 				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
@@ -101,6 +101,9 @@ var isMobile = false; //initiate as false
 					/////////////////////////	/////////////////////////	/////////////////////////
 				
 					
+					combinedLayer.addLayer(province_pointp);
+					combinedLayer.addLayer(province_layp);
+					combinedLayer.addTo(map);
 				//testxxx.addTo(m);
 				// m.addLayer(province_lay);
 				//  province_point.addTo(m);
@@ -139,6 +142,7 @@ var isMobile = false; //initiate as false
 		// 	onEachFeature: popUpX,
 		// 	style: styleP
 		// });
+		var combinedLayer = L.layerGroup();
 		var province_lay;
 		var district_lay; 	 
 		var province_point;
