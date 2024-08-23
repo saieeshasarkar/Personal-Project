@@ -83,8 +83,8 @@ var isMobile = false; //initiate as false
 					
 				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,true);
 				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
-				  const province_pointp = loadGeoData("province_point.zip", popUp, styleV,true);
-				  const district_pointp = loadGeoData("district_point.zip", popUp, styleV,false);
+				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,true);
+				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
