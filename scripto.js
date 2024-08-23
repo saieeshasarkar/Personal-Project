@@ -305,7 +305,7 @@ var isMobile = false; //initiate as false
 		//   }
 			
 		  
-		  var layer = new L.geoJson(null, layerOptions);
+		  var layer = new L.geoJson(null, null);
 
 		// var layer = new L.geoJson(null, {
 		// 	onEachFeature: onEachFeature,
