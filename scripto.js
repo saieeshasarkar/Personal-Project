@@ -622,7 +622,7 @@ var isMobile = false; //initiate as false
 
 		// This resets the highlight after hover moves away
 		function resetHighlight(e) {
-			province_lay.setStyle(styleP);
+			// province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
 			// village_lay.setStyle(styleV);
 			info.update();
