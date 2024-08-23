@@ -101,7 +101,7 @@ var isMobile = false; //initiate as false
 					/////////////////////////	/////////////////////////	/////////////////////////
 				
 					
-					combinedLayerP.addLayer(province_point);
+					// combinedLayerP.addLayer(province_point);
 					combinedLayerP.addLayer(province_lay);
 					combinedLayerP.addTo(m);
 
