@@ -107,8 +107,9 @@ var isMobile = false; //initiate as false
 					var combinedLayerP = L.layerGroup([province_point, province_lay]);
 					combinedLayerP.addTo(m);
 
-					combinedLayerD.addLayer(district_lay);
-					combinedLayerD.addLayer(district_point);
+					// combinedLayerD.addLayer(district_lay);
+					// combinedLayerD.addLayer(district_point);
+					var combinedLayerD = L.layerGroup([district_point, district_lay]);
 					// combinedLayerD.addTo(map);
 				//testxxx.addTo(m);
 				// m.addLayer(province_lay);
@@ -547,25 +548,26 @@ var isMobile = false; //initiate as false
 		info.addTo(m);
 		m.on('zoomend', function(){
 
-			// if (m.getZoom() >= 9) {
-			// 	// if (m.hasLayer(province_point)) {
-			// 	// 	m.removeLayer(province_point);
-			// 	// }
-			// 	// if (m.hasLayer(province_point)) {
-			// 	// 	m.removeLayer(province_point);
-			// 	// 	// province_lay.bringToFront();
-			// 	// 	// province_point.bringToFront();
-            //     //     console.log("The layer exists in the map");
-            //     // } else {
+			if (m.getZoom() >= 9) {
+				if (m.hasLayer(combinedLayerP)) {
+					m.removeLayer(combinedLayerP);
+					m.addLayer(combinedLayerD)
+				}
+				// if (m.hasLayer(province_point)) {
+				// 	m.removeLayer(province_point);
+				// 	// province_lay.bringToFront();
+				// 	// province_point.bringToFront();
+                //     console.log("The layer exists in the map");
+                // } else {
                                       
-            //     // // m.addLayer(province_lay);
-            //     // // m.addLayer(province_point);
-            //     // // province_point.bringToFront();
-            //     //     console.log("The layer does not exist in the map");
-            //     // }
-			// //  m.removeLayer(province_point);
-			// 	// province_point.hide();
-			// 	// province_point.setInteractive(true);
+                // // m.addLayer(province_lay);
+                // // m.addLayer(province_point);
+                // // province_point.bringToFront();
+                //     console.log("The layer does not exist in the map");
+                // }
+			//  m.removeLayer(province_point);
+				// province_point.hide();
+				// province_point.setInteractive(true);
 			//   m.addLayer(district_lay);
 			//   district_lay.bringToFront();
 
@@ -575,40 +577,44 @@ var isMobile = false; //initiate as false
 			 
 			//  scaleLayer(district_lay, m);
 			// scaleLayer(district_point, m);
-			// // m.addLayer(village_lay);
-			// // village_lay.bringToFront();
-			//   //set style for province as 
+			// m.addLayer(village_lay);
+			// village_lay.bringToFront();
+			  //set style for province as 
 			  
 			  
-			// } else {
-			// 	// if (m.hasLayer(district_point)) {
-			// 	// 	m.removeLayer(district_point);
-			// 	// }
-			// // 	if (m.hasLayer(province_point)) {
-			// // 		province_lay.bringToFront();
-			// // 		province_point.bringToFront();
-            // //         console.log("The layer exists in the map");
-            // //     } else {
+			} else {
+				if (m.hasLayer(combinedLayerD)) {
+					m.removeLayer(combinedLayerD);
+					m.addLayer(combinedLayerP)
+				}
+				// if (m.hasLayer(district_point)) {
+				// 	m.removeLayer(district_point);
+				// }
+			// 	if (m.hasLayer(province_point)) {
+			// 		province_lay.bringToFront();
+			// 		province_point.bringToFront();
+            //         console.log("The layer exists in the map");
+            //     } else {
                                       
-            // //    // m.addLayer(province_lay);
-            // //     m.addLayer(province_point);
-            // //     province_point.bringToFront();
-            // //         console.log("The layer does not exist in the map");
-            // //     }
-			// // 	if (m.hasLayer(district_lay)) {
-			// 	m.removeLayer(district_lay);
-			// 	m.removeLayer(district_point);
-			// // }
-			// 	// province_point.show();
-			// 	//  province_point.addTo(m);
-			// 	// province_point.setInteractive(false);
-			// 	scaleLayer(province_lay, m);
-			// 	scaleLayer(province_point, m);
-            //      // m.removeLayer(village_lay);
-			// 	//  m.addLayer(province_point);
-			// 	// province_point.bringToFront();
-            //     // m.removeLayer(district_point);
+            //    // m.addLayer(province_lay);
+            //     m.addLayer(province_point);
+            //     province_point.bringToFront();
+            //         console.log("The layer does not exist in the map");
+            //     }
+			// 	if (m.hasLayer(district_lay)) {
+				m.removeLayer(district_lay);
+				m.removeLayer(district_point);
 			// }
+				// province_point.show();
+				//  province_point.addTo(m);
+				// province_point.setInteractive(false);
+				scaleLayer(province_lay, m);
+				scaleLayer(province_point, m);
+                 // m.removeLayer(village_lay);
+				//  m.addLayer(province_point);
+				// province_point.bringToFront();
+                // m.removeLayer(district_point);
+			}
 
 
   });
