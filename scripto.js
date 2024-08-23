@@ -81,20 +81,22 @@ var isMobile = false; //initiate as false
 			  async function initializeMap() {
 				try {
 					
-				  const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true);
+				  const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
 				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
-				  const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false);
+				  const district_layp = loadGeoData("data/features_dd.zip", popUpX, styleD,false,true);
 				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
-				  [province_lay, district_lay, province_point,district_point] = await Promise.all([
+					// [province_lay, district_lay, province_point,district_point] = await Promise.all([
+				  [province_lay, district_lay] = await Promise.all([
 					province_layp,
-					district_layp,
-					province_pointp,
-					district_pointp
+					district_layp
+					// ,
+					// province_pointp,
+					// district_pointp
 				  ]);
 
 				  
@@ -421,9 +423,9 @@ var isMobile = false; //initiate as false
 					var layerGroup = L.layerGroup([marker, circleMarker2]);
 				 return(layerGroup);
 				}
-				//,
-				// onEachFeature: onEachFeature,
-				// style: style
+				,
+				onEachFeature: onEachFeature,
+				style: style
 			});
 		}else{
 
@@ -552,12 +554,12 @@ var isMobile = false; //initiate as false
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 9) {
-				if (m.hasLayer(combinedLayerP)) {
-					// m.removeLayer(combinedLayerP);
-					combinedLayerP.remove();
-				}
+				// if (m.hasLayer(combinedLayerP)) {
+				// 	// m.removeLayer(combinedLayerP);
+				// 	combinedLayerP.remove();
+				// }
 				
-				combinedLayerD.addTo(m);
+				// combinedLayerD.addTo(m);
 				// combinedLayerD.bringToFront();
 				// if (m.hasLayer(province_point)) {
 				// 	m.removeLayer(province_point);
@@ -574,8 +576,9 @@ var isMobile = false; //initiate as false
 			//  m.removeLayer(province_point);
 				// province_point.hide();
 				// province_point.setInteractive(true);
-			//   m.addLayer(district_lay);
-			//   district_lay.bringToFront();
+				m.removeLayer(province_lay);
+			  m.addLayer(district_lay);
+			  district_lay.bringToFront();
 
             //   //m.addLayer(district_point);
 			//   district_point.addTo(m);
@@ -589,11 +592,15 @@ var isMobile = false; //initiate as false
 			  
 			  
 			} else {
-				if (m.hasLayer(combinedLayerD)) {
-					// m.removeLayer(combinedLayerD);
-					combinedLayerD.remove();
-				}
-				combinedLayerP.addTo(m);
+				m.removeLayer(district_lay);
+				m.addLayer(province_lay);
+				province_lay.bringToFront();
+				
+				// if (m.hasLayer(combinedLayerD)) {
+				// 	// m.removeLayer(combinedLayerD);
+				// 	combinedLayerD.remove();
+				// }
+				// combinedLayerP.addTo(m);
 				// combinedLayerP.bringToFront
 				// if (m.hasLayer(district_point)) {
 				// 	m.removeLayer(district_point);
