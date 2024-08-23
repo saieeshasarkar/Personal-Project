@@ -330,7 +330,7 @@ var isMobile = false; //initiate as false
 					const latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
 					let key1ForKey2 = [];
 					var source;
-					if (feature.properties.District) {
+					if (feature.properties.dcode) {
 					  for (let key1 of Object.keys(counts)) {
 					  if (counts[key1][feature.properties.dcode]) {
 					  key1ForKey2 = key1;
