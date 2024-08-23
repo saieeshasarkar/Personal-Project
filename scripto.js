@@ -321,7 +321,6 @@ var isMobile = false; //initiate as false
 
 			
 
-			layer.addData(geoJSONData.features);
 			// district_boundary2.clearLayers();
 			// district_boundary2.addData(geoJSONData.features);
 			// district_boundary2.addTo(m);
@@ -362,14 +361,16 @@ var isMobile = false; //initiate as false
 				  });
 					var layerGroup = L.layerGroup([marker, circleMarker2]);
 					//   return(layerGroup);
-				//   return(layerGroup);
-				  layerGroup.addTo(layer)
+				  return(layerGroup);
+				//   layerGroup.addTo(layer)
 				  
 				// const marker = L.marker(latlng).bindPopup(feature.properties.code);
 				// marker.addTo(layer); // Add the marker to the existing layer
 				}
 			  });
 			}
+
+			layer.addData(geoJSONData.features);
 
 			resolve(layer); // Resolve with the Leaflet layer
 			if (addToMap) {
