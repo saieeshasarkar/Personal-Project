@@ -82,9 +82,9 @@ var isMobile = false; //initiate as false
 				try {
 					
 				  const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
-				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
+				//   const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
 				  const district_layp = loadGeoData("data/features_dd.zip", popUpX, styleD,false,true);
-				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
+				//   const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
@@ -391,16 +391,16 @@ var isMobile = false; //initiate as false
 				pointToLayer: function (feature, latlng) {
 					let key1ForKey2 = [];
 					var source;
-					if (feature.properties.dcode) {
+					if (feature.properties.DCode) {
 					  for (let key1 of Object.keys(counts)) {
-					  if (counts[key1][feature.properties.dcode]) {
+					  if (counts[key1][feature.properties.DCode]) {
 					  key1ForKey2 = key1;
 						break;
 					}
 					}
-					source=key1ForKey2[feature.properties.dcode];
+					source=key1ForKey2[feature.properties.DCode];
 						}else{
-					source=feature.properties.pcode;
+					source=feature.properties.PCode;
 					}
 					var total = 0;
 					try {
@@ -411,7 +411,7 @@ var isMobile = false; //initiate as false
 					  var marker = L.marker(latlng, {
 						icon: L.divIcon({
 						className: 'number-icon',
-						html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
+						html: '<div id=\'p' + feature.properties.PCode + '\' >'+ total + '</div>'
 						})
 					  });
 				  var circleMarker2 = L.circleMarker(latlng, {
