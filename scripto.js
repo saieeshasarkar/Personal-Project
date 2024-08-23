@@ -404,11 +404,18 @@ var isMobile = false; //initiate as false
 				  radius: 0 // Radius in pixels, stays consistent
 				  });
 					var layerGroup = L.layerGroup([marker, circleMarker2]);
+<<<<<<< HEAD
+				 return(layerGroup);
+				},
+				// onEachFeature: onEachFeature,
+				// style: style
+=======
 				 return(layerGroup);
 				}
 				// ,
 				// onEachFeature: onEachFeature,
 				// style: style
+>>>>>>> d8ba7fb6aa5e1804e4a6a5372a6dfd9ce03e3592
 			});
 		}else{
 
