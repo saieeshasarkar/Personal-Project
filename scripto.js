@@ -553,7 +553,7 @@ var isMobile = false; //initiate as false
 					m.removeLayer(combinedLayerP);
 				}
 				
-				m.addLayer(combinedLayerD)
+				combinedLayerD.addTo(m);
 				combinedLayerD.bringToFront();
 				// if (m.hasLayer(province_point)) {
 				// 	m.removeLayer(province_point);
@@ -588,8 +588,8 @@ var isMobile = false; //initiate as false
 				if (m.hasLayer(combinedLayerD)) {
 					m.removeLayer(combinedLayerD);
 				}
-				m.addLayer(combinedLayerP)
-				combinedLayerD.combinedLayerP();
+				combinedLayerP.addTo(m);
+				combinedLayerP.bringToFront
 				// if (m.hasLayer(district_point)) {
 				// 	m.removeLayer(district_point);
 				// }
