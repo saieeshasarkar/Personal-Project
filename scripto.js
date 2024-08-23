@@ -103,7 +103,7 @@ var isMobile = false; //initiate as false
 					
 					combinedLayerP.addLayer(province_lay);
 					combinedLayerP.addLayer(province_point);
-					combinedLayerP.addTo(map);
+					combinedLayerP.addTo(m);
 
 					combinedLayerD.addLayer(district_lay);
 					combinedLayerD.addLayer(district_point);
