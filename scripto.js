@@ -404,7 +404,7 @@ var isMobile = false; //initiate as false
 				  radius: 0 // Radius in pixels, stays consistent
 				  });
 					var layerGroup = L.layerGroup([marker, circleMarker2]);
-				 return(layerGroup);
+				 return(marker);
 				},
 				onEachFeature: onEachFeature,
 				style: style
