@@ -81,10 +81,10 @@ var isMobile = false; //initiate as false
 			  async function initializeMap() {
 				try {
 					
-				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,false);
-				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,true);
-				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
-				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,true,true);
+				  const province_layp = loadGeoData("data/features_p.geojson.zip", popUpX, styleP,true);
+				  const district_layp = loadGeoData("data/features_d.geojson.zip", popUpX, styleD,false);
+				  const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,true,true);
+				  const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
@@ -622,7 +622,7 @@ var isMobile = false; //initiate as false
 
 		// This resets the highlight after hover moves away
 		function resetHighlight(e) {
-			// province_lay.setStyle(styleP);
+			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
 			// village_lay.setStyle(styleV);
 			info.update();
