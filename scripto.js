@@ -101,8 +101,10 @@ var isMobile = false; //initiate as false
 					/////////////////////////	/////////////////////////	/////////////////////////
 				
 					
+					// combinedLayerP.addLayer(province_lay);
+					
 					// combinedLayerP.addLayer(province_point);
-					combinedLayerP.addLayer(province_lay);
+					var combinedLayerP = L.layerGroup([province_point, province_lay]);
 					combinedLayerP.addTo(m);
 
 					combinedLayerD.addLayer(district_lay);
