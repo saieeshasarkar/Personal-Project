@@ -304,8 +304,8 @@ var isMobile = false; //initiate as false
 		// 	  };
 		//   }
 			
-		  
-		  var layer = new L.geoJson(null, layerOptions);
+		  var layer = new L.geoJson(null,layerOptions);
+		//   var layer = new L.geoJson(null, layerOptions);
 
 		// var layer = new L.geoJson(null, {
 		// 	onEachFeature: onEachFeature,
@@ -324,7 +324,7 @@ var isMobile = false; //initiate as false
 			// district_boundary2.clearLayers();
 			// district_boundary2.addData(geoJSONData.features);
 			// district_boundary2.addTo(m);
-			if(alayer){
+			// if(alayer){
 			// geoJSONData.features.forEach(feature => {
 			// 	if (feature.geometry.type === "Point") {
 			// 		const latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
@@ -360,17 +360,61 @@ var isMobile = false; //initiate as false
 			// 	  radius: 0 // Radius in pixels, stays consistent
 			// 	  });
 			// 		var layerGroup = L.layerGroup([marker, circleMarker2]);
-			// 		//   return(layerGroup);
-			// 	//   return(layerGroup);
-			// 	layerGroup.addTo(layer)
+			// 	 return(layerGroup);
+			// 	// layerGroup.addTo(layer)
 				  
 			// 	// const marker = L.marker(latlng).bindPopup(feature.properties.code);
 			// 	// marker.addTo(layer); // Add the marker to the existing layer
 			// 	}
 			//   });
-			}
+			// }
+			if(alayer){
+			layer.clearLayers();
+			layer = L.geoJSON(geoJSONData, {
+				pointToLayer: function (feature, latlng) {
+					let key1ForKey2 = [];
+					var source;
+					if (feature.properties.dcode) {
+					  for (let key1 of Object.keys(counts)) {
+					  if (counts[key1][feature.properties.dcode]) {
+					  key1ForKey2 = key1;
+						break;
+					}
+					}
+					source=key1ForKey2[feature.properties.dcode];
+						}else{
+					source=feature.properties.pcode;
+					}
+					var total = 0;
+					try {
+					  total = counts[source]["total"]; 
+					} catch (error) {
+					}
+					  // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+					  var marker = L.marker(latlng, {
+						icon: L.divIcon({
+						className: 'number-icon',
+						html: '<div id=\'p' + feature.properties.pcode + '\' >'+ total + '</div>'
+						})
+					  });
+				  var circleMarker2 = L.circleMarker(latlng, {
+				  color: 'red',
+				  fillColor: 'red',
+				  weight: 6,
+				  radius: 0 // Radius in pixels, stays consistent
+				  });
+					var layerGroup = L.layerGroup([marker, circleMarker2]);
+				 return(layerGroup);
+				},
+				onEachFeature: onEachFeature,
+				style: style
+			});
+		}else{
 
 			layer.addData(geoJSONData.features);
+		}
+
+
 
 			resolve(layer); // Resolve with the Leaflet layer
 			if (addToMap) {
