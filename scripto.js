@@ -305,7 +305,7 @@ var isMobile = false; //initiate as false
 		//   }
 			
 		  
-		  var layer = new L.geoJson(null, null);
+		  var layer = new L.geoJson(null, layerOptions);
 
 		// var layer = new L.geoJson(null, {
 		// 	onEachFeature: onEachFeature,
@@ -361,8 +361,8 @@ var isMobile = false; //initiate as false
 				  });
 					var layerGroup = L.layerGroup([marker, circleMarker2]);
 					//   return(layerGroup);
-				  return(layerGroup);
-				//   layerGroup.addTo(layer)
+				//   return(layerGroup);
+				layerGroup.addTo(layer)
 				  
 				// const marker = L.marker(latlng).bindPopup(feature.properties.code);
 				// marker.addTo(layer); // Add the marker to the existing layer
