@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Decompress GZIP using pako</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+</head>
+<body>
+    <script>
+        // Function to decompress gzipped data using pako
+        function decompressGzip(gzipData) {
+            try {
+                // Convert binary data to Uint8Array
+                const uint8Array = new Uint8Array(gzipData);
+                // Decompress using pako
+                const decompressedData = pako.ungzip(uint8Array, { to: 'string' });
+                return decompressedData;
+            } catch (error) {
+                console.error('Error decompressing gzip data:', error);
+                return null;
+            }
+        }
+
+        // Fetch and decompress GZIP file
+        fetch('path/to/your/file.gz')
+            .then(response => response.arrayBuffer())
+            .then(gzipData => {
+                const decompressed = decompressGzip(gzipData);
+                console.log('Decompressed data:', decompressed);
+            })
+            .catch(error => console.error('Fetch error:', error));
+    </script>
+</body>
+</html>
