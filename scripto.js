@@ -88,7 +88,7 @@ var isMobile = false; //initiate as false
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
-				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,false);
+				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
 				const district_layp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,false);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
@@ -404,7 +404,7 @@ function decompressGzip(gzipData) {
 	// 		// console.log('Parsed JSON data:', jsonData);
 
 			if(alayer){
-				layer.clearLayers();
+				// layer.clearLayers();
 				layer = L.geoJSON(geoJSONData, {
 					pointToLayer: function (feature, latlng) {
 						let key1ForKey2 = [];
@@ -441,10 +441,11 @@ function decompressGzip(gzipData) {
 						var layerGroup = L.layerGroup([marker, circleMarker2]);
 					 return(layerGroup);
 					}
-					,
-					onEachFeature: onEachFeature,
-					style: style
+					// ,
+					// onEachFeature: onEachFeature,
+					// style: style
 				});
+				layer.addData(geoJSONData.features);
 			}else{
 	
 				layer.addData(geoJSONData.features);
