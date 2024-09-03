@@ -504,12 +504,12 @@ function decompressGzip(gzipData) {
 				// 	}
 				// }
 				/////////////////////////
-				const redDotIcon = L.divIcon({
-					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
-					className: 'red-dot-icon',
-					iconSize: [10, 10],
-					iconAnchor: [5, 5]
-				});
+				// const redDotIcon = L.divIcon({
+				// 	html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
+				// 	className: 'red-dot-icon',
+				// 	iconSize: [10, 10],
+				// 	iconAnchor: [5, 5]
+				// });
 				// layer = L.geoJSON(geoJSONData, {
 				// 	pointToLayer: function (feature, latlng) {
 				// 		return L.marker(latlng, {icon: redDotIcon});
