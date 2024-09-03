@@ -323,6 +323,22 @@ function decompressGzip(gzipData) {
 		  fetch(url)
 		  .then(response => response.arrayBuffer())
 		  .then(async gzipData => {
+			// try {
+			// 	const decompressed = await new Promise((resolve, reject) => {
+			// 	  pako.inflateRaw(new Uint8Array(gzipData), { to: 'string' }, (err, result) => {
+			// 		if (err) reject(err);
+			// 		else resolve(result);
+			// 	  });
+			// 	});
+				
+			// 	const jsonData = JSON.parse(decompressed);
+			// 	console.log('Parsed JSON data:', jsonData);
+			// 	// Now you can use jsonData as a variable containing the parsed JSON
+			//   } catch (error) {
+			// 	console.error('Decompression or parsing error:', error);
+			//   }
+
+			  
 			  const decompressed = decompressGzip(gzipData);
 			//   console.log('Decompressed data:', decompressed);
 			//   const geoJSONData = JSON.parse(decompressed)
