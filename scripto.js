@@ -449,7 +449,7 @@ function decompressGzip(gzipData) {
 			}else{
 	
 				layer.addData(geoJSONData.features);
-
+				var markersGroup = L.layerGroup();
 				geoJSONData.features.forEach(function(feature) {
 					// Check if the feature is a point
 					if (feature.geometry.geometries[1].type === "Point") {
@@ -487,13 +487,15 @@ function decompressGzip(gzipData) {
 					  weight: 6,
 					  radius: 0 // Radius in pixels, stays consistent
 					  });
-						var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
+						
+					 var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(markersGroup);
 						// Create a marker for each point
 						// L.marker([lat, lon], {icon: customIcon})
 						// 	.bindPopup(feature.properties.name || "Unnamed Point")
 						// 	.addTo(map);
 					}
 				});
+				markersGroup.addTo(m);
 
 			}
 	
