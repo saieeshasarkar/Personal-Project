@@ -449,6 +449,7 @@ function decompressGzip(gzipData) {
 			}else{
 				
 				layer.addData(geoJSONData.features);
+				
 				layer.eachLayer(function(layerItem) {
 							if (layerItem instanceof L.Marker) {
 								const coords = layerItem.getLatLng();
