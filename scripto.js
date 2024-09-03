@@ -449,17 +449,17 @@ function decompressGzip(gzipData) {
 			}else{
 				
 				layer.addData(geoJSONData.features);
-				
+
 				layer.eachLayer(function(layerItem) {
 							if (layerItem instanceof L.Marker) {
 								const coords = layerItem.getLatLng();
-								if (coords.lat === lat && coords.lng === lon) {
+								// if (coords.lat === lat && coords.lng === lon) {
 									// Update properties
 									// layerItem.feature.properties = {...layerItem.feature.properties, ...newProperties};
 									
 									// Update popup content if it exists
 									// if (layerItem.getPopup()) {
-										layerItem.setPopupContent(newProperties.name || "Updated Point");
+										layerItem.setPopupContent("xx" || "Updated Point");
 									// }
 									
 									// // Update icon if provided
@@ -469,7 +469,7 @@ function decompressGzip(gzipData) {
 									
 									// You can also update the marker's position if needed
 									// layerItem.setLatLng([newLat, newLon]);
-								}
+								// }
 							}
 						});
 
