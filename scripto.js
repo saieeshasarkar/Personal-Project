@@ -438,12 +438,12 @@ function decompressGzip(gzipData) {
 					  weight: 6,
 					  radius: 0 // Radius in pixels, stays consistent
 					  });
-						var layerGroup = L.layerGroup([marker, circleMarker2]);
-					 return(layerGroup);
+						var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
+					//  return(layerGroup);
 					}
-					,
-					onEachFeature: onEachFeature,
-					style: style
+					// ,
+					// onEachFeature: onEachFeature,
+					// style: style
 				});
 			}else{
 	
@@ -486,7 +486,7 @@ function decompressGzip(gzipData) {
 					  weight: 6,
 					  radius: 0 // Radius in pixels, stays consistent
 					  });
-						var layerGroup = L.layerGroup([marker, circleMarker2]).addToMap;
+						var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
 						// Create a marker for each point
 						// L.marker([lat, lon], {icon: customIcon})
 						// 	.bindPopup(feature.properties.name || "Unnamed Point")
