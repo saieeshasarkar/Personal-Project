@@ -322,7 +322,18 @@ function decompressGzip(gzipData) {
 		  var layer = new L.geoJson(null,layerOptions);
 		  fetch(url)
 		  .then(response => response.arrayBuffer())
-		  .then(async gzipData => {
+		  .then(arrayBuffer => {
+			return new Promise((resolve, reject) => {
+			  try {
+				const inflated = pako.inflate(new Uint8Array(arrayBuffer), { to: 'string' });
+				resolve(inflated);
+			  } catch (error) {
+				reject(new Error('Failed to decompress gzip: ' + error.message));
+			  }
+			});
+		  })
+		  .then(geoJSONString => {
+		//   .then(async gzipData => {
 			// try {
 			// 	const decompressed = await new Promise((resolve, reject) => {
 			// 	  pako.inflateRaw(new Uint8Array(gzipData), { to: 'string' }, (err, result) => {
@@ -339,11 +350,11 @@ function decompressGzip(gzipData) {
 			//   }
 
 			  
-			  const decompressed = decompressGzip(gzipData);
+			//   const decompressed = decompressGzip(gzipData);
 			//   console.log('Decompressed data:', decompressed);
 			//   const geoJSONData = JSON.parse(decompressed)
 			//   const jsonString = new TextDecoder().decode(decompressed);
-   			const geoJSONData = JSON.parse(decompressed);
+   			const geoJSONData = JSON.parse(geoJSONString);
 			// console.log('Parsed JSON data:', jsonData);
 
 			if(alayer){
