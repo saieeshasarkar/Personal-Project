@@ -314,30 +314,36 @@ function decompressGzip(gzipData) {
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = false) {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
-	//   const gzip = {
-	// 	loadAsync: function(input) {
-	// 	  return new Promise((resolve, reject) => {
-	// 		let datag;
-	// 		if (input instanceof ArrayBuffer) {
-	// 		  datag = new Uint8Array(input);
-	// 		} else if (input instanceof Blob) {
-	// 		  return input.arrayBuffer().then(arrayBuffer => {
-	// 			return this.loadAsync(arrayBuffer);
-	// 		  });
-	// 		} else {
-	// 		  reject(new Error('Input must be ArrayBuffer or Blob'));
-	// 		  return;
-	// 		}
-	  
-	// 		try {
-	// 		  const inflated = pako.inflate(data, { to: 'string' });
-	// 		  resolve(inflated);
-	// 		} catch (error) {
-	// 		  reject(new Error('Failed to decompress gzip: ' + error.message));
-	// 		}
-	// 	  });
-	// 	}
-	//   };
+	  var Gzip = {
+		loadAsync: function(input) {
+		  return new Promise(function(resolve, reject) {
+			if (input instanceof Blob) {
+			  var reader = new FileReader();
+			  reader.onload = function() {
+				try {
+				  var decompressed = pako.inflate(reader.result, { to: 'string' });
+				  resolve(decompressed);
+				} catch (error) {
+				  reject(error);
+				}
+			  };
+			  reader.onerror = function() {
+				reject(reader.error);
+			  };
+			  reader.readAsArrayBuffer(input);
+			} else if (input instanceof ArrayBuffer) {
+			  try {
+				var decompressed = pako.inflate(input, { to: 'string' });
+				resolve(decompressed);
+			  } catch (error) {
+				reject(error);
+			  }
+			} else {
+			  reject(new Error("Unsupported input type. Expected Blob or ArrayBuffer."));
+			}
+		  });
+		}
+	  };
 	  if (fileExtension === 'gz') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
@@ -347,9 +353,10 @@ function decompressGzip(gzipData) {
 
 		  fetch(url)
 		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(blob => JSZip.loadAsync(blob))
-		  .then(async zip => decompressGzip(zip))
-		  .then(geoJSONString => {
+		  .then(blob => Gzip.loadAsync(blob))
+		  .then(function(decompressedString) {
+			// var geoJSONData = JSON.parse(decompressedString); // Parse the decompressed string as JSON
+			// console.log(geoJSONData);
 		//   .then(async gzipData => {
 			// try {
 			// 	const decompressed = await new Promise((resolve, reject) => {
@@ -371,7 +378,7 @@ function decompressGzip(gzipData) {
 			//   console.log('Decompressed data:', decompressed);
 			//   const geoJSONData = JSON.parse(decompressed)
 			//   const jsonString = new TextDecoder().decode(decompressed);
-   			const geoJSONData = JSON.parse(geoJSONString);
+   			const geoJSONData = JSON.parse(decompressedString);
 			// console.log('Parsed JSON data:', jsonData);
 
 			if(alayer){
