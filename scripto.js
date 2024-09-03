@@ -471,7 +471,6 @@ function decompressGzip(gzipData) {
 								}
 							}
 						});
-					}
 
 				// function editMarkerInLayer(lat, lon, newProperties, newIcon = null) {
 				// 	layer.eachLayer(function(layerItem) {
