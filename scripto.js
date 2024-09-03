@@ -88,7 +88,7 @@ var isMobile = false; //initiate as false
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
-				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
+				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,false);
 				const district_layp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,false);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
@@ -404,7 +404,7 @@ function decompressGzip(gzipData) {
 	// 		// console.log('Parsed JSON data:', jsonData);
 
 			if(alayer){
-				// layer.clearLayers();
+				layer.clearLayers();
 				layer = L.geoJSON(geoJSONData, {
 					pointToLayer: function (feature, latlng) {
 						let key1ForKey2 = [];
@@ -441,14 +441,59 @@ function decompressGzip(gzipData) {
 						var layerGroup = L.layerGroup([marker, circleMarker2]);
 					 return(layerGroup);
 					}
-					// ,
-					// onEachFeature: onEachFeature,
-					// style: style
+					,
+					onEachFeature: onEachFeature,
+					style: style
 				});
-				layer.addData(geoJSONData.features);
 			}else{
 	
 				layer.addData(geoJSONData.features);
+
+				geoJSONData.features.forEach(function(feature) {
+					// Check if the feature is a point
+					if (feature.geometry.type === "Point") {
+						var coordinates = feature.geometry.coordinates;
+						var lon = coordinates[0];
+						var lat = coordinates[1];
+						let key1ForKey2 = [];
+						var source;
+						if (feature.properties.DCode) {
+						  for (let key1 of Object.keys(counts)) {
+						  if (counts[key1][feature.properties.DCode]) {
+						  key1ForKey2 = key1;
+							break;
+						}
+						}
+						source=key1ForKey2[feature.properties.DCode];
+							}else{
+						source=feature.properties.PCode;
+						}
+						var total = 0;
+						try {
+						  total = counts[source]["total"]; 
+						} catch (error) {
+						}
+						  // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+						  var marker = L.marker(latlng, {
+							icon: L.divIcon({
+							className: 'number-icon',
+							html: '<div id=\'p' + feature.properties.PCode + '\' >'+ total + '</div>'
+							})
+						  });
+					  var circleMarker2 = L.circleMarker(latlng, {
+					  color: 'red',
+					  fillColor: 'red',
+					  weight: 6,
+					  radius: 0 // Radius in pixels, stays consistent
+					  });
+						var layerGroup = L.layerGroup([marker, circleMarker2]).addToMap;
+						// Create a marker for each point
+						// L.marker([lat, lon], {icon: customIcon})
+						// 	.bindPopup(feature.properties.name || "Unnamed Point")
+						// 	.addTo(map);
+					}
+				});
+
 			}
 	
 	
