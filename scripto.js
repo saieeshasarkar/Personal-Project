@@ -438,12 +438,13 @@ function decompressGzip(gzipData) {
 					  weight: 6,
 					  radius: 0 // Radius in pixels, stays consistent
 					  });
-						var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
-					//  return(layerGroup);
+						// var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
+						var layerGroup = L.layerGroup([marker, circleMarker2]);
+					 return(layerGroup);
 					}
-					// ,
-					// onEachFeature: onEachFeature,
-					// style: style
+					,
+					onEachFeature: onEachFeature,
+					style: style
 				});
 			}else{
 	
