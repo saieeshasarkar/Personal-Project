@@ -317,9 +317,9 @@ function decompressGzip(gzipData) {
 	  const gzip = {
 		loadAsync: function(input) {
 		  return new Promise((resolve, reject) => {
-			let data;
+			let datag;
 			if (input instanceof ArrayBuffer) {
-			  data = new Uint8Array(input);
+			  datag = new Uint8Array(input);
 			} else if (input instanceof Blob) {
 			  return input.arrayBuffer().then(arrayBuffer => {
 				return this.loadAsync(arrayBuffer);
