@@ -314,30 +314,30 @@ function decompressGzip(gzipData) {
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = false) {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
-	  const gzip = {
-		loadAsync: function(input) {
-		  return new Promise((resolve, reject) => {
-			let datag;
-			if (input instanceof ArrayBuffer) {
-			  datag = new Uint8Array(input);
-			} else if (input instanceof Blob) {
-			  return input.arrayBuffer().then(arrayBuffer => {
-				return this.loadAsync(arrayBuffer);
-			  });
-			} else {
-			  reject(new Error('Input must be ArrayBuffer or Blob'));
-			  return;
-			}
+	//   const gzip = {
+	// 	loadAsync: function(input) {
+	// 	  return new Promise((resolve, reject) => {
+	// 		let datag;
+	// 		if (input instanceof ArrayBuffer) {
+	// 		  datag = new Uint8Array(input);
+	// 		} else if (input instanceof Blob) {
+	// 		  return input.arrayBuffer().then(arrayBuffer => {
+	// 			return this.loadAsync(arrayBuffer);
+	// 		  });
+	// 		} else {
+	// 		  reject(new Error('Input must be ArrayBuffer or Blob'));
+	// 		  return;
+	// 		}
 	  
-			try {
-			  const inflated = pako.inflate(data, { to: 'string' });
-			  resolve(inflated);
-			} catch (error) {
-			  reject(new Error('Failed to decompress gzip: ' + error.message));
-			}
-		  });
-		}
-	  };
+	// 		try {
+	// 		  const inflated = pako.inflate(data, { to: 'string' });
+	// 		  resolve(inflated);
+	// 		} catch (error) {
+	// 		  reject(new Error('Failed to decompress gzip: ' + error.message));
+	// 		}
+	// 	  });
+	// 	}
+	//   };
 	  if (fileExtension === 'gz') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
