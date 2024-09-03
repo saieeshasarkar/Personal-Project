@@ -353,7 +353,7 @@ function decompressGzip(gzipData) {
 
 		  fetch(url)
 		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(blob => Gzip.loadAsync(blob))
+		  .then(async blob => Gzip.loadAsync(blob))
 		  .then(function(decompressedString) {
 			// var geoJSONData = JSON.parse(decompressedString); // Parse the decompressed string as JSON
 			// console.log(geoJSONData);
