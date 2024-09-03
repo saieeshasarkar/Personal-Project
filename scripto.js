@@ -313,152 +313,152 @@ function decompressGzip(gzipData) {
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = false) {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
-	  var Gzip = {
-		loadAsync: function(input) {
-		  return new Promise(function(resolve, reject) {
-			if (input instanceof Blob) {
-			  var reader = new FileReader();
-			  reader.onload = function() {
-				try {
-				  var decompressed = pako.inflate(reader.result, { to: 'string' });
-				  resolve(decompressed);
-				} catch (error) {
-				  reject(error);
-				}
-			  };
-			  reader.onerror = function() {
-				reject(reader.error);
-			  };
-			  reader.readAsArrayBuffer(input);
-			} else if (input instanceof ArrayBuffer) {
-			  try {
-				var decompressed = pako.inflate(input, { to: 'string' });
-				resolve(decompressed);
-			  } catch (error) {
-				reject(error);
-			  }
-			} else {
-			  reject(new Error("Unsupported input type. Expected Blob or ArrayBuffer."));
-			}
-		  });
-		}
-	  };
-	  if (fileExtension === 'gz') {
-		const layerOptions = {
-			onEachFeature: onEachFeature,
-			style: style
-		  };
-		  var layer = new L.geoJson(null,layerOptions);
-		//   async function fetchData(url) {
-		// 	let message; // Replace 'a' with your actual condition
-		// 	  try {
-		// 		const response = await fetch(url); // Wait for fetch to complete
-		// 		const blob = await response.blob(); // Wait for the blob to be extracted
-		// 		message=Gzip.loadAsync(blob);
-		// 		// Further processing with the blob
-		// 		console.log(blob);
+	//   var Gzip = {
+	// 	loadAsync: function(input) {
+	// 	  return new Promise(function(resolve, reject) {
+	// 		if (input instanceof Blob) {
+	// 		  var reader = new FileReader();
+	// 		  reader.onload = function() {
+	// 			try {
+	// 			  var decompressed = pako.inflate(reader.result, { to: 'string' });
+	// 			  resolve(decompressed);
+	// 			} catch (error) {
+	// 			  reject(error);
+	// 			}
+	// 		  };
+	// 		  reader.onerror = function() {
+	// 			reject(reader.error);
+	// 		  };
+	// 		  reader.readAsArrayBuffer(input);
+	// 		} else if (input instanceof ArrayBuffer) {
+	// 		  try {
+	// 			var decompressed = pako.inflate(input, { to: 'string' });
+	// 			resolve(decompressed);
+	// 		  } catch (error) {
+	// 			reject(error);
+	// 		  }
+	// 		} else {
+	// 		  reject(new Error("Unsupported input type. Expected Blob or ArrayBuffer."));
+	// 		}
+	// 	  });
+	// 	}
+	//   };
+	//   if (fileExtension === 'gz') {
+	// 	const layerOptions = {
+	// 		onEachFeature: onEachFeature,
+	// 		style: style
+	// 	  };
+	// 	  var layer = new L.geoJson(null,layerOptions);
+	// 	//   async function fetchData(url) {
+	// 	// 	let message; // Replace 'a' with your actual condition
+	// 	// 	  try {
+	// 	// 		const response = await fetch(url); // Wait for fetch to complete
+	// 	// 		const blob = await response.blob(); // Wait for the blob to be extracted
+	// 	// 		message=Gzip.loadAsync(blob);
+	// 	// 		// Further processing with the blob
+	// 	// 		console.log(blob);
 		  
-		// 	  } catch (error) {
-		// 		console.error('Error fetching data:', error);
-		// 	  }
-		// 	// Return or use the message
-		// 	return message;
-		//   }
+	// 	// 	  } catch (error) {
+	// 	// 		console.error('Error fetching data:', error);
+	// 	// 	  }
+	// 	// 	// Return or use the message
+	// 	// 	return message;
+	// 	//   }
 		  
-		//   // Example usage
-		//   fetchData(url).then(message => {
-		// 	if (message) {
-		// 	  console.log(message);
-		// 	}
-		//   });
+	// 	//   // Example usage
+	// 	//   fetchData(url).then(message => {
+	// 	// 	if (message) {
+	// 	// 	  console.log(message);
+	// 	// 	}
+	// 	//   });
 
-		  fetch(url)
-		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(async blob => Gzip.loadAsync(blob))
-		  .then(geoJSONString => {
-			// var geoJSONData = JSON.parse(decompressedString); // Parse the decompressed string as JSON
-			// console.log(geoJSONData);
-		//   .then(async gzipData => {
-			// try {
-			// 	const decompressed = await new Promise((resolve, reject) => {
-			// 	  pako.inflateRaw(new Uint8Array(gzipData), { to: 'string' }, (err, result) => {
-			// 		if (err) reject(err);
-			// 		else resolve(result);
-			// 	  });
-			// 	});
+	// 	  fetch(url)
+	// 	  .then(response => response.blob())  // or response.arrayBuffer()
+	// 	  .then(async blob => Gzip.loadAsync(blob))
+	// 	  .then(geoJSONString => {
+	// 		// var geoJSONData = JSON.parse(decompressedString); // Parse the decompressed string as JSON
+	// 		// console.log(geoJSONData);
+	// 	//   .then(async gzipData => {
+	// 		// try {
+	// 		// 	const decompressed = await new Promise((resolve, reject) => {
+	// 		// 	  pako.inflateRaw(new Uint8Array(gzipData), { to: 'string' }, (err, result) => {
+	// 		// 		if (err) reject(err);
+	// 		// 		else resolve(result);
+	// 		// 	  });
+	// 		// 	});
 				
-			// 	const jsonData = JSON.parse(decompressed);
-			// 	console.log('Parsed JSON data:', jsonData);
-			// 	// Now you can use jsonData as a variable containing the parsed JSON
-			//   } catch (error) {
-			// 	console.error('Decompression or parsing error:', error);
-			//   }
+	// 		// 	const jsonData = JSON.parse(decompressed);
+	// 		// 	console.log('Parsed JSON data:', jsonData);
+	// 		// 	// Now you can use jsonData as a variable containing the parsed JSON
+	// 		//   } catch (error) {
+	// 		// 	console.error('Decompression or parsing error:', error);
+	// 		//   }
 
 			  
-			//   const decompressed = decompressGzip(gzipData);
-			//   console.log('Decompressed data:', decompressed);
-			//   const geoJSONData = JSON.parse(decompressed)
-			//   const jsonString = new TextDecoder().decode(decompressed);
-   			const geoJSONData = JSON.parse(geoJSONString);
-			// console.log('Parsed JSON data:', jsonData);
+	// 		//   const decompressed = decompressGzip(gzipData);
+	// 		//   console.log('Decompressed data:', decompressed);
+	// 		//   const geoJSONData = JSON.parse(decompressed)
+	// 		//   const jsonString = new TextDecoder().decode(decompressed);
+   	// 		const geoJSONData = JSON.parse(geoJSONString);
+	// 		// console.log('Parsed JSON data:', jsonData);
 
-			if(alayer){
-				layer.clearLayers();
-				layer = L.geoJSON(geoJSONData, {
-					pointToLayer: function (feature, latlng) {
-						let key1ForKey2 = [];
-						var source;
-						if (feature.properties.DCode) {
-						  for (let key1 of Object.keys(counts)) {
-						  if (counts[key1][feature.properties.DCode]) {
-						  key1ForKey2 = key1;
-							break;
-						}
-						}
-						source=key1ForKey2[feature.properties.DCode];
-							}else{
-						source=feature.properties.PCode;
-						}
-						var total = 0;
-						try {
-						  total = counts[source]["total"]; 
-						} catch (error) {
-						}
-						  // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
-						  var marker = L.marker(latlng, {
-							icon: L.divIcon({
-							className: 'number-icon',
-							html: '<div id=\'p' + feature.properties.PCode + '\' >'+ total + '</div>'
-							})
-						  });
-					  var circleMarker2 = L.circleMarker(latlng, {
-					  color: 'red',
-					  fillColor: 'red',
-					  weight: 6,
-					  radius: 0 // Radius in pixels, stays consistent
-					  });
-						var layerGroup = L.layerGroup([marker, circleMarker2]);
-					 return(layerGroup);
-					}
-					,
-					onEachFeature: onEachFeature,
-					style: style
-				});
-			}else{
+	// 		if(alayer){
+	// 			layer.clearLayers();
+	// 			layer = L.geoJSON(geoJSONData, {
+	// 				pointToLayer: function (feature, latlng) {
+	// 					let key1ForKey2 = [];
+	// 					var source;
+	// 					if (feature.properties.DCode) {
+	// 					  for (let key1 of Object.keys(counts)) {
+	// 					  if (counts[key1][feature.properties.DCode]) {
+	// 					  key1ForKey2 = key1;
+	// 						break;
+	// 					}
+	// 					}
+	// 					source=key1ForKey2[feature.properties.DCode];
+	// 						}else{
+	// 					source=feature.properties.PCode;
+	// 					}
+	// 					var total = 0;
+	// 					try {
+	// 					  total = counts[source]["total"]; 
+	// 					} catch (error) {
+	// 					}
+	// 					  // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+	// 					  var marker = L.marker(latlng, {
+	// 						icon: L.divIcon({
+	// 						className: 'number-icon',
+	// 						html: '<div id=\'p' + feature.properties.PCode + '\' >'+ total + '</div>'
+	// 						})
+	// 					  });
+	// 				  var circleMarker2 = L.circleMarker(latlng, {
+	// 				  color: 'red',
+	// 				  fillColor: 'red',
+	// 				  weight: 6,
+	// 				  radius: 0 // Radius in pixels, stays consistent
+	// 				  });
+	// 					var layerGroup = L.layerGroup([marker, circleMarker2]);
+	// 				 return(layerGroup);
+	// 				}
+	// 				,
+	// 				onEachFeature: onEachFeature,
+	// 				style: style
+	// 			});
+	// 		}else{
 	
-				layer.addData(geoJSONData.features);
-			}
+	// 			layer.addData(geoJSONData.features);
+	// 		}
 	
 	
 	
-				resolve(layer); // Resolve with the Leaflet layer
-				if (addToMap) {
-					layer.addTo(m); // Add the layer to the map if addToMap is true
-				  }
+	// 			resolve(layer); // Resolve with the Leaflet layer
+	// 			if (addToMap) {
+	// 				layer.addTo(m); // Add the layer to the map if addToMap is true
+	// 			  }
 
-		  })
-		  .catch(error => console.error('Fetch error:', error));
-		}
+	// 	  })
+	// 	  .catch(error => console.error('Fetch error:', error));
+	// 	}
 	// }
 	  if (fileExtension === 'zip') {
 		const layerOptions = {
