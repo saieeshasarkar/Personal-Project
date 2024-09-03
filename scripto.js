@@ -351,7 +351,7 @@ function decompressGzip(gzipData) {
 		  };
 		  var layer = new L.geoJson(null,layerOptions);
 
-		  fetch(url)
+		  await fetch(url)
 		  .then(response => response.blob())  // or response.arrayBuffer()
 		  .then(async blob => await Gzip.loadAsync(blob))
 		  .then(function(decompressedString) {
