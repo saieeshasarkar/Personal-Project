@@ -350,11 +350,39 @@ function decompressGzip(gzipData) {
 			style: style
 		  };
 		  var layer = new L.geoJson(null,layerOptions);
+		  async function fetchData(url) {
+			let message;
+		  
+			if (a) {  // Replace 'a' with your actual condition
+			  try {
+				const response = await fetch(url); // Wait for fetch to complete
+				const blob = await response.blob(); // Wait for the blob to be extracted
+				message=Gzip.loadAsync(blob);
+				// Further processing with the blob
+				console.log(blob);
+		  
+			  } catch (error) {
+				console.error('Error fetching data:', error);
+			  }
+			} else {
+			  message = "not found";
+			}
+		  
+			// Return or use the message
+			return message;
+		  }
+		  
+		  // Example usage
+		  fetchData(url).then(message => {
+			if (message) {
+		// 	  console.log(message);
+		// 	}
+		//   });
 
-		  await fetch(url)
-		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(async blob => await Gzip.loadAsync(blob))
-		  .then(function(decompressedString) {
+		//   fetch(url)
+		//   .then(response => response.blob())  // or response.arrayBuffer()
+		//   .then(async blob => Gzip.loadAsync(blob))
+		//   .then(function(decompressedString) {
 			// var geoJSONData = JSON.parse(decompressedString); // Parse the decompressed string as JSON
 			// console.log(geoJSONData);
 		//   .then(async gzipData => {
@@ -435,9 +463,9 @@ function decompressGzip(gzipData) {
 					layer.addTo(m); // Add the layer to the map if addToMap is true
 				  }
 
-		  })
-		  .catch(error => console.error('Fetch error:', error));
-		}
+		  }//)
+		//   .catch(error => console.error('Fetch error:', error));
+		});
 	  if (fileExtension === 'zip') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
