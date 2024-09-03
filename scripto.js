@@ -80,10 +80,12 @@ var isMobile = false; //initiate as false
 
 			  async function initializeMap() {
 				try {
-					
-				  const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
+					const province_layp = loadGeoData("data/features_pp.gz", popUpX, styleP,true,true);
+					  const district_layp = loadGeoData("data/features_dp.gz", popUpX, styleD,false,true);
+
+				  //const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
 				//   const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
-				  const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false,true);
+				  //const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false,true);
 				//   const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
@@ -297,11 +299,94 @@ var isMobile = false; //initiate as false
  function containsPointType(geojson) {
     return geojson.features.some(feature => feature.geometry && feature.geometry.type === "Point");
 }
-
+function decompressGzip(gzipData) {
+	try {
+		// Convert binary data to Uint8Array
+		const uint8Array = new Uint8Array(gzipData);
+		// Decompress using pako
+		const decompressedData = pako.ungzip(uint8Array, { to: 'string' });
+		return decompressedData;
+	} catch (error) {
+		console.error('Error decompressing gzip data:', error);
+		return null;
+	}
+}
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = false) {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
-	 
+	  if (fileExtension === 'gz') {
+		const layerOptions = {
+			onEachFeature: onEachFeature,
+			style: style
+		  };
+		  var layer = new L.geoJson(null,layerOptions);
+		  fetch(url)
+		  .then(response => response.arrayBuffer())
+		  .then(gzipData => {
+			  const decompressed = decompressGzip(gzipData);
+			//   console.log('Decompressed data:', decompressed);
+			//   const geoJSONData = JSON.parse(decompressed)
+			  const jsonString = new TextDecoder().decode(decompressed);
+   			const geoJSONData = JSON.parse(jsonString);
+			// console.log('Parsed JSON data:', jsonData);
+
+			if(alayer){
+				layer.clearLayers();
+				layer = L.geoJSON(geoJSONData, {
+					pointToLayer: function (feature, latlng) {
+						let key1ForKey2 = [];
+						var source;
+						if (feature.properties.DCode) {
+						  for (let key1 of Object.keys(counts)) {
+						  if (counts[key1][feature.properties.DCode]) {
+						  key1ForKey2 = key1;
+							break;
+						}
+						}
+						source=key1ForKey2[feature.properties.DCode];
+							}else{
+						source=feature.properties.PCode;
+						}
+						var total = 0;
+						try {
+						  total = counts[source]["total"]; 
+						} catch (error) {
+						}
+						  // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+						  var marker = L.marker(latlng, {
+							icon: L.divIcon({
+							className: 'number-icon',
+							html: '<div id=\'p' + feature.properties.PCode + '\' >'+ total + '</div>'
+							})
+						  });
+					  var circleMarker2 = L.circleMarker(latlng, {
+					  color: 'red',
+					  fillColor: 'red',
+					  weight: 6,
+					  radius: 0 // Radius in pixels, stays consistent
+					  });
+						var layerGroup = L.layerGroup([marker, circleMarker2]);
+					 return(layerGroup);
+					}
+					,
+					onEachFeature: onEachFeature,
+					style: style
+				});
+			}else{
+	
+				layer.addData(geoJSONData.features);
+			}
+	
+	
+	
+				resolve(layer); // Resolve with the Leaflet layer
+				if (addToMap) {
+					layer.addTo(m); // Add the layer to the map if addToMap is true
+				  }
+
+		  })
+		  .catch(error => console.error('Fetch error:', error));
+		}
 	  if (fileExtension === 'zip') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
