@@ -322,7 +322,7 @@ function decompressGzip(gzipData) {
 		  var layer = new L.geoJson(null,layerOptions);
 		  fetch(url)
 		  .then(response => response.arrayBuffer())
-		  .then(gzipData => {
+		  .then(async gzipData => {
 			  const decompressed = decompressGzip(gzipData);
 			//   console.log('Decompressed data:', decompressed);
 			//   const geoJSONData = JSON.parse(decompressed)
