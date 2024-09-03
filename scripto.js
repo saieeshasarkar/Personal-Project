@@ -314,25 +314,40 @@ function decompressGzip(gzipData) {
   function loadGeoData(url, onEachFeature, style, addToMap = true,alayer = false) {
 	return new Promise((resolve, reject) => {
 	  const fileExtension = url.split('.').pop().toLowerCase();
+	  const gzip = {
+		loadAsync: function(input) {
+		  return new Promise((resolve, reject) => {
+			let data;
+			if (input instanceof ArrayBuffer) {
+			  data = new Uint8Array(input);
+			} else if (input instanceof Blob) {
+			  return input.arrayBuffer().then(arrayBuffer => {
+				return this.loadAsync(arrayBuffer);
+			  });
+			} else {
+			  reject(new Error('Input must be ArrayBuffer or Blob'));
+			  return;
+			}
+	  
+			try {
+			  const inflated = pako.inflate(data, { to: 'string' });
+			  resolve(inflated);
+			} catch (error) {
+			  reject(new Error('Failed to decompress gzip: ' + error.message));
+			}
+		  });
+		}
+	  };
 	  if (fileExtension === 'gz') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
 			style: style
 		  };
 		  var layer = new L.geoJson(null,layerOptions);
+
 		  fetch(url)
-		  .then(response => response.arrayBuffer())
-		  .then(arrayBuffer => {
-			return new Promise((resolve, reject) => {
-			  try {
-				const inflated = pako.inflate(new Uint8Array(arrayBuffer), { to: 'string' });
-				resolve(inflated);
-				// resolve(decompressGzip(arrayBuffer));
-			  } catch (error) {
-				reject(new Error('Failed to decompress gzip: ' + error.message));
-			  }
-			});
-		  })
+		  .then(response => response.blob())  // or response.arrayBuffer()
+		  .then(blob => gzip.loadAsync(blob))
 		  .then(geoJSONString => {
 		//   .then(async gzipData => {
 			// try {
