@@ -80,16 +80,16 @@ var isMobile = false; //initiate as false
 
 			  async function initializeMap() {
 				try {
-					const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
-					  const district_layp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,true);
 
-				  //const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
+				  const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
 				//   const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
-				  //const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false,true);
+				  const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false,true);
 				//   const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
+				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
+				const district_layp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,true);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
 					// [province_lay, district_lay, province_point,district_point] = await Promise.all([
@@ -350,33 +350,33 @@ function decompressGzip(gzipData) {
 			style: style
 		  };
 		  var layer = new L.geoJson(null,layerOptions);
-		  async function fetchData(url) {
-			let message; // Replace 'a' with your actual condition
-			  try {
-				const response = await fetch(url); // Wait for fetch to complete
-				const blob = await response.blob(); // Wait for the blob to be extracted
-				message=Gzip.loadAsync(blob);
-				// Further processing with the blob
-				console.log(blob);
+		//   async function fetchData(url) {
+		// 	let message; // Replace 'a' with your actual condition
+		// 	  try {
+		// 		const response = await fetch(url); // Wait for fetch to complete
+		// 		const blob = await response.blob(); // Wait for the blob to be extracted
+		// 		message=Gzip.loadAsync(blob);
+		// 		// Further processing with the blob
+		// 		console.log(blob);
 		  
-			  } catch (error) {
-				console.error('Error fetching data:', error);
-			  }
-			// Return or use the message
-			return message;
-		  }
+		// 	  } catch (error) {
+		// 		console.error('Error fetching data:', error);
+		// 	  }
+		// 	// Return or use the message
+		// 	return message;
+		//   }
 		  
-		  // Example usage
-		  fetchData(url).then(message => {
-			if (message) {
+		//   // Example usage
+		//   fetchData(url).then(message => {
+		// 	if (message) {
 		// 	  console.log(message);
 		// 	}
 		//   });
 
-		//   fetch(url)
-		//   .then(response => response.blob())  // or response.arrayBuffer()
-		//   .then(async blob => Gzip.loadAsync(blob))
-		//   .then(function(decompressedString) {
+		  fetch(url)
+		  .then(response => response.blob())  // or response.arrayBuffer()
+		  .then(async blob => Gzip.loadAsync(blob))
+		  .then(function(decompressedString) {
 			// var geoJSONData = JSON.parse(decompressedString); // Parse the decompressed string as JSON
 			// console.log(geoJSONData);
 		//   .then(async gzipData => {
@@ -457,10 +457,10 @@ function decompressGzip(gzipData) {
 					layer.addTo(m); // Add the layer to the map if addToMap is true
 				  }
 
-		  }//)
-		//   .catch(error => console.error('Fetch error:', error));
-		});
-	}
+		  })
+		  .catch(error => console.error('Fetch error:', error));
+		}
+	// }
 	  if (fileExtension === 'zip') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
