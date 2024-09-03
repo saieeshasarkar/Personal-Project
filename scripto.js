@@ -351,9 +351,7 @@ function decompressGzip(gzipData) {
 		  };
 		  var layer = new L.geoJson(null,layerOptions);
 		  async function fetchData(url) {
-			let message;
-		  
-			if (a) {  // Replace 'a' with your actual condition
+			let message; // Replace 'a' with your actual condition
 			  try {
 				const response = await fetch(url); // Wait for fetch to complete
 				const blob = await response.blob(); // Wait for the blob to be extracted
@@ -364,10 +362,6 @@ function decompressGzip(gzipData) {
 			  } catch (error) {
 				console.error('Error fetching data:', error);
 			  }
-			} else {
-			  message = "not found";
-			}
-		  
 			// Return or use the message
 			return message;
 		  }
@@ -466,6 +460,7 @@ function decompressGzip(gzipData) {
 		  }//)
 		//   .catch(error => console.error('Fetch error:', error));
 		});
+	}
 	  if (fileExtension === 'zip') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
