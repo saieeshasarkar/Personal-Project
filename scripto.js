@@ -486,6 +486,40 @@ function decompressGzip(gzipData) {
 					}
 				});
 				layer.addData(geoJSONData.features);
+
+				// function addMarkerToLayer(lat, lon, properties, customIcon) {
+				// 	layer.addData({
+				// 		type: "Feature",
+				// 		geometry: {
+				// 			type: "Point",
+				// 			coordinates: [lon, lat]
+				// 		},
+				// 		properties: properties
+				// 	});
+					
+				// 	if (customIcon) {
+				// 		let markers = layer.getLayers();
+				// 		let lastMarker = markers[markers.length - 1];
+				// 		lastMarker.setIcon(customIcon);
+				// 	}
+				// }
+				/////////////////////////
+				const redDotIcon = L.divIcon({
+					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
+					className: 'red-dot-icon',
+					iconSize: [10, 10],
+					iconAnchor: [5, 5]
+				});
+				// layer = L.geoJSON(geoJSONData, {
+				// 	pointToLayer: function (feature, latlng) {
+				// 		return L.marker(latlng, {icon: redDotIcon});
+				// 	}
+				// }).addTo(map);
+				/////////////////////////////
+				// // Usage:
+				// addMarkerToLayer(51.5, -0.09, { name: "Special Point" }, specialIcon);
+
+
 				// var markersGroup = L.layerGroup();
 				// geoJSONData.features.forEach(function(feature) {
 				// 	// Check if the feature is a point
