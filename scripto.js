@@ -326,8 +326,8 @@ function decompressGzip(gzipData) {
 			  const decompressed = decompressGzip(gzipData);
 			//   console.log('Decompressed data:', decompressed);
 			//   const geoJSONData = JSON.parse(decompressed)
-			  const jsonString = new TextDecoder().decode(decompressed);
-   			const geoJSONData = JSON.parse(jsonString);
+			//   const jsonString = new TextDecoder().decode(decompressed);
+   			const geoJSONData = JSON.parse(decompressed);
 			// console.log('Parsed JSON data:', jsonData);
 
 			if(alayer){
