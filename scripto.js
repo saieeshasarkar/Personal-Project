@@ -347,7 +347,8 @@ function decompressGzip(gzipData) {
 
 		  fetch(url)
 		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(blob => gzip.loadAsync(blob))
+		  .then(blob => JSZip.loadAsync(blob))
+		  .then(async zip => decompressGzip(zip))
 		  .then(geoJSONString => {
 		//   .then(async gzipData => {
 			// try {
