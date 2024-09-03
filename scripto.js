@@ -80,8 +80,8 @@ var isMobile = false; //initiate as false
 
 			  async function initializeMap() {
 				try {
-					const province_layp = loadGeoData("data/features_pp.gz", popUpX, styleP,true,true);
-					  const district_layp = loadGeoData("data/features_dp.gz", popUpX, styleD,false,true);
+					const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
+					  const district_layp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,true);
 
 				  //const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
 				//   const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
