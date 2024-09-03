@@ -88,17 +88,16 @@ var isMobile = false; //initiate as false
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
-				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
-				const district_layp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,true);
+				const province_pointp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,true);
+				const district_pointp = loadGeoData("data/features_dp.geojson.gz", popUpX, styleD,false,true);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
-					// [province_lay, district_lay, province_point,district_point] = await Promise.all([
-				  [province_lay, district_lay] = await Promise.all([
+					[province_lay, district_lay, province_point,district_point] = await Promise.all([
+				//   [province_lay, district_lay] = await Promise.all([
 					province_layp,
-					district_layp
-					// ,
-					// province_pointp,
-					// district_pointp
+					district_layp ,
+					province_pointp,
+					district_pointp
 				  ]);
 
 				  
