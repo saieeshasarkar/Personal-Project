@@ -447,15 +447,8 @@ function decompressGzip(gzipData) {
 					style: style
 				});
 			}else{
-	
-				layer.addData(geoJSONData.features);
-				var markersGroup = L.layerGroup();
-				geoJSONData.features.forEach(function(feature) {
-					// Check if the feature is a point
-					if (feature.geometry.geometries[1].type === "Point") {
-						var latlng = feature.geometry.geometries[1].coordinates;
-						var lon = latlng[0];
-						var lat = latlng[1];
+				layer = L.geoJSON(geoJSONData, {
+					pointToLayer: function (feature, latlng) {
 						let key1ForKey2 = [];
 						var source;
 						if (feature.properties.DCode) {
@@ -487,15 +480,59 @@ function decompressGzip(gzipData) {
 					  weight: 6,
 					  radius: 0 // Radius in pixels, stays consistent
 					  });
-						
-					 var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(markersGroup);
-						// Create a marker for each point
-						// L.marker([lat, lon], {icon: customIcon})
-						// 	.bindPopup(feature.properties.name || "Unnamed Point")
-						// 	.addTo(map);
+						// var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
+						var layerGroup = L.layerGroup([marker, circleMarker2]);
+					 return(layerGroup);
 					}
 				});
-				markersGroup.addTo(m);
+				layer.addData(geoJSONData.features);
+				// var markersGroup = L.layerGroup();
+				// geoJSONData.features.forEach(function(feature) {
+				// 	// Check if the feature is a point
+				// 	if (feature.geometry.geometries[1].type === "Point") {
+				// 		var latlng = feature.geometry.geometries[1].coordinates;
+				// 		var lon = latlng[0];
+				// 		var lat = latlng[1];
+				// 		let key1ForKey2 = [];
+				// 		var source;
+				// 		if (feature.properties.DCode) {
+				// 		  for (let key1 of Object.keys(counts)) {
+				// 		  if (counts[key1][feature.properties.DCode]) {
+				// 		  key1ForKey2 = key1;
+				// 			break;
+				// 		}
+				// 		}
+				// 		source=key1ForKey2[feature.properties.DCode];
+				// 			}else{
+				// 		source=feature.properties.PCode;
+				// 		}
+				// 		var total = 0;
+				// 		try {
+				// 		  total = counts[source]["total"]; 
+				// 		} catch (error) {
+				// 		}
+				// 		  // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+				// 		  var marker = L.marker(latlng, {
+				// 			icon: L.divIcon({
+				// 			className: 'number-icon',
+				// 			html: '<div id=\'p' + feature.properties.PCode + '\' >'+ total + '</div>'
+				// 			})
+				// 		  });
+				// 	  var circleMarker2 = L.circleMarker(latlng, {
+				// 	  color: 'red',
+				// 	  fillColor: 'red',
+				// 	  weight: 6,
+				// 	  radius: 0 // Radius in pixels, stays consistent
+				// 	  });
+						
+				// 	 var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(markersGroup);
+				// 		// Create a marker for each point
+				// 		// L.marker([lat, lon], {icon: customIcon})
+				// 		// 	.bindPopup(feature.properties.name || "Unnamed Point")
+				// 		// 	.addTo(map);
+				// 	}
+				// });
+				// markersGroup.addTo(m);
 
 			}
 	
