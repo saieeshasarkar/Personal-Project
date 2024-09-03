@@ -327,6 +327,7 @@ function decompressGzip(gzipData) {
 			  try {
 				const inflated = pako.inflate(new Uint8Array(arrayBuffer), { to: 'string' });
 				resolve(inflated);
+				// resolve(decompressGzip(arrayBuffer));
 			  } catch (error) {
 				reject(new Error('Failed to decompress gzip: ' + error.message));
 			  }
