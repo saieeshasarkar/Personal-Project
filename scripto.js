@@ -453,9 +453,9 @@ function decompressGzip(gzipData) {
 				geoJSONData.features.forEach(function(feature) {
 					// Check if the feature is a point
 					if (feature.geometry.geometries[1].type === "Point") {
-						var coordinates = feature.geometry.geometries[1].coordinates;
-						var lon = coordinates[0];
-						var lat = coordinates[1];
+						var latlng = feature.geometry.geometries[1].coordinates;
+						var lon = latlng[0];
+						var lat = latlng[1];
 						let key1ForKey2 = [];
 						var source;
 						if (feature.properties.DCode) {
