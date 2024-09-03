@@ -372,10 +372,10 @@ function decompressGzip(gzipData) {
 	// 	// 	  console.log(message);
 	// 	// 	}
 	// 	//   });
-
+	// .then(async blob => Gzip.loadAsync(blob))
 		  fetch(url)
 		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(async blob => Gzip.loadAsync(blob))
+		  .then(blob => Gzip.loadAsync(blob))
 		  .then(geoJSONString => {
 			var geoJSONData = JSON.parse(geoJSONString); // Parse the decompressed string as JSON
 	// 		// console.log(geoJSONData);
@@ -439,7 +439,7 @@ function decompressGzip(gzipData) {
 					  radius: 0 // Radius in pixels, stays consistent
 					  });
 						var layerGroup = L.layerGroup([marker, circleMarker2]);
-					 return(layerGroup);
+					//  return(layerGroup);
 					}
 					,
 					onEachFeature: onEachFeature,
