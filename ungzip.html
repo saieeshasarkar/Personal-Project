@@ -4,8 +4,42 @@
     <title>Decompress GZIP using pako</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
     <script src="https://unpkg.com/fflate"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lzma-js@0.0.8/lzma.min.js"></script>
 </head>
 <body>
+    <script>
+        async function fetchAndDecompressXZ(url) {
+            try {
+                // Fetch the .xz file as a binary blob
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const arrayBuffer = await response.arrayBuffer();
+                const uint8Array = new Uint8Array(arrayBuffer);
+
+                // Decompress the .xz file
+                LZMA.decompress(uint8Array, (result, error) => {
+                    if (error) {
+                        throw new Error('Decompression error: ' + error);
+                    }
+
+                    // Convert the decompressed result to a string
+                    const jsonString = new TextDecoder("utf-8").decode(result);
+
+                    // Parse the JSON string
+                    const jsonData = JSON.parse(jsonString);
+
+                    // Log the result
+                    console.log(jsonData);
+                });
+            } catch (error) {
+                console.error('Error fetching or decompressing the .xz file:', error);
+            }
+        }
+        const url = 'data/features_dp.geojson.xz';
+        fetchAndDecompressXZ(url);
+    </script>
     <script>
         // // Function to decompress gzipped data using pako
         // function decompressGzip(gzipData) {
@@ -32,32 +66,33 @@
     </script>
     <script>
         
-        async function fetchAndDecompressXZ(url) {
-            try {
-                // Fetch the .xz file as a binary blob
-                const response = await fetch(url);
-                const arrayBuffer = await response.arrayBuffer();
+        // async function fetchAndDecompressXZ(url) {
+        //     try {
+        //         // Fetch the .xz file as a binary blob
+        //         const response = await fetch(url);
+        //         const arrayBuffer = await response.arrayBuffer();
 
-                // Decompress the .xz file synchronously
-                const decompressed = fflate.decompressSync(new Uint8Array(arrayBuffer));
+        //         // Decompress the .xz file synchronously
+        //         const decompressed = fflate.decompressSync(new Uint8Array(arrayBuffer));
 
-                // Convert the decompressed result to a string
-                const jsonString = new TextDecoder("utf-8").decode(decompressed);
+        //         // Convert the decompressed result to a string
+        //         const jsonString = new TextDecoder("utf-8").decode(decompressed);
 
-                // Parse the JSON string
-                const jsonData = JSON.parse(jsonString);
+        //         // Parse the JSON string
+        //         const jsonData = JSON.parse(jsonString);
 
-                // Log the result
-                console.log(jsonData);
-            } catch (error) {
-                console.error('Error fetching or decompressing the .xz file:', error);
-            }
-        }
+        //         // Log the result
+        //         console.log(jsonData);
+        //     } catch (error) {
+        //         console.error('Error fetching or decompressing the .xz file:', error);
+        //     }
+        // }
 
-        // Example usage:
+        // // Example usage:
         
-        const url = 'data/features_dp.geojson.xz';
-        fetchAndDecompressXZ(url);
+        // const url = 
+        // fetchAndDecompressXZ(url);
+        
     </script>
 </body>
 </html>
