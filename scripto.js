@@ -453,7 +453,10 @@ function decompressGzip(gzipData) {
                         // style: style
                     });
 			layer.addData(geoJSONData.features);
-			myLayerGroup = L.layerGroup([player, layer]);
+			// myLayerGroup = L.layerGroup([player, layer]);
+			myLayerGroup = L.layerGroup([layer, player]);
+			// myLayerGroup.addLayer(layer);
+			// myLayerGroup.addLayer(player);
                 } else {
 
                     layer.addData(geoJSONData.features);
