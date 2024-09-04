@@ -338,7 +338,6 @@ function decompressGzip(gzipData) {
                 const gunzip = new Zlib.Gunzip(new Uint8Array(input));
                 const decompressed = gunzip.decompress();
                 // const decompressedText = new TextDecoder().decode(decompressed);
-
 				// var decompressed = pako.inflate(input, { to: 'string' });
 				resolve(decompressed);
 			  } catch (error) {
