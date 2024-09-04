@@ -477,11 +477,53 @@ function decompressGzip(gzipData) {
 			     layerItem.eachLayer(function(subItem) {
 				     // if (subItem instanceof L.Marker) {
 				if (subItem.options.alt==="Marker") {
-
-					subItem.setIcon(customDivIcon);
-					subItem.setPopupContent("xx" || "Updated Point");
+				let xkey1ForKey2 = [];
+                            var source;
+                            if (layerItem.feature.properties.DCode) {
+                                for (let key1 of Object.keys(counts)) {
+                                    if (counts[key1][layerItem.feature.properties.DCode]) {
+                                        xkey1ForKey2 = key1;
+                                        break;
+                                    }
+                                }
+                                source = xkey1ForKey2[layerItem.feature.properties.DCode];
+                            } else {
+                                source = layerItem.feature.properties.PCode;
+                            }
+                            var total = 0;
+                            try {
+                                total = counts[source]["total"];
+                            } catch (error) {
+                            }
+					const IconX = L.divIcon({
+					className: 'number-icon',
+					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div><br><div id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div>',
+					iconSize: [10, 10],
+					iconAnchor: [5, 5]
+					});
+                            
+					subItem.setIcon(IconX);
+					// subItem.setPopupContent("xx" || "Updated Point");
 				     }
-				});
+			});
+         //                    // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+         //                    var marker = L.marker(latlng, {
+         //                        icon: L.divIcon({
+         //                            className: 'number-icon',
+									// html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div><br><div id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div>',
+									// iconSize: [10, 10],
+									// iconAnchor: [5, 5]
+         //                        })
+         //                    });
+         //                    var circleMarker2 = L.circleMarker(latlng, {
+         //                        color: 'red',
+         //                        fillColor: 'red',
+         //                        weight: 6,
+         //                        radius: 0 // Radius in pixels, stays consistent
+         //                    });
+         //                    // var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
+         //                    var layerGroup = L.layerGroup([marker, circleMarker2]);
+					
 			    //     if (layerItem.feature && layerItem.feature.geometry && layerItem.feature.geometry.geometries) {
 			    //     // Filter out the geometries that are not of type "Point"
 			    //     layerItem.feature.geometry.geometries = layerItem.feature.geometry.geometries.filter(function(geometry) {
