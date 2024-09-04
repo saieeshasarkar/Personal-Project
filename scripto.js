@@ -88,7 +88,7 @@ var isMobile = false; //initiate as false
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
-				const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
+				const province_layp = loadGeoData("data/features_pp.geojson.gz", popUpX, styleP,true,false);
 				const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
@@ -354,7 +354,7 @@ function decompressGzip(gzipData) {
 		  });
 		}
 	  };
-	 if (fileExtension === 'jgz') {
+	 if (fileExtension === 'gz' || fileExtension === 'jgz') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
 			style: style
