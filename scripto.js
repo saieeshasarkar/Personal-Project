@@ -475,7 +475,8 @@ function decompressGzip(gzipData) {
 			});
                     layer.eachLayer(function(layerItem) {
 			     layerItem.eachLayer(function(subItem) {
-				     if (subItem instanceof L.Marker) {
+				     // if (subItem instanceof L.Marker) {
+				if (subItem.options.alt==="Marker") {
 
 					subItem.setIcon(customDivIcon);
 					subItem.setPopupContent("xx" || "Updated Point");
