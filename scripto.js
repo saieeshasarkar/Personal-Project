@@ -474,6 +474,13 @@ function decompressGzip(gzipData) {
 			    popupAnchor: [0, -30]
 			});
                     layer.eachLayer(function(layerItem) {
+			     layerItem.eachLayer(function(subItem) {
+				     if (subItem instanceof L.Marker) {
+
+					subItem.setIcon(customDivIcon);
+					subItem.setPopupContent("xx" || "Updated Point");
+				     }
+				}
 			    //     if (layerItem.feature && layerItem.feature.geometry && layerItem.feature.geometry.geometries) {
 			    //     // Filter out the geometries that are not of type "Point"
 			    //     layerItem.feature.geometry.geometries = layerItem.feature.geometry.geometries.filter(function(geometry) {
@@ -486,34 +493,39 @@ function decompressGzip(gzipData) {
 			    //     }
 			    // }
 			     // Check if the geometry is a Point
-			    if (layerItem.feature && layerItem.feature.geometry) {
-			        let geometries = layerItem.feature.geometry.geometries;
+			  //   if (layerItem.feature && layerItem.feature.geometry) {
+			  //       let geometries = layerItem.feature.geometry.geometries;
 			
-			        // Check if the geometry is of type "Point"
-			        if (geometries && geometries.some(geometry => geometry.type === "Point")) {
-			            // Remove the layer from the LayerGroup
-					// layerItem.setPopupContent("xx" || "Updated Point");
-					layerItem.setIcon(customDivIcon);
-			           // layer.removeLayer(layerItem);
-			        }
-			    }
+			  //       // Check if the geometry is of type "Point"
+			  //       if (geometries && geometries.some(geometry => geometry.type === "Point")) {
+			  //           // Remove the layer from the LayerGroup
+					// // layerItem.setPopupContent("xx" || "Updated Point");
+					// // layerItem.setIcon(customDivIcon);
+					// var customMarker = L.marker(geometries[1].coordinates, { icon: customDivIcon });
+					
+					// // Add the marker to the map
+					// layer.addLayer(customMarker);
+					// // customMarker.addTo(m);
+			  //          // layer.removeLayer(layerItem);
+			  //       }
+			  //   }
 			   //  if (layerItem.feature.geometry.geometries[1].type === "Point") {
 						// var latlng = layerItem.feature.geometry.geometries[1].coordinates;
 						// var lon = latlng[0];
 						// var lat = latlng[1];
 				  //   layerItem.setPopupContent("xx" || "Updated Point");
 			   //  }
-                        if (layerItem instanceof L.Marker) {
-                            const coords = layerItem.getLatLng();
-                            // if (coords.lat === lat && coords.lng === lon) {
-                            // Update properties
-                            // layerItem.feature.properties = {...layerItem.feature.properties, ...newProperties};
+                        // if (layerItem instanceof L.Marker) {
+                        //     const coords = layerItem.getLatLng();
+                        //     // if (coords.lat === lat && coords.lng === lon) {
+                        //     // Update properties
+                        //     // layerItem.feature.properties = {...layerItem.feature.properties, ...newProperties};
 
-                            // Update popup content if it exists
-                            // if (layerItem.getPopup()) {
-                            layerItem.setPopupContent("xx" || "Updated Point");
+                        //     // Update popup content if it exists
+                        //     // if (layerItem.getPopup()) {
+                        //     layerItem.setPopupContent("xx" || "Updated Point");
 
-                        }
+                        // }
                     });
 
 
