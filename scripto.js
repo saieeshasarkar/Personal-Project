@@ -321,9 +321,10 @@ function decompressGzip(gzipData) {
 			  var reader = new FileReader();
 			  reader.onload = function() {
 				try {
-					var uint8Array = new Uint8Array(reader.result);
+					// var uint8Array = new Uint8Array(reader.result);
+					const compressed = pako.gzip(new Uint8Array(reader.result));
 					// Decompress the data
-					var decompressed = pako.inflate(uint8Array, { to: 'string' });
+					var decompressed = pako.inflate(compressed, { to: 'string' });
 				//   var decompressed = pako.inflate(reader.result, { to: 'string' });
 				  resolve(decompressed);
 				} catch (error) {
@@ -340,10 +341,11 @@ function decompressGzip(gzipData) {
 				// const arrayBuffer = await response.arrayBuffer();
                 // const gunzip = new Zlib.Gunzip(new Uint8Array(input));
                 // const decompressed = gunzip.decompress();
-				const compressedData = new Uint8Array(input);
+				// const compressedData = new Uint8Array(input);
+				const compressed = pako.gzip(new Uint8Array(input));
                 // const decompressedData = pako.inflate(compressedData);
                 // const decompressedText = new TextDecoder().decode(decompressed);
-				var decompressed = pako.inflate(compressedData, { to: 'string' });
+				var decompressed = pako.inflate(compressed, { to: 'string' });
 				resolve(decompressed);
 			  } catch (error) {
 				reject(error);
