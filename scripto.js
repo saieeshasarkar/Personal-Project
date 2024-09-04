@@ -366,9 +366,10 @@ function decompressGzip(gzipData) {
 			  reader.onload = function() {
 				try {
 					var uint8Array = new Uint8Array(reader.result);
+					const byteArray = Array.from(uint8Array);
 					// const compressed = pako.gzip(new Uint8Array(reader.result));
 					var decompressed;//= pako.inflate(compressed, { to: 'string' });
-					LZMA.decompress(uint8Array, function(result) {
+					LZMA.decompress(byteArray, function(result) {
 						// Convert the decompressed data to text
 						decompressed = new TextDecoder().decode(result);
 						
