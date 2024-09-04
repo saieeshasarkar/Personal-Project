@@ -374,7 +374,7 @@ function decompressGzip(gzipData) {
 						// decompressed = new TextDecoder().decode(res);
 						decompressed="";
 						// Handle the decompressed text data
-						console.log("Decompressed Data:", text);
+						// console.log("Decompressed Data:", text);
 	
 					}, function(error) {
 						console.error('Decompression error:', error);
