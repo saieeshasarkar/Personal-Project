@@ -454,20 +454,30 @@ function decompressGzip(gzipData) {
                     });
 			layer.addData(geoJSONData.features);
 			// myLayerGroup = L.layerGroup([player, layer]);
-			myLayerGroup = L.layerGroup([layer, player]);
-			// myLayerGroup.addLayer(layer);
-			// myLayerGroup.addLayer(player);
+			// myLayerGroup = L.layerGroup([layer, player]);
+			myLayerGroup.addLayer(layer);
+			myLayerGroup.addLayer(player);
                 } else {
 
                     layer.addData(geoJSONData.features);
 
                     layer.eachLayer(function(layerItem) {
-			    if (layerItem.feature.geometry.geometries[1].type === "Point") {
-						var latlng = layerItem.feature.geometry.geometries[1].coordinates;
-						var lon = latlng[0];
-						var lat = latlng[1];
-				    layerItem.setPopupContent("xx" || "Updated Point");
+			     // Check if the geometry is a Point
+			    if (layerItem.feature && layerItem.feature.geometry) {
+			        let geometries = layerItem.feature.geometry.geometries;
+			
+			        // Check if the geometry is of type "Point"
+			        if (geometries && geometries.some(geometry => geometry.type === "Point")) {
+			            // Remove the layer from the LayerGroup
+			            layer.removeLayer(layerItem);
+			        }
 			    }
+			   //  if (layerItem.feature.geometry.geometries[1].type === "Point") {
+						// var latlng = layerItem.feature.geometry.geometries[1].coordinates;
+						// var lon = latlng[0];
+						// var lat = latlng[1];
+				  //   layerItem.setPopupContent("xx" || "Updated Point");
+			   //  }
                         if (layerItem instanceof L.Marker) {
                             const coords = layerItem.getLatLng();
                             // if (coords.lat === lat && coords.lng === lon) {
