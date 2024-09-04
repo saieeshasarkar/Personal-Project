@@ -333,7 +333,13 @@ function decompressGzip(gzipData) {
 			  reader.readAsArrayBuffer(input);
 			} else if (input instanceof ArrayBuffer) {
 			  try {
-				var decompressed = pako.inflate(input, { to: 'string' });
+
+				// const arrayBuffer = await response.arrayBuffer();
+                const gunzip = new Zlib.Gunzip(new Uint8Array(input));
+                const decompressed = gunzip.decompress();
+                // const decompressedText = new TextDecoder().decode(decompressed);
+
+				// var decompressed = pako.inflate(input, { to: 'string' });
 				resolve(decompressed);
 			  } catch (error) {
 				reject(error);
