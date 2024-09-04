@@ -38,8 +38,8 @@
                 const response = await fetch(url);
                 const arrayBuffer = await response.arrayBuffer();
 
-                // Decompress the .xz file
-                const decompressed = fflate.decompress(new Uint8Array(arrayBuffer));
+                // Decompress the .xz file synchronously
+                const decompressed = fflate.decompressSync(new Uint8Array(arrayBuffer));
 
                 // Convert the decompressed result to a string
                 const jsonString = new TextDecoder("utf-8").decode(decompressed);
@@ -55,6 +55,7 @@
         }
 
         // Example usage:
+        
         const url = 'data/features_dp.geojson.xz';
         fetchAndDecompressXZ(url);
     </script>
