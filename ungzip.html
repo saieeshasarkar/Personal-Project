@@ -2,9 +2,10 @@
 <html>
 <head>
     <title>Decompress GZIP using pako</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
     <script src="https://unpkg.com/fflate"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lzma@2.3.2/src/lzma_worker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lzma@2.3.2/src/lzma_worker.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/xz-js@0.0.3/xz.min.js"></script>
 </head>
 <body>
     <script>
@@ -19,26 +20,64 @@
                 const uint8Array = new Uint8Array(arrayBuffer);
 
                 // Decompress the .xz file
-                LZMA.decompress(uint8Array, (result, error) => {
+                XZ.decompress(uint8Array, (result, error) => {
                     if (error) {
-                        throw new Error('Decompression error: ' + error);
+                        console.error('Decompression error:', error);
+                        return;
                     }
 
                     // Convert the decompressed result to a string
                     const jsonString = new TextDecoder("utf-8").decode(result);
 
                     // Parse the JSON string
-                    const jsonData = JSON.parse(jsonString);
-
-                    // Log the result
-                    console.log(jsonData);
+                    try {
+                        const jsonData = JSON.parse(jsonString);
+                        console.log(jsonData);
+                    } catch (parseError) {
+                        console.error('JSON parsing error:', parseError);
+                    }
                 });
             } catch (error) {
-                console.error('Error fetching or decompressing the .xz file:', error);
+                console.error('Error fetching the .xz file:', error);
             }
         }
-        const url = 'data/features_dp.geojson.xz';
+
+        // Example usage:
+        const url = 'data/features_dp.geojson.xz'; // Replace with your actual file URL
         fetchAndDecompressXZ(url);
+    </script>
+    <script>
+        // async function fetchAndDecompressXZ(url) {
+        //     try {
+        //         // Fetch the .xz file as a binary blob
+        //         const response = await fetch(url);
+        //         if (!response.ok) {
+        //             throw new Error(`HTTP error! Status: ${response.status}`);
+        //         }
+        //         const arrayBuffer = await response.arrayBuffer();
+        //         const uint8Array = new Uint8Array(arrayBuffer);
+
+        //         // Decompress the .xz file
+        //         LZMA.decompress(uint8Array, (result, error) => {
+        //             if (error) {
+        //                 throw new Error('Decompression error: ' + error);
+        //             }
+
+        //             // Convert the decompressed result to a string
+        //             const jsonString = new TextDecoder("utf-8").decode(result);
+
+        //             // Parse the JSON string
+        //             const jsonData = JSON.parse(jsonString);
+
+        //             // Log the result
+        //             console.log(jsonData);
+        //         });
+        //     } catch (error) {
+        //         console.error('Error fetching or decompressing the .xz file:', error);
+        //     }
+        // }
+        // const url = 'data/features_dp.geojson.xz';
+        // fetchAndDecompressXZ(url);
     </script>
     <script>
         // // Function to decompress gzipped data using pako
