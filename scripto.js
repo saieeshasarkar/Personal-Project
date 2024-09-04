@@ -88,9 +88,12 @@ var isMobile = false; //initiate as false
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
-				const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
-				const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
+				const province_layp = loadGeoData("data/features_pp.lzma", popUpX, styleP,true,false);
+				const district_layp = loadGeoData("data/features_dp.lzma", popUpX, styleD,false,false);
+				// const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
 				// const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
+				
+					// const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
 					// [province_lay, district_lay, province_point,district_point] = await Promise.all([
@@ -358,80 +361,123 @@ function decompressGzip(gzipData) {
 		}
 	  };
 
-	  var XZ = {
-		loadAsync: function(input) {
-		  return new Promise(function(resolve, reject) {
-			if (input instanceof Blob) {
-			  var reader = new FileReader();
-			  reader.onload = function() {
-				try {
-					var uint8Array = new Uint8Array(reader.result);
-					const byteArray = Array.from(uint8Array);
-					// const compressed = pako.gzip(new Uint8Array(reader.result));
-					var decompressed;//= pako.inflate(compressed, { to: 'string' });
-					var zzz= LZMA.decompress(byteArray);
-					var vvv= LZMA.decompress(uint8Array);
-					var www= LZMA.decompress(reader.result);
-					LZMA.decompress(byteArray, function(res) {
-						// Convert the decompressed data to text
-						// decompressed = new TextDecoder().decode(res);
-						decompressed="";
-						// Handle the decompressed text data
-						// console.log("Decompressed Data:", text);
-	
-					}, function(error) {
-						console.error('Decompression error:', error);
-					});
+	  var LZ = {
+            loadAsync: function(input) {
+                return new Promise(function(resolve, reject) {
+                    if (input instanceof Blob) {
+                        var reader = new FileReader();
+                        reader.onload = function() {
+                            try {
+                                // var uint8Array = new Uint8Array(reader.result);
+                                // const byteArray = Array.from(uint8Array);
+                                var decompressed=LZMA.decompress(new Uint8Array(reader.result));
+                                resolve(decompressed);
+                            } catch (error) {
+                                reject(error);
+                            }
+                        };
+                        reader.onerror = function() {
+                            reject(reader.error);
+                        };
+                        reader.readAsArrayBuffer(input);
+                    } else if (input instanceof ArrayBuffer) {
+                        try {
+                            var decompressed=LZMA.decompress(input);
+                            resolve(decompressed);
+                        } catch (error) {
+                            reject(error);
+                        }
+                    } else {
+                        reject(new Error("Unsupported input type. Expected Blob or ArrayBuffer."));
+                    }
+                });
+            }
+        };
 
-				  resolve(decompressed);
-				} catch (error) {
-				  reject(error);
-				}
-			  };
-			  reader.onerror = function() {
-				reject(reader.error);
-			  };
-			  reader.readAsArrayBuffer(input);
-			} else if (input instanceof ArrayBuffer) {
-			  try {
-				var decompressed;//= pako.inflate(compressed, { to: 'string' });
-				LZMA.decompress(new Uint8Array(input), function(result) {
-					// Convert the decompressed data to text
-					decompressed = new TextDecoder().decode(result);
-					
-					// Handle the decompressed text data
-					console.log("Decompressed Data:", text);
+	  if (fileExtension === 'lzma') {
+            const layerOptions = {
+                onEachFeature: onEachFeature,
+                style: style
+            };
+            var layer = new L.geoJson(null, layerOptions);
+            fetch(url)
+            .then(response => response.blob()) // or response.arrayBuffer()
+            .then(async blob => await LZ.loadAsync(blob))
+            .then(geoJSONString => {
+                var geoJSONData = JSON.parse(geoJSONString);
+                
+                if (alayer) {
+                    layer.clearLayers();
+                    layer = L.geoJSON(geoJSONData, {
+                        pointToLayer: function(feature, latlng) {
+                            let key1ForKey2 = [];
+                            var source;
+                            if (feature.properties.DCode) {
+                                for (let key1 of Object.keys(counts)) {
+                                    if (counts[key1][feature.properties.DCode]) {
+                                        key1ForKey2 = key1;
+                                        break;
+                                    }
+                                }
+                                source = key1ForKey2[feature.properties.DCode];
+                            } else {
+                                source = feature.properties.PCode;
+                            }
+                            var total = 0;
+                            try {
+                                total = counts[source]["total"];
+                            } catch (error) {
+                            }
+                            // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
+                            var marker = L.marker(latlng, {
+                                icon: L.divIcon({
+                                    className: 'number-icon',
+                                    html: '<div id=\'p' + feature.properties.PCode + '\' >' + total + '</div>'
+                                })
+                            });
+                            var circleMarker2 = L.circleMarker(latlng, {
+                                color: 'red',
+                                fillColor: 'red',
+                                weight: 6,
+                                radius: 0 // Radius in pixels, stays consistent
+                            });
+                            // var layerGroup = L.layerGroup([marker, circleMarker2]).addTo(m);
+                            var layerGroup = L.layerGroup([marker, circleMarker2]);
+                            return ( layerGroup) ;
+                        }
+                        ,
+                        onEachFeature: onEachFeature,
+                        style: style
+                    });
+                } else {
 
-				}, function(error) {
-					console.error('Decompression error:', error);
-				});
-				// const compressed = pako.gzip(new Uint8Array(input));
-				// var decompressed = pako.inflate(compressed, { to: 'string' });
-				resolve(decompressed);
-			  } catch (error) {
-				reject(error);
-			  }
-			} else {
-			  reject(new Error("Unsupported input type. Expected Blob or ArrayBuffer."));
-			}
-		  });
-		}
-	  };
+                    layer.addData(geoJSONData.features);
 
-	  if (fileExtension === 'xz') {
-		const layerOptions = {
-			onEachFeature: onEachFeature,
-			style: style
-		  };
-		  var layer = new L.geoJson(null,layerOptions);
-		  fetch(url)
-		  .then(response => response.blob())  // or response.arrayBuffer()
-		  .then(async blob => await XZ.loadAsync(blob))
-		  .then(geoJSONString => {
-			var geoJSONData = JSON.parse(geoJSONString);})
-			.catch(error => console.error('Fetch error:', error)); 
+                    layer.eachLayer(function(layerItem) {
+                        if (layerItem instanceof L.Marker) {
+                            const coords = layerItem.getLatLng();
+                            // if (coords.lat === lat && coords.lng === lon) {
+                            // Update properties
+                            // layerItem.feature.properties = {...layerItem.feature.properties, ...newProperties};
 
-	  }
+                            // Update popup content if it exists
+                            // if (layerItem.getPopup()) {
+                            layerItem.setPopupContent("xx" || "Updated Point");
+
+                        }
+                    });
+
+
+                }
+                resolve(layer); // Resolve with the Leaflet layer
+                if (addToMap) {
+                    layer.addTo(m); // Add the layer to the map if addToMap is true
+                }
+
+            })
+            .catch(error => console.error('Fetch error:', error));
+
+        }
 	 else if (fileExtension === 'gz' || fileExtension === 'jgz') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
