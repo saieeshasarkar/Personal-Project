@@ -480,7 +480,7 @@ function decompressGzip(gzipData) {
 					subItem.setIcon(customDivIcon);
 					subItem.setPopupContent("xx" || "Updated Point");
 				     }
-				}
+				});
 			    //     if (layerItem.feature && layerItem.feature.geometry && layerItem.feature.geometry.geometries) {
 			    //     // Filter out the geometries that are not of type "Point"
 			    //     layerItem.feature.geometry.geometries = layerItem.feature.geometry.geometries.filter(function(geometry) {
