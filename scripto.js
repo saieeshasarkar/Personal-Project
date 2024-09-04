@@ -466,6 +466,13 @@ function decompressGzip(gzipData) {
 					iconSize: [10, 10],
 					iconAnchor: [5, 5]
 				});
+			var customDivIcon = L.divIcon({
+			    className: 'custom-icon',
+			    html: '1',
+			    iconSize: [30, 30],
+			    iconAnchor: [15, 30],
+			    popupAnchor: [0, -30]
+			});
                     layer.eachLayer(function(layerItem) {
 			    //     if (layerItem.feature && layerItem.feature.geometry && layerItem.feature.geometry.geometries) {
 			    //     // Filter out the geometries that are not of type "Point"
@@ -485,8 +492,8 @@ function decompressGzip(gzipData) {
 			        // Check if the geometry is of type "Point"
 			        if (geometries && geometries.some(geometry => geometry.type === "Point")) {
 			            // Remove the layer from the LayerGroup
-					layerItem.setPopupContent("xx" || "Updated Point");
-					layerItem.setIcon(redDotIcon);
+					// layerItem.setPopupContent("xx" || "Updated Point");
+					layerItem.setIcon(customDivIcon);
 			           // layer.removeLayer(layerItem);
 			        }
 			    }
