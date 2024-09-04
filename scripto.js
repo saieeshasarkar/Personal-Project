@@ -118,6 +118,7 @@ var isMobile = false; //initiate as false
 				// m.addLayer(province_lay);
 				//  province_point.addTo(m);
 				  console.log('All GeoJSON layers have been loaded and added to the map.');
+				 mapready= true;
 				  // You can now safely use `province_lay`, `province_lay2`, and `province_lay3` here
 				//   combinedLayerP = L.layerGroup([province_point, province_lay]);
 				//   combinedLayerP.addTo(m);
@@ -160,6 +161,7 @@ var isMobile = false; //initiate as false
 		// 	onEachFeature: popUpX,
 		// 	style: styleP
 		// });
+		var mapready= false;
 		var combinedLayerP = L.layerGroup();
 		var combinedLayerD = L.layerGroup();
 		var province_lay;
@@ -1006,10 +1008,11 @@ function decompressGzip(gzipData) {
 			//  m.removeLayer(province_point);
 				// province_point.hide();
 				// province_point.setInteractive(true);
+				if (mapready) {
 				m.removeLayer(province_lay);
 			  m.addLayer(district_lay);
 			  district_lay.bringToFront();
-
+				}
             //   //m.addLayer(district_point);
 			//   district_point.addTo(m);
             //  district_point.bringToFront();
@@ -1022,9 +1025,11 @@ function decompressGzip(gzipData) {
 			  
 			  
 			} else {
+				if (mapready) {
 				m.removeLayer(district_lay);
 				m.addLayer(province_lay);
 				province_lay.bringToFront();
+				}
 				
 				// if (m.hasLayer(combinedLayerD)) {
 				// 	// m.removeLayer(combinedLayerD);
@@ -1065,6 +1070,7 @@ function decompressGzip(gzipData) {
   });
 		
 		function onclick(e){
+			if(!mapready) return;
 			var bounds = e.target.getBounds();
 			m.fitBounds(bounds);
 				
@@ -1072,6 +1078,7 @@ function decompressGzip(gzipData) {
 		};
 
 		function highlightFeature(e) {
+			if(!mapready) return;
 			resetHighlight(e);
 			var layer = e.target;
 			layer.setStyle({
@@ -1084,6 +1091,7 @@ function decompressGzip(gzipData) {
 
 		// This resets the highlight after hover moves away
 		function resetHighlight(e) {
+			if(!mapready) return;
 			province_lay.setStyle(styleP);
 			district_lay.setStyle(styleD);
 			// village_lay.setStyle(styleV);
