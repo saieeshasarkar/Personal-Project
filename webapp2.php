@@ -275,7 +275,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/zlib.js@0.3.1/bin/gunzip.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/zlib.js@0.3.1/bin/gunzip.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
