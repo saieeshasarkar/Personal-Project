@@ -89,7 +89,7 @@ var isMobile = false; //initiate as false
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  // https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_dp.lzma
 				const province_layp = loadGeoData("https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_pp.lzma", popUpX, styleP,true,false);
-				const district_layp = loadGeoData("https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_dp.lzma", popUpX, styleD,false,true);
+				const district_layp = loadGeoData("https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_dp.lzma", popUpX, styleD,false,false);
 				// const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
 				// const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
 				
