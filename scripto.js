@@ -88,7 +88,7 @@ var isMobile = false; //initiate as false
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  // https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_dp.lzma
-				const province_layp = loadGeoData("https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_pp.lzma", popUpX, styleP,true,true);
+				const province_layp = loadGeoData("https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_pp.lzma", popUpX, styleP,true,false);
 				const district_layp = loadGeoData("https://raw.githubusercontent.com/djkhz/TerriaMap/main/data/features_dp.lzma", popUpX, styleD,false,true);
 				// const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
 				// const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
@@ -462,6 +462,17 @@ function decompressGzip(gzipData) {
                     layer.addData(geoJSONData.features);
 
                     layer.eachLayer(function(layerItem) {
+			    //     if (layerItem.feature && layerItem.feature.geometry && layerItem.feature.geometry.geometries) {
+			    //     // Filter out the geometries that are not of type "Point"
+			    //     layerItem.feature.geometry.geometries = layerItem.feature.geometry.geometries.filter(function(geometry) {
+			    //         return geometry.type !== "Point";
+			    //     });
+			
+			    //     // If the geometries array is empty after filtering, remove the layer
+			    //     if (layerItem.feature.geometry.geometries.length === 0) {
+			    //         layer.removeLayer(layerItem);
+			    //     }
+			    // }
 			     // Check if the geometry is a Point
 			    if (layerItem.feature && layerItem.feature.geometry) {
 			        let geometries = layerItem.feature.geometry.geometries;
@@ -469,7 +480,8 @@ function decompressGzip(gzipData) {
 			        // Check if the geometry is of type "Point"
 			        if (geometries && geometries.some(geometry => geometry.type === "Point")) {
 			            // Remove the layer from the LayerGroup
-			            layer.removeLayer(layerItem);
+					layerItem.setPopupContent("xx" || "Updated Point");
+			           // layer.removeLayer(layerItem);
 			        }
 			    }
 			   //  if (layerItem.feature.geometry.geometries[1].type === "Point") {
@@ -493,9 +505,9 @@ function decompressGzip(gzipData) {
 
 
                 }
-                resolve(myLayerGroup); // Resolve with the Leaflet layer
+                resolve(layer); // Resolve with the Leaflet layer
                 if (addToMap) {
-                    myLayerGroup.addTo(m); // Add the layer to the map if addToMap is true
+                    layer.addTo(m); // Add the layer to the map if addToMap is true
                 }
 
             })
