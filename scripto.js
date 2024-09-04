@@ -497,7 +497,7 @@ function decompressGzip(gzipData) {
                             }
 					const IconX = L.divIcon({
 					className: 'number-icon',
-					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div><br><div id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div>',
+					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div><div style="margin-top: -3px;" id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div>',
 					iconSize: [10, 10],
 					iconAnchor: [5, 5]
 					});
