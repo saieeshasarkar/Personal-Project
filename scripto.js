@@ -81,15 +81,15 @@ var isMobile = false; //initiate as false
 			  async function initializeMap() {
 				try {
 
-				//   const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
+				  const province_layp = loadGeoData("data/features_pp.zip", popUpX, styleP,true,true);
 				// //   const province_pointp = loadGeoData("data/province_point.zip", popUp, styleV,false,true);
-				//   const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false,true);
+				  const district_layp = loadGeoData("data/features_dp.zip", popUpX, styleD,false,true);
 				//   const district_pointp = loadGeoData("data/district_point.zip", popUp, styleV,false,true);
 				//   const district_layp2 = loadGeoData("data/features_d.geojson", popUpX, styleD,false);
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
-				const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
-				const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
+				// const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
+				// const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
 					// [province_lay, district_lay, province_point,district_point] = await Promise.all([
