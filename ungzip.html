@@ -3,31 +3,60 @@
 <head>
     <title>Decompress GZIP using pako</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+    <script src="https://unpkg.com/fflate"></script>
 </head>
 <body>
     <script>
-        // Function to decompress gzipped data using pako
-        function decompressGzip(gzipData) {
+        // // Function to decompress gzipped data using pako
+        // function decompressGzip(gzipData) {
+        //     try {
+        //         // Convert binary data to Uint8Array
+        //         const uint8Array = new Uint8Array(gzipData);
+        //         // Decompress using pako
+        //         const decompressedData = pako.ungzip(uint8Array, { to: 'string' });
+        //         return decompressedData;
+        //     } catch (error) {
+        //         console.error('Error decompressing gzip data:', error);
+        //         return null;
+        //     }
+        // }
+
+        // // Fetch and decompress GZIP file
+        // fetch('path/to/your/file.gz')
+        //     .then(response => response.arrayBuffer())
+        //     .then(gzipData => {
+        //         const decompressed = decompressGzip(gzipData);
+        //         console.log('Decompressed data:', decompressed);
+        //     })
+        //     .catch(error => console.error('Fetch error:', error));
+    </script>
+    <script>
+        
+        async function fetchAndDecompressXZ(url) {
             try {
-                // Convert binary data to Uint8Array
-                const uint8Array = new Uint8Array(gzipData);
-                // Decompress using pako
-                const decompressedData = pako.ungzip(uint8Array, { to: 'string' });
-                return decompressedData;
+                // Fetch the .xz file as a binary blob
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+
+                // Decompress the .xz file
+                const decompressed = fflate.decompress(new Uint8Array(arrayBuffer));
+
+                // Convert the decompressed result to a string
+                const jsonString = new TextDecoder("utf-8").decode(decompressed);
+
+                // Parse the JSON string
+                const jsonData = JSON.parse(jsonString);
+
+                // Log the result
+                console.log(jsonData);
             } catch (error) {
-                console.error('Error decompressing gzip data:', error);
-                return null;
+                console.error('Error fetching or decompressing the .xz file:', error);
             }
         }
 
-        // Fetch and decompress GZIP file
-        fetch('path/to/your/file.gz')
-            .then(response => response.arrayBuffer())
-            .then(gzipData => {
-                const decompressed = decompressGzip(gzipData);
-                console.log('Decompressed data:', decompressed);
-            })
-            .catch(error => console.error('Fetch error:', error));
+        // Example usage:
+        const url = 'data/features_dp.geojson.xz';
+        fetchAndDecompressXZ(url);
     </script>
 </body>
 </html>
