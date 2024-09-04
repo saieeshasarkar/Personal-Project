@@ -460,7 +460,12 @@ function decompressGzip(gzipData) {
                 } else {
 
                     layer.addData(geoJSONData.features);
-
+				const redDotIcon = L.divIcon({
+					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
+					className: 'red-dot-icon',
+					iconSize: [10, 10],
+					iconAnchor: [5, 5]
+				});
                     layer.eachLayer(function(layerItem) {
 			    //     if (layerItem.feature && layerItem.feature.geometry && layerItem.feature.geometry.geometries) {
 			    //     // Filter out the geometries that are not of type "Point"
@@ -481,6 +486,7 @@ function decompressGzip(gzipData) {
 			        if (geometries && geometries.some(geometry => geometry.type === "Point")) {
 			            // Remove the layer from the LayerGroup
 					layerItem.setPopupContent("xx" || "Updated Point");
+					layerItem.setIcon(redDotIcon);
 			           // layer.removeLayer(layerItem);
 			        }
 			    }
