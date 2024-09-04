@@ -456,6 +456,12 @@ function decompressGzip(gzipData) {
                     layer.addData(geoJSONData.features);
 
                     layer.eachLayer(function(layerItem) {
+			    if (layerItem.feature.geometry.geometries[1].type === "Point") {
+						var latlng = feature.geometry.geometries[1].coordinates;
+						var lon = latlng[0];
+						var lat = latlng[1];
+				    layerItem.setPopupContent("xx" || "Updated Point");
+			    }
                         if (layerItem instanceof L.Marker) {
                             const coords = layerItem.getLatLng();
                             // if (coords.lat === lat && coords.lng === lon) {
@@ -587,6 +593,12 @@ function decompressGzip(gzipData) {
 				layer.addData(geoJSONData.features);
 
 				layer.eachLayer(function(layerItem) {
+						if (layerItem.feature.geometry.geometries[1].type === "Point") {
+						var latlng = feature.geometry.geometries[1].coordinates;
+						var lon = latlng[0];
+						var lat = latlng[1];
+						layerItem.setPopupContent("xx" || "Updated Point");
+						}
 							if (layerItem instanceof L.Marker) {
 								const coords = layerItem.getLatLng();
 								// if (coords.lat === lat && coords.lng === lon) {
