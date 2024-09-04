@@ -365,10 +365,10 @@ function decompressGzip(gzipData) {
 			  var reader = new FileReader();
 			  reader.onload = function() {
 				try {
-					// var uint8Array = new Uint8Array(reader.result);
+					var uint8Array = new Uint8Array(reader.result);
 					// const compressed = pako.gzip(new Uint8Array(reader.result));
 					var decompressed;//= pako.inflate(compressed, { to: 'string' });
-					LZMA.decompress(new Uint8Array(reader.result), function(result) {
+					LZMA.decompress(uint8Array, function(result) {
 						// Convert the decompressed data to text
 						decompressed = new TextDecoder().decode(result);
 						
