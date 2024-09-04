@@ -89,7 +89,8 @@ var isMobile = false; //initiate as false
 				//   const provinceLay3Promise = loadGeoJSON("data/features_r.geojson", popUpX, styleD,false );
 			  
 				const province_layp = loadGeoData("data/features_pp.geojson.jgz", popUpX, styleP,true,false);
-				const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
+				const district_layp = loadGeoData("data/features_dp.geojson.xz", popUpX, styleD,false,false);
+				// const district_layp = loadGeoData("data/features_dp.geojson.jgz", popUpX, styleD,false,false);
 				  // Await all layers to be loaded
 				//   const [province_lay, district_lay,province_lay2,district_lay2] = await Promise.all([
 					// [province_lay, district_lay, province_point,district_point] = await Promise.all([
@@ -356,7 +357,78 @@ function decompressGzip(gzipData) {
 		  });
 		}
 	  };
-	 if (fileExtension === 'gz' || fileExtension === 'jgz') {
+
+	  var XZ = {
+		loadAsync: function(input) {
+		  return new Promise(function(resolve, reject) {
+			if (input instanceof Blob) {
+			  var reader = new FileReader();
+			  reader.onload = function() {
+				try {
+					// var uint8Array = new Uint8Array(reader.result);
+					// const compressed = pako.gzip(new Uint8Array(reader.result));
+					var decompressed;//= pako.inflate(compressed, { to: 'string' });
+					LZMA.decompress(new Uint8Array(reader.result), function(result) {
+						// Convert the decompressed data to text
+						decompressed = new TextDecoder().decode(result);
+						
+						// Handle the decompressed text data
+						console.log("Decompressed Data:", text);
+	
+					}, function(error) {
+						console.error('Decompression error:', error);
+					});
+
+				  resolve(decompressed);
+				} catch (error) {
+				  reject(error);
+				}
+			  };
+			  reader.onerror = function() {
+				reject(reader.error);
+			  };
+			  reader.readAsArrayBuffer(input);
+			} else if (input instanceof ArrayBuffer) {
+			  try {
+				var decompressed;//= pako.inflate(compressed, { to: 'string' });
+				LZMA.decompress(new Uint8Array(input), function(result) {
+					// Convert the decompressed data to text
+					decompressed = new TextDecoder().decode(result);
+					
+					// Handle the decompressed text data
+					console.log("Decompressed Data:", text);
+
+				}, function(error) {
+					console.error('Decompression error:', error);
+				});
+				// const compressed = pako.gzip(new Uint8Array(input));
+				// var decompressed = pako.inflate(compressed, { to: 'string' });
+				resolve(decompressed);
+			  } catch (error) {
+				reject(error);
+			  }
+			} else {
+			  reject(new Error("Unsupported input type. Expected Blob or ArrayBuffer."));
+			}
+		  });
+		}
+	  };
+
+	  if (fileExtension === 'xz') {
+		const layerOptions = {
+			onEachFeature: onEachFeature,
+			style: style
+		  };
+		  var layer = new L.geoJson(null,layerOptions);
+		  fetch(url)
+		  .then(response => response.blob())  // or response.arrayBuffer()
+		  .then(async blob => await XZ.loadAsync(blob))
+		  .then(geoJSONString => {
+			var geoJSONData = JSON.parse(geoJSONString);})
+			.catch(error => console.error('Fetch error:', error)); 
+
+	  }
+	 else if (fileExtension === 'gz' || fileExtension === 'jgz') {
 		const layerOptions = {
 			onEachFeature: onEachFeature,
 			style: style
