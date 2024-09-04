@@ -402,6 +402,7 @@ function decompressGzip(gzipData) {
                 style: style
             };
             var layer = new L.geoJson(null, layerOptions);
+	    var myLayerGroup = L.layerGroup();
             fetch(url)
             .then(response => response.blob()) // or response.arrayBuffer()
             .then(async blob => await LZ.loadAsync(blob))
@@ -409,8 +410,8 @@ function decompressGzip(gzipData) {
                 var geoJSONData = JSON.parse(geoJSONString);
                 
                 if (alayer) {
-                    layer.clearLayers();
-                    layer = L.geoJSON(geoJSONData, {
+                    // layer.clearLayers();
+                   var player = L.geoJSON(geoJSONData, {
                         pointToLayer: function(feature, latlng) {
                             let key1ForKey2 = [];
                             var source;
@@ -447,17 +448,19 @@ function decompressGzip(gzipData) {
                             var layerGroup = L.layerGroup([marker, circleMarker2]);
                             return ( layerGroup) ;
                         }
-                        ,
-                        onEachFeature: onEachFeature,
-                        style: style
+                        // ,
+                        // onEachFeature: onEachFeature,
+                        // style: style
                     });
+			layer.addData(geoJSONData.features);
+			myLayerGroup = L.layerGroup([player, layer]);
                 } else {
 
                     layer.addData(geoJSONData.features);
 
                     layer.eachLayer(function(layerItem) {
 			    if (layerItem.feature.geometry.geometries[1].type === "Point") {
-						var latlng = feature.geometry.geometries[1].coordinates;
+						var latlng = layerItem.feature.geometry.geometries[1].coordinates;
 						var lon = latlng[0];
 						var lat = latlng[1];
 				    layerItem.setPopupContent("xx" || "Updated Point");
@@ -477,9 +480,9 @@ function decompressGzip(gzipData) {
 
 
                 }
-                resolve(layer); // Resolve with the Leaflet layer
+                resolve(myLayerGroup); // Resolve with the Leaflet layer
                 if (addToMap) {
-                    layer.addTo(m); // Add the layer to the map if addToMap is true
+                    myLayerGroup.addTo(m); // Add the layer to the map if addToMap is true
                 }
 
             })
