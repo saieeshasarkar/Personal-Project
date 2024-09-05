@@ -228,7 +228,7 @@ function decompressGzip(gzipData) {
                 var geoJSONData = JSON.parse(geoJSONString);
                 
 
-            ayer.addData(geoJSONData.features);
+            layer.addData(geoJSONData.features);
 				const redDotIcon = L.divIcon({
 					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
 					className: 'red-dot-icon',
