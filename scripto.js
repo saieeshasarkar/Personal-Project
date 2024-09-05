@@ -482,7 +482,8 @@ function decompressGzip(gzipData) {
                             if (layerItem.feature.properties.DCode) {
                                 for (let key1 of Object.keys(counts)) {
 									if (counts[key1].hasOwnProperty(layerItem.feature.properties.DCode)){
-										xkey1ForKey2 = key1;
+										// xkey1ForKey2 = key1;
+										source = counts[key1][layerItem.feature.properties.DCode];
                                         break;
 									}
                                     // if (counts[key1][layerItem.feature.properties.DCode]) {
@@ -490,13 +491,12 @@ function decompressGzip(gzipData) {
                                     //     break;
                                     // }
                                 }
-                                source = xkey1ForKey2[layerItem.feature.properties.DCode];
                             } else {
-                                source = layerItem.feature.properties.PCode;
+                                source = counts[layerItem.feature.properties.PCode];
                             }
                             var total = 0;
                             try {
-                                total = counts[source]["total"];
+                                total = source["total"];
                             } catch (error) {
                             }
 					const IconX = L.divIcon({
