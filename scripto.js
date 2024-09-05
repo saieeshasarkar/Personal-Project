@@ -413,22 +413,21 @@ function decompressGzip(gzipData) {
                     // layer.clearLayers();
                    var player = L.geoJSON(geoJSONData, {
                         pointToLayer: function(feature, latlng) {
-                            let key1ForKey2 = [];
+                            //let key1ForKey2 = [];
                             var source;
                             if (feature.properties.DCode) {
                                 for (let key1 of Object.keys(counts)) {
-                                    if (counts[key1][feature.properties.DCode]) {
-                                        key1ForKey2 = key1;
+                                    if (counts[key1].hasOwnProperty(feature.properties.DCode)){
+                                        source = counts[key1][feature.properties.DCode];
                                         break;
                                     }
                                 }
-                                source = key1ForKey2[feature.properties.DCode];
                             } else {
-                                source = feature.properties.PCode;
+                                source = counts[feature.properties.PCode];
                             }
                             var total = 0;
                             try {
-                                total = counts[source]["total"];
+                                total = counts["total"];
                             } catch (error) {
                             }
                             // console.log("log", counts[feature.properties.pcode] === 'undefined' ? 0 : counts[feature.properties.pcode]["total"]);
