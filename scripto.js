@@ -481,10 +481,14 @@ function decompressGzip(gzipData) {
                             var source;
                             if (layerItem.feature.properties.DCode) {
                                 for (let key1 of Object.keys(counts)) {
-                                    if (counts[key1][layerItem.feature.properties.DCode]) {
-                                        xkey1ForKey2 = key1;
+									if (counts[key1].hasOwnProperty(layerItem.feature.properties.DCode)){
+										xkey1ForKey2 = key1;
                                         break;
-                                    }
+									}
+                                    // if (counts[key1][layerItem.feature.properties.DCode]) {
+                                    //     xkey1ForKey2 = key1;
+                                    //     break;
+                                    // }
                                 }
                                 source = xkey1ForKey2[layerItem.feature.properties.DCode];
                             } else {
