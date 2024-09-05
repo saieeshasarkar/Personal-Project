@@ -229,19 +229,19 @@ function decompressGzip(gzipData) {
                 
 
             layer.addData(geoJSONData.features);
-				const redDotIcon = L.divIcon({
-					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
-					className: 'red-dot-icon',
-					iconSize: [10, 10],
-					iconAnchor: [5, 5]
-				});
-			var customDivIcon = L.divIcon({
-			    className: 'custom-icon',
-			    html: '1',
-			    iconSize: [30, 30],
-			    iconAnchor: [15, 30],
-			    popupAnchor: [0, -30]
-			});
+			// 	const redDotIcon = L.divIcon({
+			// 		html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"></div>',
+			// 		className: 'red-dot-icon',
+			// 		iconSize: [10, 10],
+			// 		iconAnchor: [5, 5]
+			// 	});
+			// var customDivIcon = L.divIcon({
+			//     className: 'custom-icon',
+			//     html: '1',
+			//     iconSize: [30, 30],
+			//     iconAnchor: [15, 30],
+			//     popupAnchor: [0, -30]
+			// });
 
                 layer.eachLayer(function(layerItem) {
 			     layerItem.eachLayer(function(subItem) {
