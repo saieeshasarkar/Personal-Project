@@ -477,19 +477,13 @@ function decompressGzip(gzipData) {
 			     layerItem.eachLayer(function(subItem) {
 				     // if (subItem instanceof L.Marker) {
 				if (subItem.options.alt==="Marker") {
-				let xkey1ForKey2 = [];
                             var source;
                             if (layerItem.feature.properties.DCode) {
                                 for (let key1 of Object.keys(counts)) {
 									if (counts[key1].hasOwnProperty(layerItem.feature.properties.DCode)){
-										// xkey1ForKey2 = key1;
 										source = counts[key1][layerItem.feature.properties.DCode];
                                         break;
 									}
-                                    // if (counts[key1][layerItem.feature.properties.DCode]) {
-                                    //     xkey1ForKey2 = key1;
-                                    //     break;
-                                    // }
                                 }
                             } else {
                                 source = counts[layerItem.feature.properties.PCode];
