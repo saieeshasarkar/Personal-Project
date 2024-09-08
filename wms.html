@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaflet WMS Example</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <style>
+    #map {
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    // Initialize map
+    var map = L.map('map').setView([18.856, 102.495], 6);  // Center the map on Laos
+
+    // Add base layer (OpenStreetMap)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Add WMS layer from Open Development Mekong
+    L.tileLayer.wms('https://data.opendevelopmentmekong.net/geoserver/ODMekong/lao_admbnda_adm2_ngd_20191112/wms', {
+      layers: 'ODMekong:lao_admbnda_adm2_ngd_20191112',  // The layer name from the WMS
+      format: 'image/png',  // Use image/png for transparency
+      transparent: true,    // Enable transparency
+      version: '1.1.0',     // WMS version
+      attribution: 'Open Development Mekong'
+    }).addTo(map);
+  </script>
+</body>
+</html>
