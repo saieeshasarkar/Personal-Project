@@ -532,7 +532,8 @@ function decompressGzip(gzipData) {
 
 		function checkNull2(val) {
 		  if (val != null || val == "NaN") {
-			return ", " + comma(val);
+			// return ", " + comma(val);
+			return comma(val);
 		  } else {
 			return "";
 		  }
