@@ -44,24 +44,24 @@ var isMobile = false; //initiate as false
 		OpenCartoMap.addTo(m);
 
 		//map title
-		var ctitle = L.control({position: 'topleft'});
-		ctitle.onAdd = function () {
-			var div = L.DomUtil.create('div', 'ctitle'),
-			//this is for adding a logo as needed
-			//holder ='<table><tr>' 
-			//logo = '<td rowspan=2><img class="logo" src="logo_laos.png"></img></td>';
-			//labels = "<td><h4>Poverty in Lao PDR</h4></td></tr><tr><td><p>Percentage of people in poverty by province/district: 2015</p></td></tr></table>";
-			labelsn = "<h4>Dangue in Lao PDR</h4><p>";//<div class='input-field col s12'><input type='text' id='autocomplete-inputx' class='autocomplete'><label for='autocomplete-inpuxt'>Search for a district or province</label></div>";//<p>Percentage of people in poverty by province/district: 2015</p>";
-			// var elemsx = document.querySelectorAll('#autocomplete-input');
-			div.innerHTML = labelsn;//holder + logo + labels;
+		// var ctitle = L.control({position: 'topleft'});
+		// ctitle.onAdd = function () {
+		// 	var div = L.DomUtil.create('div', 'ctitle'),
+		// 	//this is for adding a logo as needed
+		// 	//holder ='<table><tr>' 
+		// 	//logo = '<td rowspan=2><img class="logo" src="logo_laos.png"></img></td>';
+		// 	//labels = "<td><h4>Poverty in Lao PDR</h4></td></tr><tr><td><p>Percentage of people in poverty by province/district: 2015</p></td></tr></table>";
+		// 	labelsn = "<h4>Dangue in Lao PDR</h4><p>";//<div class='input-field col s12'><input type='text' id='autocomplete-inputx' class='autocomplete'><label for='autocomplete-inpuxt'>Search for a district or province</label></div>";//<p>Percentage of people in poverty by province/district: 2015</p>";
+		// 	// var elemsx = document.querySelectorAll('#autocomplete-input');
+		// 	div.innerHTML = labelsn;//holder + logo + labels;
 
-			// elemsx.forEach(function(element) {
-			// 	div.appendChild(element);
-			// });
+		// 	// elemsx.forEach(function(element) {
+		// 	// 	div.appendChild(element);
+		// 	// });
 
-			return div;
-		};
-		ctitle.addTo(m);
+		// 	return div;
+		// };
+		// ctitle.addTo(m);
 
 		var colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3", 
               "#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#7CFC00", "#00CED1", "#1E90FF", 
@@ -433,9 +433,10 @@ function decompressGzip(gzipData) {
 
 
 		// Creates an info box on the map
-		var info = L.control({position: 'topright'});
+		var info = L.control({position: 'bottomright'});
 		info.onAdd = function (map) {
-			this._div = L.DomUtil.create('div', 'info nomobile');
+			// this._div = L.DomUtil.create('div', 'info nomobile');
+			this._div = L.DomUtil.create('div', 'info');
 			this.update();
 			return this._div;
 		};
