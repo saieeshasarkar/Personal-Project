@@ -165,8 +165,9 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                             <i class="material-icons" id="searchButton">search</i>
                         </div> -->
                         <div class="input-field col s12" style="z-index: 9999;">
+                            
+                        <label for="autocomplete-input">Search for a district or province</label>
                             <input type="text" id="autocomplete-input" class="autocomplete">
-                            <label for="autocomplete-input">Search for a district or province</label>
                         </div>
                     </div>
                 </div>
