@@ -444,7 +444,8 @@ function decompressGzip(gzipData) {
 		info.update = function (props) {
 			
 			content =  '<table class="props"><tbody>';
-			content +=	'<div class="areaName">Dengue in Lao PDR</div><div class="areaName faded"><small><i>Hover over areas to view data</i><br></small></div>';
+			// content +=	'<div class="areaName">Dengue in Lao PDR</div><div class="areaName faded"><small><i>Hover over areas to view data</i><br></small></div>';
+			content +=  (props ? '<div class="areaName">Dengue in Lao PDR</div>' : '<div class="areaName">Dengue in Lao PDR</div><div class="areaName faded"><small><i>Hover over areas to view data</i><br></small></div>');
 			// content +=  (props ? '<div class="areaName">' + props.Province + checkNull2(props.District)+ '</div>' : '<div class="areaName">Dengue in Lao PDR</div><div class="areaName faded"><small><i>Hover over areas to view data</i><br></small></div>');//'<th>'+ checkNull2(props.District)+'</th></tr>';
 									//checkNull2(props.province_p) +"<br>"+  checkNull2(props.district_p) +  checkNull2(props.district_1) + 
 			// content += '<tr><td class="ditem">Area [sq km]</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Area"].toFixed(0))) : '236,800') + '</div>'+ '</td></tr>';
