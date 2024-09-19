@@ -56,7 +56,8 @@ $jsonData = json_encode($code);
     <style>
         body { display: flex; min-height: 100vh; flex-direction: column; }
         main { flex: 1 0 auto; padding-bottom: 56px; }
-        #map { height: calc(100vh - 216px); width:100%; }
+        #map { height: calc(100vh - 100px); width:100%; }
+        /* #map { height: calc(100vh - 216px); width:100%; } */
         /* #map { width: 98%; height: 95vh; margin: 0 auto; } */
         /* .search-wrapper { padding: 10px; } */
         .bottom-nav {
