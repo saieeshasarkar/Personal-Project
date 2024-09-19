@@ -460,7 +460,7 @@ function decompressGzip(gzipData) {
 			// content += '<tr><td class="ditem">Poverty gap (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Ga"].toFixed(1))) : '6.0') + '</div>'+ '</td></tr>';
 			// content += '<tr><td class="ditem">Poverty severity (%)</td>         <td class="dval">'  +(props ? '' + (checkNull(props["Poverty_Se"].toFixed(1))) : '--') + '</div>'+ '</td></tr>';
 			content +=  (props ? '<tr><td class="ditem">'+ props.Province +'</td>         <td class="dval">' + (checkNull2(counts[props["PCode"]]) ? counts[props["PCode"]].total : '--' ) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + counts.total + '</div>'+ '</td></tr>');
-			content +=  (props ? '<tr><td class="ditem">'+ checkNull2(props.District) +' District</td>         <td class="dval">' + ((props.PCode in counts) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
+			content +=  (props ? '<tr><td class="ditem">'+ checkNull2(props.District) +'</td>         <td class="dval">' + ((props.PCode in counts) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
 			// content +=  (props ? '<tr><td class="ditem">Province Cases</td>         <td class="dval">' + (checkNull2(counts[props["PCode"]]) ? counts[props["PCode"]].total : '--' ) + '</div>'+ '</td></tr>' : '<tr><td class="ditem">Total Casess</td>         <td class="dval">'  + counts.total + '</div>'+ '</td></tr>');
 			// content +=  (props ? '<tr><td class="ditem">District Cases</td>         <td class="dval">' + ((props.PCode in counts) ? checkNull2(counts[props.PCode][props.DCode]) ? counts[props.PCode][props.DCode].total : '--' : '--') + '</div>'+ '</td></tr>' : ' ');
 			
@@ -534,7 +534,7 @@ function decompressGzip(gzipData) {
 		function checkNull2(val) {
 		  if (val != null || val == "NaN") {
 			// return ", " + comma(val);
-			return comma(val);
+			return comma(val) + " District";
 		  } else {
 			return "";
 		  }
