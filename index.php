@@ -177,11 +177,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+    <button id="addRecordButton" onclick="addNewRecord()">Add New Record</button>
+
     <div id="real-time-data">
   <!-- Real-time data will be displayed here -->
 </div>
 
 <script>
+
 firebase.initializeApp(firebaseConfig);
   // Reference to your Firebase Realtime Database
   var database = firebase.database();
@@ -194,7 +197,20 @@ firebase.initializeApp(firebaseConfig);
     var data = snapshot.val();
     // Update the HTML element with the fetched data
     document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
+
   });
+
+  function addNewRecord() {
+    const newRecordRef = dbRef.push(); // Automatically generates a unique key
+    newRecordRef.set({
+        name: "John Doe",
+        email: "john@example.com"
+    }).then(() => {
+        console.log('New record saved successfully.');
+    }).catch((error) => {
+        console.error('Error saving new record:', error);
+    });
+}
 </script>
 </body>
 </html>
