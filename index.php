@@ -178,6 +178,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <button id="addRecordButton" onclick="addNewRecord()">Add New Record</button>
+    <button id="editRecordButton" onclick="editRecord('-O7DY2jSQDgA6M0g6dlm')">Edit Record</button>
 
     <div id="real-time-data">
   <!-- Real-time data will be displayed here -->
@@ -209,6 +210,18 @@ firebase.initializeApp(firebaseConfig);
         console.log('New record saved successfully.');
     }).catch((error) => {
         console.error('Error saving new record:', error);
+    });
+}
+
+function editRecord(userId) {
+    const specificRef = dbRef.child(userId);
+    specificRef.update({
+        user: "newemail@example.com", // Update email field
+        status: "Yes"
+    }).then(() => {
+        console.log('Record updated successfully.');
+    }).catch((error) => {
+        console.error('Error updating record:', error);
     });
 }
 </script>
