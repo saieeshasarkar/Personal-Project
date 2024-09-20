@@ -37,7 +37,9 @@ $ref='New/';
 $postdata = $database->getReference($ref)->push($AppData);
 
 
-            $_SESSION["id"] = $postdata->getKey();//$value['phone'];
+            $_SESSION["id"] = $postdata->getKey();//$value['phone']; gey unique key
+            $statusRef = $database->getReference('Address/' . $postdata->getKey());
+            $statusRef->set($_POST['selected_option_id']);
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             header("location: profile.php");
             exit;
