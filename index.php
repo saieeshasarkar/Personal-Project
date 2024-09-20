@@ -202,7 +202,7 @@ firebase.initializeApp(firebaseConfig);
   });
 
   function addNewRecord() {
-    const newRecordRef = dbRef.push(); // Automatically generates a unique key
+    const newRecordRef = dataRef.push(); // Automatically generates a unique key
     newRecordRef.set({
         name: "John Doe",
         email: "john@example.com"
@@ -214,7 +214,7 @@ firebase.initializeApp(firebaseConfig);
 }
 
 function editRecord(userId) {
-    const specificRef = dbRef.child(userId);
+    const specificRef = dataRef.child(userId);
     specificRef.update({
         user: "newemail@example.com", // Update email field
         status: "Yes"
