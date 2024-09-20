@@ -196,8 +196,17 @@ firebase.initializeApp(firebaseConfig);
   // Listen for changes in the data and update the webpage
   dataRef.on('value', function(snapshot) {
     var data = snapshot.val();
+    if (data) {
+        const filteredData = {};
+        
+        for (let key in data) {
+            filteredData[key] = {
+                user: data[key].user,
+                Status: data[key].status
+            };
+        }
     // Update the HTML element with the fetched data
-    document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
+    document.getElementById('real-time-data').innerHTML = JSON.stringify(filteredData);
 
   });
 
