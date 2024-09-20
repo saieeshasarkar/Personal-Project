@@ -207,7 +207,7 @@ firebase.initializeApp(firebaseConfig);
         }
     // Update the HTML element with the fetched data
     document.getElementById('real-time-data').innerHTML = JSON.stringify(filteredData);
-
+    }
   });
 
   function addNewRecord() {
