@@ -341,7 +341,10 @@ let autocompleteDatax = {};
                         minLength: 1,
                         onAutocomplete: function(text) {
                             console.log("Selected location:", text);
-				var layer = autocompleteData[text];
+				//var newStr = text.replace(/\s(?=[^ ]*$)/, "&lt;br&gt;");
+				var newStr = text.replace("District ", "District &lt;br&gt;");
+				//console.log(newStr);
+				var layer = autocompleteData[newStr];
 				if (layer) {
 					m.fitBounds(layer.getBounds());
 					// highlightFeature({ target: layer });
