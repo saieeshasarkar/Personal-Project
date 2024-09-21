@@ -419,7 +419,7 @@ function decompressGzip(gzipData) {
 			if (f.properties.District) {
 				var name = layer.feature.properties.District;
 				var prov = layer.feature.properties.Province;
-				 autocompleteData[name + ' District ' + prov] = layer;
+				 autocompleteData[name + ' District &lt;br&gt;' + prov] = layer;
             	//districtData[name] = layer;
 
 				
