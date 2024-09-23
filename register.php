@@ -61,7 +61,8 @@ $counterRef->set($count+1);
             // $ref = $database->getReference("Data/$randomKey");
             // Add key-value pair: 0 => "00-3465"
             $dataRef->set([
-                $status => $address
+                'address' => $address,
+                'status' => $status
             ]);
 
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
