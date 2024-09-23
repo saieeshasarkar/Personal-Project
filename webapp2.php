@@ -343,6 +343,7 @@ let autocompleteDatax = {};
                             console.log("Selected location:", text);
 				//var newStr = text.replace(/\s(?=[^ ]*$)/, "&lt;br&gt;");
 				var newStr = text.replace("District ", "District &lt;br&gt;");
+                
 				//console.log(newStr);
 				var layer = autocompleteData[newStr];
 				if (layer) {
@@ -368,8 +369,13 @@ let autocompleteDatax = {};
                         limit: 10,
                         minLength: 1,
                         onAutocomplete: function(text) {
-                             console.log("Selected village:", text);
-                            selectedVillageIds = villageAutocompleteData[text];
+                            let parts = text.split(' ');
+                            // Replace the second space (index 2 in the parts array) with "<br>"
+                            parts[2] = "&lt;br&gt;" + parts[2];
+                            // Join the parts back into a string 
+                            let result = parts.join(' ');
+                             console.log("Selected village:", result);
+                            selectedVillageIds = villageAutocompleteData[result];
                             console.log("Selected village IDs:", selectedVillageIds);
                         }
                     });
