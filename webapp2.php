@@ -371,7 +371,7 @@ let autocompleteDatax = {};
                         onAutocomplete: function(text) {
                             let parts = text.split('-');
                             // Replace the second space (index 2 in the parts array) with "<br>"
-                            parts[0] = + parts[0] + "&lt;br&gt;";
+                            parts[0] = parts[0] + "&lt;br&gt;";
                             // Join the parts back into a string 
                             let result = parts.join('-');
                              console.log("Selected village:", result);
