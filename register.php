@@ -24,7 +24,7 @@ $last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $address = $_POST['selected_option_id'];
 $password = $_POST['password'];
-$status = 0;//$_POST['status'];
+$status = 1;//$_POST['status'];
 
 
 $AppData = [
