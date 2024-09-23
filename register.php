@@ -47,9 +47,10 @@ $AppData = [
 $ref='New/';
 $postdata = $database->getReference($ref)->push($AppData);
 
-$counterRef->transaction(function ($currentValue) {
-    return ($currentValue ?? 0) + 1;  // If current value is null, start from 0
-});
+// $counterRef->transaction(function ($currentValue) {
+//     return ($currentValue ?? 0) + 1;  // If current value is null, start from 0
+// });
+$counterRef->set($database->getReference('Counter')->getValue()+1);
             $_SESSION["id"] = $postdata->getKey();//$value['phone']; gey unique key
             // $statusRef = $database->getReference('Data/' . $counterRef->getValue());
             // $statusRef->set($_POST['selected_option_id']);
