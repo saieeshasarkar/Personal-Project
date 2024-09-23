@@ -60,7 +60,7 @@ $counterRef->set($count+1);
             $dataRef = $database->getReference("Data/$randomKey");
             // $ref = $database->getReference("Data/$randomKey");
             // Add key-value pair: 0 => "00-3465"
-            $dataRef->update([
+            $dataRef->set([
                 $status => $address
             ]);
 
