@@ -326,7 +326,7 @@ let autocompleteDatax = {};
                                 //properties[prop] === 'uucne' && (villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = null);
                                 
 				 
-                 prop === 'uucne' ? villageAutocompleteData[`${properties.uucne} &lt;br&gt; ${properties.urcne} - ${properties.uscne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
+                 prop === 'uucne' ? villageAutocompleteData[`${properties.uucne} &lt;br&gt; - ${properties.urcne} - ${properties.uscne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
               
                 // prop === 'uucne' ? villageAutocompleteData[`${properties.urcne} - ${properties.uscne} - ${properties.uucne}`] = `${properties.urid}-${properties.usid}-${properties.uuid}` : autocompleteDatax[properties[prop]] = null;
                            }
@@ -369,11 +369,11 @@ let autocompleteDatax = {};
                         limit: 10,
                         minLength: 1,
                         onAutocomplete: function(text) {
-                            let parts = text.split(' ');
+                            let parts = text.split('-');
                             // Replace the second space (index 2 in the parts array) with "<br>"
-                            parts[2] = "&lt;br&gt;" + parts[2];
+                            parts[1] = "&lt;br&gt;" + parts[1];
                             // Join the parts back into a string 
-                            let result = parts.join(' ');
+                            let result = parts.join('-');
                              console.log("Selected village:", result);
                             selectedVillageIds = villageAutocompleteData[result];
                             console.log("Selected village IDs:", selectedVillageIds);

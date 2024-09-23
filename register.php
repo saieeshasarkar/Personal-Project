@@ -32,7 +32,6 @@ $AppData = [
     'password'=>$password,
     'phone'=>$email,
     'address'=> $count+1,
-	'status'	=>	'test',
 	
 ];
 // $count = $database->getReference('Counter');
