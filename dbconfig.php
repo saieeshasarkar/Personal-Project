@@ -4,6 +4,7 @@
     use Kreait\Firebase\Factory;
     use Kreait\Firebase\ServiceAccount;
     use Kreait\Firebase\Auth;
+    use Kreait\Firebase\Database\Transaction;
     
 // $firebase = (new Factory)
 // ->withServiceAccount('authentication-php-firebase-adminsdk-vj6un-aa68f86e1c.json')
