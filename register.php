@@ -56,7 +56,7 @@ $counterRef->set($count+1);
             // $statusRef = $database->getReference('Data/' . $counterRef->getValue());
             // $statusRef->set($_POST['selected_option_id']);
             // Reference to the "Data" node
-            $randomKey=$counterRef->getValue();
+            $randomKey=$count+1;
             $dataRef = $database->getReference("Data/$randomKey");
             // $ref = $database->getReference("Data/$randomKey");
             // Add key-value pair: 0 => "00-3465"
