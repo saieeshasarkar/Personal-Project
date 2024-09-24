@@ -244,15 +244,15 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
             <h4>User Registration</h4>
             <form id="registerForm" action="register.php" method="post"">
                 <div class="input-field">
-                    <input id="firstname" type="text" class="validate" required>
+                    <input id="firstname" name="firstname" type="text" class="validate" required>
                     <label for="firstname">First Name</label>
                 </div>
                 <div class="input-field">
-                    <input id="lastname" type="text" class="validate" required>
+                    <input id="lastname" name="lastname" type="text" class="validate" required>
                     <label for="lastname">Last Name</label>
                 </div>
                 <div class="input-field">
-                    <input id="email" type="email" class="validate" required>
+                    <input id="email" name="email" type="email" class="validate" required>
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field">
@@ -264,11 +264,11 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     <input type="hidden" id="selected_option_id" name="selected_option_id">
                 </div>
                 <div class="input-field">
-                    <input id="regPassword" type="password" class="validate" required>
+                    <input id="regPassword" name="regPassword" type="password" class="validate" required>
                     <label for="regPassword">Password</label>
                 </div>
                 <div class="input-field">
-                    <input id="confirmPassword" type="password" class="validate" required>
+                    <input id="confirmPassword" name="confirmPassword" type="password" class="validate" required>
                     <label for="confirmPassword">Confirm Password</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit">Register
