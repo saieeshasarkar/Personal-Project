@@ -543,9 +543,9 @@ let autocompleteDatax = {};
         // Registration form submission (placeholder functionality)
         document.getElementById('registerForm').addEventListener('submit', function(e) {
              // Gather form data
-        const formData = new FormData(this);
             e.preventDefault();
 
+            const formData = new FormData(this);
             // Send the form data using the fetch API
             fetch('register.php', {
                 method: 'POST',
