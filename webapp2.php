@@ -542,14 +542,14 @@ let autocompleteDatax = {};
 
         // Registration form submission (placeholder functionality)
         document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
              // Gather form data
         const formData = new FormData(this);
+            e.preventDefault();
 
             // Send the form data using the fetch API
             fetch('register.php', {
                 method: 'POST',
-                body: ''
+                body: formData
             })
             .then(response => response.text()) // Assuming PHP returns text response
             .then(data => {
@@ -561,7 +561,7 @@ let autocompleteDatax = {};
                 M.toast({html: 'Error submitting form'});
                 console.error('Error:', error);
             });
-            M.toast({html: 'Registration functionality not implemented yet'});
+            // M.toast({html: 'Registration functionality not implemented yet'});
        
             M.Modal.getInstance(document.getElementById('registerModal')).close();
         });
