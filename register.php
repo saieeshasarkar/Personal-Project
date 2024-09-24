@@ -20,7 +20,7 @@ require 'dbconfig.php';
  $count=$counterRef->getValue();
 // Retrieve form data
 $first_name = $_POST['firstname'];
-$last_name = $_POST['last_name'];
+$last_name = $_POST['lastname'];
 $email = $_POST['email'];
 $address = $_POST['selected_option_id'];
 $password = $_POST['regPassword'];

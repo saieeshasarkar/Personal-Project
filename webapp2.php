@@ -244,12 +244,12 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
             <h4>User Registration</h4>
             <form id="registerForm" action="register.php" method="post"">
                 <div class="input-field">
-                    <input id="firstName" type="text" class="validate" required>
-                    <label for="firstName">First Name</label>
+                    <input id="firstname" type="text" class="validate" required>
+                    <label for="firstname">First Name</label>
                 </div>
                 <div class="input-field">
-                    <input id="lastName" type="text" class="validate" required>
-                    <label for="lastName">Last Name</label>
+                    <input id="lastname" type="text" class="validate" required>
+                    <label for="lastname">Last Name</label>
                 </div>
                 <div class="input-field">
                     <input id="email" type="email" class="validate" required>
