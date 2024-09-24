@@ -543,7 +543,6 @@ let autocompleteDatax = {};
         // Registration form submission (placeholder functionality)
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
-<<<<<<< HEAD
              // Gather form data
         const formData = new FormData(this);
 
@@ -563,7 +562,6 @@ let autocompleteDatax = {};
                 console.error('Error:', error);
             });
             M.toast({html: 'Registration functionality not implemented yet'});
-=======
              // Gather form data
         const formData = new FormData(this);
 
