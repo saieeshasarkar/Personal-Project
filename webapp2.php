@@ -562,26 +562,7 @@ let autocompleteDatax = {};
                 console.error('Error:', error);
             });
             M.toast({html: 'Registration functionality not implemented yet'});
-             // Gather form data
-        const formData = new FormData(this);
-
-            // Send the form data using the fetch API
-            fetch('register.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text()) // Assuming PHP returns text response
-            .then(data => {
-                // Show success message or handle response
-                M.toast({html: 'Registration Successful!'});
-                console.log(data); // You can log or manipulate the response data
-            })
-            .catch(error => {
-                M.toast({html: 'Error submitting form'});
-                console.error('Error:', error);
-            });
-            // M.toast({html: 'Registration functionality not implemented yet'});
->>>>>>> 05092fc4ae51d2bb639e8d85a631d9efc050e08a
+       
             M.Modal.getInstance(document.getElementById('registerModal')).close();
         });
 
