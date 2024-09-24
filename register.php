@@ -23,7 +23,7 @@ $first_name = $_POST['firstname'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $address = $_POST['selected_option_id'];
-$password = $_POST['password'];
+$password = $_POST['regPassword'];
 $status = 1;//$_POST['status'];
 
 
@@ -65,7 +65,7 @@ $counterRef->set($count+1);
             ]);
 
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
-            header("location: profile.php");
+            //header("location: profile.php");
             exit;
 
 ob_end_flush();

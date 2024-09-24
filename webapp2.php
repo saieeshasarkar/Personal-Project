@@ -242,7 +242,7 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <h4>User Registration</h4>
-            <form id="registerForm">
+            <form id="registerForm" action="register.php" method="post"">
                 <div class="input-field">
                     <input id="firstName" type="text" class="validate" required>
                     <label for="firstName">First Name</label>
@@ -256,10 +256,12 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field">
-                    <input id="address" type="text" class="autocomplete validate" required>
+                    <input id="address"type="text" class="autocomplete validate" required>
                     <label for="address">Address</label>
 <!-- 		<input type="text" id="village-autocomplete-input" class="autocomplete">
                 <label for="village-autocomplete-input">Search for village</label> -->
+                 <!-- Hidden input to store the numeric value -->
+    <input type="hidden" id="selected_option_id" name="selected_option_id">
                 </div>
                 <div class="input-field">
                     <input id="regPassword" type="password" class="validate" required>
@@ -376,6 +378,7 @@ let autocompleteDatax = {};
                             let result = parts.join('-');
                              console.log("Selected village:", result);
                             selectedVillageIds = villageAutocompleteData[result];
+                            document.getElementById('selected_option_id').value = selectedVillageIds;
                             console.log("Selected village IDs:", selectedVillageIds);
                         }
                     });

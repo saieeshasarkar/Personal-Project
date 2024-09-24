@@ -80,7 +80,7 @@ datalist optgroup {
     <script>
         function validateForm() {
             var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
+            var password = document.getElementById("regPassword").value;
             var confirmPassword = document.getElementById("confirm_password").value;
 
             if (email === "" || password === "" || confirmPassword === "") {
@@ -138,8 +138,8 @@ datalist optgroup {
                 
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <label for="regPassword" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="regPassword" name="regPassword" required>
             </div>
             <div class="mb-3">
                 <label for="confirm_password" class="form-label">Confirm Password:</label>
