@@ -175,8 +175,8 @@ function RealDB(data) {
     const element = document.getElementById('P' + counts[key1]);
 if (element) {
     
-    document.getElementById('P' + counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
-    document.getElementById('D' + counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
+    document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
+    document.getElementById('D' + key1 + key2).innerHTML = JSON.stringify(counts[key1][key2].total);
 } else {
     console.error("Element with ID 'elementId' not found");
 }
