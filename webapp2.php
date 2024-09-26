@@ -153,9 +153,9 @@ function RealDB(data) {
     // const value1 = {};
     // const value2 = {total:0};
     for (let key in data) {
-        if (data[key].status === 1) { // Check if status is 1
+        if (data.status === 1) { // Check if status is 1
             
-    let [key1, key2, value] = data[key].address.split("-");
+    let [key1, key2, value] = data.address.split("-");
     if (!result[key1]) {
         result[key1] = {};
 		counts[key1] = { total: 0 };
