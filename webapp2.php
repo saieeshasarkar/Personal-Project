@@ -196,8 +196,8 @@ dbRef.once('value')
             const addedData = childSnapshot.val();
             console.log('New child added:', addedData);
             RealDB(addedData);
-            document.getElementById('P'counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
-            document.getElementById('D'counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
+            document.getElementById('P' + counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
+            document.getElementById('D' + counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
         });
 
         // Step 3: Set up a listener for removed children
