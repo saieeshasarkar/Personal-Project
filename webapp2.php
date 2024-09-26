@@ -1,17 +1,17 @@
 <?php
 require 'dbconfig.php';
-$fetchdata = $database->getReference('New')->getValue();
+// $fetchdata = $database->getReference('New')->getValue();
     
- $code = [];
- $groupedData = [];
-    foreach($fetchdata as $key => $value)
-    {
+//  $code = [];
+//  $groupedData = [];
+//     foreach($fetchdata as $key => $value)
+//     {
     
-      $code[] = $value['address'];
+//       $code[] = $value['address'];
       
-    }
+//     }
 
-$jsonData = json_encode($code);
+// $jsonData = json_encode($code);
 // $jsonData = json_encode('');
 $firebaseConfig = [
     'apiKey' => "AIzaSyBf3m74nlIkWPD1D9PMycQQIKxze0A-1hg",
