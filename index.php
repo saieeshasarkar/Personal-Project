@@ -201,8 +201,8 @@ firebase.initializeApp(firebaseConfig);
         
         for (let key in data) {
             filteredData[key] = {
-                user: data[key].user,
-                Status: data[key].status
+                address: data[key].address,
+                status: data[key].status
             };
         }
     // Update the HTML element with the fetched data

@@ -12,6 +12,18 @@ $fetchdata = $database->getReference('New')->getValue();
     }
 
 $jsonData = json_encode($code);
+
+$firebaseConfig = [
+    'apiKey' => "AIzaSyBf3m74nlIkWPD1D9PMycQQIKxze0A-1hg",
+    'authDomain' => "dengue-fever-database-6da72.firebaseapp.com",
+    'databaseURL' => "https://dengue-fever-database-6da72-default-rtdb.asia-southeast1.firebasedatabase.app",
+    'projectId' =>"dengue-fever-database-6da72",
+    'storageBucket' => "dengue-fever-database-6da72.appspot.com",
+    'messagingSenderId' => "484563913792",
+    'appId' => "1:484563913792:web:617b18689b4238c825e3a5",
+    'measurementId' => "G-LXXV81FSTD"
+];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,6 +115,20 @@ $jsonData = json_encode($code);
             z-index: 1000;
         }
     </style>
+<!-- ////////////////////////////firebase///////////////////////////////////////// -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+<sript src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+
+<script>
+        var firebaseConfig = <?php echo json_encode($firebaseConfig); ?>;
+    </script>
+<!-- ////////////////////////////firebase///////////////////////////////////////// -->
 </head>
 <script>
 // Use the PHP variable in JavaScript
@@ -286,6 +312,54 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+        
+firebase.initializeApp(firebaseConfig);
+  // Reference to your Firebase Realtime Database
+  var database = firebase.database();
+
+  // Reference to the specific location in your database
+  var dataRef = database.ref('Data');
+
+  // Listen for changes in the data and update the webpage
+  dataRef.on('value', function(snapshot) {
+    var data = snapshot.val();
+    if (data) {
+        const filteredData = {};
+        
+        for (let key in data) {
+            filteredData[key] = {
+                address: data[key].address,
+                status: data[key].status
+            };
+        }
+    // Update the HTML element with the fetched data
+    // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
+    }
+  });
+
+  function addNewRecord() {
+    const newRecordRef = dataRef.push(); // Automatically generates a unique key
+    newRecordRef.set({
+        name: "John Doe",
+        email: "john@example.com"
+    }).then(() => {
+        console.log('New record saved successfully.');
+    }).catch((error) => {
+        console.error('Error saving new record:', error);
+    });
+}
+
+function editRecord(userId) {
+    const specificRef = dataRef.child(userId);
+    specificRef.update({
+        user: "newemail@example.com", // Update email field
+        status: "Yes"
+    }).then(() => {
+        console.log('Record updated successfully.');
+    }).catch((error) => {
+        console.error('Error updating record:', error);
+    });
+}
         // Initialize Materialize components
         // document.addEventListener('DOMContentLoaded', function() {
         //     var modalElems = document.querySelectorAll('.modal');
