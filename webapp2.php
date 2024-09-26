@@ -324,14 +324,15 @@ firebase.initializeApp(firebaseConfig);
   dataRef.on('value', function(snapshot) {
     var data = snapshot.val();
     if (data) {
-        const filteredData = {};
-        
-        for (let key in data) {
+    const filteredData = {};
+
+    for (let key in data) {
+        if (data[key].status === 1) { // Check if status is 1
             filteredData[key] = {
-                address: data[key].address,
-                status: data[key].status
+                address: data[key].address
             };
         }
+    }
     // Update the HTML element with the fetched data
     // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
     }
