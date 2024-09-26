@@ -298,7 +298,7 @@ function editRecord(userId) {
     });
 }
 // Use the PHP variable in JavaScript
-let datax = JSON.parse('<?php echo $jsonData; ?>');
+// let datax = JSON.parse('?php echo $jsonData; ?>');
 
 // let resultx = {};
 // // let counts = {};
