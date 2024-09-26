@@ -248,14 +248,17 @@ function decompressGzip(gzipData) {
 				     // if (subItem instanceof L.Marker) {
 				    if (subItem.options.alt==="Marker") {
                             var source;
+							var hcode;
                             if (layerItem.feature.properties.DCode) {
                                 for (let key1 of Object.keys(counts)) {
 									if (counts[key1].hasOwnProperty(layerItem.feature.properties.DCode)){
 										source = counts[key1][layerItem.feature.properties.DCode];
+										hcode='D' + layerItem.feature.properties.DCode;
                                         break;
 									}
                                 }
                             } else {
+								hcode='P' + layerItem.feature.properties.PCode;
                                 source = counts[layerItem.feature.properties.PCode];
                             }
                             var total = 0;
@@ -265,11 +268,12 @@ function decompressGzip(gzipData) {
                             }
 					const IconX = L.divIcon({
 					className: 'number-icon',
-					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"><div style="text-align: center;margin-top: 2pt;width: 100%; height: 100%;" id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div></div>',
+					html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"><div style="text-align: center;margin-top: 2pt;width: 100%; height: 100%;" id=\'' + hcode + '\' >' + total + '</div></div>',
 					iconSize: [25, 25],
 					iconAnchor: [5, 5]
 					});
-                            
+					// html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"><div style="text-align: center;margin-top: 2pt;width: 100%; height: 100%;" id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div></div>',
+					
 					subItem.setIcon(IconX);
 					// subItem.setPopupContent("xx" || "Updated Point");
 				     }

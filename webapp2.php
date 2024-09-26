@@ -171,11 +171,14 @@ $firebaseConfig = [
     counts[key1].total++;
     counts.total++;
 
+    document.getElementById('P'counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
+    document.getElementById('D'counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
         }
     }
     // Update the HTML element with the fetched data
     // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
     }
+    document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
   });
 
   function addNewRecord() {
