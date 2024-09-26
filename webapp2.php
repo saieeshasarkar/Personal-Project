@@ -185,6 +185,7 @@ $firebaseConfig = [
 //     // }
 //     // return [value1, value2];  // Returning as an array
 // }
+const markerElements = [];
 function RealDB(data) {
     // const value1 = {};
     // const value2 = {total:0};
