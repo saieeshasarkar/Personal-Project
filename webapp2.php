@@ -136,7 +136,7 @@ $firebaseConfig = [
   var database = firebase.database();
 
   // Reference to the specific location in your database
-  var dataRef = database.ref('Data');
+  var dbRef = database.ref('Data');
 
   let result = {};
 // let counts = {};
