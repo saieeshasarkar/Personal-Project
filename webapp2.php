@@ -172,7 +172,7 @@ function RealDB(data) {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
-    const element = document.getElementById('P' + counts[key1]);
+    const element = document.getElementById('P' + key1);
 if (element) {
     
     document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
