@@ -131,13 +131,29 @@ $firebaseConfig = [
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 </head>
 <script>
-// Use the PHP variable in JavaScript
-let data = JSON.parse('<?php echo $jsonData; ?>');
-let result = {};
+    firebase.initializeApp(firebaseConfig);
+  // Reference to your Firebase Realtime Database
+  var database = firebase.database();
+
+  // Reference to the specific location in your database
+  var dataRef = database.ref('Data');
+
+  let result = {};
 // let counts = {};
-let counts = {total:0};
-data.forEach(item => {
-    let [key1, key2, value] = item.split("-");
+  let counts = {total:0};
+
+  // Listen for changes in the data and update the webpage
+  dataRef.on('value', function(snapshot) {
+    var data = snapshot.val();
+    if (data) {
+    const filteredData = {};
+
+    for (let key in data) {
+        if (data[key].status === 1) { // Check if status is 1
+            filteredData[key] = {
+                address: data[key].address
+            };
+    let [key1, key2, value] = data[key].address.split("-");
     if (!result[key1]) {
         result[key1] = {};
 		counts[key1] = { total: 0 };
@@ -154,9 +170,64 @@ data.forEach(item => {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
+
+        }
+    }
+    // Update the HTML element with the fetched data
+    // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
+    }
+  });
+
+  function addNewRecord() {
+    const newRecordRef = dataRef.push(); // Automatically generates a unique key
+    newRecordRef.set({
+        name: "John Doe",
+        email: "john@example.com"
+    }).then(() => {
+        console.log('New record saved successfully.');
+    }).catch((error) => {
+        console.error('Error saving new record:', error);
+    });
+}
+
+function editRecord(userId) {
+    const specificRef = dataRef.child(userId);
+    specificRef.update({
+        user: "newemail@example.com", // Update email field
+        status: "Yes"
+    }).then(() => {
+        console.log('Record updated successfully.');
+    }).catch((error) => {
+        console.error('Error updating record:', error);
+    });
+}
+// Use the PHP variable in JavaScript
+let datax = JSON.parse('<?php echo $jsonData; ?>');
+
+let resultx = {};
+// let counts = {};
+let countsx = {total:0};
+datax.forEach(item => {
+    let [key1, key2, value] = item.split("-");
+    if (!resultx[key1]) {
+        resultx[key1] = {};
+		counts[key1] = { total: 0 };
+    }
+    if (!resultx[key1][key2]) {
+        resultx[key1][key2] = [];
+		countsx[key1][key2] = { total: 0, unique: {} };
+    }
+    if (!countsx[key1][key2].unique[value]) {
+        countsx[key1][key2].unique[value] = 0;
+    }
+    resultx[key1][key2].push(value);
+	countsx[key1][key2].unique[value]++;
+    countsx[key1][key2].total++;
+    countsx[key1].total++;
+    countsx.total++;
 });
 
-console.log("Counts:", counts);
+console.log("Counts:", countsx);
 
 function countMembers(data, key, subKey) {
     if (data.hasOwnProperty(key)) {
@@ -174,7 +245,7 @@ function countMembers(data, key, subKey) {
 }
 
 console.log(result);
-console.log(countMembers(data, '1', '101'));  // Outputs: 2
+console.log(countMembers(datax, '1', '101'));  // Outputs: 2
 </script>
 <body>
     <main>
@@ -313,54 +384,6 @@ console.log(countMembers(data, '1', '101'));  // Outputs: 2
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         
-firebase.initializeApp(firebaseConfig);
-  // Reference to your Firebase Realtime Database
-  var database = firebase.database();
-
-  // Reference to the specific location in your database
-  var dataRef = database.ref('Data');
-
-  // Listen for changes in the data and update the webpage
-  dataRef.on('value', function(snapshot) {
-    var data = snapshot.val();
-    if (data) {
-    const filteredData = {};
-
-    for (let key in data) {
-        if (data[key].status === 1) { // Check if status is 1
-            filteredData[key] = {
-                address: data[key].address
-            };
-        }
-    }
-    // Update the HTML element with the fetched data
-    // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
-    }
-  });
-
-  function addNewRecord() {
-    const newRecordRef = dataRef.push(); // Automatically generates a unique key
-    newRecordRef.set({
-        name: "John Doe",
-        email: "john@example.com"
-    }).then(() => {
-        console.log('New record saved successfully.');
-    }).catch((error) => {
-        console.error('Error saving new record:', error);
-    });
-}
-
-function editRecord(userId) {
-    const specificRef = dataRef.child(userId);
-    specificRef.update({
-        user: "newemail@example.com", // Update email field
-        status: "Yes"
-    }).then(() => {
-        console.log('Record updated successfully.');
-    }).catch((error) => {
-        console.error('Error updating record:', error);
-    });
-}
         // Initialize Materialize components
         // document.addEventListener('DOMContentLoaded', function() {
         //     var modalElems = document.querySelectorAll('.modal');
