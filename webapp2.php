@@ -149,43 +149,43 @@ $firebaseConfig = [
 //     // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
 //   });
 // Step 1: Load the full data once
-function RealDB(data) {
-    // const value1 = {};
-    // const value2 = {total:0};
-    // for (let key in data) {
-        if (data.status === 1) { // Check if status is 1
+// function RealDB(data) {
+//     // const value1 = {};
+//     // const value2 = {total:0};
+//     // for (let key in data) {
+//         if (data.status === 1) { // Check if status is 1
             
-    let [key1, key2, value] = data.address.split("-");
-    if (!result[key1]) {
-        result[key1] = {};
-		counts[key1] = { total: 0 };
-    }
-    if (!result[key1][key2]) {
-        result[key1][key2] = [];
-		counts[key1][key2] = { total: 0, unique: {} };
-    }
-    if (!counts[key1][key2].unique[value]) {
-        counts[key1][key2].unique[value] = 0;
-    }
-    result[key1][key2].push(value);
-	counts[key1][key2].unique[value]++;
-    counts[key1][key2].total++;
-    counts[key1].total++;
-    counts.total++;
-    const element = document.getElementById('P' + key1);
-if (element) {
+//     let [key1, key2, value] = data.address.split("-");
+//     if (!result[key1]) {
+//         result[key1] = {};
+// 		counts[key1] = { total: 0 };
+//     }
+//     if (!result[key1][key2]) {
+//         result[key1][key2] = [];
+// 		counts[key1][key2] = { total: 0, unique: {} };
+//     }
+//     if (!counts[key1][key2].unique[value]) {
+//         counts[key1][key2].unique[value] = 0;
+//     }
+//     result[key1][key2].push(value);
+// 	counts[key1][key2].unique[value]++;
+//     counts[key1][key2].total++;
+//     counts[key1].total++;
+//     counts.total++;
+//     const element = document.getElementById('P' + key1);
+// if (element) {
     
-    document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
-    document.getElementById('D' + key2).innerHTML = JSON.stringify(counts[key1][key2].total);
-} else {
-    console.error("Element with ID 'elementId' not found");
-}
+//     document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
+//     document.getElementById('D' + key2).innerHTML = JSON.stringify(counts[key1][key2].total);
+// } else {
+//     console.error("Element with ID 'elementId' not found");
+// }
 
-        }
-    // }
-    // return [value1, value2];  // Returning as an array
-}
-function initRealDB(data) {
+//         }
+//     // }
+//     // return [value1, value2];  // Returning as an array
+// }
+function RealDB(data) {
     // const value1 = {};
     // const value2 = {total:0};
     for (let key in data) {
@@ -228,7 +228,7 @@ dbRef.once('value')
         existingChildrenCount = snapshot.numChildren();
         const data = snapshot.val();
         // const [result, counts] = RealDB(data);
-         initRealDB(data);
+         RealDB(data);
     //     if (data) {
     // // const filteredData = {};
     // // filteredData[key] = {
@@ -247,8 +247,11 @@ dbRef.once('value')
                 console.log('Initial child loaded:', addedData);
             } else {
                 console.log('New child added:', addedData);
-                var nc[childSnapshot.key]=addedData;
-                initRealDB(nc);
+                const nc = {
+                key: childSnapshot.key,
+                value: addedData
+                };
+                RealDB(nc);
             }
             
         });
