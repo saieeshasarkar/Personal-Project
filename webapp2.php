@@ -182,7 +182,7 @@ dbRef.once('value')
     .then((snapshot) => {
         const data = snapshot.val();
         // const [result, counts] = RealDB(data);
-        RealDB(data);
+        // RealDB(data);
     //     if (data) {
     // // const filteredData = {};
     // // filteredData[key] = {
