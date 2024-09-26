@@ -249,48 +249,48 @@ function editRecord(userId) {
 // Use the PHP variable in JavaScript
 let datax = JSON.parse('<?php echo $jsonData; ?>');
 
-let resultx = {};
-// let counts = {};
-let countsx = {total:0};
-datax.forEach(item => {
-    let [key1, key2, value] = item.split("-");
-    if (!resultx[key1]) {
-        resultx[key1] = {};
-		countsx[key1] = { total: 0 };
-    }
-    if (!resultx[key1][key2]) {
-        resultx[key1][key2] = [];
-		countsx[key1][key2] = { total: 0, unique: {} };
-    }
-    if (!countsx[key1][key2].unique[value]) {
-        countsx[key1][key2].unique[value] = 0;
-    }
-    resultx[key1][key2].push(value);
-	countsx[key1][key2].unique[value]++;
-    countsx[key1][key2].total++;
-    countsx[key1].total++;
-    countsx.total++;
-});
+// let resultx = {};
+// // let counts = {};
+// let countsx = {total:0};
+// datax.forEach(item => {
+//     let [key1, key2, value] = item.split("-");
+//     if (!resultx[key1]) {
+//         resultx[key1] = {};
+// 		countsx[key1] = { total: 0 };
+//     }
+//     if (!resultx[key1][key2]) {
+//         resultx[key1][key2] = [];
+// 		countsx[key1][key2] = { total: 0, unique: {} };
+//     }
+//     if (!countsx[key1][key2].unique[value]) {
+//         countsx[key1][key2].unique[value] = 0;
+//     }
+//     resultx[key1][key2].push(value);
+// 	countsx[key1][key2].unique[value]++;
+//     countsx[key1][key2].total++;
+//     countsx[key1].total++;
+//     countsx.total++;
+// });
 
-console.log("Counts:", countsx);
+// console.log("Counts:", countsx);
 
-function countMembers(data, key, subKey) {
-    if (data.hasOwnProperty(key)) {
-        if (subKey && data[key].hasOwnProperty(subKey)) {
-            return data[key][subKey].length;
-        } else {
-            let count = 0;
-            for (let subKey in data[key]) {
-                count += data[key][subKey].length;
-            }
-            return count;
-        }
-    }
-    return 0;
-}
+// function countMembers(data, key, subKey) {
+//     if (data.hasOwnProperty(key)) {
+//         if (subKey && data[key].hasOwnProperty(subKey)) {
+//             return data[key][subKey].length;
+//         } else {
+//             let count = 0;
+//             for (let subKey in data[key]) {
+//                 count += data[key][subKey].length;
+//             }
+//             return count;
+//         }
+//     }
+//     return 0;
+// }
 
-console.log(result);
-console.log(countMembers(datax, '1', '101'));  // Outputs: 2
+// console.log(result);
+// console.log(countMembers(datax, '1', '101'));  // Outputs: 2
 </script>
 <body>
     <main>
