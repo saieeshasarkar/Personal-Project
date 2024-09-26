@@ -249,7 +249,7 @@ datax.forEach(item => {
     let [key1, key2, value] = item.split("-");
     if (!resultx[key1]) {
         resultx[key1] = {};
-		counts[key1] = { total: 0 };
+		countsx[key1] = { total: 0 };
     }
     if (!resultx[key1][key2]) {
         resultx[key1][key2] = [];
