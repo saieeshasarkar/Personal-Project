@@ -248,7 +248,7 @@ dbRef.once('value')
             } else {
                 console.log('New child added:', addedData);
                 const nc = {
-                childSnapshot.key: addedData
+                childSnapshot.key : addedData
                 };
                 RealDB(nc);
             }
