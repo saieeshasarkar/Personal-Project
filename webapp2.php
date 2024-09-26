@@ -143,16 +143,18 @@ $firebaseConfig = [
   let counts = {total:0};
 
   // Listen for changes in the data and update the webpage
-  dataRef.on('value', function(snapshot) {
-    var data = snapshot.val();
-    if (data) {
-    const filteredData = {};
-
+//   dataRef.on('value', function(snapshot) {
+//     var data = snapshot.val();
+   
+//     // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
+//   });
+// Step 1: Load the full data once
+function RealDB(data) {
+    // const value1 = {};
+    // const value2 = {total:0};
     for (let key in data) {
         if (data[key].status === 1) { // Check if status is 1
-            filteredData[key] = {
-                address: data[key].address
-            };
+            
     let [key1, key2, value] = data[key].address.split("-");
     if (!result[key1]) {
         result[key1] = {};
@@ -171,15 +173,48 @@ $firebaseConfig = [
     counts[key1].total++;
     counts.total++;
 
-    document.getElementById('P'counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
-    document.getElementById('D'counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
         }
     }
-    // Update the HTML element with the fetched data
-    // document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
-    }
-    document.getElementById('real-time-data').innerHTML = JSON.stringify(data);
-  });
+    // return [value1, value2];  // Returning as an array
+}
+
+dbRef.once('value')
+    .then((snapshot) => {
+        const data = snapshot.val();
+        // const [result, counts] = RealDB(data);
+        RealDB(data);
+    //     if (data) {
+    // // const filteredData = {};
+    // // filteredData[key] = {
+    // //             address: data[key].address
+    // //         };
+    // }
+        console.log('Full data loaded:', data);
+
+        // Step 2: Set up a listener for added children
+        dbRef.on('child_added', (childSnapshot) => {
+            const addedData = childSnapshot.val();
+            console.log('New child added:', addedData);
+            RealDB(addedData);
+            document.getElementById('P'counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
+            document.getElementById('D'counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
+        });
+
+        // Step 3: Set up a listener for removed children
+        dbRef.on('child_removed', (childSnapshot) => {
+            const removedData = childSnapshot.val();
+            console.log('Child removed:', removedData);
+        });
+
+        // Step 4: Set up a listener for changed children
+        dbRef.on('child_changed', (childSnapshot) => {
+            const updatedData = childSnapshot.val();
+            console.log('Child updated:', updatedData);
+        });
+    })
+    .catch((error) => {
+        console.error('Error loading data:', error);
+    });
 
   function addNewRecord() {
     const newRecordRef = dataRef.push(); // Automatically generates a unique key
