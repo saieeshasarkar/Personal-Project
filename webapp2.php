@@ -209,19 +209,19 @@ function RealDB(data) {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
-    const elementp = document.getElementById('P' + key1);
-    const elementd = document.getElementById('D' + key2);
-if (elementp) {
-    elementp.innerHTML = JSON.stringify(counts[key1].total);
-} else {
-    console.log("Element with ID 'elementId' not found");
-}
-if (elementd) {
-    // document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
-    elementd.innerHTML = JSON.stringify(counts[key1][key2].total);
-} else {
-    console.log("Element with ID 'elementId' not found");
-}
+//     const elementp = document.getElementById('P' + key1);
+//     const elementd = document.getElementById('D' + key2);
+// if (elementp) {
+//     elementp.innerHTML = JSON.stringify(counts[key1].total);
+// } else {
+//     console.log("Element with ID 'elementId' not found");
+// }
+// if (elementd) {
+//     // document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
+//     elementd.innerHTML = JSON.stringify(counts[key1][key2].total);
+// } else {
+//     console.log("Element with ID 'elementId' not found");
+// }
 
         }
      }
