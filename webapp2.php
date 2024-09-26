@@ -185,12 +185,49 @@ if (element) {
     // }
     // return [value1, value2];  // Returning as an array
 }
+function initRealDB(data) {
+    // const value1 = {};
+    // const value2 = {total:0};
+    for (let key in data) {
+        if (data[key].status === 1) { // Check if status is 1
+            
+    let [key1, key2, value] = data[key].address.split("-");
+    if (!result[key1]) {
+        result[key1] = {};
+		counts[key1] = { total: 0 };
+    }
+    if (!result[key1][key2]) {
+        result[key1][key2] = [];
+		counts[key1][key2] = { total: 0, unique: {} };
+    }
+    if (!counts[key1][key2].unique[value]) {
+        counts[key1][key2].unique[value] = 0;
+    }
+    result[key1][key2].push(value);
+	counts[key1][key2].unique[value]++;
+    counts[key1][key2].total++;
+    counts[key1].total++;
+    counts.total++;
+    const element = document.getElementById('P' + key1);
+if (element) {
+    
+    document.getElementById('P' + key1).innerHTML = JSON.stringify(counts[key1].total);
+    document.getElementById('D' + key2).innerHTML = JSON.stringify(counts[key1][key2].total);
+} else {
+    console.error("Element with ID 'elementId' not found");
+}
 
+        }
+     }
+    // return [value1, value2];  // Returning as an array
+}
+
+var done;
 dbRef.once('value')
     .then((snapshot) => {
         const data = snapshot.val();
         // const [result, counts] = RealDB(data);
-        // RealDB(data);
+         initRealDB(data);
     //     if (data) {
     // // const filteredData = {};
     // // filteredData[key] = {
@@ -198,11 +235,12 @@ dbRef.once('value')
     // //         };
     // }
         console.log('Full data loaded:', data);
-
+        done=true;
         // Step 2: Set up a listener for added children
         dbRef.on('child_added', (childSnapshot) => {
             const addedData = childSnapshot.val();
             console.log('New child added:', addedData);
+            if(!done)
             RealDB(addedData);
             
         });
