@@ -152,7 +152,7 @@ $firebaseConfig = [
 function RealDB(data) {
     // const value1 = {};
     // const value2 = {total:0};
-    // for (data) {
+    // for (let key in data) {
         if (data.status === 1) { // Check if status is 1
             
     let [key1, key2, value] = data.address.split("-");
