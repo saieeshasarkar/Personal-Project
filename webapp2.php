@@ -247,9 +247,12 @@ dbRef.once('value')
                 console.log('Initial child loaded:', addedData);
             } else {
                 console.log('New child added:', addedData);
-                let nc = {};
-                nc[childSnapshot.key].push(addedData)
-
+                // let nc = {};
+                // nc[childSnapshot.key].push(addedData)
+                const nc = {
+                    [childSnapshot.key]: 
+                        addedData
+                };
                 RealDB(nc);
             }
             
