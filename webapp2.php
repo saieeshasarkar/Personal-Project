@@ -172,7 +172,8 @@ function RealDB(data) {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
-
+    document.getElementById('P' + counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
+    document.getElementById('D' + counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
         }
     }
     // return [value1, value2];  // Returning as an array
@@ -196,8 +197,7 @@ dbRef.once('value')
             const addedData = childSnapshot.val();
             console.log('New child added:', addedData);
             RealDB(addedData);
-            // document.getElementById('P' + counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
-            // document.getElementById('D' + counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
+            
         });
 
         // Step 3: Set up a listener for removed children
