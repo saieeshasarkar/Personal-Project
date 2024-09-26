@@ -172,8 +172,15 @@ function RealDB(data) {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
+    const element = document.getElementById('P' + counts[key1]);
+if (element) {
+    
     document.getElementById('P' + counts[key1]).innerHTML = JSON.stringify(counts[key1].total);
     document.getElementById('D' + counts[key1][key2]).innerHTML = JSON.stringify(counts[key1][key2].total);
+} else {
+    console.error("Element with ID 'elementId' not found");
+}
+
         }
     }
     // return [value1, value2];  // Returning as an array
