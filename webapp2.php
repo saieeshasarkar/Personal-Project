@@ -222,9 +222,10 @@ if (element) {
     // return [value1, value2];  // Returning as an array
 }
 
-var done;
+
 dbRef.once('value')
     .then((snapshot) => {
+        existingChildrenCount = snapshot.numChildren();
         const data = snapshot.val();
         // const [result, counts] = RealDB(data);
          initRealDB(data);
@@ -235,13 +236,20 @@ dbRef.once('value')
     // //         };
     // }
         console.log('Full data loaded:', data);
-        done=true;
+        let addedChildrenCount = 0;
         // Step 2: Set up a listener for added children
         dbRef.on('child_added', (childSnapshot) => {
+            addedChildrenCount++;
             const addedData = childSnapshot.val();
-            console.log('New child added:', addedData);
-            if(!done)
-            RealDB(addedData);
+            // console.log('New child added:', addedData);
+              // Check if this is part of the initial load or a new child
+            if (addedChildrenCount <= existingChildrenCount) {
+                console.log('Initial child loaded:', addedData);
+            } else {
+                console.log('New child added:', addedData);
+                var nc[0]=addedData;
+                initRealDB(nc);
+            }
             
         });
 
