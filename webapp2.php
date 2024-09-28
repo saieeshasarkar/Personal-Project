@@ -210,6 +210,12 @@ function RealDB(data) {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
+
+	var checkder =  'P' + key1 in markerById ? markerById['P' + key1] : false;
+	if (Object.keys(markerById).length>0){
+	markerById['P' + key1].getElement().children[0].firstChild.innerHTML=counts[key1].total;
+	markerById['D' + key2].getElement().children[0].firstChild.innerHTML=counts[key1][key2].total;
+	}
 //     const elementp = document.getElementById('P' + key1);
 //     const elementd = document.getElementById('D' + key2);
 // if (elementp) {
