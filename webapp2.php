@@ -232,12 +232,17 @@ function RealDB(data) {
 	// markerById['D' + key2].getElement().children[0].firstChild.innerHTML=counts[key1][key2].total;
 		var geticonp = markerById['P' + key1].options.icon;
 		var geticond = markerById['D' + key2].options.icon;
-		var docp= document.createElement('div').innerHTML=geticonp.options.html;
-		var docd= document.createElement('div').innerHTML=geticond.options.html;
-		docp.children[0].firstChild.innerHTML=counts[key1].total;
-		docd.children[0].firstChild.innerHTML=counts[key1][key2].total;
-		geticonp.options.html=docp;
-		geticond.options.html=docd;
+		// var docp = geticonp.options.html;
+		// var docd = geticond.options.html;
+		// docp.children[0].firstChild.innerHTML=counts[key1].total;
+		// docd.children[0].firstChild.innerHTML=counts[key1][key2].total;
+		// geticonp.options.html=docp;
+		// geticond.options.html=docd;
+		geticonp.options.html.children[0].firstChild.innerHTML=counts[key1].total;
+		geticond.options.html.children[0].firstChild.innerHTML=counts[key1][key2].total;
+		geticonp.options.html=geticonp.options.html.innerHTML;
+		geticond.options.html=geticond.options.html.innerHTML;
+		
 		markerById['P' + key1].setIcon(geticonp);
 		markerById['D' + key2].setIcon(geticond);
 		
