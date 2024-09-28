@@ -212,7 +212,8 @@ function RealDB(data) {
     counts.total++;
 
 	var checkder =  'P' + key1 in markerById ? markerById['P' + key1] : false;
-	if (Object.keys(markerById).length>0){
+	//Object.keys(markerById).length>0
+	if (checkder != false){
 	markerById['P' + key1].getElement().children[0].firstChild.innerHTML=counts[key1].total;
 	markerById['D' + key2].getElement().children[0].firstChild.innerHTML=counts[key1][key2].total;
 	}
