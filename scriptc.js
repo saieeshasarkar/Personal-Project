@@ -273,7 +273,7 @@ function decompressGzip(gzipData) {
 					iconAnchor: [5, 5]
 					});
 					// html: '<div style="background-color: red; width: 100%; height: 100%; border-radius: 50%; border: 1px solid darkred;"><div style="text-align: center;margin-top: 2pt;width: 100%; height: 100%;" id=\'p' + layerItem.feature.properties.PCode + '\' >' + total + '</div></div>',
-					subItem.iconId=hcode;
+					// subItem.iconId=hcode;
 					subItem.setIcon(IconX);
 					markerElements.push(subItem);
 					markerById[hcode]=subItem;
