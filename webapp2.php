@@ -214,25 +214,35 @@ function RealDB(data) {
 	var checkder =  'P' + key1 in markerById ? markerById['P' + key1] : false;
 	//Object.keys(markerById).length>0
 	if (checkder != false){
-		const elementp = document.getElementById('P' + key1);
-    		const elementd = document.getElementById('D' + key2);
-		if (elementd) {
-		markerById['D' + key2].getElement().children[0].firstChild.innerHTML=counts[key1][key2].total;
-		} else {
-		    console.log("Element with ID 'elementId' not found");
-		}
+		// const elementp = document.getElementById('P' + key1);
+  //   		const elementd = document.getElementById('D' + key2);
+		// if (elementd) {
+		// markerById['D' + key2].getElement().children[0].firstChild.innerHTML=counts[key1][key2].total;
+		// } else {
+		//     console.log("Element with ID 'elementId' not found");
+		// }
 			
-		if (elementp) {
-		markerById['P' + key1].getElement().children[0].firstChild.innerHTML=counts[key1].total;
-		} else {
-		    console.log("Element with ID 'elementId' not found");
-		}	
+		// if (elementp) {
+		// markerById['P' + key1].getElement().children[0].firstChild.innerHTML=counts[key1].total;
+		// } else {
+		//     console.log("Element with ID 'elementId' not found");
+		// }	
 		
 	// markerById['P' + key1].getElement().children[0].firstChild.innerHTML=counts[key1].total;
 	// markerById['D' + key2].getElement().children[0].firstChild.innerHTML=counts[key1][key2].total;
+		var geticonp = markerById['P' + key1].options.icon;
+		var geticond = markerById['D' + key2].options.icon;
+		var docp= document.createElement('div').innerHTML=geticonp.options.html;
+		var docd= document.createElement('div').innerHTML=geticond.options.html;
+		docp.children[0].firstChild.innerHTML=counts[key1].total;
+		docd.children[0].firstChild.innerHTML=counts[key1][key2].total;
+		geticonp.options.html=docp;
+		geticond.options.html=docd;
+		markerById['P' + key1].setIcon(geticonp);
+		markerById['D' + key2].setIcon(geticond);
 		
-	markerById['P' + key1].options.icon.html=markerById['P' + key1].getElement().innerHTML;
-	markerById['D' + key2].options.icon.html=markerById['D' + key2].getElement().innerHTML;
+	// markerById['P' + key1].options.icon.html=markerById['P' + key1].getElement().innerHTML;
+	// markerById['D' + key2].options.icon.html=markerById['D' + key2].getElement().innerHTML;
 	}
 //     const elementp = document.getElementById('P' + key1);
 //     const elementd = document.getElementById('D' + key2);
