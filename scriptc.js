@@ -276,6 +276,7 @@ function decompressGzip(gzipData) {
 					subItem.iconId=hcode;
 					subItem.setIcon(IconX);
 					markerElements.push(subItem);
+					markerById[hcode]=subItem;
 					// subItem.setPopupContent("xx" || "Updated Point");
 				     }
 			});
