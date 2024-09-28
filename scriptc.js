@@ -250,8 +250,8 @@ function decompressGzip(gzipData) {
                             var source;
 							var hcode;
                             if (layerItem.feature.properties.DCode) {
-                                for (let key1 of Object.keys(counts)) {
 					hcode='D' + layerItem.feature.properties.DCode;
+                                for (let key1 of Object.keys(counts)) {
 									if (counts[key1].hasOwnProperty(layerItem.feature.properties.DCode)){
 										source = counts[key1][layerItem.feature.properties.DCode];
 										hcode='D' + layerItem.feature.properties.DCode;
