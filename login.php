@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          if ($email  == ($value['phone']) && password_verify($password, $storedPasswordHash))
          {
           $itemFound=true;
-          $fetchaddress = $database->getReference('Data/' .$value['address'])->getValue();
+          $fetchaddress = $database->getReference("Data/$value['address']")->getValue();
         //   "Data/$randomKey"
         //   data[key].status
           $response = [
