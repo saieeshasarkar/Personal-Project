@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]
         ];
           break;
-
         } else {
         // Invalid credentials
         $response = [
@@ -68,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'message' => 'Invalid username or password.'
         ];
         }
-          
+     
+    }     
         // if the email exist
     // if($_POST['email'] == ($value['email'])){$result = '<div class="alert alert-danger">Email are alraedy Sign-Up ..</div>';}
      //     //if the phone number exist
@@ -83,8 +83,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  //     'address'=>'dd',
        
     // Send the JSON response back to the client
-    echo json_encode($response);
-     }
+} else {
+    // Handle missing fields
+    $response = [
+        'status' => 'error',
+        'message' => 'Username and password are required.'
+    ];
+}
+
+// Send the JSON response back to the client
+echo json_encode($response);
 //  if ($itemFound) {
      
 //      echo "Login successful!";
@@ -93,6 +101,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //      echo "Invalid email or password!";
 //  }
 
+
+} else {
+    // Handle invalid request methods
+    $errorResponse = [
+        'status' => 'error',
+        'message' => 'Invalid request method. Only POST is supported.'
+    ];
+
+    echo json_encode($errorResponse);
+}
+
+
+
+
+<?php
+// Set content type to JSON
+header('Content-Type: application/json');
+
+// Allow only POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Get the raw POST data
+    $inputData = file_get_contents('php://input');
+    $data = json_decode($inputData, true); // Decode JSON input
+
+    // Check if username and password are provided
+    if (isset($data['username']) && isset($data['password'])) {
+        $username = $data['username'];
+        $password = $data['password'];
+
+        // Normally, you would retrieve the stored hashed password from the database
+        // Example (this is a mockup for demonstration purposes)
+        $storedUser = 'exampleUser'; 
+        $storedPasswordHash = password_hash('examplePass123', PASSWORD_BCRYPT); // Simulating stored password hash
+
+        // Check if the username matches and if the password is correct
+        if ($username === $storedUser && password_verify($password, $storedPasswordHash)) {
+            // Login successful
+            $response = [
+                'status' => 'success',
+                'message' => 'Login successful!',
+                'user' => [
+                    'username' => $username
+                ]
+            ];
+        } else {
+            // Invalid credentials
+            $response = [
+                'status' => 'error',
+                'message' => 'Invalid username or password.'
+            ];
+        }
+
+    } else {
+        // Handle missing fields
+        $response = [
+            'status' => 'error',
+            'message' => 'Username and password are required.'
+        ];
+    }
+
+    // Send the JSON response back to the client
+    echo json_encode($response);
 
 } else {
     // Handle invalid request methods
