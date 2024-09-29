@@ -78,7 +78,7 @@ $counterRef->set($count+1);
 
             $_SESSION["logged_in"] = true; // Set a flag for logged-in users
             //header("location: profile.php");
-            exit;
+            // exit;
 ///////////////
 // ob_end_flush();
 ///////////////
