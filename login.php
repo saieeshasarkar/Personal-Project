@@ -44,12 +44,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          if ($email  == ($value['phone']) && password_verify($password, $storedPasswordHash)))
          {
           $itemFound=true;
+          $fetchaddress = $database->getReference('Data/'$value['address'])->getValue();
+          
+        //   data[key].status
           $response = [
             'status' => 'success',
             'message' => 'Login successful!',
             'user' => [
-                'username' => $username
-            ];
+                'username' => $value['user'],
+                'email' => $email,
+                'address' => $fetchaddress.address,
+                'status' => $fetchaddress.status,
+                // 'password' => $hashedPassword, // For real-world, never return the actual password
+            ]
           break;
         ];
         } else {

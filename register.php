@@ -96,9 +96,9 @@ $counterRef->set($count+1);
             'status' => 'success',
             'message' => 'User registered successfully!',
             'user' => [
-                'username' => $email,
-                'firstname' => $first_name,
-                'lastname' => $last_name,
+                'username' => $first_name + '' $last_name,
+                'email' => $email,
+                'address' => $address,
                 'status' => 1,
                 // 'password' => $hashedPassword, // For real-world, never return the actual password
             ]

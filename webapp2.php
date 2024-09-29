@@ -811,8 +811,8 @@ let autocompleteDatax = {};
             // alert('User registered: ' + registeredUsername);
             M.toast({html: 'Registration Successful!'});
             loginSuccess({
-                    username: data.user.firstname +' '+ data.user.lastname,
-                    email: registeredUsername,
+                    username: registeredUsername,
+                    email: data.user.email,
                     status: data.user.status
                 });
         } else {
