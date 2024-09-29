@@ -769,8 +769,8 @@ let autocompleteDatax = {};
                 if (data.status === 'success') {
             // Access the username from the response
             const loggedUsername = data.user.username;
-            console.log('logged in Username:', registeredUsername);
-            // alert('User registered: ' + registeredUsername);
+            console.log('logged in Username:', loggedUsername);
+            // alert('User registered: ' + loggedUsername);
             M.toast({html: 'logged in Successful!'});
             loginSuccess({
                     username: loggedUsername,
