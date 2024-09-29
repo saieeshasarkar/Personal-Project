@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require 'dbconfig.php';
     // Retrieving form data
-    $email = $_POST['email'];
+    $email = $_POST['username'];
     $password = $_POST['password'];
     $itemFound = false;
     
     
 
     // Check if username and password are provided
-    $email = $_POST['email'];
+    $email = $_POST['username'];
     $password = $_POST['password'];
     // if (isset($data['username']) && isset($data['password'])) {
     if (isset($email) && isset($password)) {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'message' => 'Login successful!',
             'user' => [
                 'username' => $value['user'],
-                'email' => $email,
+                'email' => $value['phone'],
                 'address' => $fetchaddress.address,
                 'status' => $fetchaddress.status,
                 // 'password' => $hashedPassword, // For real-world, never return the actual password

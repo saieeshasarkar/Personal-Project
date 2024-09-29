@@ -744,18 +744,47 @@ let autocompleteDatax = {};
         // Login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
+            // var username = document.getElementById('username').value;
+            // var password = document.getElementById('password').value;
             // Simulated login (replace with actual login logic)
-            if (username === "user" && password === "password") {
-                loginSuccess({
-                    username: username,
-                    email: "user@example.com",
-                    role: "Standard User"
+
+            const formData = new FormData(this);
+            // Send the form data using the fetch API
+            fetch('login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // Assuming PHP returns text response
+            .then(data => {
+                if (data.status === 'success') {
+            // Access the username from the response
+            const loggedUsername = data.user.username;
+            console.log('logged in Username:', registeredUsername);
+            // alert('User registered: ' + registeredUsername);
+            M.toast({html: 'logged in Successful!'});
+            loginSuccess({
+                    username: loggedUsername,
+                    email: data.user.email,
+                    address: data.user.address,
+                    status: data.user.status
                 });
-            } else {
-                M.toast({html: 'Invalid credentials'});
-            }
+        } else {
+            // Handle error response
+            console.error('Error:', data.message);
+            M.toast({html: 'Invalid credentials'});
+        }
+
+
+            
+            // if (username === "user" && password === "password") {
+            //     loginSuccess({
+            //         username: username,
+            //         email: "user@example.com",
+            //         role: "Standard User"
+            //     });
+            // } else {
+            //     M.toast({html: 'Invalid credentials'});
+            // }
         });
 
         function loginSuccess(user) {
