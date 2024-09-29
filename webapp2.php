@@ -748,11 +748,11 @@ let autocompleteDatax = {};
             var password = document.getElementById('password').value;
             // Simulated login (replace with actual login logic)
 
-            const formData = new FormData(this);
-            const jsonData = {};
-            formData.forEach((value, key) => {
-                jsonData[key] = value; // Add key-value pairs to jsonData object
-            });
+            // const formData = new FormData(this);
+            // const jsonData = {};
+            // formData.forEach((value, key) => {
+            //     jsonData[key] = value; // Add key-value pairs to jsonData object
+            // });
             // Send the form data using the fetch API
             fetch('login.php', {
                 method: 'POST',
