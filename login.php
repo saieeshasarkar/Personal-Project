@@ -54,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'user' => [
                 'username' => $value['user'],
                 'email' => $value['phone'],
-                'address' => $fetchaddress.address,
-                'status' => $fetchaddress.status
+                'address' => $fetchaddress['address'],
+                'status' => $fetchaddress['status']
                 // 'password' => $hashedPassword, // For real-world, never return the actual password
             ]
         ];
