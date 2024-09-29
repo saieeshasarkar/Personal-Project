@@ -80,6 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  //     'phone'=>'00000000',
  //     'address'=>'dd',
        
+    // Send the JSON response back to the client
+    echo json_encode($response);
      }
 //  if ($itemFound) {
      
@@ -89,8 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //      echo "Invalid email or password!";
 //  }
 
-    // Send the JSON response back to the client
-    echo json_encode($response);
 
 } else {
     // Handle invalid request methods
