@@ -15,11 +15,12 @@
 ///////////////
 // ob_start();
 //////////////
+require 'dbconfig.php';
 header('Content-Type: application/json');
 
 // Allow only POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-require 'dbconfig.php';
+
 
 $inputData = file_get_contents('php://input');
 $data = json_decode($inputData, true); // Decode JSON input
