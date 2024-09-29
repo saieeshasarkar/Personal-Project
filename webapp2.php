@@ -429,7 +429,7 @@ function editRecord(userId) {
                 <h4>User Details</h4>
                 <p>Username: <span id="userDetailUsername"></span></p>
                 <p>Email: <span id="userDetailEmail"></span></p>
-                <p>Role: <span id="userDetailRole"></span></p>
+                <p>Status: <span id="userDetailStatus"></span></p>
                 <div class="user-actions">
                     <a href="#" id="logoutButton" class="waves-effect waves-light btn">Logout</a>
                 </div>
@@ -763,7 +763,7 @@ let autocompleteDatax = {};
             document.getElementById('userLink').style.display = 'block';
             document.getElementById('userDetailUsername').textContent = user.username;
             document.getElementById('userDetailEmail').textContent = user.email;
-            document.getElementById('userDetailRole').textContent = user.role;
+            document.getElementById('userDetailStatus').textContent = user.status;
             M.Modal.getInstance(document.getElementById('loginModal')).close();
             M.toast({html: 'Login successful'});
             showPage('userPage');
@@ -802,11 +802,32 @@ let autocompleteDatax = {};
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text()) // Assuming PHP returns text response
+            .then(response => response.json()) // Assuming PHP returns text response
             .then(data => {
+                if (data.status === 'success') {
+            // Access the username from the response
+            const registeredUsername = data.user.username;
+            console.log('Registered Username:', registeredUsername);
+            // alert('User registered: ' + registeredUsername);
+            M.toast({html: 'Registration Successful!'});
+            loginSuccess({
+                    username: data.user.firstname +' '+ data.user.lastname,
+                    email: registeredUsername,
+                    status: data.user.status
+                });
+        } else {
+            // Handle error response
+            console.error('Error:', data.message);
+           M.toast({html:'Registration failed: ' + data.message});
+        }
                 // Show success message or handle response
-                M.toast({html: 'Registration Successful!'});
-                console.log(data); // You can log or manipulate the response data
+                // M.toast({html: 'Registration Successful!'});
+                // loginSuccess({
+                //     username: username,
+                //     email: "user@example.com",
+                //     role: "Standard User"
+                // });
+                // console.log(data); // You can log or manipulate the response data
             })
             .catch(error => {
                 M.toast({html: 'Error submitting form'});
