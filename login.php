@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $storedUser = $value['phone']; 
         $storedPasswordHash = password_hash($value['password'], PASSWORD_BCRYPT); // Simulating stored password hash
         
-         if ($email  == ($value['phone']) && password_verify($password, $storedPasswordHash)))
+         if ($email  == ($value['phone']) && password_verify($password, $storedPasswordHash))
          {
           $itemFound=true;
           $fetchaddress = $database->getReference('Data/'$value['address'])->getValue();
