@@ -25,26 +25,27 @@ $inputData = file_get_contents('php://input');
 $data = json_decode($inputData, true); // Decode JSON input
 $response = [];
 if (isset($data['firstname']) && isset($data['lastname']) && isset($data['email']) && isset($data['selected_option_id']) && isset($data['regPassword'])) {
- $fetchdata = $database->getReference('New')->getValue();
- $counterRef = $database->getReference('Counter');
- $count=$counterRef->getValue();
-// Retrieve form data
-// $first_name = $_POST['firstname'];
-$first_name = $data['firstname'];
-$last_name = $data['lastname'];
-$email = $data['email'];
-$address = $data['selected_option_id'];
-$password = $data['regPassword'];
-$status = 1;//$_POST['status'];
+    if (!empty($username) && !empty($password)) {
+    $fetchdata = $database->getReference('New')->getValue();
+    $counterRef = $database->getReference('Counter');
+    $count=$counterRef->getValue();
+    // Retrieve form data
+    // $first_name = $_POST['firstname'];
+    $first_name = $data['firstname'];
+    $last_name = $data['lastname'];
+    $email = $data['email'];
+    $address = $data['selected_option_id'];
+    $password = $data['regPassword'];
+    $status = 1;//$_POST['status'];
 
-$storedPasswordHash = password_hash($password, PASSWORD_BCRYPT); 
-$AppData = [
-    'user'=>$first_name,
-    'password'=>$storedPasswordHash,
-    'phone'=>$email,
-    'address'=> $count+1,
-	
-];
+    $storedPasswordHash = password_hash($password, PASSWORD_BCRYPT); 
+    $AppData = [
+        'user'=>$first_name,
+        'password'=>$storedPasswordHash,
+        'phone'=>$email,
+        'address'=> $count+1,
+        
+    ];
 // $count = $database->getReference('Counter');
 // // $ref = $database->getReference('Counter');
 // $count->set($database->getReference('Counter')->getValue()+1);

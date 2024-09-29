@@ -1,6 +1,5 @@
 <?php
 // Check if user exists
-<?php
 // Set content type to JSON
 header('Content-Type: application/json');
 
