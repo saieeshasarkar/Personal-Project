@@ -752,6 +752,9 @@ let autocompleteDatax = {};
             // Send the form data using the fetch API
             fetch('login.php', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: formData
             })
             .then(response => response.json()) // Assuming PHP returns text response
@@ -829,6 +832,9 @@ let autocompleteDatax = {};
             // Send the form data using the fetch API
             fetch('register.php', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: formData
             })
             .then(response => response.json()) // Assuming PHP returns text response
