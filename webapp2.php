@@ -773,7 +773,7 @@ let autocompleteDatax = {};
             console.error('Error:', data.message);
             M.toast({html: 'Invalid credentials'});
         }
-
+        });
 
             
             // if (username === "user" && password === "password") {
