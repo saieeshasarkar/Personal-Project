@@ -23,7 +23,7 @@ require 'dbconfig.php';
 
 $inputData = file_get_contents('php://input');
 $data = json_decode($inputData, true); // Decode JSON input
-$response=[];
+$response = [];
 if (isset($data['firstname']) && isset($data['lastname']) && isset($data['email']) && isset($data['selected_option_id']) && isset($data['regPassword'])) {
  $fetchdata = $database->getReference('New')->getValue();
  $counterRef = $database->getReference('Counter');
