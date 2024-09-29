@@ -771,7 +771,7 @@ let autocompleteDatax = {};
             const loggedUsername = data.user.username;
             console.log('logged in Username:', loggedUsername);
             // alert('User registered: ' + loggedUsername);
-            M.toast({html: 'logged in Successful!'});
+            // M.toast({html: 'logged in Successful!'});
             loginSuccess({
                     username: loggedUsername,
                     email: data.user.email,
