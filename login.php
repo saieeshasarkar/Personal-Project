@@ -4,8 +4,7 @@
 header('Content-Type: application/json');
 
 // Allow only POST requests
-if (tue) {
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require 'dbconfig.php';
     // Get the raw POST data
