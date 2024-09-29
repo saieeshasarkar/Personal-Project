@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the raw POST data
     $inputData = file_get_contents('php://input');
     $data = json_decode($inputData, true); // Decode JSON input
-    $response;
+    $response=[];
 
     // Retrieving form data
     // $email = $_POST['username'];
@@ -56,11 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'username' => $value['user'],
                 'email' => $value['phone'],
                 'address' => $fetchaddress.address,
-                'status' => $fetchaddress.status,
+                'status' => $fetchaddress.status
                 // 'password' => $hashedPassword, // For real-world, never return the actual password
             ]
-          break;
         ];
+          break;
+
         } else {
         // Invalid credentials
         $response = [

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $inputData = file_get_contents('php://input');
 $data = json_decode($inputData, true); // Decode JSON input
-$response;
+$response=[];
 if (isset($data['firstname']) && isset($data['lastname'] && isset($data['email'] && isset($data['selected_option_id'] && isset($data['regPassword'])) {
  $fetchdata = $database->getReference('New')->getValue();
  $counterRef = $database->getReference('Counter');
@@ -98,7 +98,7 @@ $counterRef->set($count+1);
             'status' => 'success',
             'message' => 'User registered successfully!',
             'user' => [
-                'username' => $first_name + '' $last_name,
+                'username' => $first_name + ' ' + $last_name,
                 'email' => $email,
                 'address' => $address,
                 'status' => 1,
