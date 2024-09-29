@@ -749,13 +749,17 @@ let autocompleteDatax = {};
             // Simulated login (replace with actual login logic)
 
             const formData = new FormData(this);
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value; // Add key-value pairs to jsonData object
+            });
             // Send the form data using the fetch API
             fetch('login.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: formData
+                body: JSON.stringify(jsonData) 
             })
             .then(response => response.json()) // Assuming PHP returns text response
             .then(data => {
@@ -829,13 +833,17 @@ let autocompleteDatax = {};
             e.preventDefault();
 
             const formData = new FormData(this);
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value; // Add key-value pairs to jsonData object
+            });
             // Send the form data using the fetch API
             fetch('register.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: formData
+                body: JSON.stringify(jsonData) // Convert js object to JSON string
             })
             .then(response => response.json()) // Assuming PHP returns text response
             .then(data => {
