@@ -744,8 +744,8 @@ let autocompleteDatax = {};
         // Login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // var username = document.getElementById('username').value;
-            // var password = document.getElementById('password').value;
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
             // Simulated login (replace with actual login logic)
 
             const formData = new FormData(this);
@@ -759,7 +759,10 @@ let autocompleteDatax = {};
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(jsonData) 
+                body: JSON.stringify({
+                username: username,
+                password: password
+        })
             })
             .then(response => response.json()) // Assuming PHP returns text response
             .then(data => {
