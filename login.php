@@ -2,12 +2,12 @@
 // Check if user exists
 <?php
 // Set content type to JSON
-require 'dbconfig.php';
 header('Content-Type: application/json');
 
 // Allow only POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    require 'dbconfig.php';
     // Get the raw POST data
     $inputData = file_get_contents('php://input');
     $data = json_decode($inputData, true); // Decode JSON input
