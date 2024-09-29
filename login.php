@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the raw POST data
     $inputData = file_get_contents('php://input');
     $data = json_decode($inputData, true); // Decode JSON input
-
+    $response;
 
     // Retrieving form data
     // $email = $_POST['username'];
