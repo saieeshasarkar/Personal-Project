@@ -76,5 +76,6 @@ $jsonServiceAccount = [
 // $remoteConfig = $factory->createRemoteConfig();
 // $cloudStorage = $factory->createStorage();
 // $firestore = $factory->createFirestore();
+
+// <!-- The core Firebase JS SDK is always required and must be listed first -->
 ?>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
