@@ -13,15 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require 'dbconfig.php';
     // Retrieving form data
-    $email = $_POST['username'];
-    $password = $_POST['password'];
+    // $email = $_POST['username'];
+    $email = $data['username'];
+    $password = $data['password'];
     $itemFound = false;
     
     
 
     // Check if username and password are provided
-    $email = $_POST['username'];
-    $password = $_POST['password'];
+    // $email = $_POST['username'];
+    // $password = $_POST['password'];
     // if (isset($data['username']) && isset($data['password'])) {
     if (isset($email) && isset($password)) {
         $username = $data['username'];

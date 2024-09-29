@@ -24,16 +24,17 @@ require 'dbconfig.php';
 $inputData = file_get_contents('php://input');
 $data = json_decode($inputData, true); // Decode JSON input
 
-if (isset($_POST['firstname']) && isset($_POST['lastname'] && isset($_POST['email'] && isset($_POST['selected_option_id'] && isset($_POST['regPassword'])) {
+if (isset($data['firstname']) && isset($data['lastname'] && isset($data['email'] && isset($data['selected_option_id'] && isset($data['regPassword'])) {
  $fetchdata = $database->getReference('New')->getValue();
  $counterRef = $database->getReference('Counter');
  $count=$counterRef->getValue();
 // Retrieve form data
-$first_name = $_POST['firstname'];
-$last_name = $_POST['lastname'];
-$email = $_POST['email'];
-$address = $_POST['selected_option_id'];
-$password = $_POST['regPassword'];
+// $first_name = $_POST['firstname'];
+$first_name = $data['firstname'];
+$last_name = $data['lastname'];
+$email = $data['email'];
+$address = $data['selected_option_id'];
+$password = $data['regPassword'];
 $status = 1;//$_POST['status'];
 
 $storedPasswordHash = password_hash($password, PASSWORD_BCRYPT); 
