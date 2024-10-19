@@ -434,12 +434,13 @@ function editRecord(userId) {
         <p><strong>Address:</strong> <span id="userDetailAddress"></span></p>
         
         <!-- Editable Status Dropdown -->
+	<p><strong>Status:</strong> <span id="userDetailStatus"></span></p>
         <div class="input-field col s12">
             <select id="statusDropdown">
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
             </select>
-            <label for="statusDropdown">Status</label>
+<!--             <label for="statusDropdown">Status</label> -->
         </div>
         
         <!-- Update Status Button -->
