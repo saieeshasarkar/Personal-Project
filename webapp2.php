@@ -427,12 +427,32 @@ function editRecord(userId) {
             </div>
             <div id="userPage" class="page">
                 <h4>User Details</h4>
-                <p>Username: <span id="userDetailUsername"></span></p>
-                <p>Email: <span id="userDetailEmail"></span></p>
-                <p>Status: <span id="userDetailStatus"></span></p>
-                <div class="user-actions">
-                    <a href="#" id="logoutButton" class="waves-effect waves-light btn">Logout</a>
-                </div>
+               <div class="row">
+    <div class="col s12">
+        <p><strong>Username:</strong> <span id="userDetailUsername"></span></p>
+        <p><strong>Email:</strong> <span id="userDetailEmail"></span></p>
+        <p><strong>Address:</strong> <span id="userDetailAddress"></span></p>
+        
+        <!-- Editable Status Dropdown -->
+        <div class="input-field col s12">
+            <select id="statusDropdown">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+            </select>
+            <label for="statusDropdown">Status</label>
+        </div>
+        
+        <!-- Update Status Button -->
+        <div class="user-actions">
+            <a href="#" id="updateStatusButton" class="waves-effect waves-light btn">Update Status</a>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="user-actions">
+            <a href="#" id="logoutButton" class="waves-effect waves-light btn red darken-2">Logout</a>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </main>
@@ -802,11 +822,21 @@ let autocompleteDatax = {};
             document.getElementById('userLink').style.display = 'block';
             document.getElementById('userDetailUsername').textContent = user.username;
             document.getElementById('userDetailEmail').textContent = user.email;
-            document.getElementById('userDetailStatus').textContent = user.status;
+            // document.getElementById('userDetailStatus').textContent = user.status;
+		document.getElementById('statusDropdown').value = user.status;
             M.Modal.getInstance(document.getElementById('loginModal')).close();
             M.toast({html: 'Login successful'});
             showPage('userPage');
         }
+
+	  // Handle update status button click
+        document.getElementById('updateStatusButton').addEventListener('click', function(e) {
+		e.preventDefault();
+            var selectedStatus = document.getElementById('statusDropdown').value;
+            console.log('Updated Status:', selectedStatus);
+            // Perform the update logic here (e.g., send status to the server)
+            M.toast({html: 'Status updated to ' + selectedStatus});
+        });
 
         // Logout functionality
         document.getElementById('logoutButton').addEventListener('click', function(e) {
