@@ -607,6 +607,9 @@ let autocompleteDatax = {};
                     });
 
                     // Initialize main autocomplete
+		    var elemsstatus = document.querySelectorAll('#statusDropdown');
+    			var instances = M.FormSelect.init(elemsstatus);
+		    
                     var elems = document.querySelectorAll('#autocomplete-input');
                     var instances = M.Autocomplete.init(elems, {
                         data: autocompleteData,
