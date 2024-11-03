@@ -18,14 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $password = $data['password'];
     $itemFound = false;
     
-    session_start(); // Start the session, if not already started
+    // session_start(); // Start the session, if not already started
 
     if (isset($_SESSION["id"])) {
         // $_SESSION["id"] exists
         // echo "Session ID exists: " . $_SESSION["id"];
         // $fetchdata = $database->getReference('New/'. $_SESSION["id"])->getValue();
         $addresskey = $database->getReference('New/' . $_SESSION["id"] . '/address')->getValue();
-        $fetchaddress = $database->getReference('Data/'. $address)->getValue();
+        $fetchaddress = $database->getReference('Data/'. $addresskey)->getValue();
 
         // $uniqueKey = $_SESSION["id"]; // The key under 'New' you want to update
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'status' => $status 
         ];
 
-        $database->getReference('New/' . $addresskey)->update($updateData);
+        $database->getReference('Data/' . $addresskey)->update($updateData);
         $response = [
             'status' => 'success',
             'message' => 'update successful!'
