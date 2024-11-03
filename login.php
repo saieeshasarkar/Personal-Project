@@ -46,6 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          {
           $itemFound=true;
           $fetchaddress = $database->getReference('Data/'. $value['address'])->getValue();
+
+        $_SESSION["id"]=$key;
+        $_SESSION["logged_in"] = true;
         //   "Data/$randomKey"
         //   data[key].status
           $response = [
