@@ -1,5 +1,6 @@
 <?php
 require 'dbconfig.php';
+session_start();
 // $fetchdata = $database->getReference('New')->getValue();
     
 //  $code = [];
@@ -836,10 +837,34 @@ let autocompleteDatax = {};
 	  // Handle update status button click
         document.getElementById('updateStatusButton').addEventListener('click', function(e) {
 		e.preventDefault();
+        // var username = document.getElementById('username').value;
+        // var password = document.getElementById('password').value;
             var selectedStatus = document.getElementById('statusDropdown').value;
-            console.log('Updated Status:', selectedStatus);
+     
+
+            fetch('update.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                ustatus: selectedStatus
+        })
+            })
+            .then(response => response.json()) // Assuming PHP returns text response
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('Updated Status:', selectedStatus);
             // Perform the update logic here (e.g., send status to the server)
             M.toast({html: 'Status updated to ' + selectedStatus});
+        } else {
+            // Handle error response
+            console.log('Updated Status:', selectedStatus);
+            // Perform the update logic here (e.g., send status to the server)
+            M.toast({html: 'unable to updated'});
+        }
+        });
+
         });
 
         // Logout functionality

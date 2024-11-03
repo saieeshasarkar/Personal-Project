@@ -10,6 +10,9 @@
 // ->withServiceAccount('authentication-php-firebase-adminsdk-vj6un-aa68f86e1c.json')
 // ->withProjectId('my-project')
 // ->withDatabaseUri('https://authentication-php-default-rtdb.asia-southeast1.firebasedatabase.app/');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 
 // ///////////////////
