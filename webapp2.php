@@ -1,6 +1,8 @@
 <?php
 require 'dbconfig.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // $fetchdata = $database->getReference('New')->getValue();
     
 //  $code = [];
