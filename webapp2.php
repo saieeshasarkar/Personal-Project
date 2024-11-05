@@ -335,6 +335,11 @@ dbRef.once('value')
         // Step 3: Set up a listener for removed children
         dbRef.on('child_removed', (childSnapshot) => {
             const removedData = childSnapshot.val();
+            const nc = {
+                    [childSnapshot.key]: 
+                    removedData
+                };
+                RealDB(nc,true);
             console.log('Child removed:', removedData);
         });
 
