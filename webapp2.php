@@ -193,11 +193,12 @@ const markerById = {};
 function RealDB(data, opt = false){
     // const value2 = {total:0};
     for (let key in data) {
+     let [key1, key2, value] = data[key].address.split("-");
         // if(add){}
         if(opt===false){
         if (data[key].status === 1) { // Check if status is 1
             
-    let [key1, key2, value] = data[key].address.split("-");
+    [key1, key2, value] = data[key].address.split("-");
     if (!result[key1]) {
         result[key1] = {};
 		counts[key1] = { total: 0 };
@@ -218,7 +219,7 @@ function RealDB(data, opt = false){
     
     } else {
         if (data[key].status === 0) { // Check if status is 1
-            let [key1, key2, value] = data[key].address.split("-");
+            [key1, key2, value] = data[key].address.split("-");
             counts[key1][key2].unique[value]--;
             counts[key1][key2].total--;
             counts[key1].total--; 
