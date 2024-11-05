@@ -190,10 +190,12 @@ $firebaseConfig = [
 // }
 const markerElements = [];
 const markerById = {};
-function RealDB(data) {
+function RealDB(data, opt = false)
     // const value1 = {};
     // const value2 = {total:0};
     for (let key in data) {
+        // if(add){}
+        if(opt===false){
         if (data[key].status === 1) { // Check if status is 1
             
     let [key1, key2, value] = data[key].address.split("-");
@@ -213,7 +215,19 @@ function RealDB(data) {
     counts[key1][key2].total++;
     counts[key1].total++;
     counts.total++;
+    }
+    
+    } else {
+        if (data[key].status === 0) { // Check if status is 1
+            let [key1, key2, value] = data[key].address.split("-");
+            counts[key1][key2].unique[value]--;
+            counts[key1][key2].total--;
+            counts[key1].total--; 
+            counts.total--;
 
+            }
+    }
+    
 	var checkder =  'P' + key1 in markerById ? markerById['P' + key1] : false;
 	//Object.keys(markerById).length>0
 	if (checkder != false){
@@ -277,7 +291,7 @@ function RealDB(data) {
 //     console.log("Element with ID 'elementId' not found");
 // }
 
-        }
+        // } old of end status === 1
      }
     // return [value1, value2];  // Returning as an array
 }
@@ -327,6 +341,12 @@ dbRef.once('value')
         // Step 4: Set up a listener for changed children
         dbRef.on('child_changed', (childSnapshot) => {
             const updatedData = childSnapshot.val();
+            const nc = {
+                    [childSnapshot.key]: 
+                    updatedData
+                };
+                const act = (updatedData.status === '0') ? true :  false;
+                RealDB(nc,act);
             console.log('Child updated:', updatedData);
         });
     })
