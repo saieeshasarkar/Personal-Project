@@ -2,7 +2,9 @@
 // Check if user exists
 // Set content type to JSON
 header('Content-Type: application/json');
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Allow only POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
