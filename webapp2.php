@@ -867,7 +867,7 @@ let autocompleteDatax = {};
         // var username = document.getElementById('username').value;
         // var password = document.getElementById('password').value;
             var selectedStatus = document.getElementById('statusDropdown').value;
-     
+            let intValue = +selectedStatus;
 
             fetch('update.php', {
                 method: 'POST',
@@ -875,7 +875,7 @@ let autocompleteDatax = {};
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                ustatus: selectedStatus
+                ustatus: intValue
         })
             })
             .then(response => response.json()) // Assuming PHP returns text response
