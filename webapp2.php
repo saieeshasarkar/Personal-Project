@@ -117,6 +117,9 @@ $firebaseConfig = [
             width: 100%;
             z-index: 1000;
         }
+        .enlarged {
+            transform: scale(3);
+        }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
@@ -258,6 +261,29 @@ function RealDB(data, opt = false){
 		
 		docp.children[0].firstChild.innerHTML=counts[key1].total;
 		docd.children[0].firstChild.innerHTML=counts[key1][key2].total;
+        ///////////////effect//////////////////
+
+        const numberElement = document.getElementById('P' + key1);
+        let current = 0;
+        let target = 1;
+        const increment = target / 5; // Adjust increment for speed
+
+        const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(interval);
+            }
+            // numberElement.innerText = Math.floor(current);
+            
+            // Add the enlarged effect
+            numberElement.classList.add('enlarged');
+            setTimeout(() => {
+                numberElement.classList.remove('enlarged');
+            }, 100); // Duration of the enlargement effect
+        }, 20); // Update interval
+    
+        /////////////////////////////////////
 		geticonp.options.html=docp.innerHTML;
 		geticond.options.html=docd.innerHTML;
 		// var docp = geticonp.options.html;
