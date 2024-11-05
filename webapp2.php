@@ -261,11 +261,7 @@ function RealDB(data, opt = false){
 		
 		docp.children[0].firstChild.innerHTML=counts[key1].total;
 		docd.children[0].firstChild.innerHTML=counts[key1][key2].total;
-        ///////////////effect//////////////////
-
-    
-    
-        /////////////////////////////////////
+     
 		geticonp.options.html=docp.innerHTML;
 		geticond.options.html=docd.innerHTML;
 		// var docp = geticonp.options.html;
@@ -281,8 +277,10 @@ function RealDB(data, opt = false){
 		
 		markerById['P' + key1].setIcon(geticonp);
 		markerById['D' + key2].setIcon(geticond);
-        
-        const numberElement = document.getElementById('P' + key1);
+		
+           ///////////////effect//////////////////
+
+           const numberElement = document.getElementById('P' + key1);
         let current = 0;
         let target = 1;
         const increment = target / 5; // Adjust increment for speed
@@ -301,7 +299,9 @@ function RealDB(data, opt = false){
                 numberElement.classList.remove('enlarged');
             }, 100); // Duration of the enlargement effect
         }, 20); // Update interval
-		
+    
+        /////////////////////////////////////
+        
 	// markerById['P' + key1].options.icon.html=markerById['P' + key1].getElement().innerHTML;
 	// markerById['D' + key2].options.icon.html=markerById['D' + key2].getElement().innerHTML;
 	}
