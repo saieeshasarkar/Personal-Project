@@ -117,8 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle missing fields
     $response = [
         'status' => 'error',
-        'message' => 'Username and password are required.',
-        'test' => $_SESSION["id"]
+        'message' => 'Username and password are required.'
     ];
 }
 
