@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Retrieving form data
     // $email = $_POST['username'];
-    $status = $data['ustatus'];
+    $status = intval($data['ustatus']);
     // $password = $data['password'];
     $itemFound = false;
     
