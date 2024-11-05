@@ -190,8 +190,7 @@ $firebaseConfig = [
 // }
 const markerElements = [];
 const markerById = {};
-function RealDB(data, opt = false)
-    // const value1 = {};
+function RealDB(data, opt = false){
     // const value2 = {total:0};
     for (let key in data) {
         // if(add){}
