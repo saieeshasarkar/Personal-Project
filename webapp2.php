@@ -350,7 +350,7 @@ dbRef.once('value')
                     [childSnapshot.key]: 
                     updatedData
                 };
-                const act = (updatedData.status === '0') ? true :  false;
+                const act = (updatedData.status === 0) ? true :  false;
                 RealDB(nc,act);
             console.log('Child updated:', updatedData);
         });
