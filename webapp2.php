@@ -282,11 +282,12 @@ function RealDB(data, opt = false){
         // var opx= pElementx.options.html;
         // var opxx= op.options.html;
         
-		const pElement = pElementx.getElement().children[0].firstChild;
+		// const pElement = pElementx.getElement().children[0].firstChild;
         
-		const dElement = dElementx.getElement().children[0].firstChild;
-        //    const pElement = document.getElementById('P' + key1);
+		// const dElement = dElementx.getElement().children[0].firstChild;
+           const pElement = document.getElementById('P' + key1);
         //    const dElement = document.getElementById('D' + key2);
+           var nElement =  pElement ? document.getElementById('P' + key1) : document.getElementById('D' + key2);
         let current = 0;
         let target = 1;
         const increment = target / 5; // Adjust increment for speed
@@ -300,11 +301,9 @@ function RealDB(data, opt = false){
             // numberElement.innerText = Math.floor(current);
             
             // Add the enlarged effect
-            pElement.classList.add('enlarged');
-            Element.classList.add('enlarged');
+            nElement.classList.add('enlarged');
             setTimeout(() => {
-                pElement.classList.remove('enlarged');
-                dElement.classList.remove('enlarged');
+                nElement.classList.remove('enlarged');
             }, 100); // Duration of the enlargement effect
         }, 20); // Update interval
     
