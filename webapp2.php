@@ -282,9 +282,9 @@ function RealDB(data, opt = false){
         // var opx= pElementx.options.html;
         // var opxx= op.options.html;
         
-		const pElement = pElementx.getElement().children[0].firstChild
+		const pElement = pElementx.getElement().children[0].firstChild;
         
-		const dElement = dElementx.getElement().children[0].firstChild
+		const dElement = dElementx.getElement().children[0].firstChild;
         //    const pElement = document.getElementById('P' + key1);
         //    const dElement = document.getElementById('D' + key2);
         let current = 0;
