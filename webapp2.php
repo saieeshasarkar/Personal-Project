@@ -280,7 +280,8 @@ function RealDB(data, opt = false){
 		
            ///////////////effect//////////////////
 
-           const numberElement = document.getElementById('P' + key1);
+           const pElement = document.getElementById('P' + key1);
+           const dElement = document.getElementById('D' + key2);
         let current = 0;
         let target = 1;
         const increment = target / 5; // Adjust increment for speed
@@ -294,9 +295,11 @@ function RealDB(data, opt = false){
             // numberElement.innerText = Math.floor(current);
             
             // Add the enlarged effect
-            numberElement.classList.add('enlarged');
+            pElement.classList.add('enlarged');
+            dElement.classList.add('enlarged');
             setTimeout(() => {
-                numberElement.classList.remove('enlarged');
+                pElement.classList.remove('enlarged');
+                dElement.classList.remove('enlarged');
             }, 100); // Duration of the enlargement effect
         }, 20); // Update interval
     
