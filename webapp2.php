@@ -275,11 +275,13 @@ function RealDB(data, opt = false){
 		// geticonp.options.html=geticonp.options.html.innerHTML;
 		// geticond.options.html=geticond.options.html.innerHTML;
 		
-		markerById['P' + key1].setIcon(geticonp);
-		markerById['D' + key2].setIcon(geticond);
+		const pElementx = markerById['P' + key1].setIcon(geticonp);
+		const dElementx = markerById['D' + key2].setIcon(geticond);
 		
            ///////////////effect//////////////////
-
+        var op= pElementx.options.icon;
+        var opx= pElementx.options.html;
+        var opxx= op.options.html;
            const pElement = document.getElementById('P' + key1);
            const dElement = document.getElementById('D' + key2);
         let current = 0;
@@ -296,7 +298,7 @@ function RealDB(data, opt = false){
             
             // Add the enlarged effect
             pElement.classList.add('enlarged');
-            dElement.classList.add('enlarged');
+            Element.classList.add('enlarged');
             setTimeout(() => {
                 pElement.classList.remove('enlarged');
                 dElement.classList.remove('enlarged');
