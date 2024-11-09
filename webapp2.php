@@ -277,13 +277,16 @@ function RealDB(data, opt = false){
 		
 		const pElementx = markerById['P' + key1].setIcon(geticonp);
 		const dElementx = markerById['D' + key2].setIcon(geticond);
-		
            ///////////////effect//////////////////
-        var op= pElementx.options.icon;
-        var opx= pElementx.options.html;
-        var opxx= op.options.html;
-           const pElement = document.getElementById('P' + key1);
-           const dElement = document.getElementById('D' + key2);
+        // var op= pElementx.options.icon;
+        // var opx= pElementx.options.html;
+        // var opxx= op.options.html;
+        
+		const pElement = pElementx.getElement().children[0].firstChild
+        
+		const dElement = dElementx.getElement().children[0].firstChild
+        //    const pElement = document.getElementById('P' + key1);
+        //    const dElement = document.getElementById('D' + key2);
         let current = 0;
         let target = 1;
         const increment = target / 5; // Adjust increment for speed
