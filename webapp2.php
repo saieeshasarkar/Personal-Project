@@ -996,7 +996,7 @@ let autocompleteDatax = {};
                     M.toast({html: 'Logged out successfully'});
                 } else {
                     // Handle error response
-                    console.log('Fail;);
+                    console.log('Fail');
                     // Perform the update logic here (e.g., send status to the server)
                     M.toast({html: 'Fail to logout'});
                     }
