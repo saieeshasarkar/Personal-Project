@@ -120,6 +120,23 @@ $firebaseConfig = [
         .enlarged {
             transform: scale(3);
         }
+        #loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000; /* High z-index to cover modals */
+}
+
+.preloader-wrapper {
+    width: 64px;
+    height: 64px;
+}
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
@@ -464,21 +481,24 @@ function editRecord(userId) {
 // console.log(countMembers(datax, '1', '101'));  // Outputs: 2
 </script>
 <body>
-    <main>
-        <div class="container">
-        <div id="loading-indicator" class="preloader-wrapper active" style="display: none;">
-    <div class="spinner-layer spinner-blue-only">
-        <div class="circle-clipper left">
-            <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-            <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-            <div class="circle"></div>
+<div id="loading-overlay" style="display: none;">
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
         </div>
     </div>
 </div>
+    <main>
+        <div class="container">
+       
             <div id="homePage" class="page active">
                 <h4>Welcome to Dengue Occurrence in Laos</h4>
                 <p>Please use the navigation to explore the map or view user details.</p>
@@ -854,7 +874,7 @@ let autocompleteDatax = {};
             //     jsonData[key] = value; // Add key-value pairs to jsonData object
             // });
             // Send the form data using the fetch API
-            document.getElementById("loading-indicator").style.display = "block";
+            document.getElementById("loading-overlay").style.display = "flex";
             fetch('login.php', {
                 method: 'POST',
                 headers: {
@@ -889,7 +909,7 @@ let autocompleteDatax = {};
 })
 .finally(() => {
     // Hide loading indicator
-    document.getElementById("loading-indicator").style.display = "none";
+    document.getElementById("loading-overlay").style.display = "none";
 });
 
             
