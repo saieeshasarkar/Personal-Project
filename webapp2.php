@@ -949,6 +949,7 @@ let autocompleteDatax = {};
             document.getElementById('userLink').style.display = 'block';
             document.getElementById('userDetailUsername').textContent = user.username;
             document.getElementById('userDetailEmail').textContent = user.email;
+            document.getElementById('userDetailAddress').textContent = user.address;
             // document.getElementById('userDetailStatus').textContent = user.status;
 		document.getElementById('statusDropdown').value = user.status;
             M.Modal.getInstance(document.getElementById('loginModal')).close();
