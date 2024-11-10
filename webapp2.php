@@ -827,7 +827,7 @@ let autocompleteDatax = {};
 //                     status: sessiondata.status
 //                 });
     // loginSuccess(sessiondata);
-  }
+  //}
 		var modalElems = document.querySelectorAll('.modal');
             var modalInstances = M.Modal.init(modalElems, {
                 onCloseEnd: function() {
