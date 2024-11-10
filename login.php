@@ -50,6 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $fetchaddress = $database->getReference('Data/'. $value['address'])->getValue();
 
         $_SESSION["id"]=$key;
+        $_SESSION["data"]=[
+            'username' => $value['user'],
+            'email' => $value['phone'],
+            'address' => $fetchaddress['address'],
+            'status' => $fetchaddress['status']
+            // 'password' => $hashedPassword, // For real-world, never return the actual password
+        ];
         $_SESSION["logged_in"] = true;
         //   "Data/$randomKey"
         //   data[key].status
