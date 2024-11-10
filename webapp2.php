@@ -987,7 +987,21 @@ let autocompleteDatax = {};
             document.getElementById('loginLink').style.display = 'block';
             document.getElementById('userLink').style.display = 'none';
             showPage('homePage');
-            M.toast({html: 'Logged out successfully'});
+            fetch('signout.php', {
+                method: 'GET'
+             })
+                .then(response => response.json())
+                .then(data => {
+                if (data.status === 'success') {
+                    M.toast({html: 'Logged out successfully'});
+                } else {
+                    // Handle error response
+                    console.log('Fail;);
+                    // Perform the update logic here (e.g., send status to the server)
+                    M.toast({html: 'Fail to logout'});
+                    }
+            });
+
         });
 
         // Register link
