@@ -150,8 +150,6 @@ $firebaseConfig = [
 
 <script>
         var firebaseConfig = <?php echo json_encode($firebaseConfig); ?>;
-        var checksession =<?php isset($_SESSION["logged_in"]) ? echo json_encode($_SESSION["logged_in"]); : echo ""; ?>;
-        var sessiondata =<?php isset($_SESSION["data"]) ? echo json_encode($_SESSION["data"]); : echo ""; ?>;
 </script>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 </head>
@@ -821,13 +819,13 @@ let autocompleteDatax = {};
   //               }
   //           });
 
-  if (checksession){
-    loginSuccess({
-                    username: sessiondata.username,
-                    email: sessiondata.email,
-                    address: sessiondata.address,
-                    status: sessiondata.status
-                });
+//   if (checksession){
+//     loginSuccess({
+//                     username: sessiondata.username,
+//                     email: sessiondata.email,
+//                     address: sessiondata.address,
+//                     status: sessiondata.status
+//                 });
     // loginSuccess(sessiondata);
   }
 		var modalElems = document.querySelectorAll('.modal');
