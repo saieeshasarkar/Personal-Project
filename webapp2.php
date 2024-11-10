@@ -823,13 +823,20 @@ let autocompleteDatax = {};
   //           });
 
   if (checksession){
-    loginSuccess({
-                    username: sessiondata.username,
-                    email: sessiondata.email,
-                    address: sessiondata.address,
-                    status: sessiondata.status
-                });
-    loginSuccess(sessiondata);
+        document.getElementById('loginLink').style.display = 'none';
+        document.getElementById('userLink').style.display = 'block';
+        document.getElementById('userDetailUsername').textContent = sessiondata.username;
+        document.getElementById('userDetailEmail').textContent = sessiondata.email;
+        document.getElementById('userDetailAddress').textContent = sessiondata.address;
+	    document.getElementById('statusDropdown').value = sessiondata.status;
+           
+    // loginSuccess({
+    //                 username: sessiondata.username,
+    //                 email: sessiondata.email,
+    //                 address: sessiondata.address,
+    //                 status: sessiondata.status
+    //             });
+//  loginSuccess(sessiondata);
   }
 		var modalElems = document.querySelectorAll('.modal');
             var modalInstances = M.Modal.init(modalElems, {
