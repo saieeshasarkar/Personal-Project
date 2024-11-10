@@ -275,8 +275,8 @@ function RealDB(data, opt = false){
 		// geticonp.options.html=geticonp.options.html.innerHTML;
 		// geticond.options.html=geticond.options.html.innerHTML;
 		
-		const pElementx = markerById['P' + key1].setIcon(geticonp);
-		const dElementx = markerById['D' + key2].setIcon(geticond);
+		markerById['P' + key1].setIcon(geticonp);
+		markerById['D' + key2].setIcon(geticond);
            ///////////////effect//////////////////
         // var op= pElementx.options.icon;
         // var opx= pElementx.options.html;
@@ -466,6 +466,19 @@ function editRecord(userId) {
 <body>
     <main>
         <div class="container">
+        <div id="loading-indicator" class="preloader-wrapper active" style="display: none;">
+    <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+            <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+            <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
             <div id="homePage" class="page active">
                 <h4>Welcome to Dengue Occurrence in Laos</h4>
                 <p>Please use the navigation to explore the map or view user details.</p>
@@ -841,6 +854,7 @@ let autocompleteDatax = {};
             //     jsonData[key] = value; // Add key-value pairs to jsonData object
             // });
             // Send the form data using the fetch API
+            document.getElementById("loading-indicator").style.display = "block";
             fetch('login.php', {
                 method: 'POST',
                 headers: {
@@ -870,7 +884,13 @@ let autocompleteDatax = {};
             console.error('Error:', data.message);
             M.toast({html: 'Invalid credentials'});
         }
-        });
+        }).catch(error => {
+    console.error('Error:', error);
+})
+.finally(() => {
+    // Hide loading indicator
+    document.getElementById("loading-indicator").style.display = "none";
+});
 
             
             // if (username === "user" && password === "password") {
