@@ -150,8 +150,9 @@ $firebaseConfig = [
 
 <script>
         var firebaseConfig = <?php echo json_encode($firebaseConfig); ?>;
-        var checksession =<?php echo json_encode($_SESSION["logged_in"]); ?>;
-        var sessiondata =<?php echo json_encode($_SESSION["data"]); ?>;
+        var checksession =<?php isset($_SESSION["logged_in"]) ? echo json_encode($_SESSION["logged_in"]) : echo ''; ?>;
+        var sessiondata =<?php isset($_SESSION["data"]) ? echo json_encode($_SESSION["data"]) : echo ''; ?>;
+        // var sessiondata =<?php echo json_encode($_SESSION["data"]); ?>;
 </script>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 </head>
