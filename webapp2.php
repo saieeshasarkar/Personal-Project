@@ -288,7 +288,7 @@ Object.keys(data).forEach(itemId => {
   if (dateYear !== currentYear) item.status = 1;  // Replace the dates with the new date
     // If the item has a date within the range, add it to the filtered list
     filteredItems.push(item);
-    RealDB(item);
+    RealDB({[0]:item});
   }
 });
 //RealDB(filteredItems);
