@@ -137,6 +137,13 @@ $firebaseConfig = [
     width: 64px;
     height: 64px;
 }
+.indicator {
+      font-size: 14px;
+      font-style: italic;
+      color: #555;
+      margin-top: -15px;
+      display: block;
+    }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
@@ -593,8 +600,13 @@ function editRecord(userId) {
                             <input type="text" id="autocomplete-input" class="autocomplete">
                             
                         </div>
-			    <input type="text" id="date-range" placeholder="Choose Date Range">
-        <label for="date-range">Start and End Date</label>
+			  <div class="input-field col s12 ctitle" style="z-index: 500;">
+			<label style="position: relative;" for="date-range">tart and End Date</label>
+                        <input type="text" id="date-range" placeholder="Choose Date Range">
+                         <span id="indicator" class="indicator"></span> <!-- Dynamic indicator -->
+      
+                        </div>
+			   
       
                     </div>
                 </div>
@@ -844,6 +856,10 @@ let autocompleteDatax = {};
 
       // Event listener to handle date range selection
       dateRangeInput.addEventListener('focus', function () {
+
+	       // Show indicator for Start Date selection
+        indicator.textContent = 'Selecting Start Date...';
+
         // Initialize Start Date Picker
         const startPicker = M.Datepicker.init(dateRangeInput, {
           format: 'yyyy-mm-dd',
@@ -851,6 +867,9 @@ let autocompleteDatax = {};
           onClose: function () {
             startDate = new Date(dateRangeInput.value); // Save the selected start date
             const startYear = startDate.getFullYear();
+		  
+	 // Update indicator for End Date selection
+            indicator.textContent = 'Selecting End Date...';
 
             // Initialize End Date Picker after Start Date is selected
             M.Datepicker.init(dateRangeInput, {
@@ -864,6 +883,8 @@ let autocompleteDatax = {};
                 // Combine the dates into a range
                 if (startDate && endDate) {
                   dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+			      indicator.textContent = ''; // Clear the indicator after selection
+             
                 }
               }
             }).open();
