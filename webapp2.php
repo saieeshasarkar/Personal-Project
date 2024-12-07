@@ -899,7 +899,7 @@ let autocompleteDatax = {};
               autoClose: true,
               minDate: startDate,
 	      maxDate: endOfYearDate,
-              yearRange: [startYear, startYear],
+              // yearRange: [startYear, startYear],
 	      onOpen: function () {
 	          // Find the modal and insert a custom title
 	          const modal = document.querySelector('.datepicker-modal');
