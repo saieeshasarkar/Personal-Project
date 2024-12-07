@@ -867,6 +867,7 @@ let autocompleteDatax = {};
         const startPicker = M.Datepicker.init(dateRangeInput, {
           format: 'yyyy-mm-dd',
           autoClose: true,
+	  maxDate: new Date(),
 	  onOpen: function () {
 	          // Find the modal and insert a custom title
 	          const modal = document.querySelector('.datepicker-modal');
