@@ -214,6 +214,35 @@ $firebaseConfig = [
 // }
 const markerElements = [];
 const markerById = {};
+function resetRealDB(data,startDatex,endDatex){
+//result = {};
+//counts = {total:0};
+// Assuming `data` is already loaded from snapshot.val()
+const startDate = "2022-01-01";
+const endDate = "2023-12-31";
+
+// Initialize an array to store the filtered items
+const filteredItems = [];
+
+// Loop through each item in the data
+Object.keys(data).forEach(itemId => {
+  const item = data[itemId];
+  
+  // Get the list of dates for the item (the keys under "dates")
+  const itemDates = Object.keys(item.dates);
+
+  // Check if any date in the item falls within the specified range
+  const hasValidDate = itemDates.some(date => date >= startDate && date <= endDate);
+
+  if (hasValidDate) {
+    // If the item has a date within the range, add it to the filtered list
+    filteredItems.push(item);
+  }
+});
+//RealDB(filteredItems);
+// `filteredItems` now contains all the items with dates within the range
+console.log(filteredItems);			
+}
 function RealDB(data, opt = false){
     // const value2 = {total:0};
     for (let key in data) {
@@ -441,38 +470,39 @@ function editRecord(userId) {
 
 
 	// Get a reference to your database
+	///////////////
 // const dbRef = firebase.database().ref('Data');
 
-// Set the start and end dates for your query
-const startDate = "2022-01-01";
-const endDate = "2023-12-31";
+// // Set the start and end dates for your query
+// const startDate = "2022-01-01";
+// const endDate = "2023-12-31";
 
-// Query items where the dates are between the start and end dates
-dbRef.orderByChild('dates')
-  .startAt(startDate)
-  .endAt(endDate)
-  .once('value')
-  .then(snapshot => {
-    const items = snapshot.val();
-    if (items) {
-      // Loop through the items and display those with dates in the specified range
-      Object.keys(items).forEach(itemId => {
-        const item = items[itemId];
-        const itemDates = Object.keys(item.dates); // Get the list of dates for the item
-        itemDates.forEach(date => {
-          if (date >= startDate && date <= endDate) {
-            console.log(`Item ${itemId} has a date ${date}`);
-          }
-        });
-      });
-    } else {
-      console.log('No items found in the specified date range.');
-    }
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-	
+// // Query items where the dates are between the start and end dates
+// dbRef.orderByChild('dates')
+//   .startAt(startDate)
+//   .endAt(endDate)
+//   .once('value')
+//   .then(snapshot => {
+//     const items = snapshot.val();
+//     if (items) {
+//       // Loop through the items and display those with dates in the specified range
+//       Object.keys(items).forEach(itemId => {
+//         const item = items[itemId];
+//         const itemDates = Object.keys(item.dates); // Get the list of dates for the item
+//         itemDates.forEach(date => {
+//           if (date >= startDate && date <= endDate) {
+//             console.log(`Item ${itemId} has a date ${date}`);
+//           }
+//         });
+//       });
+//     } else {
+//       console.log('No items found in the specified date range.');
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Error fetching data:', error);
+//   });
+//////////////////////////	
 // Use the PHP variable in JavaScript
 // let datax = JSON.parse('?php echo $jsonData; ?>');
 
