@@ -395,11 +395,12 @@ function RealDB(data, opt = false){
     // return [value1, value2];  // Returning as an array
 }
 
-
+const allData;
 dbRef.once('value')
     .then((snapshot) => {
         existingChildrenCount = snapshot.numChildren();
         const data = snapshot.val();
+	allData=data;
         // const [result, counts] = RealDB(data);
          RealDB(data);
 	 // resetRealDB(data,"2022-01-01","2023-12-01");
@@ -887,6 +888,7 @@ let autocompleteDatax = {};
           
             startDate = new Date(dateRangeInput.value); // Save the selected start date
             const startYear = startDate.getFullYear();
+	   const endOfYearDate = new Date(startDate.getFullYear(), 11, 31);
 		  
 	 // Update indicator for End Date selection
             // indicator.textContent = 'Selecting End Date...';
@@ -896,6 +898,7 @@ let autocompleteDatax = {};
               format: 'yyyy-mm-dd',
               autoClose: true,
               minDate: startDate,
+	      maxDate: endOfYearDate,
               yearRange: [startYear, startYear],
 	      onOpen: function () {
 	          // Find the modal and insert a custom title
@@ -917,6 +920,7 @@ let autocompleteDatax = {};
                 // Combine the dates into a range
                 if (startDate && endDate) {
                   dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+		resetRealDB(allData,${startDate.toISOString().split('T')[0]},${endDate.toISOString().split('T')[0]});
 		startDateSelected = false;
 		endDateSelected =false;
 		  // indicator.textContent = ''; // Clear the indicator after selection
