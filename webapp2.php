@@ -601,9 +601,9 @@ function editRecord(userId) {
                             
                         </div>
 			  <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -100px;">
-			<label style="position: relative;" for="date-range">tart and End Date</label>
+			<label style="position: relative;" for="date-range">Start and End Date</label>
                         <input type="text" id="date-range" placeholder="Choose Date Range">
-                         <span id="indicator" class="indicator"></span> <!-- Dynamic indicator -->
+                         <!--  <span id="indicator" class="indicator"></span>Dynamic indicator -->
       
                         </div>
 			   
@@ -858,18 +858,38 @@ let autocompleteDatax = {};
       dateRangeInput.addEventListener('focus', function () {
 
 	       // Show indicator for Start Date selection
-        indicator.textContent = 'Selecting Start Date...';
+        // indicator.textContent = 'Selecting Start Date...';
 
         // Initialize Start Date Picker
+	let startDateSelected = false; // Flag to track if the start date was selected
+	let endDateSelected = false; // Flag to track if the start date was selected
         const startPicker = M.Datepicker.init(dateRangeInput, {
           format: 'yyyy-mm-dd',
           autoClose: true,
+	  onOpen: function () {
+	          // Find the modal and insert a custom title
+	          const modal = document.querySelector('.datepicker-modal');
+	          if (modal && !modal.querySelector('.datepicker-title')) {
+	            const title = document.createElement('div');
+	            title.className = 'datepicker-title';
+	            title.textContent = 'Selecting Start Date...'; // Set your custom title here
+	            modal.prepend(title);
+	          }
+          },
+	  onSelect: function (selectedDate) {
+	          startDateSelected = true; // Mark start date as selected
+	          // endPicker.options.minDate = selectedDate; // Set minDate for the end date picker
+	        	},
           onClose: function () {
+		  if (startDateSelected) {
+            // If a start date is selected, open the end date picker
+            //endPicker.open();
+          
             startDate = new Date(dateRangeInput.value); // Save the selected start date
             const startYear = startDate.getFullYear();
 		  
 	 // Update indicator for End Date selection
-            indicator.textContent = 'Selecting End Date...';
+            // indicator.textContent = 'Selecting End Date...';
 
             // Initialize End Date Picker after Start Date is selected
             M.Datepicker.init(dateRangeInput, {
@@ -877,18 +897,44 @@ let autocompleteDatax = {};
               autoClose: true,
               minDate: startDate,
               yearRange: [startYear, startYear],
+	      onOpen: function () {
+	          // Find the modal and insert a custom title
+	          const modal = document.querySelector('.datepicker-modal');
+	          if (modal && !modal.querySelector('.datepicker-title')) {
+	            const title = document.createElement('div');
+	            title.className = 'datepicker-title';
+	            title.textContent = 'Selecting End Date...'; // Set your custom title here
+	            modal.prepend(title);
+	          }
+          	},
+	      onSelect: function (selectedDate) {
+		 endDateSelected =true;
+	      },
               onClose: function () {
+		if (endDateSelected) {
                 const endDate = new Date(dateRangeInput.value); // Save the selected end date
 
                 // Combine the dates into a range
                 if (startDate && endDate) {
                   dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
-			      indicator.textContent = ''; // Clear the indicator after selection
+		startDateSelected = false;
+		endDateSelected =false;
+		  // indicator.textContent = ''; // Clear the indicator after selection
              
                 }
+	      }else
+		{
+		dateRangeInput.value ="";
+		startDateSelected = false;
+		endDateSelected =false;
+		}
               }
             }).open();
+		
+		  }
+          startDateSelected = false;
           }
+		
         });
         startPicker.open();
       });
