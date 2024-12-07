@@ -224,6 +224,39 @@ const markerById = {};
 function resetRealDB(data,startDate,endDate){
 result = {};
 counts = {total:0};
+for (let key in markerById) {
+	var geticon = markerById[key].options.icon;
+	var docx= document.createElement('div');
+	docx.innerHTML=geticon.options.html;
+	docx.children[0].firstChild.innerHTML=0;
+     
+	geticon.options.html=docx.innerHTML;
+		
+	markerById[key].setIcon(geticon);
+           ///////////////effect//////////////////
+        //    const pElement = document.getElementById(key);
+        // //    const dElement = document.getElementById('D' + key2);
+            //var nElement =  pElement ? document.getElementById('P' + key1) : document.getElementById('D' + key2);
+        // let current = 0;
+        // let target = 1;
+        // const increment = target / 5; // Adjust increment for speed
+
+        // const interval = setInterval(() => {
+        //     current += increment;
+        //     if (current >= target) {
+        //         current = target;
+        //         clearInterval(interval);
+        //     }
+        //     // numberElement.innerText = Math.floor(current);
+            
+        //     // Add the enlarged effect
+        //     nElement.classList.add('enlarged');
+        //     setTimeout(() => {
+        //         nElement.classList.remove('enlarged');
+        //     }, 100); // Duration of the enlargement effect
+        // }, 20); // Update interval
+
+	}
 // Assuming `data` is already loaded from snapshot.val()
 // const startDate = "2022-01-01";
 // const endDate = "2023-12-31";
@@ -255,12 +288,14 @@ Object.keys(data).forEach(itemId => {
   if (dateYear !== currentYear) item.status = 1;  // Replace the dates with the new date
     // If the item has a date within the range, add it to the filtered list
     filteredItems.push(item);
+    RealDB(item);
   }
 });
 //RealDB(filteredItems);
 // `filteredItems` now contains all the items with dates within the range
 console.log(filteredItems);
-RealDB(filteredItems)
+
+	
 }
 function RealDB(data, opt = false){
     // const value2 = {total:0};
