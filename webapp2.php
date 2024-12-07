@@ -845,6 +845,8 @@ let autocompleteDatax = {};
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+			 
+////////////date time////////////
 	 // Initialize Date Picker for Start Date
     const startDateInput = document.getElementById('start-date');
     const endDateInput = document.getElementById('end-date');
@@ -870,7 +872,7 @@ let autocompleteDatax = {};
       autoClose: true,
       minDate: new Date() // Initially set minDate to today
     });		 
-			 
+////////////////////////			 
             // fetch(dataUrl)
             //     .then(response => {
             //         if (!response.ok) {
