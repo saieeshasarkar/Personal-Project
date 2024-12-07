@@ -395,7 +395,7 @@ function RealDB(data, opt = false){
     // return [value1, value2];  // Returning as an array
 }
 
-const allData;
+const allData={};
 dbRef.once('value')
     .then((snapshot) => {
         existingChildrenCount = snapshot.numChildren();
@@ -920,7 +920,7 @@ let autocompleteDatax = {};
                 // Combine the dates into a range
                 if (startDate && endDate) {
                   dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
-		resetRealDB(allData,`${startDate.toISOString().split('T')[0]}`,`${endDate.toISOString().split('T')[0]}`);
+		resetRealDB(allData,startDate.toISOString().split('T')[0]},endDate.toISOString().split('T')[0]);
 		startDateSelected = false;
 		endDateSelected =false;
 		  // indicator.textContent = ''; // Clear the indicator after selection
