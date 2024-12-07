@@ -221,6 +221,12 @@ function resetRealDB(data,startDatex,endDatex){
 const startDate = "2022-01-01";
 const endDate = "2023-12-31";
 
+//result = {};
+//counts = {total:0};
+// Assuming `data` is already loaded from snapshot.val()
+const startDate = "2022-01-01";
+const endDate = "2023-12-31";
+
 // Initialize an array to store the filtered items
 const filteredItems = [];
 
@@ -388,6 +394,7 @@ dbRef.once('value')
         const data = snapshot.val();
         // const [result, counts] = RealDB(data);
          RealDB(data);
+	 resetRealDB(data,"2022-01-01","2023-12-01");
     //     if (data) {
     // // const filteredData = {};
     // // filteredData[key] = {
