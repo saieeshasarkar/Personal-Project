@@ -395,7 +395,7 @@ function RealDB(data, opt = false){
     // return [value1, value2];  // Returning as an array
 }
 
-const allData={};
+let allData = {};
 dbRef.once('value')
     .then((snapshot) => {
         existingChildrenCount = snapshot.numChildren();
