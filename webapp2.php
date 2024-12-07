@@ -839,26 +839,32 @@ let autocompleteDatax = {};
             });
 			 
 ////////////date time////////////
-			 const dateRangeInput = document.getElementById('date-range');
+			const dateRangeInput = document.getElementById('date-range');
+      let startDate = null;
 
-      // Simple custom range picker using native Materialize pickers
+      // Event listener to handle date range selection
       dateRangeInput.addEventListener('focus', function () {
-        // Start Date Picker
+        // Initialize Start Date Picker
         const startPicker = M.Datepicker.init(dateRangeInput, {
           format: 'yyyy-mm-dd',
           autoClose: true,
           onClose: function () {
-            const startDate = new Date(dateRangeInput.value);
+            startDate = new Date(dateRangeInput.value); // Save the selected start date
             const startYear = startDate.getFullYear();
 
-            // After selecting start date, launch End Date Picker
+            // Initialize End Date Picker after Start Date is selected
             M.Datepicker.init(dateRangeInput, {
               format: 'yyyy-mm-dd',
               autoClose: true,
               minDate: startDate,
               yearRange: [startYear, startYear],
-              onSelect: function (endDate) {
-                dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+              onClose: function () {
+                const endDate = new Date(dateRangeInput.value); // Save the selected end date
+
+                // Combine the dates into a range
+                if (startDate && endDate) {
+                  dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+                }
               }
             }).open();
           }
