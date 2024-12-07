@@ -249,13 +249,18 @@ Object.keys(data).forEach(itemId => {
   const hasValidDate = itemDates.some(date => date >= startDate && date <= endDate);
 
   if (hasValidDate) {
+  const currentYear = new Date().getFullYear(); // Get the current year
+  const dateYear = new Date(startDate).getFullYear(); // Get the year of the provided date
+  
+  if (dateYear !== currentYear) item.status = 1;  // Replace the dates with the new date
     // If the item has a date within the range, add it to the filtered list
     filteredItems.push(item);
   }
 });
 //RealDB(filteredItems);
 // `filteredItems` now contains all the items with dates within the range
-console.log(filteredItems);			
+console.log(filteredItems);
+RealDB(filteredItems)
 }
 function RealDB(data, opt = false){
     // const value2 = {total:0};
