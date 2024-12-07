@@ -231,7 +231,10 @@ const filteredItems = [];
 // Loop through each item in the data
 Object.keys(data).forEach(itemId => {
   const item = data[itemId];
-  
+	
+  if (!item.dates || Object.keys(item.dates).length === 0) {
+    return;  // Skip this item
+  }
   // Get the list of dates for the item (the keys under "dates")
   const itemDates = Object.keys(item.dates);
 
