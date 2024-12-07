@@ -589,18 +589,18 @@ function editRecord(userId) {
             </div>
             <div id="mapPage" class="page">
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col s12" style="margin-bottom: -100px;">
 <!--                         <div class="search-wrapper">
                             <input id="autocomplete-input" type="text" placeholder="Search for a district or province">
 <label for="autocomplete-input">Search for a district or province</label>
                             <i class="material-icons" id="searchButton">search</i>
                         </div> -->
-                        <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -100px;">
+                        <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -1px;">
                         <label style="position: relative;" for="autocomplete-input">Search for a district or province</label>
                             <input type="text" id="autocomplete-input" class="autocomplete">
                             
                         </div>
-			  <div class="input-field col s12 ctitle" style="z-index: 500;">
+			  <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -100px;">
 			<label style="position: relative;" for="date-range">tart and End Date</label>
                         <input type="text" id="date-range" placeholder="Choose Date Range">
                          <span id="indicator" class="indicator"></span> <!-- Dynamic indicator -->
