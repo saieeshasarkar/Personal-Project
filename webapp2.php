@@ -224,8 +224,6 @@ const endDate = "2023-12-31";
 //result = {};
 //counts = {total:0};
 // Assuming `data` is already loaded from snapshot.val()
-const startDate = "2022-01-01";
-const endDate = "2023-12-31";
 
 // Initialize an array to store the filtered items
 const filteredItems = [];
