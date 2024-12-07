@@ -593,17 +593,9 @@ function editRecord(userId) {
                             <input type="text" id="autocomplete-input" class="autocomplete">
                             
                         </div>
-			    <div class="input-field col s6">
-  <!-- Start Date Picker -->
-  <input type="text" id="start-date" class="datepicker">
-  <label for="start-date">Choose Start Date</label>
-</div>
-
-<div class="input-field col s6">
-  <!-- End Date Picker -->
-  <input type="text" id="end-date" class="datepicker">
-  <label for="end-date">Choose End Date</label>
-</div>
+			    <input type="text" id="date-range" placeholder="Choose Date Range">
+        <label for="date-range">Start and End Date</label>
+      
                     </div>
                 </div>
                 <div id="map"></div>
@@ -847,31 +839,57 @@ let autocompleteDatax = {};
             });
 			 
 ////////////date time////////////
+			 const dateRangeInput = document.getElementById('date-range');
+
+      // Simple custom range picker using native Materialize pickers
+      dateRangeInput.addEventListener('focus', function () {
+        // Start Date Picker
+        const startPicker = M.Datepicker.init(dateRangeInput, {
+          format: 'yyyy-mm-dd',
+          autoClose: true,
+          onClose: function () {
+            const startDate = new Date(dateRangeInput.value);
+            const startYear = startDate.getFullYear();
+
+            // After selecting start date, launch End Date Picker
+            M.Datepicker.init(dateRangeInput, {
+              format: 'yyyy-mm-dd',
+              autoClose: true,
+              minDate: startDate,
+              yearRange: [startYear, startYear],
+              onSelect: function (endDate) {
+                dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+              }
+            }).open();
+          }
+        });
+        startPicker.open();
+      });
 	 // Initialize Date Picker for Start Date
-    const startDateInput = document.getElementById('start-date');
-    const endDateInput = document.getElementById('end-date');
+    // const startDateInput = document.getElementById('start-date');
+    // const endDateInput = document.getElementById('end-date');
     
-    const startDatePicker = M.Datepicker.init(startDateInput, {
-      format: 'yyyy-mm-dd', // Date format
-      autoClose: true,       // Auto close after selecting a date
-      onSelect: function (date) {
-        // Once the start date is selected, update the end date picker
-        const startYear = date.getFullYear();
-        const startDate = date;
+    // const startDatePicker = M.Datepicker.init(startDateInput, {
+    //   format: 'yyyy-mm-dd', // Date format
+    //   autoClose: true,       // Auto close after selecting a date
+    //   onSelect: function (date) {
+    //     // Once the start date is selected, update the end date picker
+    //     const startYear = date.getFullYear();
+    //     const startDate = date;
 
-        // Update end date picker to ensure it comes after the start date and within the same year
-        endDatePicker.options.minDate = startDate;
-        endDatePicker.options.yearRange = [startYear, startYear]; // Same year restriction
-        endDatePicker.update(); // Reinitialize end date picker with updated options
-      }
-    });
+    //     // Update end date picker to ensure it comes after the start date and within the same year
+    //     endDatePicker.options.minDate = startDate;
+    //     endDatePicker.options.yearRange = [startYear, startYear]; // Same year restriction
+    //     endDatePicker.update(); // Reinitialize end date picker with updated options
+    //   }
+    // });
 
-    // Initialize Date Picker for End Date
-    const endDatePicker = M.Datepicker.init(endDateInput, {
-      format: 'yyyy-mm-dd',
-      autoClose: true,
-      minDate: new Date() // Initially set minDate to today
-    });		 
+    // // Initialize Date Picker for End Date
+    // const endDatePicker = M.Datepicker.init(endDateInput, {
+    //   format: 'yyyy-mm-dd',
+    //   autoClose: true,
+    //   minDate: new Date() // Initially set minDate to today
+    // });		 
 ////////////////////////			 
             // fetch(dataUrl)
             //     .then(response => {
