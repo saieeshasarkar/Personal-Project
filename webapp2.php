@@ -157,6 +157,7 @@ $firebaseConfig = [
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 </head>
 <script>
+	
     firebase.initializeApp(firebaseConfig);
   // Reference to your Firebase Realtime Database
   var database = firebase.database();
@@ -437,6 +438,41 @@ function editRecord(userId) {
         console.error('Error updating record:', error);
     });
 }
+
+
+	// Get a reference to your database
+// const dbRef = firebase.database().ref('Data');
+
+// Set the start and end dates for your query
+const startDate = "2022-01-01";
+const endDate = "2023-12-31";
+
+// Query items where the dates are between the start and end dates
+dbRef.orderByChild('dates')
+  .startAt(startDate)
+  .endAt(endDate)
+  .once('value')
+  .then(snapshot => {
+    const items = snapshot.val();
+    if (items) {
+      // Loop through the items and display those with dates in the specified range
+      Object.keys(items).forEach(itemId => {
+        const item = items[itemId];
+        const itemDates = Object.keys(item.dates); // Get the list of dates for the item
+        itemDates.forEach(date => {
+          if (date >= startDate && date <= endDate) {
+            console.log(`Item ${itemId} has a date ${date}`);
+          }
+        });
+      });
+    } else {
+      console.log('No items found in the specified date range.');
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+	
 // Use the PHP variable in JavaScript
 // let datax = JSON.parse('?php echo $jsonData; ?>');
 
