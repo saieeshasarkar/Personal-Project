@@ -636,7 +636,7 @@ function editRecord(userId) {
 <label for="autocomplete-input">Search for a district or province</label>
                             <i class="material-icons" id="searchButton">search</i>
                         </div> -->
-                        <div class="input-field col s12 ctitle" style="z-index: 1002;margin-bottom: -1px;">
+                        <div class="input-field col s12 ctitle" style="z-index: 1003;margin-bottom: -1px;">
                         <label style="position: relative;" for="autocomplete-input">Search for a district or province</label>
                             <input type="text" id="autocomplete-input" class="autocomplete">
                             
@@ -901,7 +901,7 @@ const dateRangeInput = document.getElementById('date-range');
       let startDate = null;
 
       // Event listener to handle date range selection
-      dateRangeInput.addEventListener('focus', function () {
+      //dateRangeInput.addEventListener('focus', function () {
 
 	       // Show indicator for Start Date selection
         // indicator.textContent = 'Selecting Start Date...';
@@ -987,7 +987,7 @@ const dateRangeInput = document.getElementById('date-range');
 		
         });
         startPicker.open();
-      });
+     // });
 //////////////////////////
 //////////////////////////
 	 // Initialize Date Picker for Start Date
