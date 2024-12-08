@@ -483,158 +483,162 @@ function decompressGzip(gzipData) {
 //create control box//////////
 // Define a custom control
 // Create a custom control container
-const customControlDiv = L.DomUtil.create('div', 'custom-control');
+////////////////////////////
+////////////////////////////
+// const customControlDiv = L.DomUtil.create('div', 'custom-control');
 
-// Add a Materialize date picker input to the custom control
-customControlDiv.innerHTML = `
- <div class="row">
-                    <div class="col s12">
-                        <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -1px;">
-                        <label style="position: relative;" for="autocomplete-input">Search for a district or province</label>
-                            <input type="text" id="autocomplete-input" class="autocomplete">
-                        </div>
-			  <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -100px;">
-			<label style="position: relative;" for="date-range">Start and End Date</label>
-                        <input type="text" id="date-range" placeholder="Choose Date Range">
-                        </div>
-                    </div>
-                </div>
-`;
+// // Add a Materialize date picker input to the custom control
+// customControlDiv.innerHTML = `
+//  <div class="row">
+//                     <div class="col s12">
+//                         <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -1px;">
+//                         <label style="position: relative;" for="autocomplete-input">Search for a district or province</label>
+//                             <input type="text" id="autocomplete-input" class="autocomplete">
+//                         </div>
+// 			  <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -100px;">
+// 			<label style="position: relative;" for="date-range">Start and End Date</label>
+//                         <input type="text" id="date-range" placeholder="Choose Date Range">
+//                         </div>
+//                     </div>
+//                 </div>
+// `;
 
-// Initialize the Materialize date picker
-document.addEventListener('DOMContentLoaded', function () {
-// Initialize main autocomplete
-		    var elemsstatus = document.querySelectorAll('#statusDropdown');
-    			var instances = M.FormSelect.init(elemsstatus);
+// // Initialize the Materialize date picker
+// document.addEventListener('DOMContentLoaded', function () {
+// // Initialize main autocomplete
+// 		    var elemsstatus = document.querySelectorAll('#statusDropdown');
+//     			var instances = M.FormSelect.init(elemsstatus);
 		    
-                    var elems = document.querySelectorAll('#autocomplete-input');
-                    var instances = M.Autocomplete.init(elems, {
-                        data: autocompleteData,
-                        limit: 10,
-                        minLength: 1,
-                        onAutocomplete: function(text) {
-                            console.log("Selected location:", text);
-				//var newStr = text.replace(/\s(?=[^ ]*$)/, "&lt;br&gt;");
-				var newStr = text.replace("District ", "District &lt;br&gt;");
+//                     var elems = document.querySelectorAll('#autocomplete-input');
+//                     var instances = M.Autocomplete.init(elems, {
+//                         data: autocompleteData,
+//                         limit: 10,
+//                         minLength: 1,
+//                         onAutocomplete: function(text) {
+//                             console.log("Selected location:", text);
+// 				//var newStr = text.replace(/\s(?=[^ ]*$)/, "&lt;br&gt;");
+// 				var newStr = text.replace("District ", "District &lt;br&gt;");
                 
-				//console.log(newStr);
-				var layer = autocompleteData[newStr];
-				if (layer) {
-					m.fitBounds(layer.getBounds());
-					// highlightFeature({ target: layer });
-                    province_lay.setStyle(styleP);
-			        district_lay.setStyle(styleD);
+// 				//console.log(newStr);
+// 				var layer = autocompleteData[newStr];
+// 				if (layer) {
+// 					m.fitBounds(layer.getBounds());
+// 					// highlightFeature({ target: layer });
+//                     province_lay.setStyle(styleP);
+// 			        district_lay.setStyle(styleD);
 
-					layer.setStyle({
-				    weight: 3,
-				    color: '#636363',
-				    fillOpacity: 0.4
-			        });
-			        info.update(layer.feature.properties);
-				}
-                        }
-                    });
+// 					layer.setStyle({
+// 				    weight: 3,
+// 				    color: '#636363',
+// 				    fillOpacity: 0.4
+// 			        });
+// 			        info.update(layer.feature.properties);
+// 				}
+//                         }
+//                     });
 	
-////////////date time////////////
-			const dateRangeInput = document.getElementById('date-range');
-      let startDate = null;
+// ////////////date time////////////
+// 			const dateRangeInput = document.getElementById('date-range');
+//       let startDate = null;
 
-      // Event listener to handle date range selection
-      dateRangeInput.addEventListener('focus', function () {
+//       // Event listener to handle date range selection
+//       dateRangeInput.addEventListener('focus', function () {
 
-	       // Show indicator for Start Date selection
-        // indicator.textContent = 'Selecting Start Date...';
+// 	       // Show indicator for Start Date selection
+//         // indicator.textContent = 'Selecting Start Date...';
 
-        // Initialize Start Date Picker
-	let startDateSelected = false; // Flag to track if the start date was selected
-	let endDateSelected = false; // Flag to track if the start date was selected
-        const startPicker = M.Datepicker.init(dateRangeInput, {
-          format: 'yyyy-mm-dd',
-          autoClose: true,
-	  maxDate: new Date(),
-	  onOpen: function () {
-	          // Find the modal and insert a custom title
-	          const modal = document.querySelector('.datepicker-modal');
-	          if (modal && !modal.querySelector('.datepicker-title')) {
-	            const title = document.createElement('div');
-	            title.className = 'datepicker-title';
-	            title.textContent = 'Selecting Start Date...'; // Set your custom title here
-	            modal.prepend(title);
-	          }
-          },
-	  onSelect: function (selectedDate) {
-	          startDateSelected = true; // Mark start date as selected
-	          // endPicker.options.minDate = selectedDate; // Set minDate for the end date picker
-	        	},
-          onClose: function () {
-		  if (startDateSelected) {
-            // If a start date is selected, open the end date picker
-            //endPicker.open();
+//         // Initialize Start Date Picker
+// 	let startDateSelected = false; // Flag to track if the start date was selected
+// 	let endDateSelected = false; // Flag to track if the start date was selected
+//         const startPicker = M.Datepicker.init(dateRangeInput, {
+//           format: 'yyyy-mm-dd',
+//           autoClose: true,
+// 	  maxDate: new Date(),
+// 	  onOpen: function () {
+// 	          // Find the modal and insert a custom title
+// 	          const modal = document.querySelector('.datepicker-modal');
+// 	          if (modal && !modal.querySelector('.datepicker-title')) {
+// 	            const title = document.createElement('div');
+// 	            title.className = 'datepicker-title';
+// 	            title.textContent = 'Selecting Start Date...'; // Set your custom title here
+// 	            modal.prepend(title);
+// 	          }
+//           },
+// 	  onSelect: function (selectedDate) {
+// 	          startDateSelected = true; // Mark start date as selected
+// 	          // endPicker.options.minDate = selectedDate; // Set minDate for the end date picker
+// 	        	},
+//           onClose: function () {
+// 		  if (startDateSelected) {
+//             // If a start date is selected, open the end date picker
+//             //endPicker.open();
           
-            startDate = new Date(dateRangeInput.value); // Save the selected start date
-            const startYear = startDate.getFullYear();
-	   const endOfYearDate = new Date(startDate.getFullYear(), 11, 31);
+//             startDate = new Date(dateRangeInput.value); // Save the selected start date
+//             const startYear = startDate.getFullYear();
+// 	   const endOfYearDate = new Date(startDate.getFullYear(), 11, 31);
 		  
-	 // Update indicator for End Date selection
-            // indicator.textContent = 'Selecting End Date...';
+// 	 // Update indicator for End Date selection
+//             // indicator.textContent = 'Selecting End Date...';
 
-            // Initialize End Date Picker after Start Date is selected
-            M.Datepicker.init(dateRangeInput, {
-              format: 'yyyy-mm-dd',
-              autoClose: true,
-              minDate: startDate,
-	      maxDate: endOfYearDate,
-              // yearRange: [startYear, startYear],
-	      onOpen: function () {
-	          // Find the modal and insert a custom title
-	          const modal = document.querySelector('.datepicker-modal');
-	          if (modal && !modal.querySelector('.datepicker-title')) {
-	            const title = document.createElement('div');
-	            title.className = 'datepicker-title';
-	            title.textContent = 'Selecting End Date...'; // Set your custom title here
-	            modal.prepend(title);
-	          }
-          	},
-	      onSelect: function (selectedDate) {
-		 endDateSelected =true;
-	      },
-              onClose: function () {
-		if (endDateSelected) {
-                const endDate = new Date(dateRangeInput.value); // Save the selected end date
+//             // Initialize End Date Picker after Start Date is selected
+//             M.Datepicker.init(dateRangeInput, {
+//               format: 'yyyy-mm-dd',
+//               autoClose: true,
+//               minDate: startDate,
+// 	      maxDate: endOfYearDate,
+//               // yearRange: [startYear, startYear],
+// 	      onOpen: function () {
+// 	          // Find the modal and insert a custom title
+// 	          const modal = document.querySelector('.datepicker-modal');
+// 	          if (modal && !modal.querySelector('.datepicker-title')) {
+// 	            const title = document.createElement('div');
+// 	            title.className = 'datepicker-title';
+// 	            title.textContent = 'Selecting End Date...'; // Set your custom title here
+// 	            modal.prepend(title);
+// 	          }
+//           	},
+// 	      onSelect: function (selectedDate) {
+// 		 endDateSelected =true;
+// 	      },
+//               onClose: function () {
+// 		if (endDateSelected) {
+//                 const endDate = new Date(dateRangeInput.value); // Save the selected end date
 
-                // Combine the dates into a range
-                if (startDate && endDate) {
-                  dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
-		resetRealDB(allData,startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
-		startDateSelected = false;
-		endDateSelected =false;
-		  // indicator.textContent = ''; // Clear the indicator after selection
+//                 // Combine the dates into a range
+//                 if (startDate && endDate) {
+//                   dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+// 		resetRealDB(allData,startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
+// 		startDateSelected = false;
+// 		endDateSelected =false;
+// 		  // indicator.textContent = ''; // Clear the indicator after selection
              
-                }
-	      }else
-		{
-		dateRangeInput.value ="";
-		startDateSelected = false;
-		endDateSelected =false;
-		}
-              }
-            }).open();
+//                 }
+// 	      }else
+// 		{
+// 		dateRangeInput.value ="";
+// 		startDateSelected = false;
+// 		endDateSelected =false;
+// 		}
+//               }
+//             }).open();
 		
-		  }
-          startDateSelected = false;
-          }
+// 		  }
+//           startDateSelected = false;
+//           }
 		
-        });
-        startPicker.open();
-      });
-	 // Initialize Date Picker for Start Date
+//         });
+//         startPicker.open();
+//       });
+// 	 // Initialize Date Picker for Start Date
 	
-});
+// });
 
-// Append the custom control to the Leaflet control container
-const controlContainer = document.querySelector('.leaflet-control-container');
-controlContainer.appendChild(customControlDiv);
-
+// // Append the custom control to the Leaflet control container
+// const controlContainer = document.querySelector('.leaflet-control-container');
+// controlContainer.appendChild(customControlDiv);
+// ////////////////////////////
+// ////////////////////////////
+// ////////////////////////////
 // const controlinfo = L.control({ position: 'topright' });
 
 //     // Initialize the control's DOM
@@ -671,7 +675,7 @@ controlContainer.appendChild(customControlDiv);
 ///////////////
 
 // Get the map's control container
-//const controlContainer = document.querySelector('.leaflet-control-container');
+// const controlContainer = document.querySelector('.leaflet-control-container');
 
 // // Get individual control sections
 // const topLeft = controlContainer.querySelector('.leaflet-top.leaflet-left');
@@ -686,8 +690,9 @@ controlContainer.appendChild(customControlDiv);
 // newOrder.forEach(section => {
 //   controlContainer.appendChild(section);
 // });
-// const customControlx = document.querySelector('.mapcontol.row'); // Assume it's your div control
-// controlContainer.appendChild(customControlx); 
+const controlContainer = document.querySelector('.leaflet-control-container');
+const customControlx = document.querySelector('.mapcontol.row'); // Assume it's your div control
+controlContainer.appendChild(customControlx); 
 
 
 		m.on('zoomend', function(){
