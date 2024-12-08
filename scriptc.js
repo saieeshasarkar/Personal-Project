@@ -690,9 +690,9 @@ function decompressGzip(gzipData) {
 // newOrder.forEach(section => {
 //   controlContainer.appendChild(section);
 // });
-const controlContainer = document.querySelector('.leaflet-control-container');
-const customControlx = document.querySelector('.mapcontol.row'); // Assume it's your div control
-controlContainer.appendChild(customControlx); 
+// const controlContainer = document.querySelector('.leaflet-control-container');
+// const customControlx = document.querySelector('.mapcontol.row'); // Assume it's your div control
+// controlContainer.appendChild(customControlx); 
 
 
 		m.on('zoomend', function(){
