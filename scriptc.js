@@ -482,28 +482,34 @@ function decompressGzip(gzipData) {
 
 //create control box//////////
 // Define a custom control
-const customControl = L.Control.extend({
-  options: {
-    position: 'topright' // You can choose 'topleft', 'topright', 'bottomleft', or 'bottomright'
-  },
+// Create a custom control container
+const customControlDiv = L.DomUtil.create('div', 'custom-control');
 
-  onAdd: function (map) {
-    // Create a container div for the control
-    const container = L.DomUtil.create('div', 'custom-control');
-    container.innerHTML = '<button>Click Me</button>'; // Add content to your control
+// Add a Materialize date picker input to the custom control
+customControlDiv.innerHTML = `
+  <div class="input-field">
+    <input type="text" id="datepicker" class="datepicker">
+    <label for="datepicker">Select Date</label>
+  </div>
+`;
 
-    // Example: Add a click event listener to the button
-    container.querySelector('button').addEventListener('click', () => {
-      alert('Custom control button clicked!');
-    });
-
-    return container;
-  }
+// Initialize the Materialize date picker
+document.addEventListener('DOMContentLoaded', function () {
+  const datepickerElem = document.querySelector('#datepicker');
+  M.Datepicker.init(datepickerElem, {
+    format: 'yyyy-mm-dd',
+    autoClose: true,
+    onClose: () => {
+      const selectedDate = datepickerElem.value;
+      console.log('Selected date:', selectedDate);
+    }
+  });
 });
 
-// Add the custom control to the map
-const custom = new customControl();
-custom.addTo(m);
+// Append the custom control to the Leaflet control container
+const controlContainer = document.querySelector('.leaflet-control-container');
+controlContainer.appendChild(customControlDiv);
+
 // const controlinfo = L.control({ position: 'topright' });
 
 //     // Initialize the control's DOM
