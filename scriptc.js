@@ -555,8 +555,8 @@ const controlContainer = document.querySelector('.leaflet-control-container');
 // newOrder.forEach(section => {
 //   controlContainer.appendChild(section);
 // });
-const customControl = document.querySelector('.mapcontol.row'); // Assume it's your div control
-controlContainer.appendChild(customControl); 
+const customControlx = document.querySelector('.mapcontol.row'); // Assume it's your div control
+controlContainer.appendChild(customControlx); 
 
 
 		m.on('zoomend', function(){
