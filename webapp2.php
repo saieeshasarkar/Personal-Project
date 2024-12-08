@@ -901,7 +901,7 @@ const dateRangeInput = document.getElementById('date-range');
       let startDate = null;
 
       // Event listener to handle date range selection
-      //dateRangeInput.addEventListener('focus', function () {
+      dateRangeInput.addEventListener('focus', function () {
 
 	       // Show indicator for Start Date selection
         // indicator.textContent = 'Selecting Start Date...';
@@ -987,7 +987,7 @@ const dateRangeInput = document.getElementById('date-range');
 		
         });
         startPicker.open();
-     // });
+     });
 //////////////////////////
 //////////////////////////
 	 // Initialize Date Picker for Start Date
