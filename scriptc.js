@@ -488,7 +488,7 @@ const customControlDiv = L.DomUtil.create('div', 'custom-control');
 // Add a Materialize date picker input to the custom control
 customControlDiv.innerHTML = `
  <div class="row">
-                    <div class="col s12 leaflet-bottom">
+                    <div class="col s12">
                         <div class="input-field col s12 ctitle" style="z-index: 500;margin-bottom: -1px;">
                         <label style="position: relative;" for="autocomplete-input">Search for a district or province</label>
                             <input type="text" id="autocomplete-input" class="autocomplete">
