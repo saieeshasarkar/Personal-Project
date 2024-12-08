@@ -515,6 +515,23 @@ const controlinfo = L.control({ position: 'topright' });
       });
     });
 ///////////////
+
+// Get the map's control container
+const controlContainer = document.querySelector('.leaflet-control-container');
+
+// Get individual control sections
+const topLeft = controlContainer.querySelector('.leaflet-top.leaflet-left');
+const topRight = controlContainer.querySelector('.leaflet-top.leaflet-right');
+const bottomLeft = controlContainer.querySelector('.leaflet-bottom.leaflet-left');
+const bottomRight = controlContainer.querySelector('.leaflet-bottom.leaflet-right');
+
+// Create an array of sections in the desired new order
+const newOrder = [bottomLeft, bottomRight, topLeft, topRight];
+
+// Append the sections in the new order
+newOrder.forEach(section => {
+  controlContainer.appendChild(section);
+});
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 9) {
