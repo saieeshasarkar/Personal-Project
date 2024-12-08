@@ -461,7 +461,7 @@ const controlinfo = L.control({ position: 'topright' });
     };
 
     // Add the info control to the map
-    controlinfo.addTo(map);
+    controlinfo.addTo(m);
 
     // Initialize the Materialize date pickers
     document.addEventListener('DOMContentLoaded', function () {
