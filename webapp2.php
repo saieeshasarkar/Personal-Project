@@ -630,7 +630,7 @@ function editRecord(userId) {
             </div>
             <div id="mapPage" class="page">
                 <div class="mapcontol row">
-                    <div class="col s12" style="margin-bottom: -100px;">
+                    <div class="col s12 leaflet-bottom" style="bottom: revert;">
 <!--                         <div class="search-wrapper">
                             <input id="autocomplete-input" type="text" placeholder="Search for a district or province">
 <label for="autocomplete-input">Search for a district or province</label>
