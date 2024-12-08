@@ -439,41 +439,7 @@ function decompressGzip(gzipData) {
 
 		};
 
-		//create control box
-const controlinfo = L.control({ position: 'topright' });
-
-    // Initialize the control's DOM
-    controlinfo.onAdd = function (map) {
-      // Create a container div for the control
-      this._div = L.DomUtil.create('div', 'info');
-
-      // Add a Materialize date picker to the control
-      this._div.innerHTML = `
-        <h4>Date Picker</h4>
-        <div class="datepicker-wrapper">
-          <input type="text" id="start-date" class="datepicker" placeholder="Start Date">
-          <input type="text" id="end-date" class="datepicker" placeholder="End Date">
-        </div>
-      `;
-
-      // Return the div to be added to the map
-      return this._div;
-    };
-
-    // Add the info control to the map
-    controlinfo.addTo(m);
-
-    // Initialize the Materialize date pickers
-    document.addEventListener('DOMContentLoaded', function () {
-      const datePickers = document.querySelectorAll('.datepicker');
-      M.Datepicker.init(datePickers, {
-        format: 'yyyy-mm-dd',
-        onClose: function () {
-          console.log('Date Picker Closed!');
-        }
-      });
-    });
-
+		
 
 		// Creates an info box on the map
 		var info = L.control({position: 'bottomright'});
@@ -513,6 +479,42 @@ const controlinfo = L.control({ position: 'topright' });
 			};
 			
 		info.addTo(m);
+
+//create control box//////////
+const controlinfo = L.control({ position: 'topright' });
+
+    // Initialize the control's DOM
+    controlinfo.onAdd = function (map) {
+      // Create a container div for the control
+      this._div = L.DomUtil.create('div', 'info');
+
+      // Add a Materialize date picker to the control
+      this._div.innerHTML = `
+        <h4>Date Picker</h4>
+        <div class="datepicker-wrapper">
+          <input type="text" id="start-date" class="datepicker" placeholder="Start Date">
+          <input type="text" id="end-date" class="datepicker" placeholder="End Date">
+        </div>
+      `;
+
+      // Return the div to be added to the map
+      return this._div;
+    };
+
+    // Add the info control to the map
+    controlinfo.addTo(m);
+
+    // Initialize the Materialize date pickers
+    document.addEventListener('DOMContentLoaded', function () {
+      const datePickers = document.querySelectorAll('.datepicker');
+      M.Datepicker.init(datePickers, {
+        format: 'yyyy-mm-dd',
+        onClose: function () {
+          console.log('Date Picker Closed!');
+        }
+      });
+    });
+///////////////
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 9) {
