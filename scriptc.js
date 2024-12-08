@@ -440,7 +440,7 @@ function decompressGzip(gzipData) {
 		};
 
 		//create control box
-const controlinfo = L.control({ position: 'bottomright' });
+const controlinfo = L.control({ position: 'topright' });
 
     // Initialize the control's DOM
     controlinfo.onAdd = function (map) {
