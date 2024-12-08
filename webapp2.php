@@ -630,13 +630,13 @@ function editRecord(userId) {
             </div>
             <div id="mapPage" class="page">
                 <div class="mapcontol row">
-                    <div class="col s12">
+                    <div class="col s12" style="margin-bottom: -100px;">
 <!--                         <div class="search-wrapper">
                             <input id="autocomplete-input" type="text" placeholder="Search for a district or province">
 <label for="autocomplete-input">Search for a district or province</label>
                             <i class="material-icons" id="searchButton">search</i>
                         </div> -->
-                        <div class="input-field col s12 ctitle" style="z-index: 1003;margin-bottom: -1px;">
+                        <div class="input-field col s12 ctitle" style="z-index: 1002;margin-bottom: -1px;">
                         <label style="position: relative;" for="autocomplete-input">Search for a district or province</label>
                             <input type="text" id="autocomplete-input" class="autocomplete">
                             
