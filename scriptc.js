@@ -546,7 +546,7 @@ controlContainer.appendChild(customControlDiv);
 ///////////////
 
 // Get the map's control container
-const controlContainer = document.querySelector('.leaflet-control-container');
+//const controlContainer = document.querySelector('.leaflet-control-container');
 
 // // Get individual control sections
 // const topLeft = controlContainer.querySelector('.leaflet-top.leaflet-left');
