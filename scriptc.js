@@ -481,6 +481,29 @@ function decompressGzip(gzipData) {
 		info.addTo(m);
 
 //create control box//////////
+// Define a custom control
+const customControl = L.Control.extend({
+  options: {
+    position: 'topright' // You can choose 'topleft', 'topright', 'bottomleft', or 'bottomright'
+  },
+
+  onAdd: function (map) {
+    // Create a container div for the control
+    const container = L.DomUtil.create('div', 'custom-control');
+    container.innerHTML = '<button>Click Me</button>'; // Add content to your control
+
+    // Example: Add a click event listener to the button
+    container.querySelector('button').addEventListener('click', () => {
+      alert('Custom control button clicked!');
+    });
+
+    return container;
+  }
+});
+
+// Add the custom control to the map
+const custom = new customControl();
+custom.addTo(m);
 // const controlinfo = L.control({ position: 'topright' });
 
 //     // Initialize the control's DOM
