@@ -481,57 +481,61 @@ function decompressGzip(gzipData) {
 		info.addTo(m);
 
 //create control box//////////
-const controlinfo = L.control({ position: 'topright' });
+// const controlinfo = L.control({ position: 'topright' });
 
-    // Initialize the control's DOM
-    controlinfo.onAdd = function (map) {
-      // Create a container div for the control
-      this._div = L.DomUtil.create('div', 'info');
+//     // Initialize the control's DOM
+//     controlinfo.onAdd = function (map) {
+//       // Create a container div for the control
+//       this._div = L.DomUtil.create('div', 'info');
 
-      // Add a Materialize date picker to the control
-      this._div.innerHTML = `
-        <h4>Date Picker</h4>
-        <div class="datepicker-wrapper">
-          <input type="text" id="start-date" class="datepicker" placeholder="Start Date">
-          <input type="text" id="end-date" class="datepicker" placeholder="End Date">
-        </div>
-      `;
+//       // Add a Materialize date picker to the control
+//       this._div.innerHTML = `
+//         <h4>Date Picker</h4>
+//         <div class="datepicker-wrapper">
+//           <input type="text" id="start-date" class="datepicker" placeholder="Start Date">
+//           <input type="text" id="end-date" class="datepicker" placeholder="End Date">
+//         </div>
+//       `;
 
-      // Return the div to be added to the map
-      return this._div;
-    };
+//       // Return the div to be added to the map
+//       return this._div;
+//     };
 
-    // Add the info control to the map
-    controlinfo.addTo(m);
+//     // Add the info control to the map
+//     controlinfo.addTo(m);
 
-    // Initialize the Materialize date pickers
-    document.addEventListener('DOMContentLoaded', function () {
-      const datePickers = document.querySelectorAll('.datepicker');
-      M.Datepicker.init(datePickers, {
-        format: 'yyyy-mm-dd',
-        onClose: function () {
-          console.log('Date Picker Closed!');
-        }
-      });
-    });
+//     // Initialize the Materialize date pickers
+//     document.addEventListener('DOMContentLoaded', function () {
+//       const datePickers = document.querySelectorAll('.datepicker');
+//       M.Datepicker.init(datePickers, {
+//         format: 'yyyy-mm-dd',
+//         onClose: function () {
+//           console.log('Date Picker Closed!');
+//         }
+//       });
+//     });
 ///////////////
 
 // Get the map's control container
 const controlContainer = document.querySelector('.leaflet-control-container');
 
-// Get individual control sections
-const topLeft = controlContainer.querySelector('.leaflet-top.leaflet-left');
-const topRight = controlContainer.querySelector('.leaflet-top.leaflet-right');
-const bottomLeft = controlContainer.querySelector('.leaflet-bottom.leaflet-left');
-const bottomRight = controlContainer.querySelector('.leaflet-bottom.leaflet-right');
+// // Get individual control sections
+// const topLeft = controlContainer.querySelector('.leaflet-top.leaflet-left');
+// const topRight = controlContainer.querySelector('.leaflet-top.leaflet-right');
+// const bottomLeft = controlContainer.querySelector('.leaflet-bottom.leaflet-left');
+// const bottomRight = controlContainer.querySelector('.leaflet-bottom.leaflet-right');
 
-// Create an array of sections in the desired new order
-const newOrder = [bottomLeft, bottomRight, topLeft, topRight];
+// // Create an array of sections in the desired new order
+// const newOrder = [bottomLeft, bottomRight, topLeft, topRight];
 
-// Append the sections in the new order
-newOrder.forEach(section => {
-  controlContainer.appendChild(section);
-});
+// // Append the sections in the new order
+// newOrder.forEach(section => {
+//   controlContainer.appendChild(section);
+// });
+const customControl = document.querySelector('.mapcontol.row'); // Assume it's your div control
+controlContainer.appendChild(customControl); 
+
+
 		m.on('zoomend', function(){
 
 			if (m.getZoom() >= 9) {
