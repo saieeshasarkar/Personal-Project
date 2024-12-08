@@ -629,7 +629,7 @@ function editRecord(userId) {
                 <p>Please use the navigation to explore the map or view user details.</p>
             </div>
             <div id="mapPage" class="page">
-                <div class="row">
+                <div class="mapcontol row">
                     <div class="col s12" style="margin-bottom: -100px;">
 <!--                         <div class="search-wrapper">
                             <input id="autocomplete-input" type="text" placeholder="Search for a district or province">
