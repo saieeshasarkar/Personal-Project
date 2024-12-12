@@ -789,7 +789,8 @@ function editRecord(userId) {
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
          // Get today's date
-
+         const today = new Date();
+         const todayDateString = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
     // Initialize Flatpickr for Date Range
     flatpickr("#range-picker", {
       enableTime: false, // Disable time picking, only date
