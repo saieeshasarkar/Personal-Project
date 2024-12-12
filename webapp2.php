@@ -829,6 +829,8 @@ function editRecord(userId) {
           if (startDate.getFullYear() !== endDate.getFullYear()) {
             alert("The end date must be within the same year as the start date.");
             instance.clear(); // Clear the input if the range is invalid
+          }else{
+            resetRealDB(allData,startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
           }
         }
       },
