@@ -159,7 +159,7 @@ $firebaseConfig = [
     {
     display: inline-block;
     }
-    .numInput.cur-year
+    .numInput
     {
     height: auto;
     border: none;
