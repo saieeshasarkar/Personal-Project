@@ -634,6 +634,7 @@ function editRecord(userId) {
             <div id="homePage" class="page active">
                 <h4>Welcome to Dengue Occurrence in Laos</h4>
                 <p>Please use the navigation to explore the map or view user details.</p>
+                <input type="text" id="range-picker" placeholder="Select date range">
             </div>
             <div id="mapPage" class="page">
                 <div class="mapcontol row">
@@ -652,7 +653,7 @@ function editRecord(userId) {
 			<label style="position: relative;" for="date-range">Start and End Date</label>
             <input type="text" id="date-range" placeholder="Choose Date Range">
             
-            <input type="text" id="range-picker" placeholder="Select date range">
+           
                         </div>
 			   
       
