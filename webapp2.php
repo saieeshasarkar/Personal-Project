@@ -57,9 +57,7 @@ $firebaseConfig = [
 	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
 	<script src="scripts/leaflet.zoomhome.min.js"></script>
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <!-- Flatpickr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
@@ -67,7 +65,11 @@ $firebaseConfig = [
 	
 	<!-- <link rel="stylesheet" href="StyleMap.css" /> -->
     <link rel="stylesheet" href="mapstyle.css" />
-	 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -634,7 +636,7 @@ function editRecord(userId) {
             <div id="homePage" class="page active">
                 <h4>Welcome to Dengue Occurrence in Laos</h4>
                 <p>Please use the navigation to explore the map or view user details.</p>
-                <input type="text" id="range-picker" placeholder="Select date range">
+                 <input type="text" id="range-picker" placeholder="Select date range">
             </div>
             <div id="mapPage" class="page">
                 <div class="mapcontol row">
