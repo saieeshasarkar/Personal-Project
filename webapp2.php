@@ -38,6 +38,11 @@ $firebaseConfig = [
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  
 	<script type="text/javascript" src="scripts/leaflet.ajax.js"></script>
 	
 	<script src="scripts/spin.js"></script>
@@ -66,9 +71,6 @@ $firebaseConfig = [
 	<!-- <link rel="stylesheet" href="StyleMap.css" /> -->
     <link rel="stylesheet" href="mapstyle.css" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <!-- Flatpickr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
