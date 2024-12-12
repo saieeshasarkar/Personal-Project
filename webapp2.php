@@ -56,7 +56,11 @@ $firebaseConfig = [
 		
 	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
 	<script src="scripts/leaflet.zoomhome.min.js"></script>
-	
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
@@ -643,8 +647,12 @@ function editRecord(userId) {
                         </div>
 			  <div class="input-field col s12 ctitle" style="z-index: 1002;margin-bottom: -100px;">
 			<label style="position: relative;" for="date-range">Start and End Date</label>
+<<<<<<< HEAD
+            <input type="text" id="range-picker" placeholder="Select date range">
+=======
                         <input type="text" id="date-range" placeholder="Choose Date Range">
                           <input type="date" id="birthday" name="birthday">
+>>>>>>> 787ddbd471623012f3486a21cb18871fa0689b27
                         </div>
 			   
       
@@ -785,6 +793,29 @@ function editRecord(userId) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+         // Get today's date
+    const today = new Date();
+    const todayDateString = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
+    // Initialize Flatpickr for Date Range
+    flatpickr("#range-picker", {
+      enableTime: false, // Disable time picking, only date
+      dateFormat: "Y-m-d", // Only show year, month, and day
+      mode: "range", // Enable range mode
+      maxDate: todayDateString, // Range cannot exceed today
+      onChange: function (selectedDates, dateStr, instance) {
+        if (selectedDates.length === 2) {
+          const startDate = selectedDates[0];
+          const endDate = selectedDates[1];
+          
+          // Check that the end date is within the same year as the start date
+          if (startDate.getFullYear() !== endDate.getFullYear()) {
+            alert("The end date must be within the same year as the start date.");
+            instance.clear(); // Clear the input if the range is invalid
+          }
+        }
+      },
+    });
         
         // Initialize Materialize components
         // document.addEventListener('DOMContentLoaded', function() {
