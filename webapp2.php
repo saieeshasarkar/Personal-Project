@@ -148,6 +148,9 @@ $firebaseConfig = [
       margin-top: -15px;
       display: block;
     }
+    .flatpickr-wrapper {
+      margin-bottom: 20px;
+    }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
