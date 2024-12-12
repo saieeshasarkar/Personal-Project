@@ -155,7 +155,7 @@ $firebaseConfig = [
     .flatpickr-wrapper {
       margin-bottom: 20px;
     }
-    .flatpickr-month{
+    .flatpickr-current-month{
         padding-top: 0px;
     }
     .flatpickr-monthDropdown-months
