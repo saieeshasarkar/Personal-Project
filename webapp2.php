@@ -911,7 +911,7 @@ const dateRangeInput = document.getElementById('date-range');
 	let endDateSelected = false; // Flag to track if the start date was selected
         const startPicker = M.Datepicker.init(dateRangeInput, {
           format: 'yyyy-mm-dd',
-          autoClose: true,
+          autoClose: false,
 	  maxDate: new Date(),
 	  onOpen: function () {
 	          // Find the modal and insert a custom title
@@ -942,7 +942,7 @@ const dateRangeInput = document.getElementById('date-range');
             // Initialize End Date Picker after Start Date is selected
             M.Datepicker.init(dateRangeInput, {
               format: 'yyyy-mm-dd',
-              autoClose: true,
+              autoClose: false,
               minDate: startDate,
 	      maxDate: endOfYearDate,
               // yearRange: [startYear, startYear],
