@@ -69,7 +69,7 @@ $firebaseConfig = [
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <!-- Flatpickr JS -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  
+
     <title>Dengue Occurrence in Laos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -152,6 +152,10 @@ $firebaseConfig = [
     }
     .flatpickr-wrapper {
       margin-bottom: 20px;
+    }
+    .flatpickr-monthDropdown-months
+    {
+    display: inline-block;
     }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
