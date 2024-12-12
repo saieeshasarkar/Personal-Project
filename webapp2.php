@@ -155,8 +155,12 @@ $firebaseConfig = [
     .flatpickr-wrapper {
       margin-bottom: 20px;
     }
+    .flatpickr-month{
+        bottom-top: 0px;
+    }
     .flatpickr-monthDropdown-months
     {
+        
     display: inline-block;
     }
     .numInput.cur-year
