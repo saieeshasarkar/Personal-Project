@@ -789,8 +789,6 @@ function editRecord(userId) {
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
          // Get today's date
-    const today = new Date();
-    const todayDateString = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
 
     // Initialize Flatpickr for Date Range
     flatpickr("#range-picker", {
@@ -924,97 +922,97 @@ let autocompleteDatax = {};
 			 
 ////////////date time////////////
 //////////////////////////
-const dateRangeInput = document.getElementById('date-range');
-      let startDate = null;
+// const dateRangeInput = document.getElementById('date-range');
+//       let startDate = null;
 
-      // Event listener to handle date range selection
-      dateRangeInput.addEventListener('focus', function () {
+//       // Event listener to handle date range selection
+//       dateRangeInput.addEventListener('focus', function () {
 
-	       // Show indicator for Start Date selection
-        // indicator.textContent = 'Selecting Start Date...';
+// 	       // Show indicator for Start Date selection
+//         // indicator.textContent = 'Selecting Start Date...';
 
-        // Initialize Start Date Picker
-	let startDateSelected = false; // Flag to track if the start date was selected
-	let endDateSelected = false; // Flag to track if the start date was selected
-        const startPicker = M.Datepicker.init(dateRangeInput, {
-          format: 'yyyy-mm-dd',
-          autoClose: false,
-	  maxDate: new Date(),
-	  onOpen: function () {
-	          // Find the modal and insert a custom title
-	          const modal = document.querySelector('.datepicker-modal');
-	          if (modal && !modal.querySelector('.datepicker-title')) {
-	            const title = document.createElement('div');
-	            title.className = 'datepicker-title';
-	            title.textContent = 'Selecting Start Date...'; // Set your custom title here
-	            modal.prepend(title);
-	          }
-          },
-	  onSelect: function (selectedDate) {
-	          startDateSelected = true; // Mark start date as selected
-	          // endPicker.options.minDate = selectedDate; // Set minDate for the end date picker
-	        	},
-          onClose: function () {
-		  if (startDateSelected) {
-            // If a start date is selected, open the end date picker
-            //endPicker.open();
+//         // Initialize Start Date Picker
+// 	let startDateSelected = false; // Flag to track if the start date was selected
+// 	let endDateSelected = false; // Flag to track if the start date was selected
+//         const startPicker = M.Datepicker.init(dateRangeInput, {
+//           format: 'yyyy-mm-dd',
+//           autoClose: false,
+// 	  maxDate: new Date(),
+// 	  onOpen: function () {
+// 	          // Find the modal and insert a custom title
+// 	          const modal = document.querySelector('.datepicker-modal');
+// 	          if (modal && !modal.querySelector('.datepicker-title')) {
+// 	            const title = document.createElement('div');
+// 	            title.className = 'datepicker-title';
+// 	            title.textContent = 'Selecting Start Date...'; // Set your custom title here
+// 	            modal.prepend(title);
+// 	          }
+//           },
+// 	  onSelect: function (selectedDate) {
+// 	          startDateSelected = true; // Mark start date as selected
+// 	          // endPicker.options.minDate = selectedDate; // Set minDate for the end date picker
+// 	        	},
+//           onClose: function () {
+// 		  if (startDateSelected) {
+//             // If a start date is selected, open the end date picker
+//             //endPicker.open();
           
-            startDate = new Date(dateRangeInput.value); // Save the selected start date
-            const startYear = startDate.getFullYear();
-	   const endOfYearDate = new Date(startDate.getFullYear(), 11, 31);
+//             startDate = new Date(dateRangeInput.value); // Save the selected start date
+//             const startYear = startDate.getFullYear();
+// 	   const endOfYearDate = new Date(startDate.getFullYear(), 11, 31);
 		  
-	 // Update indicator for End Date selection
-            // indicator.textContent = 'Selecting End Date...';
+// 	 // Update indicator for End Date selection
+//             // indicator.textContent = 'Selecting End Date...';
 
-            // Initialize End Date Picker after Start Date is selected
-            M.Datepicker.init(dateRangeInput, {
-              format: 'yyyy-mm-dd',
-              autoClose: false,
-              minDate: startDate,
-	      maxDate: endOfYearDate,
-              // yearRange: [startYear, startYear],
-	      onOpen: function () {
-	          // Find the modal and insert a custom title
-	          const modal = document.querySelector('.datepicker-modal');
-	          if (modal && !modal.querySelector('.datepicker-title')) {
-	            const title = document.createElement('div');
-	            title.className = 'datepicker-title';
-	            title.textContent = 'Selecting End Date...'; // Set your custom title here
-	            modal.prepend(title);
-	          }
-          	},
-	      onSelect: function (selectedDate) {
-		 endDateSelected =true;
-	      },
-              onClose: function () {
-		if (endDateSelected) {
-                const endDate = new Date(dateRangeInput.value); // Save the selected end date
+//             // Initialize End Date Picker after Start Date is selected
+//             M.Datepicker.init(dateRangeInput, {
+//               format: 'yyyy-mm-dd',
+//               autoClose: false,
+//               minDate: startDate,
+// 	      maxDate: endOfYearDate,
+//               // yearRange: [startYear, startYear],
+// 	      onOpen: function () {
+// 	          // Find the modal and insert a custom title
+// 	          const modal = document.querySelector('.datepicker-modal');
+// 	          if (modal && !modal.querySelector('.datepicker-title')) {
+// 	            const title = document.createElement('div');
+// 	            title.className = 'datepicker-title';
+// 	            title.textContent = 'Selecting End Date...'; // Set your custom title here
+// 	            modal.prepend(title);
+// 	          }
+//           	},
+// 	      onSelect: function (selectedDate) {
+// 		 endDateSelected =true;
+// 	      },
+//               onClose: function () {
+// 		if (endDateSelected) {
+//                 const endDate = new Date(dateRangeInput.value); // Save the selected end date
 
-                // Combine the dates into a range
-                if (startDate && endDate) {
-                  dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
-		resetRealDB(allData,startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
-		startDateSelected = false;
-		endDateSelected =false;
-		  // indicator.textContent = ''; // Clear the indicator after selection
+//                 // Combine the dates into a range
+//                 if (startDate && endDate) {
+//                   dateRangeInput.value = `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`;
+// 		resetRealDB(allData,startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
+// 		startDateSelected = false;
+// 		endDateSelected =false;
+// 		  // indicator.textContent = ''; // Clear the indicator after selection
              
-                }
-	      }else
-		{
-		dateRangeInput.value ="";
-		startDateSelected = false;
-		endDateSelected =false;
-		}
-              }
-            }).open();
+//                 }
+// 	      }else
+// 		{
+// 		dateRangeInput.value ="";
+// 		startDateSelected = false;
+// 		endDateSelected =false;
+// 		}
+//               }
+//             }).open();
 		
-		  }
-          startDateSelected = false;
-          }
+// 		  }
+//           startDateSelected = false;
+//           }
 		
-        });
-        startPicker.open();
-     });
+//         });
+//         startPicker.open();
+//      });
 //////////////////////////
 //////////////////////////
 	 // Initialize Date Picker for Start Date
