@@ -159,6 +159,11 @@ $firebaseConfig = [
     {
     display: inline-block;
     }
+    .numInput.cur-year
+    {
+    height: auto;
+    border: none;
+    }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
