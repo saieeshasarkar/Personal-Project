@@ -647,12 +647,7 @@ function editRecord(userId) {
                         </div>
 			  <div class="input-field col s12 ctitle" style="z-index: 1002;margin-bottom: -100px;">
 			<label style="position: relative;" for="date-range">Start and End Date</label>
-<<<<<<< HEAD
             <input type="text" id="range-picker" placeholder="Select date range">
-=======
-                        <input type="text" id="date-range" placeholder="Choose Date Range">
-                          <input type="date" id="birthday" name="birthday">
->>>>>>> 787ddbd471623012f3486a21cb18871fa0689b27
                         </div>
 			   
       
