@@ -451,7 +451,7 @@ function decompressGzip(gzipData) {
 			//labels = "<td><h4>Poverty in Lao PDR</h4></td></tr><tr><td><p>Percentage of people in poverty by province/district: 2015</p></td></tr></table>";
 			labelsn = "<h4>Dangue in Lao PDR</h4><p>";//<div class='input-field col s12'><input type='text' id='autocomplete-inputx' class='autocomplete'><label for='autocomplete-inpuxt'>Search for a district or province</label></div>";//<p>Percentage of people in poverty by province/district: 2015</p>";
 			// var elemsx = document.querySelectorAll('#autocomplete-input');
-			btnr = '<a href="#" class="modal-trigger" data-target="loginModal" id="loginLink"><i class="material-icons">assessment</i><br>View Report</a>';
+			btnr = '<a href="#" class="modal-trigger" data-target="reportModal" id="reportLink"><i class="material-icons">assessment</i><br>View Report</a>';
 			div.innerHTML = btnr;//holder + logo + labels;
 
 			// elemsx.forEach(function(element) {
