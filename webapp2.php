@@ -64,7 +64,7 @@ $firebaseConfig = [
     
 <!-- data tables -->
 	  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <script type="module" src="https://cdn.datatables.net/1.13.6/js/dataTables.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.dataTables.min.js"></script>
     
 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
@@ -754,8 +754,7 @@ function editRecord(userId) {
             </tr>
         </thead>
     </table>
-
-    <script type="module" src="treeTable.js"></script>
+    <script type="text/javascript"  src="treeTable.js"></script>
         </div>
     </div>
     <!-- Login Modal -->
