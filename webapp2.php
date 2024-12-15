@@ -173,6 +173,15 @@ $firebaseConfig = [
     height: auto !important;
     border: none !important;
     }
+	td.details-control {
+            cursor: pointer;
+        }
+        tr.details-control {
+            background-color: #f9f9f9;
+        }
+        .tree-indicator {
+            cursor: pointer;
+        }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
