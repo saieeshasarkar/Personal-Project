@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Sample hierarchical data
-    const data = [
+    const datax = [
         {
             name: "Vientiane Province",
             type: "Province",
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     // Initialize DataTable
     const table = $('#treeTable').DataTable({
-        data: data.map((province, index) => [
+        data: datax.map((province, index) => [
             '<span class="tree-indicator">+</span>',
             province.name,
             province.type,
@@ -72,7 +72,7 @@ $(document).ready(function () {
             tr.removeClass('details');
         } else {
             // Row is closed, open it
-            const province = data[row.index()];
+            const province = datax[row.index()];
             const districtsHtml = generateChildTable(province.districts, row.index());
             row.child(districtsHtml).show();
             tr.addClass('details');
@@ -102,7 +102,7 @@ $(document).ready(function () {
         const provinceIndex = districtRow.data('parent-index');
         const districtIndex = districtRow.data('index');
 
-        const province = data[provinceIndex];
+        const province = datax[provinceIndex];
         const district = province.districts[districtIndex];
 
         if (districtRow.hasClass('expanded')) {
