@@ -747,16 +747,17 @@ function editRecord(userId) {
     <div id="reportModal" class="modal">
         <div class="modal-content">
             <h4>Report</h4>
-                <table id="treeTable" class="display">
+                 <table id="treeTable" class="display" style="width:100%">
         <thead>
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Type</th>
-                <th>Number</th>
+                <th>Population</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Rows will be dynamically populated -->
+            <!-- The rows will be dynamically populated -->
         </tbody>
     </table>
 
