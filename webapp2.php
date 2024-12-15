@@ -742,7 +742,7 @@ function editRecord(userId) {
         </div>
     </footer>
 <!-- Report Modal -->
-    <div id="loginModal" class="modal">
+    <div id="reportModal" class="modal">
         <div class="modal-content">
             <h4>Report</h4>
             <table id="treeTable" class="display">
