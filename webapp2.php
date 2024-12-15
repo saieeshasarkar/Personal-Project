@@ -62,7 +62,10 @@ $firebaseConfig = [
 	<link rel="stylesheet" href="style/leaflet.zoomhome.css"/>
 	<script src="scripts/leaflet.zoomhome.min.js"></script>
     
-
+<!-- data tables -->
+	  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script type="module" src="https://cdn.datatables.net/1.13.6/js/dataTables.dataTables.min.js"></script>
+    
 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
@@ -738,7 +741,23 @@ function editRecord(userId) {
             </div>
         </div>
     </footer>
+<!-- Report Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h4>Report</h4>
+            <table id="treeTable" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+    </table>
 
+    <script type="module" src="treeTable.js"></script>
+        </div>
+    </div>
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
