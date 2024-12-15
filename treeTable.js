@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // Sample hierarchical data
+    // Sample hierarchical data with additional provinces
     const data = [
         {
             name: "Vientiane Province",
@@ -38,6 +38,56 @@ $(document).ready(function () {
                     villages: [
                         { name: "Village E", type: "Village", population: 7000 },
                         { name: "Village F", type: "Village", population: 5000 }
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Champasak Province",
+            type: "Province",
+            population: 690000,
+            districts: [
+                {
+                    name: "Pakse District",
+                    type: "District",
+                    population: 300000,
+                    villages: [
+                        { name: "Village G", type: "Village", population: 10000 },
+                        { name: "Village H", type: "Village", population: 8000 }
+                    ]
+                },
+                {
+                    name: "Bachieng District",
+                    type: "District",
+                    population: 250000,
+                    villages: [
+                        { name: "Village I", type: "Village", population: 12000 },
+                        { name: "Village J", type: "Village", population: 9000 }
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Savannakhet Province",
+            type: "Province",
+            population: 900000,
+            districts: [
+                {
+                    name: "Kaysone District",
+                    type: "District",
+                    population: 400000,
+                    villages: [
+                        { name: "Village K", type: "Village", population: 15000 },
+                        { name: "Village L", type: "Village", population: 12000 }
+                    ]
+                },
+                {
+                    name: "Phine District",
+                    type: "District",
+                    population: 300000,
+                    villages: [
+                        { name: "Village M", type: "Village", population: 11000 },
+                        { name: "Village N", type: "Village", population: 9500 }
                     ]
                 }
             ]
