@@ -44,3 +44,38 @@ function populateTable(tableId, data) {
             <td><strong>${province.province}</strong></td>
             <td>Province</td>
             <td></td>
+        `;
+        tableBody.appendChild(provinceRow);
+
+        province.districts.forEach((district) => {
+            // Add district row
+            const districtRow = document.createElement("tr");
+            districtRow.innerHTML = `
+                <td style="padding-left: 20px;">${district.district}</td>
+                <td>District</td>
+                <td></td>
+            `;
+            tableBody.appendChild(districtRow);
+
+            district.villages.forEach((village) => {
+                // Add village row
+                const villageRow = document.createElement("tr");
+                villageRow.innerHTML = `
+                    <td style="padding-left: 40px;">${village.name}</td>
+                    <td>Village</td>
+                    <td>${village.number}</td>
+                `;
+                tableBody.appendChild(villageRow);
+            });
+        });
+    });
+}
+
+// Initialize table and DataTable
+document.addEventListener("DOMContentLoaded", () => {
+    // Populate table with data
+    populateTable("#treeTable", data);
+
+    // Initialize DataTable
+    const table = new DataTable("#treeTable");
+});
