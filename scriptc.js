@@ -443,7 +443,7 @@ function decompressGzip(gzipData) {
 		breport.onAdd = function () {
 			var div = L.DomUtil.create('div', 'info');
 			div.style.width = '100px';
-			div.style.text-align = 'center';
+			div.style.textAlign = 'center';
 			div.style.padding = '10px';
 			//this is for adding a logo as needed
 			//holder ='<table><tr>' 
