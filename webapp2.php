@@ -753,7 +753,7 @@ function editRecord(userId) {
         </div>
     </footer>
 <!-- Report Modal -->
-    <div id="reportModal" class="modal">
+    <div id="reportModal" class="modal" style="width: 80%; max-height: 80%;">
         <div class="modal-content">
             <h4>Report</h4>
                  <table id="treeTable" class="display" style="width:100%">
