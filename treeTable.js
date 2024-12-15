@@ -86,7 +86,7 @@ $(document).ready(function () {
         let html = '<table class="child-table">';
         html += "<thead><tr><th>Name</th><th>Type</th><th>Population</th></tr></thead><tbody>";
         items.forEach((item, index) => {
-            html += `<tr data-index="${index}" class="district-row">
+            html += `<tr class="district-row" data-parent-index="${parentIndex}" data-index="${index}">
                         <td><span class="tree-indicator">+</span> ${item.name}</td>
                         <td>${item.type}</td>
                         <td>${item.population}</td>
@@ -99,17 +99,25 @@ $(document).ready(function () {
     // Handle district row expansion
     $('#treeTable').on('click', '.district-row', function () {
         const districtRow = $(this);
-        const provinceIndex = districtRow.closest('tr').data('index');
+        const provinceIndex = districtRow.data('parent-index');
         const districtIndex = districtRow.data('index');
 
         const province = data[provinceIndex];
         const district = province.districts[districtIndex];
 
-        if (districtRow.child.isShown()) {
-            districtRow.child.hide();
+        if (districtRow.hasClass('expanded')) {
+            // Already expanded, collapse it
+            districtRow.removeClass('expanded');
+            districtRow.find('span.tree-indicator').text('+');
+            districtRow.next('tr').hide();
         } else {
+            // Expand the district row to show villages
+            districtRow.addClass('expanded');
+            districtRow.find('span.tree-indicator').text('-');
+
             const villagesHtml = generateChildTable(district.villages);
-            districtRow.child(villagesHtml).show();
+            const villageRow = $('<tr>').addClass('village-row').html(`<td colspan="3">${villagesHtml}</td>`);
+            districtRow.after(villageRow);
         }
     });
 });
