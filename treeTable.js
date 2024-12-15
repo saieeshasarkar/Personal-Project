@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Sample hierarchical data with additional provinces
-    const data = [
+    const datax = [
         {
             name: "Vientiane Province",
             type: "Province",
@@ -96,7 +96,7 @@ $(document).ready(function () {
 
     // Initialize DataTable
     const table = $('#treeTable').DataTable({
-        data: data.map(province => [
+        data: datax.map(province => [
             `<span class="tree-indicator">+</span> ${province.name}`,
             province.type,
             province.population
@@ -125,7 +125,7 @@ $(document).ready(function () {
             $(this).text('+');
         } else {
             // Expand the province
-            const province = data[provinceIndex];
+            const province = datax[provinceIndex];
             const districtsHtml = generateChildTable(province.districts, provinceIndex, "district");
             row.child(districtsHtml).show();
             tr.addClass('expanded');
@@ -146,7 +146,7 @@ $(document).ready(function () {
             $(this).text('+');
         } else {
             // Expand the district
-            const province = data[provinceIndex];
+            const province = datax[provinceIndex];
             const district = province.districts[districtIndex];
 
             const villagesHtml = generateVillageRows(district.villages);
