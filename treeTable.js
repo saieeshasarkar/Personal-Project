@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     // Initialize DataTable
     const table = $('#treeTable').DataTable({
-        data: data.map((province) => [
+        data: data.map((province, index) => [
             '<span class="tree-indicator">+</span>',
             province.name,
             province.type,
@@ -73,35 +73,21 @@ $(document).ready(function () {
         } else {
             // Row is closed, open it
             const province = data[row.index()];
-            const districtsHtml = generateChildTable(province.districts);
+            const districtsHtml = generateChildTable(province.districts, row.index());
             row.child(districtsHtml).show();
             tr.addClass('details');
-
-            // Handle district clicks
-            tr.next('tr').find('.details-control').on('click', function () {
-                const districtRow = $(this).closest('tr');
-                const districtIndex = districtRow.data('index');
-                const district = province.districts[districtIndex];
-
-                if (districtRow.child.isShown()) {
-                    districtRow.child.hide();
-                } else {
-                    const villagesHtml = generateChildTable(district.villages);
-                    districtRow.child(villagesHtml).show();
-                }
-            });
         }
     });
 
     // Generate child rows HTML
-    function generateChildTable(items) {
+    function generateChildTable(items, parentIndex) {
         if (!items || items.length === 0) return "No data available";
 
         let html = '<table class="child-table">';
         html += "<thead><tr><th>Name</th><th>Type</th><th>Population</th></tr></thead><tbody>";
         items.forEach((item, index) => {
-            html += `<tr data-index="${index}">
-                        <td>${item.name}</td>
+            html += `<tr data-index="${index}" class="district-row">
+                        <td><span class="tree-indicator">+</span> ${item.name}</td>
                         <td>${item.type}</td>
                         <td>${item.population}</td>
                      </tr>`;
@@ -109,4 +95,21 @@ $(document).ready(function () {
         html += "</tbody></table>";
         return html;
     }
+
+    // Handle district row expansion
+    $('#treeTable').on('click', '.district-row', function () {
+        const districtRow = $(this);
+        const provinceIndex = districtRow.closest('tr').data('index');
+        const districtIndex = districtRow.data('index');
+
+        const province = data[provinceIndex];
+        const district = province.districts[districtIndex];
+
+        if (districtRow.child.isShown()) {
+            districtRow.child.hide();
+        } else {
+            const villagesHtml = generateChildTable(district.villages);
+            districtRow.child(villagesHtml).show();
+        }
+    });
 });
