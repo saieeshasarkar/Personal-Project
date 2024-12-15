@@ -1,6 +1,4 @@
-import DataTable from 'https://cdn.datatables.net/1.13.6/js/dataTables.dataTables.min.js';
-
-// Sample Data
+// Sample hierarchical data
 const data = [
     {
         province: "Vientiane",
@@ -35,73 +33,14 @@ const data = [
     }
 ];
 
-// Initialize the DataTable
-const table = new DataTable('#treeTable', {
-    data: flattenData(data),
-    columns: [
-        { data: 'name', title: 'Name' },
-        { data: 'type', title: 'Type' },
-        { data: 'number', title: 'Number' }
-    ]
-});
+// Function to populate table dynamically
+function populateTable(tableId, data) {
+    const tableBody = document.querySelector(`${tableId} tbody`);
 
-// Flatten hierarchical data into rows
-function flattenData(data) {
-    const rows = [];
-    data.forEach((province, provinceIndex) => {
-        rows.push({
-            name: province.province,
-            type: "Province",
-            number: null,
-            childData: province.districts.map((district, districtIndex) => ({
-                name: district.district,
-                type: "District",
-                number: null,
-                childData: district.villages.map((village) => ({
-                    name: village.name,
-                    type: "Village",
-                    number: village.number
-                }))
-            }))
-        });
-    });
-    return rows;
-}
-
-// Add event listeners for expandable rows
-document.querySelector('#treeTable tbody').addEventListener('click', (event) => {
-    const tr = event.target.closest('tr');
-    const row = table.row(tr);
-
-    if (row.data() && row.data().childData) {
-        if (row.child.isShown()) {
-            // Collapse the row
-            row.child.hide();
-            tr.classList.remove('expanded');
-            tr.classList.add('collapsed');
-        } else {
-            // Expand the row
-            const childTable = generateChildTable(row.data().childData);
-            row.child(childTable).show();
-            tr.classList.remove('collapsed');
-            tr.classList.add('expanded');
-        }
-    }
-});
-
-// Generate child table rows dynamically
-function generateChildTable(childData) {
-    let childHTML = '<table class="display">';
-    childData.forEach((child) => {
-        childHTML += `<tr>
-            <td class="${child.childData ? 'collapsed' : ''}">${child.name}</td>
-            <td>${child.type}</td>
-            <td>${child.number || ''}</td>
-        </tr>`;
-        if (child.childData) {
-            childHTML += generateChildTable(child.childData);
-        }
-    });
-    childHTML += '</table>';
-    return childHTML;
-}
+    data.forEach((province) => {
+        // Add province row
+        const provinceRow = document.createElement("tr");
+        provinceRow.innerHTML = `
+            <td><strong>${province.province}</strong></td>
+            <td>Province</td>
+            <td></td>
