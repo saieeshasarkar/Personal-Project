@@ -770,7 +770,7 @@ function editRecord(userId) {
         </tbody>
     </table>
 
-    <script type="text/javascript"  src="treeTable.js"></script>
+    <!-- <script type="text/javascript"  src="treeTable.js"></script> -->
         </div>
     </div>
     <!-- Login Modal -->
