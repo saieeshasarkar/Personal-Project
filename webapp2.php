@@ -745,7 +745,7 @@ function editRecord(userId) {
     <div id="reportModal" class="modal">
         <div class="modal-content">
             <h4>Report</h4>
-            <table id="treeTable" class="display">
+                <table id="treeTable" class="display">
         <thead>
             <tr>
                 <th>Name</th>
@@ -753,7 +753,11 @@ function editRecord(userId) {
                 <th>Number</th>
             </tr>
         </thead>
+        <tbody>
+            <!-- Rows will be dynamically populated -->
+        </tbody>
     </table>
+
     <script type="text/javascript"  src="treeTable.js"></script>
         </div>
     </div>
