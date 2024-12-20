@@ -182,6 +182,101 @@ $firebaseConfig = [
         .tree-indicator {
             cursor: pointer;
         }
+        /* table */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        
+        /* Header styling */
+        thead tr {
+            background-color: #f2f2f2;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 8px;
+            text-align: left;
+        }
+        
+        /* Main key styling */
+        .group-row:not(.subgroup-row) {
+            background-color: #e3e9ff !important;
+            border-top: 2px solid #ccc;
+        }
+        
+        .group-row:not(.subgroup-row) .tree-indicator {
+            background-color: #2946b1;
+        }
+        
+        /* Sub key styling */
+        .subgroup-row {
+            background-color: #f5f5f5 !important;
+        }
+        
+        .subgroup-row td {
+            padding-left: 30px !important;
+        }
+        
+        .subgroup-row .tree-indicator {
+            background-color: #666;
+        }
+        
+        /* Tree indicator styling */
+        .tree-indicator {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            color: white;
+            text-align: center;
+            line-height: 15px;
+            margin-right: 8px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Data row styling */
+        .data-row {
+            transition: background-color 0.2s;
+        }
+        
+        .data-row:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        
+        .data-row:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .data-row td:first-child {
+            padding-left: 60px;
+        }
+        
+        /* Hover effects */
+        .group-row:hover {
+            opacity: 0.9;
+        }
+        
+        .data-row:hover {
+            background-color: #f0f0f0 !important;
+        }
+        
+        /* Bold text for headers and group rows */
+        th, .group-row td {
+            font-weight: bold;
+        }
+
+        /* Add subtle shadow to main groups */
+        .group-row:not(.subgroup-row) {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
     </style>
 <!-- ////////////////////////////firebase///////////////////////////////////////// -->
 <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
@@ -470,6 +565,7 @@ function RealDB(data, opt = false){
 
         // } old of end status === 1
      }
+     populateTable(counts);
     // return [value1, value2];  // Returning as an array
 }
 
@@ -647,6 +743,110 @@ function editRecord(userId) {
 
 // console.log(result);
 // console.log(countMembers(datax, '1', '101'));  // Outputs: 2
+
+function createRow(content, className, colspan = 1) {
+            const tr = document.createElement('tr');
+            tr.className = className;
+            const td = document.createElement('td');
+            td.colSpan = colspan;
+            td.innerHTML = content;
+            tr.appendChild(td);
+            return tr;
+        }
+
+        function toggleRows(groupId, isMainKey = false) {
+            const rows = document.querySelectorAll(`[data-parent="${groupId}"]`);
+            const indicator = document.querySelector(`#indicator-${groupId}`);
+            const isHidden = rows[0]?.classList.contains('hidden');
+            
+            rows.forEach(row => {
+                row.classList.toggle('hidden');
+                
+                if (row.classList.contains('subgroup-row')) {
+                    const subGroupId = row.getAttribute('data-group');
+                    const subRows = document.querySelectorAll(`[data-parent="${subGroupId}"]`);
+                    const subIndicator = document.querySelector(`#indicator-${subGroupId}`);
+                    
+                    if (isHidden) {
+                        subRows.forEach(subRow => subRow.classList.add('hidden'));
+                        if (subIndicator) subIndicator.textContent = '+';
+                    } else {
+                        subRows.forEach(subRow => subRow.classList.add('hidden'));
+                        if (subIndicator) subIndicator.textContent = '+';
+                    }
+                }
+            });
+            
+            if (indicator) {
+                indicator.textContent = isHidden ? '-' : '+';
+            }
+        }
+
+        function populateTable(counts) {
+            const tableBody = document.getElementById('tableBody');
+            let groupCounter = 0;
+
+            for (const mainKey in counts) {
+                if (mainKey === 'total') continue;
+                
+                groupCounter++;
+                const mainGroupId = `group-${groupCounter}`;
+                
+                const mainGroupContent = `
+                    <span id="indicator-${mainGroupId}" class="tree-indicator">+</span>
+                    Main Key: ${mainKey} (Total: ${counts[mainKey].total})`;
+                const mainGroupRow = createRow(mainGroupContent, 'group-row', 3);
+                mainGroupRow.setAttribute('data-group', mainGroupId);
+                mainGroupRow.onclick = () => toggleRows(mainGroupId, true);
+                tableBody.appendChild(mainGroupRow);
+
+                for (const subKey in counts[mainKey]) {
+                    if (subKey === 'total') continue;
+
+                    groupCounter++;
+                    const subGroupId = `group-${groupCounter}`;
+                    
+                    const subGroupContent = `
+                        <span id="indicator-${subGroupId}" class="tree-indicator">+</span>
+                        Sub Key: ${subKey} (Total: ${counts[mainKey][subKey].total})`;
+                    const subGroupRow = createRow(subGroupContent, 'group-row subgroup-row', 3);
+                    subGroupRow.setAttribute('data-parent', mainGroupId);
+                    subGroupRow.setAttribute('data-group', subGroupId);
+                    subGroupRow.classList.add('hidden');
+                    subGroupRow.onclick = (e) => {
+                        e.stopPropagation();
+                        toggleRows(subGroupId);
+                    };
+                    tableBody.appendChild(subGroupRow);
+
+                    const uniqueKeys = counts[mainKey][subKey].unique;
+                    for (const uniqueKey in uniqueKeys) {
+                        const tr = document.createElement('tr');
+                        tr.className = 'data-row hidden';
+                        tr.setAttribute('data-parent', subGroupId);
+
+                        const cells = [
+                            uniqueKey,
+                            'V',
+                            uniqueKeys[uniqueKey]
+                        ];
+
+                        cells.forEach(cellData => {
+                            const td = document.createElement('td');
+                            td.textContent = cellData;
+                            tr.appendChild(td);
+                        });
+
+                        tableBody.appendChild(tr);
+                    }
+                }
+            }
+        }
+
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     populateTable(counts);
+        // });
+
 </script>
 <body>
 <div id="loading-overlay" style="display: none;">
