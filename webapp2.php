@@ -961,18 +961,15 @@ function createRow(content, className, colspan = 1) {
     <div id="reportModal" class="modal" style="width: 80%; height: 80%;">
         <div class="modal-content">
             <h4>Report</h4>
-                 <table id="treeTable" class="display" style="width:100%">
+            <table id="dataTable">
         <thead>
             <tr>
-                <th></th>
-                <th>Name</th>
+                <th>Key</th>
                 <th>Type</th>
-                <th>Population</th>
+                <th>Total</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- The rows will be dynamically populated -->
-        </tbody>
+        <tbody id="tableBody"></tbody>
     </table>
 
     <script type="text/javascript"  src="treeTable.js"></script>
