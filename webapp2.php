@@ -781,8 +781,14 @@ function createRow(content, className, colspan = 1) {
                 indicator.textContent = isHidden ? '-' : '+';
             }
         }
-
+        function clearTable() {
+            const tableBody = document.getElementById('tableBody');
+             while (tableBody.firstChild) {
+            tableBody.removeChild(tableBody.firstChild);
+            }
+            }
         function populateTable(counts) {
+            clearTable();
             const tableBody = document.getElementById('tableBody');
             let groupCounter = 0;
 
