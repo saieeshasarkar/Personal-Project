@@ -506,6 +506,8 @@ dbRef.once('value')
                     [childSnapshot.key]: 
                         addedData
                 };
+                Object.assign(allData, nc);
+                // allData[key] = addedData;
                 RealDB(nc);
             }
             
@@ -518,6 +520,8 @@ dbRef.once('value')
                     [childSnapshot.key]: 
                     removedData
                 };
+                delete allData[childSnapshot.key];
+
                 RealDB(nc,true);
             console.log('Child removed:', removedData);
         });
@@ -529,6 +533,7 @@ dbRef.once('value')
                     [childSnapshot.key]: 
                     updatedData
                 };
+                Object.assign(allData, nc);
                 const act = (updatedData.status === 0) ? true :  false;
                 RealDB(nc,act);
             console.log('Child updated:', updatedData);
