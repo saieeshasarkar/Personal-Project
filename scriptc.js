@@ -25,18 +25,34 @@ var isMobile = false; //initiate as false
 			position: 'bottomleft'
 		}).addTo(m);
 
-		var Rbutton = L.easyButton('material-icons',function(btn,map){
+	// 	var Rbutton = L.easyButton('material-icons',function(btn,map){
 			
-			button.children[0].innerText='assessment';
-			_states[0].icon='<i class="material-icons">assessment</i> View Report';
-			var modalElement = document.getElementById('reportModal');
-			var modalInstance = M.Modal.getInstance(modalElement);
-			// Open the modal
-			modalInstance.open();
+	// 		button.children[0].innerText='assessment';
+	// 		_states[0].icon='<i class="material-icons">assessment</i> View Report';
+	// 		var modalElement = document.getElementById('reportModal');
+	// 		var modalInstance = M.Modal.getInstance(modalElement);
+	// 		// Open the modal
+	// 		modalInstance.open();
 
-		  },'View Report', {
-		  position: 'bottomleft'
-	  }).addTo(m);
+	// 	  },'View Report', {
+	// 	  position: 'bottomleft'
+	//   }).addTo(m);
+
+	  L.easyButton({
+		position: 'bottomleft', // Position of the button
+		states: [{
+			stateName: 'view-report', // State name
+			icon: '<i class="material-icons">assessment</i>', // Icon and text
+			title: 'View Report', // Tooltip text
+			onClick: function(btn, map) {
+				// Open the modal
+				var modalElement = document.getElementById('reportModal');
+				var modalInstance = M.Modal.getInstance(modalElement);
+				modalInstance.open();
+			}
+		}]
+	}).addTo(m);
+
 	//   L.easyButton({
 	// 	position: 'topright', // Position of the button on the map
 	// 	tagName: 'div', // Use a div to wrap the content
