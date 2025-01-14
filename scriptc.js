@@ -26,6 +26,9 @@ var isMobile = false; //initiate as false
 		}).addTo(m);
 
 		var Rbutton = L.easyButton('material-icons',function(btn,map){
+			
+			button.children[0].innerText='assessment';
+			_states[0].icon='<i class="material-icons">assessment</i> View Report';
 			var modalElement = document.getElementById('reportModal');
 			var modalInstance = M.Modal.getInstance(modalElement);
 			// Open the modal
@@ -34,7 +37,6 @@ var isMobile = false; //initiate as false
 		  },'View Report', {
 		  position: 'bottomleft'
 	  }).addTo(m);
-	  Rbutton.innerHTML += 'assessment';
 	//   L.easyButton({
 	// 	position: 'topright', // Position of the button on the map
 	// 	tagName: 'div', // Use a div to wrap the content
