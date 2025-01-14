@@ -25,6 +25,30 @@ var isMobile = false; //initiate as false
 			position: 'bottomleft'
 		}).addTo(m);
 
+		L.easyButton('material-icons',function(btn,map){
+			var modalElement = document.getElementById('reportModal');
+			var modalInstance = M.Modal.getInstance(modalElement);
+			// Open the modal
+			modalInstance.open();
+
+		  },'View Report', {
+		  position: 'bottomleft'
+	  }).addTo(m);
+
+	//   L.easyButton({
+	// 	position: 'topright', // Position of the button on the map
+	// 	tagName: 'div', // Use a div to wrap the content
+	// 	id: 'reportLink', // Set the ID for the button
+	// 	states: [{
+	// 		stateName: 'view-report', // State name
+	// 		icon: '<i class="material-icons">assessment</i><br>View Report', // Icon and text
+	// 		title: 'View Report', // Tooltip text
+	// 		onClick: function(btn, map) {
+	// 			// Trigger the modal when the button is clicked
+	// 			$('#reportModal').modal('open'); // Assuming you're using Materialize CSS for the modal
+	// 		}
+	// 	}]
+	// }).addTo(m); // Add the button to the map
 		
 
 		var OpenCartoMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}'+ (L.Browser.retina ? '@2x.png' : '.png'),{
