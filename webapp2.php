@@ -1092,6 +1092,7 @@ function createRow(content, className, colspan = 1) {
 let autocompleteData = {};
 let autocompleteDatax = {};
 var villageInstance;
+let villageAutocompleteData = {};
 		 document.addEventListener('DOMContentLoaded', function() {
             const dataUrl = 'https://data.opendevelopmentmekong.net/geoserver/ODMekong/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ODMekong%3Adata&outputFormat=application%2Fjson';
 	const geoJson = {
@@ -1109,7 +1110,7 @@ var villageInstance;
             .then(geoJson => {
                 // alert('Total results found: ' + data.result.total);
 		     // let autocompleteData = {};
-                    let villageAutocompleteData = {};
+                    // let villageAutocompleteData = {}; //old villagepara
 
                     // geoJson.features.forEach(feature => {
                     //     const properties = feature.properties;
