@@ -797,10 +797,10 @@ function createRow(content, className, colspan = 1) {
                 
                 groupCounter++;
                 const mainGroupId = `group-${groupCounter}`;
-                var npro=getKeyFromPartialMatch(villageAutocompleteData, `${mainKey}-`);
+                // var npro=getKeyFromPartialMatch(villageAutocompleteData, `${mainKey}-`);
                 const mainGroupContent = `
                     <span id="indicator-${mainGroupId}" class="tree-indicator">+</span>
-                    Province: ${npro} (Total: ${counts[mainKey].total})`;
+                    Province: ${mainKey} (Total: ${counts[mainKey].total})`;
                 const mainGroupRow = createRow(mainGroupContent, 'group-row', 3);
                 mainGroupRow.setAttribute('data-group', mainGroupId);
                 mainGroupRow.onclick = () => toggleRows(mainGroupId, true);
@@ -811,10 +811,10 @@ function createRow(content, className, colspan = 1) {
 
                     groupCounter++;
                     const subGroupId = `group-${groupCounter}`;
-                    var ndis = getKeyFromPartialMatch(villageAutocompleteData, `-${subKey}`);
+                    // var ndis = getKeyFromPartialMatch(villageAutocompleteData, `-${subKey}`);
                     const subGroupContent = `
                         <span id="indicator-${subGroupId}" class="tree-indicator">+</span>
-                        District: ${ndis} (Total: ${counts[mainKey][subKey].total})`;
+                        District: ${subKey} (Total: ${counts[mainKey][subKey].total})`;
                     const subGroupRow = createRow(subGroupContent, 'group-row subgroup-row', 3);
                     subGroupRow.setAttribute('data-parent', mainGroupId);
                     subGroupRow.setAttribute('data-group', subGroupId);
@@ -830,9 +830,9 @@ function createRow(content, className, colspan = 1) {
                         const tr = document.createElement('tr');
                         tr.className = 'data-row hidden';
                         tr.setAttribute('data-parent', subGroupId);
-                        var nvil = getKeyFromPartialMatch(villageAutocompleteData, uniqueKey);
+                        // var nvil = getKeyFromPartialMatch(villageAutocompleteData, uniqueKey);
                         const cells = [
-                            nvil,
+                            uniqueKey,
                             'V',
                             uniqueKeys[uniqueKey]
                         ];
