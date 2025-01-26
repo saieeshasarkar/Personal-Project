@@ -797,7 +797,7 @@ function createRow(content, className, colspan = 1) {
                 
                 groupCounter++;
                 const mainGroupId = `group-${groupCounter}`;
-                var npro=getKeyFromValue(villageAutocompleteData, mainKey + "-");
+                var npro=getKeyFromPartialMatch(villageAutocompleteData, `${mainKey}-`);
                 const mainGroupContent = `
                     <span id="indicator-${mainGroupId}" class="tree-indicator">+</span>
                     Province: ${npro} (Total: ${counts[mainKey].total})`;
@@ -811,7 +811,7 @@ function createRow(content, className, colspan = 1) {
 
                     groupCounter++;
                     const subGroupId = `group-${groupCounter}`;
-                    var ndis = getKeyFromValue(villageAutocompleteData, "-" + subKey);
+                    var ndis = getKeyFromPartialMatch(villageAutocompleteData, `-${subKey}`);
                     const subGroupContent = `
                         <span id="indicator-${subGroupId}" class="tree-indicator">+</span>
                         District: ${ndis} (Total: ${counts[mainKey][subKey].total})`;
@@ -830,9 +830,9 @@ function createRow(content, className, colspan = 1) {
                         const tr = document.createElement('tr');
                         tr.className = 'data-row hidden';
                         tr.setAttribute('data-parent', subGroupId);
-
+                        var nvil = getKeyFromPartialMatch(villageAutocompleteData, uniqueKey);
                         const cells = [
-                            uniqueKey,
+                            nvil,
                             'V',
                             uniqueKeys[uniqueKey]
                         ];
