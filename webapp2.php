@@ -797,7 +797,7 @@ function createRow(content, className, colspan = 1) {
                 
                 groupCounter++;
                 const mainGroupId = `group-${groupCounter}`;
-                var npro=getKeyFromValue(villageAutocompleteData, `${mainKey}-`);
+                var npro=getKeyFromValue(villageAutocompleteData, mainKey + "-");
                 const mainGroupContent = `
                     <span id="indicator-${mainGroupId}" class="tree-indicator">+</span>
                     Province: ${npro} (Total: ${counts[mainKey].total})`;
@@ -811,7 +811,7 @@ function createRow(content, className, colspan = 1) {
 
                     groupCounter++;
                     const subGroupId = `group-${groupCounter}`;
-                    var ndis = getKeyFromValue(villageAutocompleteData, `-${subKey}`);
+                    var ndis = getKeyFromValue(villageAutocompleteData, "-" + subKey);
                     const subGroupContent = `
                         <span id="indicator-${subGroupId}" class="tree-indicator">+</span>
                         District: ${ndis} (Total: ${counts[mainKey][subKey].total})`;
