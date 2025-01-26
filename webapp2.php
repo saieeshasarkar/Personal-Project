@@ -797,10 +797,10 @@ function createRow(content, className, colspan = 1) {
                 
                 groupCounter++;
                 const mainGroupId = `group-${groupCounter}`;
-                
+                var npro=getKeyFromValue(villageAutocompleteData, `${mainKey}-`);
                 const mainGroupContent = `
                     <span id="indicator-${mainGroupId}" class="tree-indicator">+</span>
-                    Province: ${mainKey} (Total: ${counts[mainKey].total})`;
+                    Province: ${npro} (Total: ${counts[mainKey].total})`;
                 const mainGroupRow = createRow(mainGroupContent, 'group-row', 3);
                 mainGroupRow.setAttribute('data-group', mainGroupId);
                 mainGroupRow.onclick = () => toggleRows(mainGroupId, true);
@@ -811,10 +811,10 @@ function createRow(content, className, colspan = 1) {
 
                     groupCounter++;
                     const subGroupId = `group-${groupCounter}`;
-                    
+                    var ndis = getKeyFromValue(villageAutocompleteData, `-${subKey}`);
                     const subGroupContent = `
                         <span id="indicator-${subGroupId}" class="tree-indicator">+</span>
-                        District: ${subKey} (Total: ${counts[mainKey][subKey].total})`;
+                        District: ${ndis} (Total: ${counts[mainKey][subKey].total})`;
                     const subGroupRow = createRow(subGroupContent, 'group-row subgroup-row', 3);
                     subGroupRow.setAttribute('data-parent', mainGroupId);
                     subGroupRow.setAttribute('data-group', subGroupId);
@@ -1495,6 +1495,28 @@ let villageAutocompleteData = {};
             //     M.toast({html: 'Invalid credentials'});
             // }
         });
+
+        function getKeyFromPartialMatch(data, value) {
+        for (var key in data) {
+            if (data[key].toLowerCase().includes(value.toLowerCase())) {
+                 // Remove <br> tags from the key
+            var cleanedKey = key.replace(/<br>/g, '');
+
+                // Split the key by '-'
+                var splitKey = cleanedKey.split('-');
+
+                // Check the value and return the appropriate part of the split key
+                if (value.endsWith('-')) {
+                    return splitKey[1] || null; // Return the second item (or null if it doesn't exist)
+                } else if (value.startsWith('-')) {
+                    return splitKey[2] || null; // Return the third item (or null if it doesn't exist)
+                } else {
+                    return splitKey[0] || null; // Return the first item (or null if it doesn't exist)
+                }
+                }
+                }
+                return null; // Return null if no match is found
+        }
 
         function loginSuccess(user) {
             document.getElementById('loginLink').style.display = 'none';
