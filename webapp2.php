@@ -1500,7 +1500,7 @@ let villageAutocompleteData = {};
         for (var key in data) {
             if (data[key].toLowerCase().includes(value.toLowerCase())) {
                  // Remove <br> tags from the key
-            var cleanedKey = key.replace(/<br>/g, '');
+            var cleanedKey = key.replace(/&lt;br&gt;/g, '');
 
                 // Split the key by '-'
                 var splitKey = cleanedKey.split('-');
