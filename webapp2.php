@@ -1498,6 +1498,15 @@ let villageAutocompleteData = {};
 
         function getKeyFromPartialMatch(data, value) {
         for (var key in data) {
+            if (value.endsWith('-')) {
+            if (data[key].toLowerCase().startsWith(value.toLowerCase())) {
+                var cleanedKey = key.replace(/&lt;br&gt;/g, '');
+                // Split the key by '-'
+                var splitKey = cleanedKey.split('-');
+                return splitKey[1] || null;
+            } 
+            }else {
+            
             if (data[key].toLowerCase().includes(value.toLowerCase())) {
                  // Remove <br> tags from the key
             var cleanedKey = key.replace(/&lt;br&gt;/g, '');
@@ -1505,16 +1514,18 @@ let villageAutocompleteData = {};
                 // Split the key by '-'
                 var splitKey = cleanedKey.split('-');
 
-                // Check the value and return the appropriate part of the split key
-                if (value.endsWith('-')) {
-                    return splitKey[1] || null; // Return the second item (or null if it doesn't exist)
-                } else if (value.startsWith('-')) {
-                    return splitKey[2] || null; // Return the third item (or null if it doesn't exist)
-                } else {
-                    return splitKey[0] || null; // Return the first item (or null if it doesn't exist)
+                // // Check the value and return the appropriate part of the split key
+                // if (value.endsWith('-')) {
+                //     return splitKey[1] || null; // Return the second item (or null if it doesn't exist)
+                //} 
+                    if (value.startsWith('-')) {
+                        return splitKey[2] || null; // Return the third item (or null if it doesn't exist)
+                    } else {
+                        return splitKey[0] || null; // Return the first item (or null if it doesn't exist)
+                    }
+                   }
                 }
-                }
-                }
+            }
                 return null; // Return null if no match is found
         }
 
